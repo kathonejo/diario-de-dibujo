@@ -1,0 +1,30 @@
+{
+  "fecha": "2026-10-11",
+  "tema": "Valor y Masa",
+  "frase": {
+    "texto": "Un guerrero no rechaza nada, pero no se deja atrapar por nada.",
+    "autor": "Carlos Castaneda"
+  },
+  "mision": "Ver el mundo como dos grandes masas, luz y sombra, y aceptar cada valor sin dejar que el detalle te atrape.",
+  "datos": [
+    {
+      "texto": "Valor es qué tan claro u oscuro es algo, sin importar su color; masa es agrupar todo lo que está en sombra en una sola forma. La caja de helechos muestra un volumen simple con la cara iluminada y la cara en sombra bien separadas.",
+      "libro": "On the Growth of Plants in Closely Glazed Cases — N. B. Ward (1852), grabados de E. W. Cooke",
+      "pagina": 39,
+      "imagen": "ward-pag39.webp"
+    },
+    {
+      "texto": "Sombra propia y sombra proyectada en un objeto simple: la proyectada es la más oscura justo donde toca el suelo. Regla de las dos familias: ningún valor dentro de la sombra puede ser tan claro como el más oscuro de la luz.",
+      "libro": "On the Growth of Plants in Closely Glazed Cases — N. B. Ward (1852), grabados de E. W. Cooke",
+      "pagina": 89,
+      "imagen": "ward-pag89.webp"
+    },
+    {
+      "texto": "Las figuras claras se leen porque el fondo de follaje es una sola masa oscura. Bordes duros donde la forma corta, suaves donde gira.",
+      "libro": "On the Growth of Plants in Closely Glazed Cases — N. B. Ward (1852), grabados de E. W. Cooke",
+      "pagina": 21,
+      "imagen": "ward-pag21.webp"
+    }
+  ],
+  "moodboard": "moodboard.webp"
+}
