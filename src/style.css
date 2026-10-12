@@ -108,3 +108,19 @@ dialog.subir h3{font-size:1rem}.subir .sub{margin:0 0 1rem;color:var(--sepia)}
 body.en-focus{overflow:hidden}body.en-focus .timer{z-index:110;background:rgba(40,38,35,.92);border-color:#333;color:#eee}
 body.en-focus .timer button{background:#2c2a27;color:#eee;border-color:#444}body.en-focus .timer button.primary{background:var(--accent)}
 @media(max-width:640px){.focus>img{max-width:100vw;max-height:calc(100vh - 330px);margin-bottom:180px}.f-chips{bottom:auto;top:16px;left:auto;right:12px;transform:none}.f-chips button{font-size:0}.f-salir{top:16px}}
+/* arrastre del temporizador */
+.t-drag{position:absolute;top:6px;left:50%;transform:translateX(-50%);width:44px;height:20px;display:flex;align-items:center;justify-content:center;color:var(--sepia);opacity:.55;cursor:grab;touch-action:none;user-select:none;font-size:14px;letter-spacing:2px;border-radius:6px}
+.t-drag:hover{opacity:1;background:rgba(0,0,0,.05)}
+.timer{padding-top:1.4rem}
+.timer.movido{right:auto!important;bottom:auto!important;width:min(270px,calc(100vw - 16px));border-radius:20px!important}
+.timer.min.movido{width:auto}
+.timer.arrastrando{cursor:grabbing;opacity:.92;transition:none}.timer.arrastrando .t-drag{cursor:grabbing}
+.timer.min .t-drag{position:static;transform:none;width:22px;display:inline-flex;margin-right:.3rem;vertical-align:middle}
+.timer.min{display:flex;align-items:center}
+/* imágenes de cualquier proporción */
+.mood.grande{width:fit-content;max-width:min(960px,100%)}
+.mood.grande img{width:auto;max-width:100%;max-height:78vh;margin:0 auto;object-fit:contain}
+.hero .mood{display:flex;justify-content:center;align-items:center}
+.hero .mood img{width:auto;max-width:100%;max-height:72vh;object-fit:contain}
+.dato img{max-height:520px;object-fit:contain;width:auto;max-width:100%;margin:0 auto;display:block}
+.focus>img{width:auto;height:auto}

@@ -14,7 +14,7 @@ function chime() {
 export function initTimer(el) {
   let st = Object.assign({ total: 30*60e3, left: 30*60e3, end: 0, running: false, min: false }, JSON.parse(localStorage.getItem(KEY) || '{}'));
   const save = () => localStorage.setItem(KEY, JSON.stringify(st));
-  el.innerHTML = `<button class="t-min" aria-label="Minimizar temporizador">–</button>
+  el.innerHTML = `<div class="t-drag" title="Arrastrar (doble clic: volver a su lugar)" aria-label="Arrastrar temporizador">⠿</div><button class="t-min" aria-label="Minimizar temporizador">–</button>
     <div class="t-lbl">Sesión de dibujo</div><div class="t-time" aria-live="polite">30:00</div>
     <div class="t-bar"><i></i></div>
     <div class="t-pre">${[15,30,60].map(m=>`<button data-min="${m}">${m} min</button>`).join('')}</div>
@@ -47,6 +47,28 @@ export function initTimer(el) {
     else if (b.classList.contains('t-min')) st.min = !st.min;
     save(); draw();
   });
-  el.addEventListener('click', e => { if (st.min && !e.target.closest('button')) { st.min = false; save(); draw(); } });
+  el.addEventListener('click', e => { if (st.min && !e.target.closest('button, .t-drag')) { st.min = false; save(); draw(); } });
+  // --- arrastrar ---
+  const POS = 'timer-pos', h = el.querySelector('.t-drag');
+  const clamp = () => {
+    if (!el.classList.contains('movido')) return;
+    const r = el.getBoundingClientRect();
+    const x = Math.min(Math.max(0, r.left), innerWidth - r.width), y = Math.min(Math.max(0, r.top), innerHeight - r.height);
+    el.style.left = x + 'px'; el.style.top = y + 'px';
+    return { x: x / innerWidth, y: y / innerHeight };
+  };
+  const place = p => { el.classList.add('movido'); el.style.left = p.x * innerWidth + 'px'; el.style.top = p.y * innerHeight + 'px'; clamp(); };
+  const saved = JSON.parse(localStorage.getItem(POS) || 'null'); if (saved) place(saved);
+  let start = null;
+  h.addEventListener('pointerdown', e => {
+    e.preventDefault(); const r = el.getBoundingClientRect();
+    el.classList.add('movido', 'arrastrando'); el.style.left = r.left + 'px'; el.style.top = r.top + 'px';
+    start = { dx: e.clientX - r.left, dy: e.clientY - r.top }; h.setPointerCapture(e.pointerId);
+  });
+  h.addEventListener('pointermove', e => { if (!start) return; el.style.left = e.clientX - start.dx + 'px'; el.style.top = e.clientY - start.dy + 'px'; clamp(); });
+  const end = () => { if (!start) return; start = null; el.classList.remove('arrastrando'); localStorage.setItem(POS, JSON.stringify(clamp())); };
+  h.addEventListener('pointerup', end); h.addEventListener('pointercancel', end);
+  h.addEventListener('dblclick', () => { localStorage.removeItem(POS); el.classList.remove('movido'); el.style.left = el.style.top = ''; });
+  addEventListener('resize', () => { const p = JSON.parse(localStorage.getItem(POS) || 'null'); if (p) place(p); });
   draw();
 }
