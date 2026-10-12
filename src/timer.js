@@ -27,7 +27,7 @@ export function initTimer(el) {
     $('.t-go').textContent = st.running ? 'Pausar' : (st.left < st.total && st.left > 0 ? 'Seguir' : 'Iniciar');
     el.classList.toggle('min', st.min); el.classList.toggle('on', st.running);
     el.querySelectorAll('[data-min]').forEach(b => b.classList.toggle('sel', +b.dataset.min * 60e3 === st.total));
-    if (st.running) document.title = `⏳ ${fmt(l)} · Diario de Dibujo`;
+    if (st.running) document.title = `⏳ ${fmt(l)} · Diario de dibujo`;
   }
   function done() {
     st.running = false; st.left = 0; save(); chime();
@@ -38,12 +38,12 @@ export function initTimer(el) {
   setInterval(() => { if (st.running && left() <= 0) done(); draw(); }, 250);
   el.addEventListener('click', e => {
     const b = e.target.closest('button'); if (!b) return;
-    if (b.dataset.min) { st = { ...st, total: b.dataset.min*60e3, left: b.dataset.min*60e3, running: false }; document.title = 'Diario de Dibujo'; }
+    if (b.dataset.min) { st = { ...st, total: b.dataset.min*60e3, left: b.dataset.min*60e3, running: false }; document.title = 'Diario de dibujo'; }
     else if (b.classList.contains('t-go')) {
       if (st.running) { st.left = left(); st.running = false; }
       else { if (st.left <= 0) st.left = st.total; st.end = Date.now() + st.left; st.running = true;
         if ('Notification' in window && Notification.permission === 'default') Notification.requestPermission(); }
-    } else if (b.classList.contains('t-rs')) { st.running = false; st.left = st.total; document.title = 'Diario de Dibujo'; }
+    } else if (b.classList.contains('t-rs')) { st.running = false; st.left = st.total; document.title = 'Diario de dibujo'; }
     else if (b.classList.contains('t-min')) st.min = !st.min;
     save(); draw();
   });

@@ -1,3 +1,1 @@
-{"name":"diario-de-dibujo","private":true,"type":"module",
- "scripts":{"dev":"node scripts/build-index.mjs && vite","build":"node scripts/build-index.mjs && vite build","preview":"vite preview"},
- "devDependencies":{"vite":"^5.4.0"}}
+{"name":"diario-de-dibujo","private":true,"type":"module","scripts":{"dev":"node scripts/build-index.mjs && vite","build":"node scripts/build-index.mjs && vite build","preview":"vite preview"},"devDependencies":{"vite":"^5.4.0"},"dependencies":{"@vercel/blob":"^2.8.1"}}

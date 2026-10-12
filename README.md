@@ -1,4 +1,4 @@
-# Diario de Dibujo
+# Diario de dibujo
 
 Diario de estudio de dibujo: una página por día (moodboard, frase, misión y datos de libros) + temporizador 15/30/60 min.
 

@@ -71,3 +71,40 @@ main{max-width:1180px;margin:0 auto;padding:0 1.25rem}
 @media(max-width:640px){body{font-size:16px;padding-bottom:210px}
 .timer{left:0;right:0;bottom:0;width:auto;border-radius:18px 18px 0 0;padding:.8rem 1rem calc(.8rem + env(safe-area-inset-bottom))}
 .t-time{font-size:2.6rem}.timer.min{left:auto;right:12px;bottom:12px;border-radius:999px}}
+.acciones{display:flex;gap:.7rem;flex-wrap:wrap;margin:-.4rem 0 1.4rem}
+.acciones .btn,.mi-trabajo .btn{margin:0;border:0;font:600 .95rem Inter;cursor:pointer}
+.btn.sec{background:var(--paper2);color:var(--accent);border:1.5px solid var(--accent)!important}
+.btn.sec:hover{background:#fff}
+.mi-trabajo{margin-top:2.5rem}.mi-trabajo .btn{margin-top:1rem}
+.trabajos{display:grid;gap:1.2rem;grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}
+.trabajo{position:relative;margin:0;padding:.7rem}.trabajo img{width:100%;border-radius:10px;cursor:zoom-in;display:block}
+.trabajo figcaption{padding:.6rem .2rem 0;font-style:italic;color:var(--sepia)}
+.borrar{position:absolute;top:14px;right:14px;border:0;border-radius:50%;width:30px;height:30px;background:rgba(255,255,255,.85);cursor:pointer;opacity:.6}.borrar:hover{opacity:1}
+.vacio-t{color:var(--sepia);font-style:italic}
+.cal-g .con-trabajo{background-size:cover;background-position:center;position:relative;box-shadow:0 0 0 2px var(--accent)}
+.cal-g .con-trabajo span{background:var(--accent);border-radius:6px;padding:0 .3rem}
+.lista a{position:relative}.lista .mini-trabajo{margin-left:auto;width:64px;height:64px;border:2px solid #fff;box-shadow:var(--shadow);transform:rotate(3deg)}
+dialog.subir{border:0;border-radius:18px;padding:1.5rem;width:min(440px,92vw);background:var(--paper2);color:var(--ink);box-shadow:0 30px 60px -20px rgba(0,0,0,.5)}
+dialog.subir::backdrop{background:rgba(40,25,15,.5)}
+dialog.subir h3{font-size:1rem}.subir .sub{margin:0 0 1rem;color:var(--sepia)}
+.subir label{display:block;margin-bottom:1rem;font-weight:500}
+.subir .drop{border:2px dashed var(--line);border-radius:12px;padding:1rem;text-align:center;cursor:pointer;color:var(--sepia)}
+.subir .drop input{display:none}.subir .drop img{max-width:100%;max-height:220px;margin-top:.6rem;border-radius:8px}
+.subir textarea{width:100%;margin-top:.3rem;font:inherit;border:1px solid var(--line);border-radius:10px;padding:.6rem;background:#fff}
+.subir .acc{display:flex;justify-content:flex-end;gap:.5rem}
+.subir .acc button{font:600 .95rem Inter;border:1px solid var(--line);background:#fff;border-radius:999px;padding:.6rem 1.2rem;cursor:pointer}
+.subir .acc .primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.estado{min-height:1.2em;color:var(--accent);font-size:.9rem}
+.focus{position:fixed;inset:0;z-index:100;background:#1b1a18;display:flex;align-items:center;justify-content:center}
+.focus>img{max-width:calc(100vw - 140px);max-height:calc(100vh - 130px);object-fit:contain;box-shadow:0 20px 60px rgba(0,0,0,.6)}
+.focus button{font:600 .9rem Inter;cursor:pointer}
+.f-salir{position:absolute;top:16px;left:16px;background:rgba(255,255,255,.1);color:#eee;border:0;border-radius:999px;padding:.55rem 1rem}
+.f-nav{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.08);color:#eee;border:0;width:52px;height:80px;border-radius:12px;font-size:2.2rem!important}
+.f-prev{left:12px}.f-next{right:12px}.f-nav:hover,.f-salir:hover{background:rgba(255,255,255,.2)}
+.f-chips{position:absolute;bottom:14px;left:50%;transform:translateX(-50%);display:flex;gap:.5rem}
+.f-chips button{display:flex;align-items:center;gap:.4rem;background:rgba(255,255,255,.08);color:#ddd;border:1px solid transparent;border-radius:10px;padding:.3rem .6rem .3rem .3rem}
+.f-chips button img{width:36px;height:36px;object-fit:cover;border-radius:6px}
+.f-chips button.sel{border-color:#d9a58f;color:#fff}
+body.en-focus{overflow:hidden}body.en-focus .timer{z-index:110;background:rgba(40,38,35,.92);border-color:#333;color:#eee}
+body.en-focus .timer button{background:#2c2a27;color:#eee;border-color:#444}body.en-focus .timer button.primary{background:var(--accent)}
+@media(max-width:640px){.focus>img{max-width:100vw;max-height:calc(100vh - 330px);margin-bottom:180px}.f-chips{bottom:auto;top:16px;left:auto;right:12px;transform:none}.f-chips button{font-size:0}.f-salir{top:16px}}
