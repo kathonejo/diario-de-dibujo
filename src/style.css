@@ -124,3 +124,8 @@ body.en-focus .timer button{background:#2c2a27;color:#eee;border-color:#444}body
 .hero .mood img{width:auto;max-width:100%;max-height:72vh;object-fit:contain}
 .dato img{max-height:520px;object-fit:contain;width:auto;max-width:100%;margin:0 auto;display:block}
 .focus>img{width:auto;height:auto}
+.focus{width:100vw;height:100vh;height:100dvh}
+.focus>img{max-width:calc(100vw - 140px);max-height:calc(100dvh - 130px)}
+.f-fs{position:absolute;top:16px;left:150px;background:rgba(255,255,255,.1);color:#eee;border:0;border-radius:999px;padding:.55rem 1rem}
+.f-fs:hover{background:rgba(255,255,255,.2)}.f-fs[aria-pressed="true"]{background:rgba(217,165,143,.35)}
+@media(max-width:640px){.f-fs{left:auto;right:12px;top:64px;font-size:0!important;padding:.55rem .8rem}.f-fs::first-letter{font-size:1rem}}
