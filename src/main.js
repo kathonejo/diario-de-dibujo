@@ -21,11 +21,11 @@ let calMes = null;
 let TR = {};
 function calendario(dias) {
   const set = new Set(dias.map(d => d.fecha));
-  const base = calMes ?? parse(dias[0]?.fecha ?? new Date().toISOString().slice(0,10));
+  const base = calMes ?? parse(dias[0]?.fecha ?? new Date().toLocaleDateString('sv'));
   calMes = new Date(base.getFullYear(), base.getMonth(), 1);
   const y = calMes.getFullYear(), m = calMes.getMonth();
   const off = (new Date(y, m, 1).getDay() + 6) % 7, n = new Date(y, m+1, 0).getDate();
-  const hoy = new Date().toISOString().slice(0,10);
+  const hoy = new Date().toLocaleDateString('sv');
   let cells = '<span></span>'.repeat(off);
   for (let i = 1; i <= n; i++) {
     const f = `${y}-${String(m+1).padStart(2,'0')}-${String(i).padStart(2,'0')}`;
