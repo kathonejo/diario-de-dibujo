@@ -1,14 +1,15 @@
 #!/usr/bin/env bash
-# Uso: scripts/publicar_dia.sh [AAAA-MM-DD]   (por defecto: hoy)
+# Uso: scripts/publicar_dia.sh [AAAA-MM-DD] [carpeta_origen]   (por defecto: hoy y /workspace/raton-perez/<fecha>)
+# Ej.: scripts/publicar_dia.sh 2026-10-12 /workspace/raton-perez/2026-10-12/v2   (reemplaza el día por completo)
 # Copia /workspace/raton-perez/<fecha>/ (dia.json + imágenes) a content/<fecha>/, optimiza a webp ≤1600px, commit y push.
 set -euo pipefail
 FECHA="${1:-$(date +%F)}"
-SRC="${RATON_DIR:-/workspace/raton-perez}/$FECHA"
+SRC="${2:-${RATON_DIR:-/workspace/raton-perez}/$FECHA}"
 REPO="$(cd "$(dirname "$0")/.." && pwd)"
 DEST="$REPO/content/$FECHA"
 [[ -f "$SRC/dia.json" ]] || { echo "ERROR: falta $SRC/dia.json" >&2; exit 1; }
 [[ -f "$SRC/moodboard.png" ]] || { echo "ERROR: falta $SRC/moodboard.png" >&2; exit 2; }
-mkdir -p "$DEST"
+rm -rf "$DEST"; mkdir -p "$DEST"   # reemplaza el día entero (borra imágenes viejas)
 python3 - "$SRC" "$DEST" <<'PY'
 import json, os, sys
 from PIL import Image
@@ -30,7 +31,7 @@ for x in d.get("datos", []):
 json.dump(d, open(os.path.join(dest, "dia.json"), "w", encoding="utf-8"), ensure_ascii=False, indent=2)
 PY
 cd "$REPO"
-git add "content/$FECHA"
+git add -A "content/$FECHA"
 if git diff --cached --quiet; then echo "Sin cambios para $FECHA"; exit 0; fi
 git commit -qm "Día $FECHA"
 git push -q origin HEAD

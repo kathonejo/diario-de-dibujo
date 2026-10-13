@@ -17,6 +17,23 @@ function frase(d) {
   return d.frase ? `<blockquote class="frase"><p>“${esc(d.frase.texto)}”</p>${d.frase.autor ? `<cite>— ${esc(d.frase.autor)}</cite>` : ''}</blockquote>` : '';
 }
 
+// paleta: acepta [{nombre,hex}], ["#hex"], [{name,color}] o {nombre: hex}
+function normPaleta(p) {
+  if (!p) return [];
+  const arr = Array.isArray(p) ? p : (typeof p === 'object' ? Object.entries(p).map(([k, v]) => (typeof v === 'string' ? { nombre: k, hex: v } : { nombre: k, ...v })) : []);
+  return arr.map(c => typeof c === 'string' ? { hex: c } : { nombre: c.nombre ?? c.name ?? c.nombre_color ?? '', hex: c.hex ?? c.color ?? c.valor ?? '' })
+    .filter(c => /^#?[0-9a-f]{3,8}$/i.test(c.hex)).map(c => ({ ...c, hex: (c.hex.startsWith('#') ? c.hex : '#' + c.hex).toUpperCase() }));
+}
+export function paletaHTML(p, cls = '') {
+  const cs = normPaleta(p); if (!cs.length) return '';
+  return `<div class="paleta ${cls}">${cs.map(c => `<button class="sw" data-hex="${c.hex}" title="Copiar ${c.hex}"><i style="background:${c.hex}"></i><span>${esc(c.nombre)}</span><code>${c.hex}</code></button>`).join('')}</div>`;
+}
+document.addEventListener('click', async e => {
+  const b = e.target.closest('.sw'); if (!b) return;
+  try { await navigator.clipboard.writeText(b.dataset.hex); } catch { const t = Object.assign(document.createElement('textarea'), { value: b.dataset.hex }); document.body.append(t); t.select(); document.execCommand('copy'); t.remove(); }
+  const c = b.querySelector('code'); c.textContent = '¡Copiado!'; b.classList.add('ok'); setTimeout(() => { c.textContent = b.dataset.hex; b.classList.remove('ok'); }, 1200);
+});
+
 let calMes = null;
 let TR = {};
 function calendario(dias) {
@@ -59,7 +76,7 @@ async function dia(f) {
   const i = dias.findIndex(x => x.fecha === f), prev = dias[i+1], next = dias[i-1];
   const imgs = [{ src: img(f, d.moodboard), label: 'Moodboard' }, ...(d.datos || []).filter(x => x.imagen).map(x => ({ src: img(f, x.imagen), label: `Pág. ${x.pagina ?? ''}` }))];
   queueMicrotask(() => {
-    document.getElementById('focus-btn').onclick = () => openFocus(imgs, 0);
+    document.getElementById('focus-btn').onclick = () => openFocus(imgs, 0, paletaHTML(d.paleta, 'mini'));
     const sub = () => dialogoSubir(f, () => dia(f));
     document.getElementById('subir-btn').onclick = sub; document.getElementById('subir-btn2').onclick = sub;
     app.querySelectorAll('[data-borrar]').forEach(b => b.onclick = async () => { if (confirm('¿Borrar este trabajo?') && await borrar(f, b.dataset.borrar)) dia(f); });
@@ -69,6 +86,7 @@ async function dia(f) {
     <p class="eyebrow">${largo(f)}</p><h1>${esc(d.tema)}</h1>
     <div class="acciones"><button class="btn" id="focus-btn">◎ Modo focus</button><button class="btn sec" id="subir-btn">⬆ Subir mi trabajo</button></div>
     <figure class="mood grande"><img src="${img(f, d.moodboard)}" alt="Moodboard: ${esc(d.tema)}" data-zoom><figcaption>Foto 1 · Moodboard</figcaption></figure>
+    ${normPaleta(d.paleta).length ? `<section class="paleta-sec"><h3>Paleta del día</h3>${paletaHTML(d.paleta)}<p class="hint">Tocá un color para copiar su código.</p></section>` : ''}
     <div class="dos">${frase(d)}<div class="mision card"><h3>Misión del día</h3><p>${esc(d.mision)}</p></div></div>
     ${d.datos?.length ? `<h2>Datos</h2><div class="datos">${d.datos.map(x => `<div class="dato card">
       ${x.imagen ? `<img loading="lazy" src="${img(f, x.imagen)}" alt="Referencia: ${esc(x.libro)}, pág. ${esc(x.pagina)}" data-zoom>` : ''}
