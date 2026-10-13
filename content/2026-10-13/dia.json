@@ -1,0 +1,53 @@
+{
+  "fecha": "2026-10-13",
+  "tema": "Forma y volumen: encaje y sólidos",
+  "frase": {
+    "texto": "Cada acto realizado con atención total es un acto mágico.",
+    "autor": "Taisha Abelar (linaje de don Juan, Castaneda) · Operador #9 · La Atención"
+  },
+  "mision": "Mirar cada objeto con atención total hasta encontrar el sólido simple que tiene adentro y hacer que la luz lo convierta en volumen.",
+  "paleta": [
+    {
+      "nombre": "Gris pizarra",
+      "hex": "#34373C"
+    },
+    {
+      "nombre": "Gris humo",
+      "hex": "#5A595F"
+    },
+    {
+      "nombre": "Gris piedra",
+      "hex": "#A6A6A6"
+    },
+    {
+      "nombre": "Gris perla",
+      "hex": "#DFDBDC"
+    },
+    {
+      "nombre": "Rojo óxido",
+      "hex": "#9E1B07"
+    }
+  ],
+  "datos": [
+    {
+      "texto": "Encaje: con el lápiz como varilla se miden alto y ancho, se marcan los límites y se divide en mitades y cuartos antes de dibujar la forma, como con el teléfono y el torso de yeso.",
+      "libro": "Taller de las Artes – Dibujo I: Iniciación — Chris Armand",
+      "pagina": 17,
+      "imagen": "taller-pag17.webp"
+    },
+    {
+      "texto": "Sólidos básicos: cubo, esfera, cono y pirámide bajo una luz; el cubo muestra caras de valor plano y la esfera y el cono un valor que gira, con sombra proyectada en la mesa.",
+      "libro": "Así se pinta con lápices de colores — Parramón Ediciones",
+      "pagina": 65,
+      "imagen": "lapices-pag65.webp"
+    },
+    {
+      "texto": "Objetos reales como volúmenes: en el dibujo a lápiz de «Efectos surrealistas» el vaso, el bol y la mesa se leen como cilindros y elipses gracias al sombreado que sigue la forma.",
+      "libro": "Esbozar y dibujar",
+      "pagina": 77,
+      "imagen": "esbozar-pag77.webp"
+    }
+  ],
+  "moodboard": "moodboard.webp",
+  "formato": "cuadrado"
+}
