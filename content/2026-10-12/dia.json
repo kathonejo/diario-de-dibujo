@@ -5,26 +5,44 @@
     "texto": "El camino es discontinuo y lo que realmente lo convierte en camino es el hilo conductor del cuerpo/saber de la criatura.",
     "autor": "María Zambrano · Operador #4 · La Sibila"
   },
-  "mision": "Dejar que algunos bordes se disuelvan en la masa y otros corten limpios, sin dibujar el contorno en todas partes.",
+  "mision": "Dibujar una cabeza sin trazar el contorno completo: algunos bordes se pierden en la sombra, otros cortan limpios contra la luz, y la forma se sigue leyendo.",
   "datos": [
     {
-      "texto": "Borde perdido: cuando dos valores vecinos son parecidos, la forma se une a la masa y el contorno desaparece. En la lámina de Tintern Abbey el follaje se disuelve en trama oscura mientras el marco de las puertas corta duro.",
-      "libro": "On the Growth of Plants in Closely Glazed Cases — N. B. Ward (1852), grabado Tintern-Abbey Case",
-      "pagina": 6,
-      "imagen": "ward-pag6.webp"
+      "texto": "Borde suave: en las esferas a carbón el terminador es una franja gradual donde la forma gira; la sombra proyectada, en cambio, tiene un borde más definido.",
+      "libro": "El gran libro del dibujo — José M. Parramón",
+      "pagina": 26,
+      "imagen": "parramon-pag26.webp"
     },
     {
-      "texto": "Borde encontrado: arista clara donde luz y sombra chocan con contraste alto. La caja de helechos muestra aristas geométricas del estuche frente a frondas blandas adentro.",
-      "libro": "On the Growth of Plants in Closely Glazed Cases — N. B. Ward (1852), grabados de E. W. Cooke",
-      "pagina": 39,
-      "imagen": "ward-pag39.webp"
+      "texto": "Borde encontrado: en la cabeza de yeso el perfil iluminado corta con contraste alto contra el fondo, mientras la zona de la nuca y el pelo se funde en medios tonos.",
+      "libro": "El gran libro del dibujo — José M. Parramón",
+      "pagina": 64,
+      "imagen": "parramon-pag64.webp"
     },
     {
-      "texto": "Borde suave: la forma gira y el valor cambia de a poco (terminador). En la vitrina de transporte la silueta del cajón se lee entera aunque las plantas adentro tengan bordes rotos y suaves.",
-      "libro": "On the Growth of Plants in Closely Glazed Cases — N. B. Ward (1852), grabados de E. W. Cooke",
-      "pagina": 89,
-      "imagen": "ward-pag89.webp"
+      "texto": "Borde perdido: en este retrato la sombra del rostro y el fondo comparten valor y el contorno desaparece; el ojo completa la forma con pocos acentos.",
+      "libro": "Modos de dibujar 4: Retratos — Hans Daucher",
+      "pagina": 51,
+      "imagen": "daucher-pag51.webp"
     }
   ],
-  "moodboard": "moodboard.webp"
+  "moodboard": "moodboard.webp",
+  "paleta": [
+    {
+      "nombre": "Negro humo",
+      "hex": "#161711"
+    },
+    {
+      "nombre": "Sombra tostada",
+      "hex": "#3D1E18"
+    },
+    {
+      "nombre": "Siena quemada",
+      "hex": "#AA431B"
+    },
+    {
+      "nombre": "Ocre anaranjado",
+      "hex": "#E18644"
+    }
+  ]
 }
