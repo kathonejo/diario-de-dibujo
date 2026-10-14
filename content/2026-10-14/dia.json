@@ -1,0 +1,53 @@
+{
+  "fecha": "2026-10-14",
+  "tema": "Gesto y movimiento: la línea de acción",
+  "frase": {
+    "texto": "Lo que importa no es si el gesto es verdadero o falso, sino si funciona. Si toca. Si transforma.",
+    "autor": "Rodríguez-Ponga Linares · Cap. 2 · Citas transversales (Operadores Mágicos)"
+  },
+  "mision": "Dibujar el movimiento como un solo trazo que atraviesa el cuerpo: que el gesto se lea entero antes del detalle, y que toque aunque no sea correcto.",
+  "paleta": [
+    {
+      "nombre": "Crema cálida",
+      "hex": "#FEFDF4"
+    },
+    {
+      "nombre": "Melocotón claro",
+      "hex": "#FDDCA1"
+    },
+    {
+      "nombre": "Naranja vivo",
+      "hex": "#F89816"
+    },
+    {
+      "nombre": "Ocre tostado",
+      "hex": "#A05D06"
+    },
+    {
+      "nombre": "Azul contraste",
+      "hex": "#2C74D8"
+    }
+  ],
+  "datos": [
+    {
+      "texto": "Poses dinámicas y exageradas: la línea de acción empuja la física del cuerpo; el gesto cuenta una historia antes del detalle muscular.",
+      "libro": "Dynamic Characters: Enhancing Your Character Concepts — 3DTotal",
+      "pagina": 29,
+      "imagen": "dynamic-pag29.webp"
+    },
+    {
+      "texto": "Figuras en movimiento: estudios rápidos a pluma y pincel que congelan un instante y sugieren el paso anterior y el siguiente con pocos trazos.",
+      "libro": "Esbozar y dibujar",
+      "pagina": 62,
+      "imagen": "esbozar-pag62.webp"
+    },
+    {
+      "texto": "Omóplato en acción: al alzar el brazo, la espina del omóplato y los bordes espinales se desplazan; la anatomía de la espalda explica el gesto.",
+      "libro": "Anatomía artística del hombre — Arnould Moreaux",
+      "pagina": 43,
+      "imagen": "moreaux-pag43.webp"
+    }
+  ],
+  "moodboard": "moodboard.webp",
+  "formato": "horizontal"
+}
