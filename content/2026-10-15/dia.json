@@ -1,0 +1,54 @@
+{
+  "fecha": "2026-10-15",
+  "tema": "La mano y el antebrazo: estructura antes que piel",
+  "frase": {
+    "texto": null,
+    "autor": null,
+    "pendiente": "Notion pidió iniciar sesión; completar desde Operadores Mágicos"
+  },
+  "mision": "Construir la mano desde adentro: primero la caja, la cuña y los cilindros, después los huesos que asoman, y la piel recién al final.",
+  "paleta": [
+    {
+      "nombre": "Negro carbón",
+      "hex": "#1F1E23"
+    },
+    {
+      "nombre": "Azul noche",
+      "hex": "#1E378B"
+    },
+    {
+      "nombre": "Azul cobalto",
+      "hex": "#355EC7"
+    },
+    {
+      "nombre": "Ámbar",
+      "hex": "#F6B213"
+    },
+    {
+      "nombre": "Crema pajiza",
+      "hex": "#FAE298"
+    }
+  ],
+  "datos": [
+    {
+      "texto": "El puño en planos: la caja de la palma, la cuña del pulgar y los dedos como cilindros; el arco de los nudillos da el gesto.",
+      "libro": "Fotos/dibujos de práctica: anatomía de manos (carpeta IMAGENES)",
+      "pagina": "gh_16.jpg",
+      "imagen": "manos-gh16.webp"
+    },
+    {
+      "texto": "La mano (forefoot, manus) se arma con carpo, metacarpo y dedos; cada articulación es una bisagra. Comparar la pata del caballo y la cabra muestra dónde se dobla la forma.",
+      "libro": "Animal Anatomy for Artists — Eliot Goldfinger",
+      "pagina": 28,
+      "imagen": "goldfinger-pag28.webp"
+    },
+    {
+      "texto": "Ejercicios elementales: el antebrazo como cilindros que se estrechan y giran hasta la muñeca, y la mano abierta en cara anterior y posterior (Fig. 493).",
+      "libro": "Anatomía artística del hombre — Arnould Moreaux",
+      "pagina": 377,
+      "imagen": "moreaux-pag377.webp"
+    }
+  ],
+  "moodboard": "moodboard.webp",
+  "formato": "vertical"
+}
