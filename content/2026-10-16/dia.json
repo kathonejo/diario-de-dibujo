@@ -1,0 +1,54 @@
+{
+  "fecha": "2026-10-16",
+  "tema": "Integración: la figura entera en tres pasadas (gesto, sólidos y masa)",
+  "frase": {
+    "texto": null,
+    "autor": null,
+    "pendiente": "Notion pidió iniciar sesión; completar desde Operadores Mágicos"
+  },
+  "mision": "Que la figura entera se lea primero como intención, después como caja y al final como una sola masa de luz y sombra.",
+  "paleta": [
+    {
+      "nombre": "Verde bosque",
+      "hex": "#267C4B"
+    },
+    {
+      "nombre": "Vino tinto",
+      "hex": "#9B232C"
+    },
+    {
+      "nombre": "Café caramelo",
+      "hex": "#A06215"
+    },
+    {
+      "nombre": "Gris niebla",
+      "hex": "#B5B9BC"
+    },
+    {
+      "nombre": "Crema durazno",
+      "hex": "#FADEC8"
+    }
+  ],
+  "datos": [
+    {
+      "texto": "Cada pose tiene una idea detrás: pensar qué siente la figura (enferma, preocupada, gritando) antes de cómo le cae la luz (Fig. 04, «Standing Poses»).",
+      "libro": "Dynamic Characters: Enhancing Your Character Concepts — 3DTotal",
+      "pagina": 30,
+      "imagen": "dynamic-pag30.webp"
+    },
+    {
+      "texto": "La figura sentada dentro de una caja en forma de triángulo; el canon permite medir el cuerpo con la cabeza, y puntos y líneas de referencia sitúan perfiles y formas básicas (Figs. 564–568, pág. 177 impresa).",
+      "libro": "El gran libro del dibujo — José M. Parramón",
+      "pagina": 107,
+      "imagen": "parramon-pag107.webp"
+    },
+    {
+      "texto": "Líneas que se cortan: el contorno se «pierde» en el fondo donde da la luz y reaparece en rodillas y muslos; en «Posados largos» el hombro, el brazo y la pierna casi se diluyen en el fondo (págs. 124–125 impresas).",
+      "libro": "Esbozar y dibujar",
+      "pagina": 64,
+      "imagen": "esbozar-pag64.webp"
+    }
+  ],
+  "moodboard": "moodboard.webp",
+  "formato": "cuadrado"
+}
