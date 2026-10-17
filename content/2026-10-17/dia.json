@@ -1,0 +1,53 @@
+{
+  "fecha": "2026-10-17",
+  "tema": "Experimental: partir del tono medio (silueta, mancha negra y luz blanca)",
+  "frase": {
+    "texto": "Tírate y aparecerá la red.",
+    "autor": "Julia Cameron · El camino del artista (Operador #4 María Zambrano · La Sibila, resonancia Cameron · Banco de Citas)"
+  },
+  "mision": "Empezar desde el gris y no desde el blanco: que cada forma salga de una mancha, con el negro para la masa y el blanco solo para la luz.",
+  "paleta": [
+    {
+      "nombre": "Negro tinta",
+      "hex": "#313036"
+    },
+    {
+      "nombre": "Gris plomo",
+      "hex": "#737277"
+    },
+    {
+      "nombre": "Gris acero",
+      "hex": "#A9ADB0"
+    },
+    {
+      "nombre": "Bronce antiguo",
+      "hex": "#A46810"
+    },
+    {
+      "nombre": "Blanco tiza",
+      "hex": "#F7F8F2"
+    }
+  ],
+  "datos": [
+    {
+      "texto": "Silueta pura: el caballo de tiro, la cebra y el caballo salvaje en negro plano, sin líneas internas; la forma se reconoce solo por el borde («Equid ▸ Proportion», pág. 121 impresa).",
+      "libro": "Animal Anatomy for Artists: The Elements of Form — Eliot Goldfinger",
+      "pagina": 136,
+      "imagen": "goldfinger-pag136.webp"
+    },
+    {
+      "texto": "Apunte rápido de animales sobre tono: un lavado de tinta china da un gris general, encima se ponen manchas de tinta negra con pincel para los rasgos básicos y toques de gouache blanco para completar el modelado («El dibujo de animales», págs. 124–125 impresas).",
+      "libro": "Taller de las Artes – Dibujo I: Iniciación — Chris Armand",
+      "pagina": 65,
+      "imagen": "taller-pag65.webp"
+    },
+    {
+      "texto": "Cabezas de Sigmund Holbein sobre papel oscuro: el volumen sale casi solo con luces claras sobre el fondo, sin dibujar el contorno en todas partes (pág. 66 impresa).",
+      "libro": "Modos de dibujar 4: Retratos — Hans Daucher",
+      "pagina": 47,
+      "imagen": "daucher-pag47.webp"
+    }
+  ],
+  "moodboard": "moodboard.webp",
+  "formato": "horizontal"
+}
