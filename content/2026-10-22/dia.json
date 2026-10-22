@@ -1,0 +1,53 @@
+{
+  "fecha": "2026-10-22",
+  "tema": "La dirección de la luz: una misma forma, cinco luces (técnica + creatividad)",
+  "frase": {
+    "texto": "La magia es lo que el arte no ve cuando mira por el retrovisor.",
+    "autor": "Claudia Rodríguez-Ponga Linares · Pequeño tratado sobre arte y magia, Cap. 1 · Operador #6 Susan Hiller · La Bricoleur (Banco de Citas)"
+  },
+  "mision": "Decidir de dónde viene la luz antes de dibujar, y dejar que esa decisión ordene qué se ilumina y qué se hunde en la sombra.",
+  "paleta": [
+    {
+      "nombre": "Violeta noche",
+      "hex": "#4C1B88"
+    },
+    {
+      "nombre": "Violeta real",
+      "hex": "#71239B"
+    },
+    {
+      "nombre": "Verde bosque",
+      "hex": "#3D8438"
+    },
+    {
+      "nombre": "Naranja tostado",
+      "hex": "#C57B12"
+    },
+    {
+      "nombre": "Lila niebla",
+      "hex": "#C8A9EC"
+    }
+  ],
+  "datos": [
+    {
+      "texto": "Las cinco direcciones de la luz: frontal, frontal lateral a 45°, lateral, contraluz o semicontraluz y cenital, mostradas con la misma cara de mimo (figs. 461–465); abajo, la misma taza con luz directa de foco y con luz natural difusa (figs. 466–467) («Luz y sombra», pág. 132 impresa).",
+      "libro": "El gran libro del dibujo — José M. Parramón",
+      "pagina": 63,
+      "imagen": "parramon-pag63.webp"
+    },
+    {
+      "texto": "Cabeza de perfil de Wolf Huber (1522): luz lateral fuerte, el plano iluminado de la cara se recorta contra un fondo oscuro de trama densa (pág. 28 impresa).",
+      "libro": "Modos de dibujar 4: Retratos — Hans Daucher",
+      "pagina": 19,
+      "imagen": "daucher-pag19.webp"
+    },
+    {
+      "texto": "Cubo, cono, esfera y pirámide con un trazo que sigue la forma de cada volumen y marca los lados en sombra; debajo, el punto de partida en color con las principales zonas de sombra (figs. 113–114).",
+      "libro": "Así se pinta con lápices de colores — Parramón Ediciones",
+      "pagina": 68,
+      "imagen": "lapices-pag68.webp"
+    }
+  ],
+  "moodboard": "moodboard.webp",
+  "formato": "vertical"
+}
