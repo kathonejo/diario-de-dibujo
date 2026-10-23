@@ -1,0 +1,53 @@
+{
+  "fecha": "2026-10-23",
+  "tema": "Integración: la luz sobre la figura completa (encaje, dirección de la luz y masa de sombra)",
+  "frase": {
+    "texto": "El arte es conocimiento y, a la vez, vehículo para conocer.",
+    "autor": "Belinche · Arte, poética y educación (Banco de Citas por Operador, «Resonancia Belinche»)"
+  },
+  "mision": "Juntar todo lo de estas semanas en un solo dibujo: encajar la figura, elegir de dónde viene la luz y dejar que la sombra se lea como una sola masa.",
+  "paleta": [
+    {
+      "nombre": "Gris grafito",
+      "hex": "#4B4F52"
+    },
+    {
+      "nombre": "Gris piedra fría",
+      "hex": "#8E8D92"
+    },
+    {
+      "nombre": "Oro viejo",
+      "hex": "#DB9C00"
+    },
+    {
+      "nombre": "Naranja brasa",
+      "hex": "#F78604"
+    },
+    {
+      "nombre": "Ámbar claro",
+      "hex": "#FCCC3A"
+    }
+  ],
+  "datos": [
+    {
+      "texto": "Figura masculina de pie iluminada desde adelante a la izquierda, con su sombra proyectada en la pared y el piso (fig. 377).",
+      "libro": "Anatomía artística — Moreaux",
+      "pagina": 273,
+      "imagen": "moreaux-pag273.webp"
+    },
+    {
+      "texto": "«Dos etapas para un dibujo»: cabeza de maniquí en foto y los pasos 1 a 3, del encaje con línea al entonado.",
+      "libro": "Taller de las Artes: Dibujo I",
+      "pagina": 23,
+      "imagen": "taller-pag23.webp"
+    },
+    {
+      "texto": "«Dibujos estilizados – Efecto dramático»: cabezas al carbón con grandes masas de sombra y detalles de línea añadidos al final.",
+      "libro": "Esbozar y dibujar",
+      "pagina": 31,
+      "imagen": "esbozar-pag31.webp"
+    }
+  ],
+  "moodboard": "moodboard.webp",
+  "formato": "cuadrado"
+}
