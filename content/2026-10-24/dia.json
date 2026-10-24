@@ -1,0 +1,53 @@
+{
+  "fecha": "2026-10-24",
+  "tema": "Experimental: dibujar con la goma (dibujo sustractivo, la luz sale del carbón)",
+  "frase": {
+    "texto": "Para mí los materiales son palabras, o las palabras son materias.",
+    "autor": "Tunga, citado por Rodríguez-Ponga Linares · Pequeño tratado sobre arte y magia, Cap. 1 · Operador #5 Tunga · El Bricoleur (Banco de Citas)"
+  },
+  "mision": "Dejar que el material hable: llenar la hoja de carbón y dibujar la luz quitando, con la goma, en vez de agregando.",
+  "paleta": [
+    {
+      "nombre": "Café tabaco",
+      "hex": "#9D6913"
+    },
+    {
+      "nombre": "Oliva antiguo",
+      "hex": "#9D8200"
+    },
+    {
+      "nombre": "Violeta lavanda",
+      "hex": "#8B57BC"
+    },
+    {
+      "nombre": "Gris paloma",
+      "hex": "#878B8E"
+    },
+    {
+      "nombre": "Rosa niebla",
+      "hex": "#F2DFF3"
+    }
+  ],
+  "datos": [
+    {
+      "texto": "«Las gomas de borrar»: tipos de goma y la misma cabeza esculpida con laureles en dos versiones (figs. 158 A y B), pág. 61 impresa.",
+      "libro": "El gran libro del dibujo — José M. Parramón",
+      "pagina": 14,
+      "imagen": "parramon-pag14.webp"
+    },
+    {
+      "texto": "«Texturas», «Tonos» y «Goma de borrar»: texturas de carboncillo, difuminado con dedo o paño, y líneas y zonas claras abiertas con goma blanda y goma dura (págs. 20–21 impresas).",
+      "libro": "Esbozar y dibujar",
+      "pagina": 12,
+      "imagen": "esbozar-pag12.webp"
+    },
+    {
+      "texto": "El mismo personaje como silueta negra plena (Fig. 06) y ya resuelto en grises (Fig. 05).",
+      "libro": "Dynamic Characters: Enhancing Your Character Concepts — 3DTotal",
+      "pagina": 22,
+      "imagen": "dynamic-pag22.webp"
+    }
+  ],
+  "formato": "horizontal 16:9",
+  "moodboard": "moodboard.webp"
+}
