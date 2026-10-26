@@ -1,0 +1,52 @@
+{
+  "fecha": "2026-10-26",
+  "tema": "Anatomía humana: el torso (caja torácica, pelvis y músculos del tronco)",
+  "frase": {
+    "texto": "El arte es una reserva ecológica de las especies invisibles que pueblan nuestro cuerpo-animal en su generosa vida germinativa.",
+    "autor": "Suely Rolnik, citada por Rodríguez-Ponga Linares · Pequeño tratado sobre arte y magia, Cap. 1 y 2 · Operador #3 Suely Rolnik · La Bruja (Banco de Citas por Operador)"
+  },
+  "mision": "Mirar el torso como un cuerpo vivo por dentro: primero las dos masas grandes (caja torácica y pelvis), después los músculos que las unen, y recién al final la luz.",
+  "paleta": [
+    {
+      "nombre": "Rojo óxido profundo",
+      "hex": "#962B1B"
+    },
+    {
+      "nombre": "Petróleo profundo",
+      "hex": "#2C7A7E"
+    },
+    {
+      "nombre": "Turquesa",
+      "hex": "#269398"
+    },
+    {
+      "nombre": "Gris acero claro",
+      "hex": "#9CA0A3"
+    },
+    {
+      "nombre": "Blanco lila",
+      "hex": "#E5E0E6"
+    }
+  ],
+  "datos": [
+    {
+      "texto": "Las tres regiones del tronco en gris (Fig. 221) y los músculos del pecho con nombres: pectoral mayor y menor, trapecio, deltoides, serrato mayor, oblicuo mayor y dorsal ancho (Fig. 222), pág. 166 impresa.",
+      "libro": "Anatomía artística del hombre — Arnould Moreaux",
+      "pagina": 162,
+      "imagen": "moreaux-pag162.webp"
+    },
+    {
+      "texto": "«Los músculos del tronco»: espalda musculosa a pluma, un torso que se dobla hacia adelante y otro que gira con el brazo levantado (Fig. 263), pág. 191 impresa.",
+      "libro": "Anatomía artística del hombre — Arnould Moreaux",
+      "pagina": 187,
+      "imagen": "moreaux-pag187.webp"
+    },
+    {
+      "texto": "Desnudo sentado de espaldas a lápiz plomo, terminado con difuminado lento (figs. 573 y 574), pág. 179 impresa.",
+      "libro": "El gran libro del dibujo — José M. Parramón",
+      "pagina": 109,
+      "imagen": "parramon-pag109.webp"
+    }
+  ],
+  "moodboard": "moodboard.webp"
+}
