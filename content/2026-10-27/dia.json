@@ -1,0 +1,52 @@
+{
+  "fecha": "2026-10-27",
+  "tema": "Anatomía animal: la estructura del cuerpo (columna, caja torácica y pelvis como volúmenes; del torso humano al caballo y el perro)",
+  "frase": {
+    "texto": "El prehistórico no estaba preocupado por agradar, sino por evocar.",
+    "autor": "Salomon Reinach («L'Art et la Magie», 1903), citado por Rodríguez-Ponga Linares · Pequeño tratado sobre arte y magia, Cap. 2.2 (Drive: Capitulo2_Espanol_ArteYMagia)"
+  },
+  "mision": "Ver al animal por dentro antes que por fuera: columna, caja torácica y pelvis como tres volúmenes simples, y recién después las patas y la luz.",
+  "paleta": [
+    {
+      "nombre": "Azul marino",
+      "hex": "#2D4490"
+    },
+    {
+      "nombre": "Ocre bronce",
+      "hex": "#A88108"
+    },
+    {
+      "nombre": "Caramelo tostado",
+      "hex": "#A96706"
+    },
+    {
+      "nombre": "Gris carbón",
+      "hex": "#3A3D42"
+    },
+    {
+      "nombre": "Blanco hueso",
+      "hex": "#EBE6E7"
+    }
+  ],
+  "datos": [
+    {
+      "texto": "«Axes & Volumes»: el caballo dibujado como cajas y cilindros simples (cuello, pecho, barril, cadera y patas) y la misma maqueta en fotos desde el costado, de frente y en tres cuartos, pág. 4 impresa.",
+      "libro": "Animal Anatomy for Artists: The Elements of Form — Eliot Goldfinger",
+      "pagina": 19,
+      "imagen": "goldfinger-pag19.webp"
+    },
+    {
+      "texto": "«Skeleton»: esqueletos de caballo, perro y humano vistos desde arriba/atrás, uno al lado del otro: columna, costillas, omóplatos y pelvis comparados, pág. 10 impresa.",
+      "libro": "Animal Anatomy for Artists: The Elements of Form — Eliot Goldfinger",
+      "pagina": 25,
+      "imagen": "goldfinger-pag25.webp"
+    },
+    {
+      "texto": "«El dibujo de animales»: comparación anatómica perro/humano (la columna como eje del movimiento), caballos al galope a línea, y chimpancé y elefante en dos pasos (esquema y valor tonal), págs. 126–127 impresas.",
+      "libro": "Taller de las Artes – Dibujo I: Iniciación — Chris Armand",
+      "pagina": 66,
+      "imagen": "taller-pag66.webp"
+    }
+  ],
+  "moodboard": "moodboard.webp"
+}
