@@ -1,0 +1,53 @@
+{
+  "fecha": "2026-10-28",
+  "tema": "El trazo como valor: rayado, rayado cruzado y trazo que sigue la forma (tema técnico del mes: el valor)",
+  "frase": {
+    "texto": "El camino escondido no se abre sin un guía, y no se entra por él sin que el corazón se haya movido y la mente le obedezca.",
+    "autor": "María Zambrano, citada por Rodríguez-Ponga Linares · Pequeño tratado sobre arte y magia, Cap. 1 · Operador #4 María Zambrano · La Sibila (Banco de Citas por Operador)"
+  },
+  "mision": "Que la sombra se construya con líneas: cada trazo es un valor, y su dirección cuenta la forma.",
+  "paleta": [
+    {
+      "nombre": "Violeta real",
+      "hex": "#7151BE"
+    },
+    {
+      "nombre": "Malva orquídea",
+      "hex": "#B350AB"
+    },
+    {
+      "nombre": "Oro mostaza",
+      "hex": "#D5A529"
+    },
+    {
+      "nombre": "Siena tostada",
+      "hex": "#9D600D"
+    },
+    {
+      "nombre": "Gris plata",
+      "hex": "#AEB2B1"
+    }
+  ],
+  "datos": [
+    {
+      "texto": "Trazos lineales, sombreado y sombreados cruzados con carboncillo y conté",
+      "libro": "Esbozar y dibujar",
+      "pagina": 11,
+      "imagen": "esbozar-pag11.webp"
+    },
+    {
+      "texto": "Retrato al estilo grabado (Lucas Cranach el Viejo): el rayado sigue la forma de cara, barba, boina y piel",
+      "libro": "Modos de dibujar 4: Retratos — Hans Daucher",
+      "pagina": 44,
+      "imagen": "daucher-pag44.webp"
+    },
+    {
+      "texto": "Trazos básicos con el lápiz plomo: una cara resuelta con distintos trazos, degradados y cabeza de yeso",
+      "libro": "El gran libro del dibujo — José M. Parramón",
+      "pagina": 20,
+      "imagen": "parramon-pag20.webp"
+    }
+  ],
+  "formato": "cuadrado",
+  "moodboard": "moodboard.webp"
+}
