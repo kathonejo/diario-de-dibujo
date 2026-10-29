@@ -1,0 +1,53 @@
+{
+  "fecha": "2026-10-29",
+  "tema": "Clave alta y clave baja: el mismo motivo en dos atmósferas (tema técnico del mes: el valor + creatividad)",
+  "frase": {
+    "texto": "La ficción filosófica trabaja con un modelo mítico, entendiendo lo mítico como posibilidad de devenir otro.",
+    "autor": "Vilém Flusser, citado por Rodríguez-Ponga Linares · Pequeño tratado sobre arte y magia, Cap. 1 · Operador #8 Vampyroteuthis Infernalis · La Ficción (Banco de Citas por Operador)"
+  },
+  "mision": "Dibujar el mismo motivo dos veces: una con casi todo claro (clave alta) y otra con casi todo oscuro (clave baja), y sentir cómo cambia la atmósfera.",
+  "paleta": [
+    {
+      "nombre": "Blanco crema",
+      "hex": "#F4F1E8"
+    },
+    {
+      "nombre": "Gris paloma",
+      "hex": "#7C7B80"
+    },
+    {
+      "nombre": "Gris pizarra",
+      "hex": "#52555A"
+    },
+    {
+      "nombre": "Negro verdoso",
+      "hex": "#1B2526"
+    },
+    {
+      "nombre": "Rojo lacre",
+      "hex": "#B61C12"
+    }
+  ],
+  "datos": [
+    {
+      "texto": "El mismo personaje en el mismo desierto, en dos atmósferas: una escena casi blanca (clave alta) y versiones oscuras y cerradas (clave baja)",
+      "libro": "Dynamic Characters: Enhancing Your Character Concepts — 3DTotal",
+      "pagina": 43,
+      "imagen": "dynamic-pag43.webp"
+    },
+    {
+      "texto": "«Las sombras y el volumen» y «Un truco para entonar»: esfera iluminada y una botella de vidrio resuelta en 4 pasos, del gris general al blanco y negro final",
+      "libro": "Taller de las Artes – Dibujo I: Iniciación — Chris Armand",
+      "pagina": 19,
+      "imagen": "taller-pag19.webp"
+    },
+    {
+      "texto": "«Gama de azules»: degradados de un mismo color desde muy claro a muy oscuro, en cuadros de muestra",
+      "libro": "Así se pinta con lápices de colores — Parramón Ediciones",
+      "pagina": 48,
+      "imagen": "lapices-pag48.webp"
+    }
+  ],
+  "formato": "vertical (2:3)",
+  "moodboard": "moodboard.webp"
+}
