@@ -1,0 +1,53 @@
+{
+  "fecha": "2026-10-30",
+  "tema": "Integración: darle cuerpo a la figura con el valor (masa de sombra, rayado que sigue la forma y clave elegida)",
+  "frase": {
+    "texto": "Investigar es dar cuerpo al deseo.",
+    "autor": "Suely Rolnik, citada por Rodríguez-Ponga Linares · Pequeño tratado sobre arte y magia, Cap. 1 · Operador #3 Suely Rolnik · La Bruja (Banco de Citas por Operador)"
+  },
+  "mision": "Darle cuerpo a una figura solo con valor: una masa de sombra clara, trazos que siguen la forma y una clave elegida a propósito.",
+  "paleta": [
+    {
+      "nombre": "Negro jaguar",
+      "hex": "#0C0C0D"
+    },
+    {
+      "nombre": "Azul índigo",
+      "hex": "#384469"
+    },
+    {
+      "nombre": "Gris plata humo",
+      "hex": "#797A83"
+    },
+    {
+      "nombre": "Bronce dorado",
+      "hex": "#B38951"
+    },
+    {
+      "nombre": "Oro miel",
+      "hex": "#F5CA86"
+    }
+  ],
+  "datos": [
+    {
+      "texto": "Cabeza en relieve riendo («La lujuria, transverso de la nariz»): luz fuerte sobre los planos de mejillas, frente y nariz",
+      "libro": "Anatomía artística del hombre — Arnould Moreaux",
+      "pagina": 347,
+      "imagen": "moreaux-pag347.webp"
+    },
+    {
+      "texto": "Litografía de Edvard Munch: media cara en sombra resuelta con rayado vertical y fondo a trazos",
+      "libro": "Modos de dibujar 4: Retratos — Hans Daucher",
+      "pagina": 64,
+      "imagen": "daucher-pag64.webp"
+    },
+    {
+      "texto": "Figura sentada en un trono de piedra; el fondo pasa de oscuro a claro con rayado y la figura se separa por valor",
+      "libro": "Akira – artbook / páginas",
+      "pagina": "167_akira.jpg",
+      "imagen": "akira-167.webp"
+    }
+  ],
+  "formato": "horizontal (16:9)",
+  "moodboard": "moodboard.webp"
+}
