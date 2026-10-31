@@ -1,0 +1,53 @@
+{
+  "fecha": "2026-10-31",
+  "tema": "Experimental: el valor a tres tonos (carbón, sanguina y blanco sobre papel entonado)",
+  "frase": {
+    "texto": "Cuando dejamos de crear, enfermamos. Y el arte es una forma de volver a crear.",
+    "autor": "Suely Rolnik, citada por Rodríguez-Ponga Linares · Pequeño tratado sobre arte y magia, Cap. 2 · Operador #3 Suely Rolnik · La Bruja (Banco de Citas por Operador)"
+  },
+  "mision": "Jugar con tres tonos sobre papel de color: el negro para la sombra, la sanguina para el medio tono cálido y el blanco solo para la luz.",
+  "paleta": [
+    {
+      "nombre": "Negro carbón",
+      "hex": "#1E2126"
+    },
+    {
+      "nombre": "Gris humo",
+      "hex": "#5E5D63"
+    },
+    {
+      "nombre": "Gris tiza",
+      "hex": "#BDBDBD"
+    },
+    {
+      "nombre": "Sanguina",
+      "hex": "#A64324"
+    },
+    {
+      "nombre": "Crema pastel",
+      "hex": "#FCEBCD"
+    }
+  ],
+  "datos": [
+    {
+      "texto": "«Carbón y sanguina con pastel blanco»: Francesc Crespo dibuja un desnudo recostado en 4 pasos sobre papel de color; carbón para la sombra, sanguina para el tono cálido y pastel blanco en las luces",
+      "libro": "El gran libro del dibujo — José M. Parramón",
+      "pagina": 104,
+      "imagen": "parramon-pag104.webp"
+    },
+    {
+      "texto": "«Figuras: iluminación de los retratos»: iluminación lateral y estudios monocromos; retratos con luz de un lado y sombra cálida sobre papel entonado",
+      "libro": "Esbozar y dibujar",
+      "pagina": 60,
+      "imagen": "esbozar-pag60.webp"
+    },
+    {
+      "texto": "Dos manos con los dedos entrelazados, dibujo a línea sin sombra",
+      "libro": "Fotos/dibujos de práctica: anatomía de manos",
+      "pagina": "oh_9.jpg",
+      "imagen": "manos-oh_9.webp"
+    }
+  ],
+  "formato": "cuadrado (1:1)",
+  "moodboard": "moodboard.webp"
+}
