@@ -1,0 +1,53 @@
+{
+  "fecha": "2026-11-02",
+  "tema": "Anatomía humana: el brazo y el hombro (deltoides, húmero, bíceps, braquial, tríceps, codo y antebrazo)",
+  "frase": {
+    "texto": "Los vínculos son seres en sí mismos y no simples herramientas.",
+    "autor": "Claudia Rodríguez-Ponga Linares · Pequeño tratado sobre arte y magia (Banco de Citas por Operador, Cita 2)"
+  },
+  "mision": "Dibujar el brazo como una cadena de uniones vivas: hombro, codo y muñeca deciden el gesto, no el contorno.",
+  "paleta": [
+    {
+      "nombre": "Gris carbón",
+      "hex": "#3E3D42"
+    },
+    {
+      "nombre": "Bronce",
+      "hex": "#AA6E16"
+    },
+    {
+      "nombre": "Ocre tostado",
+      "hex": "#C37A0B"
+    },
+    {
+      "nombre": "Verde agua",
+      "hex": "#98D7CF"
+    },
+    {
+      "nombre": "Gris perla",
+      "hex": "#A9A9A9"
+    }
+  ],
+  "datos": [
+    {
+      "texto": "El brazo: bíceps, braquial anterior, coracobraquial e inserciones de los músculos del brazo.",
+      "libro": "Moreaux · Anatomía artística",
+      "pagina": 216,
+      "imagen": "moreaux-pag216.webp"
+    },
+    {
+      "texto": "El deltoides cubre el hombro y se inserta en V en el húmero; estudios de hombro de Leonardo.",
+      "libro": "Moreaux · Anatomía artística",
+      "pagina": 206,
+      "imagen": "moreaux-pag206.webp"
+    },
+    {
+      "texto": "Bocetos de gesto con los brazos arriba y extendidos.",
+      "libro": "Dynamic Characters",
+      "pagina": 32,
+      "imagen": "dynamic-pag32.webp"
+    }
+  ],
+  "formato": "vertical (2:3)",
+  "moodboard": "moodboard.webp"
+}
