@@ -1,10 +1,30 @@
-<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Diario de dibujo</title><link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✏️</text></svg>">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-</head><body>
-<header class="top"><a href="/" class="logo">Diario <em>de</em> dibujo</a><nav><a href="/">Hoy</a><a href="/dias">Todos los días</a></nav></header>
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Diario de dibujo</title>
+<meta name="description" content="Obra generativa: un ejercicio de dibujo nuevo cada día, con moodboard, referencias y temporizador.">
+<link rel="icon" type="image/png" href="/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+<header class="top">
+  <a href="/" class="logo" aria-label="Diario de dibujo">
+    <img src="/mascota.png" alt="" class="logo-bunny" width="40" height="40">
+    <span>Diario <em>de</em> dibujo</span>
+  </a>
+  <nav>
+    <a href="/">Hoy</a>
+    <a href="/obra">La obra</a>
+    <a href="/dias">Calendario</a>
+  </nav>
+</header>
 <main id="app"></main>
 <aside id="timer" class="timer"></aside>
 <div id="lightbox" class="lightbox" hidden><img alt=""></div>
-<script type="module" src="/src/main.js"></script></body></html>
+<script type="module" src="/src/main.js"></script>
+</body>
+</html>

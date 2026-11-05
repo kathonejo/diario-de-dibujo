@@ -9,6 +9,12 @@ const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;
 const parse = f => { const [y,m,d] = f.split('-').map(Number); return new Date(y, m-1, d); };
 const largo = f => { const d = parse(f); return `${DIAS[d.getDay()]} ${d.getDate()} de ${MESES[d.getMonth()]} de ${d.getFullYear()}`; };
 const img = (f, n) => `/content/${f}/${n}`;
+const genBadge = d => d?.generado ? `<span class="badge-gen">generado el ${fmtGen(d.generado)}</span>` : '';
+const fmtGen = g => {
+  const [y,m,d] = String(g).split('-');
+  if (!d) return g;
+  return `${Number(d)}/${Number(m)}`;
+};
 let indice = null;
 const getIndex = async () => indice ??= await fetch('/content/index.json').then(r => r.ok ? r.json() : []).catch(() => []);
 const getDia = f => fetch(`/content/${f}/dia.json`).then(r => r.ok ? r.json() : null).catch(() => null);
@@ -17,7 +23,6 @@ function frase(d) {
   return d.frase ? `<blockquote class="frase"><p>“${esc(d.frase.texto)}”</p>${d.frase.autor ? `<cite>— ${esc(d.frase.autor)}</cite>` : ''}</blockquote>` : '';
 }
 
-// paleta: acepta [{nombre,hex}], ["#hex"], [{name,color}] o {nombre: hex}
 function normPaleta(p) {
   if (!p) return [];
   const arr = Array.isArray(p) ? p : (typeof p === 'object' ? Object.entries(p).map(([k, v]) => (typeof v === 'string' ? { nombre: k, hex: v } : { nombre: k, ...v })) : []);
@@ -53,7 +58,9 @@ function calendario(dias) {
   return `<div class="cal card"><div class="cal-h"><button data-mes="-1" aria-label="Mes anterior">‹</button><strong>${MESES[m]} ${y}</strong><button data-mes="1" aria-label="Mes siguiente">›</button></div>
   <div class="cal-g">${['L','M','M','J','V','S','D'].map(d=>`<b>${d}</b>`).join('')}${cells}</div></div>`;
 }
-const lista = dias => `<ul class="lista">${dias.map(d => `<li><a href="/dia/${d.fecha}"><img loading="lazy" src="${img(d.fecha, d.moodboard)}" alt=""><span><small>${largo(d.fecha)}</small><strong>${esc(d.tema)}</strong></span>${TR[d.fecha]?.length ? `<img class="mini-trabajo" loading="lazy" src="${TR[d.fecha][0].url}" alt="Mi trabajo" title="Mi trabajo">` : ''}</a></li>`).join('')}</ul>`;
+const lista = dias => `<ul class="lista">${dias.map(d => `<li><a href="/dia/${d.fecha}"><img loading="lazy" src="${img(d.fecha, d.moodboard)}" alt=""><span><small>${largo(d.fecha)}</small><strong>${esc(d.tema)}</strong>${d.generado ? `<em class="badge-gen">generado el ${fmtGen(d.generado)}</em>` : ''}</span>${TR[d.fecha]?.length ? `<img class="mini-trabajo" loading="lazy" src="${TR[d.fecha][0].url}" alt="Mi trabajo" title="Mi trabajo">` : ''}</a></li>`).join('')}</ul>`;
+
+const manifiesto = n => `<div class="manifiesto"><img src="/mascota.png" alt=""><p><strong>Obra generativa en curso.</strong> Cada día se genera un ejercicio nuevo de dibujo: frase, misión, moodboard y referencias de estudio. Hoy hay <strong>${n}</strong> días publicados; la pieza crece con el tiempo.</p></div>`;
 
 async function home() {
   const [dias, tr] = await Promise.all([getIndex(), getTrabajos()]); TR = tr;
@@ -61,14 +68,33 @@ async function home() {
   const u = dias[0], d = await getDia(u.fecha);
   app.innerHTML = `<section class="hero">
     <a href="/dia/${u.fecha}" class="mood"><img src="${img(u.fecha, d.moodboard)}" alt="Moodboard: ${esc(d.tema)}"></a>
-    <div class="hero-t"><p class="eyebrow">Último día · ${largo(u.fecha)}</p><h1>${esc(d.tema)}</h1>${frase(d)}
+    <div class="hero-t"><p class="eyebrow">Último día · ${largo(u.fecha)}</p><h1>${esc(d.tema)}</h1>${genBadge(d)}${frase(d)}
     <div class="mision card"><h3>Misión del día</h3><p>${esc(d.mision)}</p></div>
-    <a class="btn" href="/dia/${u.fecha}">Ir al día →</a></div></section>
+    ${manifiesto(dias.length)}
+    <div class="acciones" style="margin-top:1.2rem">
+      <a class="btn" href="/dia/${u.fecha}">Ir al día →</a>
+      <a class="btn sec" href="/obra">Ver la obra completa</a>
+    </div></div></section>
     <section class="archivo"><div><h2>Calendario</h2><div id="cal">${calendario(dias)}</div></div><div><h2>Días anteriores</h2>${lista(dias)}</div></section>`;
 }
 async function archivo() {
   const [dias, tr] = await Promise.all([getIndex(), getTrabajos()]); TR = tr;
-  app.innerHTML = `<section class="archivo solo"><div><h1>Todos los días</h1><div id="cal">${calendario(dias)}</div></div><div>${lista(dias)}</div></section>`;
+  app.innerHTML = `<section class="archivo solo"><div><h1>Calendario</h1>${manifiesto(dias.length)}<div id="cal">${calendario(dias)}</div></div><div><h2>Todos los días</h2>${lista(dias)}</div></section>`;
+}
+async function obra() {
+  const dias = await getIndex();
+  document.title = 'La obra · Diario de dibujo';
+  const orden = [...dias].sort((a,b) => a.fecha.localeCompare(b.fecha));
+  app.innerHTML = `<section class="obra-head">
+    <p class="eyebrow">Pieza generativa</p>
+    <h1>La obra</h1>
+    <p>Todos los moodboards del diario, juntos. Cada celda es un día generado: una sesión de estudio que se suma a la pieza.</p>
+    <span class="cuenta"><i></i>${orden.length} días · desde ${orden[0] ? largo(orden[0].fecha) : '—'}</span>
+  </section>
+  <div class="mosaico">${orden.map(d => `<a href="/dia/${d.fecha}" title="${esc(d.tema)}">
+    <img loading="lazy" src="${img(d.fecha, d.moodboard)}" alt="${esc(d.tema)}">
+    <span class="cap"><small>${largo(d.fecha)}${d.generado ? ` · generado el ${fmtGen(d.generado)}` : ''}</small><strong>${esc(d.tema)}</strong></span>
+  </a>`).join('')}</div>`;
 }
 async function dia(f) {
   const [d, dias, tr] = await Promise.all([getDia(f), getIndex(), getTrabajos()]); TR = tr;
@@ -83,7 +109,7 @@ async function dia(f) {
   });
   document.title = `${d.tema} · Diario de dibujo`;
   app.innerHTML = `<article class="dia">
-    <p class="eyebrow">${largo(f)}</p><h1>${esc(d.tema)}</h1>
+    <p class="eyebrow">${largo(f)}</p><h1>${esc(d.tema)}</h1>${genBadge(d)}
     <div class="acciones"><button class="btn" id="focus-btn">◎ Modo focus</button><button class="btn sec" id="subir-btn">⬆ Subir mi trabajo</button></div>
     <figure class="mood grande"><img src="${img(f, d.moodboard)}" alt="Moodboard: ${esc(d.tema)}" data-zoom><figcaption>Foto 1 · Moodboard</figcaption></figure>
     ${normPaleta(d.paleta).length ? `<section class="paleta-sec"><h3>Paleta del día</h3>${paletaHTML(d.paleta)}<p class="hint">Tocá un color para copiar su código.</p></section>` : ''}
@@ -99,7 +125,10 @@ async function dia(f) {
 async function route() {
   const p = location.pathname, m = p.match(/^\/dia\/(\d{4}-\d{2}-\d{2})\/?$/);
   if (!localStorage.getItem('timer') || !JSON.parse(localStorage.getItem('timer')).running) document.title = 'Diario de dibujo';
-  if (m) await dia(m[1]); else if (p.startsWith('/dias')) await archivo(); else await home();
+  if (m) await dia(m[1]);
+  else if (p.startsWith('/obra')) await obra();
+  else if (p.startsWith('/dias')) await archivo();
+  else await home();
   window.scrollTo(0, 0);
 }
 document.addEventListener('click', e => {

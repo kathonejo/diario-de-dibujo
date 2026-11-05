@@ -7,7 +7,7 @@ for (const f of fs.readdirSync(src).filter(f => /^\d{4}-\d{2}-\d{2}$/.test(f))) 
   const j = path.join(src, f, 'dia.json'); if (!fs.existsSync(j)) continue;
   const d = JSON.parse(fs.readFileSync(j, 'utf8'));
   fs.cpSync(path.join(src, f), path.join(out, f), { recursive: true });
-  dias.push({ fecha: f, tema: d.tema, moodboard: d.moodboard, frase: d.frase });
+  dias.push({ fecha: f, tema: d.tema, moodboard: d.moodboard, frase: d.frase, generado: d.generado || null, formato: d.formato || null });
 }
 dias.sort((a, b) => b.fecha.localeCompare(a.fecha));
 fs.writeFileSync(path.join(out, 'index.json'), JSON.stringify(dias));
