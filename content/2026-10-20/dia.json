@@ -1,0 +1,54 @@
+{
+  "tema": "El ojo: cuenca, párpados y mirada",
+  "frase": {
+    "texto": "La pérdida de la creencia sirve para instaurar un régimen que depende tanto de la incredulidad como de su retorno — intermitente y localizado.",
+    "autor": "Max Milner, vía Claudia Rodríguez-Ponga Linares · Pequeño tratado sobre arte y magia (Cap. 2)"
+  },
+  "mision": "Dibujar el ojo como un volumen hundido en la cuenca, no como un símbolo plano.",
+  "paleta": [
+    {
+      "nombre": "Violeta noche",
+      "hex": "#4C1B88"
+    },
+    {
+      "nombre": "Malva",
+      "hex": "#B350AB"
+    },
+    {
+      "nombre": "Rosa fuerte",
+      "hex": "#FF99CC"
+    },
+    {
+      "nombre": "Gris perla",
+      "hex": "#DFDBDC"
+    },
+    {
+      "nombre": "Negro",
+      "hex": "#0C0C0D"
+    }
+  ],
+  "datos": [
+    {
+      "texto": "Estudios de ojos y cuenca en el retrato.",
+      "libro": "Modos de dibujar 4: Retratos · Daucher",
+      "pagina": 47,
+      "imagen": "daucher-pag47.webp"
+    },
+    {
+      "texto": "Detalles de mirada y párpados.",
+      "libro": "Modos de dibujar 4: Retratos · Daucher",
+      "pagina": 51,
+      "imagen": "daucher-pag51.webp"
+    },
+    {
+      "texto": "Construcción del ojo en el esquema de la cabeza.",
+      "libro": "Taller de las Artes – Dibujo I · Armand",
+      "pagina": 28,
+      "imagen": "armand-pag28.webp"
+    }
+  ],
+  "formato": "cuadrado (1:1)",
+  "fecha": "2026-10-20",
+  "generado": "2026-11-05",
+  "moodboard": "moodboard.webp"
+}
