@@ -62,7 +62,7 @@ function calendario(dias) {
 }
 const lista = dias => `<ul class="lista">${dias.map(d => `<li><a href="/dia/${d.fecha}"><img loading="lazy" src="${img(d.fecha, d.moodboard)}" alt=""><span><small>${largo(d.fecha)}</small><strong>${esc(d.tema)}</strong></span>${TR[d.fecha]?.length ? `<img class="mini-trabajo" loading="lazy" src="${TR[d.fecha][0].url}" alt="Mi trabajo" title="Mi trabajo">` : ''}</a></li>`).join('')}</ul>`;
 
-const manifiesto = n => `<div class="manifiesto"><img src="/mascota.png" alt=""><p><strong>Obra generativa diaria.</strong> Cada día se genera un ejercicio nuevo de dibujo: frase, misión, moodboard y referencias de estudio. Hoy hay <strong>${n}</strong> días publicados; la pieza crece con el tiempo.</p></div>`;
+const manifiesto = n => `<div class="manifiesto"><img src="/mascota.png" alt=""><p>Un ejercicio nuevo cada día: frase, misión, moodboard y referencias. Hoy hay <strong>${n}</strong> días publicados.</p></div>`;
 
 async function home() {
   const [dias, tr] = await Promise.all([getIndex(), getTrabajos()]); TR = tr;
@@ -88,7 +88,7 @@ async function obra() {
   document.title = 'La obra · Diario de dibujo';
   const orden = [...dias].sort((a,b) => a.fecha.localeCompare(b.fecha));
   app.innerHTML = `<section class="obra-head">
-    <p class="eyebrow">Pieza generativa</p>
+    <p class="eyebrow">Diario de dibujo</p>
     <h1>La obra</h1>
     <p>Cada día, una nueva página.<br>Cada página es una nueva invitación a crear.<br>El arte tradicional permanece en la tecnología.<br><strong>Siempre.</strong></p>
     <span class="cuenta"><i></i>${orden.length} días · desde ${orden[0] ? largo(orden[0].fecha) : '—'}</span>
@@ -112,7 +112,7 @@ async function dia(f) {
   document.title = `${d.tema} · Diario de dibujo`;
   app.innerHTML = `<article class="dia">
     <p class="eyebrow">${largo(f)}</p><h1>${esc(d.tema)}</h1>${genBadge(d)}
-    <div class="acciones"><button class="btn" id="focus-btn">◎ Modo focus</button><button class="btn sec" id="subir-btn">⬆ Subir mi trabajo</button></div>
+    <div class="acciones"><button class="btn" id="focus-btn">Modo focus</button><button class="btn sec" id="subir-btn">Subir mi trabajo</button></div>
     <figure class="mood grande"><img src="${img(f, d.moodboard)}" alt="Moodboard: ${esc(d.tema)}" data-zoom><figcaption>Foto 1 · Moodboard</figcaption></figure>
     ${normPaleta(d.paleta).length ? `<section class="paleta-sec"><h3>Paleta del día</h3>${paletaHTML(d.paleta)}<p class="hint">Tocá un color para copiar su código.</p></section>` : ''}
     <div class="dos">${frase(d)}<div class="mision card"><h3>Misión del día</h3><p>${esc(d.mision)}</p></div></div>
@@ -120,7 +120,7 @@ async function dia(f) {
       ${x.imagen ? `<img loading="lazy" src="${img(f, x.imagen)}" alt="Referencia: ${esc(x.libro)}, pág. ${esc(x.pagina)}" data-zoom>` : ''}
       <div><p>${esc(x.texto)}</p><p class="credito">${esc(x.libro)}${x.pagina ? `, pág. ${esc(x.pagina)}` : ''}</p></div></div>`).join('')}</div>` : ''}
     <section class="mi-trabajo"><h2>Mi trabajo</h2>${(TR[f] || []).length ? `<div class="trabajos">${TR[f].map(t => `<figure class="card trabajo"><img loading="lazy" src="${t.url}" alt="Mi trabajo del ${f}" data-zoom>${t.nota ? `<figcaption>${esc(t.nota)}</figcaption>` : ''}<button class="borrar" data-borrar="${t.id}" title="Borrar">✕</button></figure>`).join('')}</div>` : `<p class="vacio-t">Todavía no subiste tu dibujo de este día.</p>`}
-      <button class="btn sec" id="subir-btn2">⬆ Subir mi trabajo</button></section>
+      <button class="btn sec" id="subir-btn2">Subir mi trabajo</button></section>
     <nav class="pn">${prev ? `<a href="/dia/${prev.fecha}">← ${esc(prev.tema)}</a>` : '<span></span>'}${next ? `<a href="/dia/${next.fecha}">${esc(next.tema)} →</a>` : '<span></span>'}</nav>
   </article>`;
 }

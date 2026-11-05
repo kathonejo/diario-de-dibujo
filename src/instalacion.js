@@ -43,7 +43,7 @@ function hideChrome(on) {
 
 function estrellas(n) {
   const s = Math.max(1, Math.min(5, Number(n) || 3));
-  return '★'.repeat(s) + '☆'.repeat(5 - s);
+  return `${s}/5`;
 }
 
 /* ───────── START ───────── */
@@ -326,7 +326,7 @@ function snapshot(canvas) {
 }
 function fmt(s) {
   const m = Math.floor(s / 60), r = s % 60;
-  return `${m}:${String(r).padStart(2, '0')}`;
+  return `${String(m).padStart(2, '0')}m ${String(r).padStart(2, '0')}s`;
 }
 function blobToDataUrl(blob) {
   return new Promise((res, rej) => {
@@ -348,7 +348,7 @@ function pantallaResultado(app, { saved, mirar, preview }) {
         <img src="/mascota.png" alt="" class="inst-bunny">
         <div class="inst-bubble">
           <p>${esc(mirar.texto)}</p>
-          <div class="inst-score" title="Ponderación">${estrellas(mirar.score)} <span>${mirar.score}/5</span></div>
+          <div class="inst-score" title="Ponderación">${estrellas(mirar.score)}</div>
         </div>
       </div>
     </div>

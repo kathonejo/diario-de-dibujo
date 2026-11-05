@@ -1,5 +1,5 @@
 const KEY = 'timer';
-const fmt = ms => { const s = Math.max(0, Math.ceil(ms / 1000)); return `${String(Math.floor(s/60)).padStart(2,'0')}:${String(s%60).padStart(2,'0')}`; };
+const fmt = ms => { const s = Math.max(0, Math.ceil(ms / 1000)); return `${String(Math.floor(s/60)).padStart(2,'0')}m ${String(s%60).padStart(2,'0')}s`; };
 function chime() {
   try {
     const ctx = new (window.AudioContext || window.webkitAudioContext)();
@@ -27,11 +27,11 @@ export function initTimer(el) {
     $('.t-go').textContent = st.running ? 'Pausar' : (st.left < st.total && st.left > 0 ? 'Seguir' : 'Iniciar');
     el.classList.toggle('min', st.min); el.classList.toggle('on', st.running);
     el.querySelectorAll('[data-min]').forEach(b => b.classList.toggle('sel', +b.dataset.min * 60e3 === st.total));
-    if (st.running) document.title = `⏳ ${fmt(l)} · Diario de dibujo`;
+    if (st.running) document.title = `${fmt(l)} · Diario de dibujo`;
   }
   function done() {
     st.running = false; st.left = 0; save(); chime();
-    document.title = '✓ ¡Sesión terminada!';
+    document.title = 'Sesión terminada';
     if ('Notification' in window && Notification.permission === 'granted') new Notification('¡Sesión terminada!', { body: 'Buen trabajo. Soltá el lápiz y mirá tu dibujo de lejos.' });
     el.classList.add('fin'); setTimeout(() => el.classList.remove('fin'), 4000);
   }
