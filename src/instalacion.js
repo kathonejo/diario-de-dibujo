@@ -1,4 +1,5 @@
 /** Modo instalación · kiosco táctil */
+import { HERRAMIENTAS, PAPER, fillPaper, paintStroke, paintLive, pressureFrom } from './brushes.js';
 const MESES = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
 const DIAS = ['domingo','lunes','martes','miércoles','jueves','viernes','sábado'];
 const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
@@ -7,18 +8,12 @@ const largo = f => { const d = parse(f); return `${DIAS[d.getDay()]} ${d.getDate
 const img = (f, n) => `/content/${f}/${n}`;
 
 const COLORES = [
-  { hex: '#0A0A0A', nom: 'Tinta' },
-  { hex: '#FF6666', nom: 'Coral' },
+  { hex: '#1A1A1A', nom: 'Negro' },
+  { hex: '#3D2B1F', nom: 'Siena' },
   { hex: '#1159CC', nom: 'Azul' },
-  { hex: '#00CC99', nom: 'Menta' },
-  { hex: '#FF99CC', nom: 'Rosa' },
-  { hex: '#FFCC66', nom: 'Oro' },
-  { hex: '#FFF8E8', nom: 'Goma' },
-];
-const TAMAÑOS = [
-  { r: 3, nom: 'Fino' },
-  { r: 8, nom: 'Medio' },
-  { r: 18, nom: 'Grueso' },
+  { hex: '#B33A3A', nom: 'Rojo' },
+  { hex: '#2F6B4F', nom: 'Verde' },
+  { hex: '#6B4C9A', nom: 'Violeta' },
 ];
 
 function minParam() {
@@ -92,7 +87,7 @@ function pantallaDibujo(app, ctx) {
   const mins = minParam();
   let left = Math.round(mins * 60);
   let color = COLORES[0].hex;
-  let size = TAMAÑOS[1].r;
+  let tool = 'grafito';
   let strokes = [];
   let current = null;
   let undoStack = [];
@@ -114,11 +109,11 @@ function pantallaDibujo(app, ctx) {
       </div>
     </div>
     <div class="inst-tools">
+      <div class="inst-brushes" id="inst-brushes" role="toolbar" aria-label="Herramientas">
+        ${HERRAMIENTAS.map((h,i) => `<button type="button" class="inst-tool${i===0?' on':''}" data-tool="${h.id}" title="${h.nom}"><span class="inst-tool-ic">${h.icon}</span><span class="inst-tool-nom">${h.nom}</span></button>`).join('')}
+      </div>
       <div class="inst-colors" id="inst-colors">
         ${COLORES.map((c,i) => `<button type="button" class="inst-sw${i===0?' on':''}" data-hex="${c.hex}" title="${c.nom}" style="--c:${c.hex}"></button>`).join('')}
-      </div>
-      <div class="inst-sizes" id="inst-sizes">
-        ${TAMAÑOS.map((t,i) => `<button type="button" class="inst-sz${i===1?' on':''}" data-r="${t.r}" title="${t.nom}"><i style="width:${t.r*2}px;height:${t.r*2}px"></i></button>`).join('')}
       </div>
       <div class="inst-acts">
         <button type="button" class="btn sec" id="inst-undo">Deshacer</button>
@@ -129,58 +124,61 @@ function pantallaDibujo(app, ctx) {
   </section>`;
 
   const canvas = document.getElementById('inst-canvas');
-  const c2 = canvas.getContext('2d');
+  const c2 = canvas.getContext('2d', { willReadFrequently: true });
   fitCanvas(canvas, c2);
-  c2.fillStyle = '#FFF8E8';
-  c2.fillRect(0, 0, canvas.width, canvas.height);
-  c2.lineCap = 'round';
-  c2.lineJoin = 'round';
+  fillPaper(c2, canvas.width, canvas.height);
 
   const ro = new ResizeObserver(() => {
-    // Redibujar al redimensionar preservando bitmap
     const tmp = document.createElement('canvas');
     tmp.width = canvas.width; tmp.height = canvas.height;
     tmp.getContext('2d').drawImage(canvas, 0, 0);
     fitCanvas(canvas, c2);
-    c2.fillStyle = '#FFF8E8';
-    c2.fillRect(0, 0, canvas.width, canvas.height);
+    fillPaper(c2, canvas.width, canvas.height);
     c2.drawImage(tmp, 0, 0, canvas.width, canvas.height);
   });
   ro.observe(canvas.parentElement);
 
   function pos(e) {
     const r = canvas.getBoundingClientRect();
-    const x = (('clientX' in e) ? e.clientX : e.touches?.[0]?.clientX) - r.left;
-    const y = (('clientY' in e) ? e.clientY : e.touches?.[0]?.clientY) - r.top;
-    return { x: x * (canvas.width / r.width), y: y * (canvas.height / r.height) };
+    const cx = (('clientX' in e) ? e.clientX : e.touches?.[0]?.clientX);
+    const cy = (('clientY' in e) ? e.clientY : e.touches?.[0]?.clientY);
+    const x = (cx - r.left) * (canvas.width / r.width);
+    const y = (cy - r.top) * (canvas.height / r.height);
+    return { x, y, _cx: cx, _cy: cy, _t: e.timeStamp || Date.now() };
   }
 
   function start(e) {
     e.preventDefault();
+    try { canvas.setPointerCapture(e.pointerId); } catch {}
+    undoStack.push(snapshot(canvas));
+    if (undoStack.length > 25) undoStack.shift();
     const p = pos(e);
-    current = { color, size, points: [p] };
-    c2.strokeStyle = color;
-    c2.lineWidth = size * 2;
-    c2.beginPath();
-    c2.moveTo(p.x, p.y);
+    const pr = pressureFrom(e, null);
+    current = { tool, color, points: [{ x: p.x, y: p.y, pr, _cx: p._cx, _cy: p._cy, _t: p._t }] };
+    paintLive(c2, tool, color, current.points);
   }
   function move(e) {
     if (!current) return;
     e.preventDefault();
     const p = pos(e);
-    current.points.push(p);
-    c2.lineTo(p.x, p.y);
-    c2.stroke();
-    c2.beginPath();
-    c2.moveTo(p.x, p.y);
+    const last = current.points[current.points.length - 1];
+    // skip micro moves
+    if (Math.hypot(p.x - last.x, p.y - last.y) < 0.8) return;
+    const pr = pressureFrom(e, last);
+    current.points.push({ x: p.x, y: p.y, pr, _cx: p._cx, _cy: p._cy, _t: p._t });
+    paintLive(c2, current.tool, current.color, current.points);
   }
   function end(e) {
     if (!current) return;
     e?.preventDefault?.();
-    if (current.points.length > 1) {
-      undoStack.push(snapshot(canvas));
-      if (undoStack.length > 30) undoStack.shift();
-      strokes.push(current);
+    if (current.points.length >= 1) {
+      strokes.push({
+        tool: current.tool,
+        color: current.color,
+        points: current.points.map(pt => ({ x: pt.x, y: pt.y, pr: pt.pr })),
+      });
+    } else {
+      undoStack.pop(); // empty tap
     }
     current = null;
   }
@@ -189,18 +187,21 @@ function pantallaDibujo(app, ctx) {
   canvas.addEventListener('pointermove', move);
   canvas.addEventListener('pointerup', end);
   canvas.addEventListener('pointercancel', end);
-  canvas.addEventListener('pointerleave', end);
   canvas.style.touchAction = 'none';
 
+  document.getElementById('inst-brushes').onclick = e => {
+    const b = e.target.closest('[data-tool]'); if (!b) return;
+    tool = b.dataset.tool;
+    document.querySelectorAll('.inst-tool').forEach(x => x.classList.toggle('on', x === b));
+  };
   document.getElementById('inst-colors').onclick = e => {
     const b = e.target.closest('[data-hex]'); if (!b) return;
     color = b.dataset.hex;
     document.querySelectorAll('.inst-sw').forEach(x => x.classList.toggle('on', x === b));
-  };
-  document.getElementById('inst-sizes').onclick = e => {
-    const b = e.target.closest('[data-r]'); if (!b) return;
-    size = Number(b.dataset.r);
-    document.querySelectorAll('.inst-sz').forEach(x => x.classList.toggle('on', x === b));
+    if (tool === 'goma') {
+      tool = 'grafito';
+      document.querySelectorAll('.inst-tool').forEach(x => x.classList.toggle('on', x.dataset.tool === 'grafito'));
+    }
   };
   document.getElementById('inst-undo').onclick = () => {
     if (!undoStack.length) return;
@@ -212,8 +213,7 @@ function pantallaDibujo(app, ctx) {
     if (!strokes.length) return;
     undoStack.push(snapshot(canvas));
     strokes = [];
-    c2.fillStyle = '#FFF8E8';
-    c2.fillRect(0, 0, canvas.width, canvas.height);
+    fillPaper(c2, canvas.width, canvas.height);
   };
 
   const clock = document.getElementById('inst-clock');
@@ -235,7 +235,6 @@ function pantallaDibujo(app, ctx) {
     alive = false;
     clearInterval(tick);
     ro.disconnect();
-    // Si no dibujó nada, volver al inicio
     if (!strokes.length) {
       app.innerHTML = `<section class="inst-vacio"><h1>No hay dibujo todavía</h1><button class="btn" id="back">Volver</button></section>`;
       document.getElementById('back').onclick = () => pantallaInicio(app);
@@ -249,7 +248,6 @@ function pantallaDibujo(app, ctx) {
 
     try {
       const dataUrl = canvas.toDataURL('image/png');
-      // Comprimir a webp si se puede
       let image = dataUrl;
       try {
         const blob = await new Promise(r => canvas.toBlob(r, 'image/webp', 0.88));
@@ -259,9 +257,9 @@ function pantallaDibujo(app, ctx) {
       } catch { /* keep png */ }
 
       const slim = strokes.map(s => ({
+        t: s.tool,
         c: s.color,
-        s: s.size,
-        p: s.points.map(pt => [Math.round(pt.x), Math.round(pt.y)]),
+        p: s.points.map(pt => [Math.round(pt.x), Math.round(pt.y), Math.round((pt.pr ?? 0.55) * 100) / 100]),
       }));
 
       const res = await fetch('/api/instalacion', {
@@ -477,10 +475,7 @@ export async function mural(app) {
 
     const w = it.w || 1200, h = it.h || 900;
     c.width = w; c.height = h;
-    c2.fillStyle = '#FFF8E8';
-    c2.fillRect(0, 0, w, h);
-    c2.lineCap = 'round';
-    c2.lineJoin = 'round';
+    fillPaper(c2, w, h);
 
     if (!strokes?.length) {
       const im = new Image();
@@ -490,33 +485,15 @@ export async function mural(app) {
       return;
     }
 
-    let si = 0, pi = 1;
+    let si = 0;
     function step() {
       if (overlay.hidden) return;
       if (si >= strokes.length) return;
       const s = strokes[si];
-      const pts = s.p || s.points || [];
-      const col = s.c || s.color || '#0A0A0A';
-      const sz = (s.s || s.size || 4) * 2;
-      if (pi === 1 && pts.length) {
-        c2.strokeStyle = col;
-        c2.lineWidth = sz;
-        c2.beginPath();
-        const p0 = Array.isArray(pts[0]) ? { x: pts[0][0], y: pts[0][1] } : pts[0];
-        c2.moveTo(p0.x, p0.y);
-      }
-      if (pi < pts.length) {
-        const p = Array.isArray(pts[pi]) ? { x: pts[pi][0], y: pts[pi][1] } : pts[pi];
-        c2.lineTo(p.x, p.y);
-        c2.stroke();
-        c2.beginPath();
-        c2.moveTo(p.x, p.y);
-        pi += Math.max(1, Math.floor(pts.length / 40));
-        requestAnimationFrame(step);
-      } else {
-        si += 1; pi = 1;
-        requestAnimationFrame(step);
-      }
+      // progressive reveal: paint whole stroke, then next
+      paintStroke(c2, s);
+      si += 1;
+      setTimeout(() => requestAnimationFrame(step), 90);
     }
     requestAnimationFrame(step);
   }
