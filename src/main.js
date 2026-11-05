@@ -20,7 +20,8 @@ const getIndex = async () => indice ??= await fetch('/content/index.json').then(
 const getDia = f => fetch(`/content/${f}/dia.json`).then(r => r.ok ? r.json() : null).catch(() => null);
 
 function frase(d) {
-  return d.frase ? `<blockquote class="frase"><p>“${esc(d.frase.texto)}”</p>${d.frase.autor ? `<cite>— ${esc(d.frase.autor)}</cite>` : ''}</blockquote>` : '';
+  if (!d?.frase?.texto) return '';
+  return `<blockquote class="frase"><p>“${esc(d.frase.texto)}”</p>${d.frase.autor ? `<cite>— ${esc(d.frase.autor)}</cite>` : ''}</blockquote>`;
 }
 
 function normPaleta(p) {
@@ -60,11 +61,11 @@ function calendario(dias) {
 }
 const lista = dias => `<ul class="lista">${dias.map(d => `<li><a href="/dia/${d.fecha}"><img loading="lazy" src="${img(d.fecha, d.moodboard)}" alt=""><span><small>${largo(d.fecha)}</small><strong>${esc(d.tema)}</strong>${d.generado ? `<em class="badge-gen">generado el ${fmtGen(d.generado)}</em>` : ''}</span>${TR[d.fecha]?.length ? `<img class="mini-trabajo" loading="lazy" src="${TR[d.fecha][0].url}" alt="Mi trabajo" title="Mi trabajo">` : ''}</a></li>`).join('')}</ul>`;
 
-const manifiesto = n => `<div class="manifiesto"><img src="/mascota.png" alt=""><p><strong>Obra generativa en curso.</strong> Cada día se genera un ejercicio nuevo de dibujo: frase, misión, moodboard y referencias de estudio. Hoy hay <strong>${n}</strong> días publicados; la pieza crece con el tiempo.</p></div>`;
+const manifiesto = n => `<div class="manifiesto"><img src="/mascota.png" alt=""><p><strong>Obra generativa diaria.</strong> Cada día se genera un ejercicio nuevo de dibujo: frase, misión, moodboard y referencias de estudio. Hoy hay <strong>${n}</strong> días publicados; la pieza crece con el tiempo.</p></div>`;
 
 async function home() {
   const [dias, tr] = await Promise.all([getIndex(), getTrabajos()]); TR = tr;
-  if (!dias.length) { app.innerHTML = `<section class="vacio"><h1>Todavía no hay días</h1><p>El primer estudio aparece pronto.</p></section>`; return; }
+  if (!dias.length) { app.innerHTML = `<section class="vacio"><h1>Sin días publicados</h1><p>Cuando haya un estudio, aparece acá.</p></section>`; return; }
   const u = dias[0], d = await getDia(u.fecha);
   app.innerHTML = `<section class="hero">
     <a href="/dia/${u.fecha}" class="mood"><img src="${img(u.fecha, d.moodboard)}" alt="Moodboard: ${esc(d.tema)}"></a>
@@ -98,7 +99,7 @@ async function obra() {
 }
 async function dia(f) {
   const [d, dias, tr] = await Promise.all([getDia(f), getIndex(), getTrabajos()]); TR = tr;
-  if (!d) { app.innerHTML = `<section class="vacio"><h1>Este día no existe (todavía)</h1><p>No hay estudio para ${esc(f)}.</p><a class="btn" href="/">Volver al inicio</a></section>`; return; }
+  if (!d) { app.innerHTML = `<section class="vacio"><h1>Este día no existe</h1><p>No hay estudio para ${esc(f)}.</p><a class="btn" href="/">Volver al inicio</a></section>`; return; }
   const i = dias.findIndex(x => x.fecha === f), prev = dias[i+1], next = dias[i-1];
   const imgs = [{ src: img(f, d.moodboard), label: 'Moodboard' }, ...(d.datos || []).filter(x => x.imagen).map(x => ({ src: img(f, x.imagen), label: `Pág. ${x.pagina ?? ''}` }))];
   queueMicrotask(() => {
