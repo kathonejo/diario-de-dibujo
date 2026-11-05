@@ -94,7 +94,7 @@ async function diario() {
   app.innerHTML = `<section class="obra-head">
     <p class="eyebrow">Diario de dibujo</p>
     <h1>Diario</h1>
-    <p>Cada día, una nueva página.<br>Cada página es una nueva invitación a crear.<br>El arte tradicional permanece en la tecnología.<br><strong>Siempre.</strong></p>
+    <p>Cada día, una nueva página.<br>Cada página es una nueva invitación a crear, porque el arte tradicional no teme a experimentar con la tecnología</p>
     <span class="cuenta"><i></i>${orden.length} días · desde ${orden[0] ? largo(orden[0].fecha) : '—'}</span>
   </section>
   <div class="mosaico">${orden.map(d => `<a href="/dia/${d.fecha}" title="${esc(d.tema)}">
