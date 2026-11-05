@@ -1,0 +1,54 @@
+{
+  "tema": "Integración: el retrato en tres pasadas (gesto, sólidos y mirada)",
+  "frase": {
+    "texto": "Cada material provoca cosas diferentes, yo atravieso el material y el material me atraviesa, él responde.",
+    "autor": "Yoann Saura, vía Claudia Rodríguez-Ponga Linares · Pequeño tratado sobre arte y magia (Cap. 2)"
+  },
+  "mision": "Unir cabeza, rasgos y expresión en un solo retrato sin perder la construcción.",
+  "paleta": [
+    {
+      "nombre": "Rosa coral",
+      "hex": "#FF6666"
+    },
+    {
+      "nombre": "Durazno",
+      "hex": "#FF9999"
+    },
+    {
+      "nombre": "Dorado",
+      "hex": "#FFCC66"
+    },
+    {
+      "nombre": "Azul intenso",
+      "hex": "#1159CC"
+    },
+    {
+      "nombre": "Negro",
+      "hex": "#000000"
+    }
+  ],
+  "datos": [
+    {
+      "texto": "Retrato integrado: proporciones y expresión.",
+      "libro": "Modos de dibujar 4: Retratos · Daucher",
+      "pagina": 64,
+      "imagen": "daucher-pag64.webp"
+    },
+    {
+      "texto": "Retrato con lápices de color: volumen y piel.",
+      "libro": "Así se pinta con lápices de colores · Parramón",
+      "pagina": 82,
+      "imagen": "lapices-pag82.webp"
+    },
+    {
+      "texto": "Demostración de retrato a lápiz.",
+      "libro": "El gran libro del dibujo · Parramón",
+      "pagina": 39,
+      "imagen": "parramon-pag39.webp"
+    }
+  ],
+  "formato": "vertical (2:3)",
+  "fecha": "2026-10-21",
+  "generado": "2026-11-05",
+  "moodboard": "moodboard.webp"
+}
