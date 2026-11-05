@@ -128,8 +128,8 @@ function resampleByDistance(pts, spacing) {
     const tt = Math.min(1, Math.max(0, (target - segStart) / segLen));
     const u = i / n;
     let taper = 1;
-    if (u < 0.12) taper = Math.max(0.15, u / 0.12);
-    else if (u > 0.88) taper = Math.max(0.15, (1 - u) / 0.12);
+    if (u < 0.14) taper = Math.max(0.05, u / 0.14);
+    else if (u > 0.86) taper = Math.max(0.05, (1 - u) / 0.14);
     samples.push({
       x: a.x + (b.x - a.x) * tt,
       y: a.y + (b.y - a.y) * tt,
@@ -159,19 +159,32 @@ export function paintLive(c2, tool, color, pts) {
   paintStroke(c2, { tool, color, points: pts });
 }
 
-/** Simpler ribbon without arc math — soft continuous band. */
+/** Continuous ribbon. No end-cap stamps (taper handles tips). Normals smoothed. */
 function fillRibbonSimple(c2, samples, widthAt, fillStyle) {
   if (samples.length < 2) return;
-  const left = [];
-  const right = [];
+  const norms = [];
   for (let i = 0; i < samples.length; i++) {
-    const p = samples[i];
     const p0 = samples[Math.max(0, i - 1)];
     const p1 = samples[Math.min(samples.length - 1, i + 1)];
     let dx = p1.x - p0.x, dy = p1.y - p0.y;
     const len = Math.hypot(dx, dy) || 1;
-    const nx = -dy / len, ny = dx / len;
-    const w = Math.max(0.35, widthAt(p)) / 2;
+    norms.push({ nx: -dy / len, ny: dx / len });
+  }
+  // average neighboring normals so sharp corners don't flare into blobs
+  const smoothN = norms.map((n, i) => {
+    const a = norms[Math.max(0, i - 1)];
+    const b = norms[Math.min(norms.length - 1, i + 1)];
+    let nx = a.nx * 0.25 + n.nx * 0.5 + b.nx * 0.25;
+    let ny = a.ny * 0.25 + n.ny * 0.5 + b.ny * 0.25;
+    const l = Math.hypot(nx, ny) || 1;
+    return { nx: nx / l, ny: ny / l };
+  });
+  const left = [];
+  const right = [];
+  for (let i = 0; i < samples.length; i++) {
+    const p = samples[i];
+    const { nx, ny } = smoothN[i];
+    const w = Math.max(0.2, widthAt(p)) / 2;
     left.push({ x: p.x + nx * w, y: p.y + ny * w });
     right.push({ x: p.x - nx * w, y: p.y - ny * w });
   }
@@ -181,12 +194,6 @@ function fillRibbonSimple(c2, samples, widthAt, fillStyle) {
   for (let i = right.length - 1; i >= 0; i--) c2.lineTo(right[i].x, right[i].y);
   c2.closePath();
   c2.fillStyle = fillStyle;
-  c2.fill();
-  // soft end caps (single circle each — not stacked along path)
-  const a = samples[0], b = samples[samples.length - 1];
-  c2.beginPath();
-  c2.arc(a.x, a.y, Math.max(0.35, widthAt(a)) / 2, 0, Math.PI * 2);
-  c2.arc(b.x, b.y, Math.max(0.35, widthAt(b)) / 2, 0, Math.PI * 2);
   c2.fill();
 }
 
@@ -220,14 +227,21 @@ function paintAcuarela(c2, pts, color) {
   if (samples.length < 2) return;
   c2.save();
 
+  // one soft bloom + body (multiply so overlaps don't stack as opaque dots)
   c2.globalCompositeOperation = 'multiply';
-  fillRibbonSimple(c2, samples, p => (16 + p.pr * 10) * p.taper, rgba(color, 0.07));
-  fillRibbonSimple(c2, samples, p => (10 + p.pr * 8) * p.taper, rgba(color, 0.12));
+  fillRibbonSimple(c2, samples, p => (15 + p.pr * 9) * p.taper, rgba(color, 0.1));
+  fillRibbonSimple(c2, samples, p => (9 + p.pr * 6) * p.taper, rgba(color, 0.14));
 
-  // slightly darker wet edge: thin outline along the band
+  // darker wet edge as a thin stroke of the centerline (single path, no segment caps)
   c2.globalCompositeOperation = 'source-over';
-  fillRibbonSimple(c2, samples, p => (11 + p.pr * 7) * p.taper, rgba(color, 0.1));
-  fillRibbonSimple(c2, samples, p => (5 + p.pr * 3.5) * p.taper, rgba(color, 0.14));
+  c2.lineJoin = 'round';
+  c2.lineCap = 'butt';
+  c2.beginPath();
+  c2.moveTo(samples[0].x, samples[0].y);
+  for (let i = 1; i < samples.length; i++) c2.lineTo(samples[i].x, samples[i].y);
+  c2.strokeStyle = rgba(color, 0.18);
+  c2.lineWidth = 1.6;
+  c2.stroke();
 
   c2.restore();
 }
@@ -239,18 +253,17 @@ function paintCarbonilla(c2, pts, color) {
   c2.save();
   c2.globalCompositeOperation = 'source-over';
 
-  fillRibbonSimple(c2, samples, p => (12 + p.pr * 10) * p.taper, rgba(color, 0.22));
-  fillRibbonSimple(c2, samples, p => (7 + p.pr * 6) * p.taper, rgba(color, 0.2));
+  fillRibbonSimple(c2, samples, p => (11 + p.pr * 9) * p.taper, rgba(color, 0.28));
 
   // grain flecks along the band only (distance-spaced, skip ends)
   for (let i = 2; i < samples.length - 2; i++) {
     const p = samples[i];
-    const w = (12 + p.pr * 10) * p.taper;
-    for (let k = 0; k < 4; k++) {
-      const ox = (hash(p.x + k * 3, p.y) - 0.5) * w * 0.85;
-      const oy = (hash(p.y + k * 5, p.x) - 0.5) * w * 0.85;
-      c2.fillStyle = rgba(color, 0.12 + p.pr * 0.14);
-      c2.fillRect(p.x + ox, p.y + oy, 1 + hash(p.x, k) * 2, 1 + hash(k, p.y) * 1.5);
+    const w = (11 + p.pr * 9) * p.taper;
+    for (let k = 0; k < 3; k++) {
+      const ox = (hash(p.x + k * 3, p.y) - 0.5) * w * 0.8;
+      const oy = (hash(p.y + k * 5, p.x) - 0.5) * w * 0.8;
+      c2.fillStyle = rgba(color, 0.14 + p.pr * 0.12);
+      c2.fillRect(p.x + ox, p.y + oy, 1 + hash(p.x, k) * 1.8, 1 + hash(k, p.y) * 1.4);
     }
   }
   c2.restore();
