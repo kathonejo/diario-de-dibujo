@@ -1,0 +1,54 @@
+{
+  "tema": "La cabeza: proporciones, ejes y construcción",
+  "frase": {
+    "texto": "La magia, dicen las brujas, es un arte.",
+    "autor": "Isabelle Stengers, vía Claudia Rodríguez-Ponga Linares · Pequeño tratado sobre arte y magia (Cap. 2)"
+  },
+  "mision": "Armar la cabeza como un sólido con ejes claros antes de dibujar el rostro.",
+  "paleta": [
+    {
+      "nombre": "Sombra tostada",
+      "hex": "#3D1E18"
+    },
+    {
+      "nombre": "Siena",
+      "hex": "#AA431B"
+    },
+    {
+      "nombre": "Ocre",
+      "hex": "#E18644"
+    },
+    {
+      "nombre": "Crema",
+      "hex": "#FEFDF4"
+    },
+    {
+      "nombre": "Gris piedra",
+      "hex": "#A6A6A6"
+    }
+  ],
+  "datos": [
+    {
+      "texto": "Construcción del retrato: ejes y proporciones de la cabeza.",
+      "libro": "Modos de dibujar 4: Retratos · Daucher",
+      "pagina": 19,
+      "imagen": "daucher-pag19.webp"
+    },
+    {
+      "texto": "Esquema frontal de la cabeza para iniciar el estudio.",
+      "libro": "Taller de las Artes – Dibujo I · Armand",
+      "pagina": 17,
+      "imagen": "armand-pag17.webp"
+    },
+    {
+      "texto": "Estudios de cráneo: estructura ósea bajo el rostro.",
+      "libro": "Moreaux · Anatomía artística",
+      "pagina": 314,
+      "imagen": "moreaux-pag314.webp"
+    }
+  ],
+  "formato": "vertical (2:3)",
+  "fecha": "2026-10-19",
+  "generado": "2026-11-05",
+  "moodboard": "moodboard.webp"
+}
