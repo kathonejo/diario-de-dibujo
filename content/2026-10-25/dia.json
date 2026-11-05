@@ -1,0 +1,54 @@
+{
+  "tema": "Composición: el peso visual y el encuadre",
+  "frase": {
+    "texto": "Hace totalmente parte del trabajo artístico producir misterio.",
+    "autor": "Yoann Saura, vía Claudia Rodríguez-Ponga Linares · Pequeño tratado sobre arte y magia (Cap. 2)"
+  },
+  "mision": "Decidir qué entra en el cuadro y qué se corta: el encuadre es parte del dibujo.",
+  "paleta": [
+    {
+      "nombre": "Verde link",
+      "hex": "#00CC99"
+    },
+    {
+      "nombre": "Azul intenso",
+      "hex": "#1159CC"
+    },
+    {
+      "nombre": "Rosa fuerte",
+      "hex": "#FF99CC"
+    },
+    {
+      "nombre": "Amarillo pastel",
+      "hex": "#FFECB3"
+    },
+    {
+      "nombre": "Negro",
+      "hex": "#000000"
+    }
+  ],
+  "datos": [
+    {
+      "texto": "Esquemas de composición y equilibrio visual.",
+      "libro": "El gran libro del dibujo · Parramón",
+      "pagina": 96,
+      "imagen": "parramon-pag96.webp"
+    },
+    {
+      "texto": "Encaje inicial y masas grandes antes del detalle.",
+      "libro": "El gran libro del dibujo · Parramón",
+      "pagina": 20,
+      "imagen": "parramon-pag20.webp"
+    },
+    {
+      "texto": "Siluetas y lectura clara de la figura en el encuadre.",
+      "libro": "Dynamic Characters",
+      "pagina": 21,
+      "imagen": "dynamic-pag21.webp"
+    }
+  ],
+  "formato": "horizontal (16:9)",
+  "fecha": "2026-10-25",
+  "generado": "2026-11-05",
+  "moodboard": "moodboard.webp"
+}
