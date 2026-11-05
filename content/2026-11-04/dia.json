@@ -1,0 +1,54 @@
+{
+  "tema": "Anatomía humana: la rodilla y el cuádriceps (antes de la pierna completa)",
+  "frase": {
+    "texto": "Nombrarlo de esa forma, dicen ellas, es en sí un acto de magia.",
+    "autor": "Starhawk / Isabelle Stengers, vía Claudia Rodríguez-Ponga Linares · Pequeño tratado sobre arte y magia (Cap. 2)"
+  },
+  "mision": "Entender la rodilla como gozne: el cuádriceps llega, la rótula desvía, la tibia continúa.",
+  "paleta": [
+    {
+      "nombre": "Gris carbón",
+      "hex": "#3E3D42"
+    },
+    {
+      "nombre": "Bronce",
+      "hex": "#AA6E16"
+    },
+    {
+      "nombre": "Ocre tostado",
+      "hex": "#C37A0B"
+    },
+    {
+      "nombre": "Verde agua",
+      "hex": "#98D7CF"
+    },
+    {
+      "nombre": "Gris perla",
+      "hex": "#A9A9A9"
+    }
+  ],
+  "datos": [
+    {
+      "texto": "Recto anterior y vasto interno hacia la rótula.",
+      "libro": "Moreaux · Anatomía artística",
+      "pagina": 274,
+      "imagen": "moreaux-pag274.webp"
+    },
+    {
+      "texto": "Estudios de muslo y inserciones cerca de la rodilla.",
+      "libro": "Moreaux · Anatomía artística",
+      "pagina": 268,
+      "imagen": "moreaux-pag268.webp"
+    },
+    {
+      "texto": "Bocetos de gesto donde la flexión de rodilla cambia la silueta.",
+      "libro": "Dynamic Characters",
+      "pagina": 32,
+      "imagen": "dynamic-pag32.webp"
+    }
+  ],
+  "formato": "horizontal (16:9)",
+  "fecha": "2026-11-04",
+  "generado": "2026-11-05",
+  "moodboard": "moodboard.webp"
+}
