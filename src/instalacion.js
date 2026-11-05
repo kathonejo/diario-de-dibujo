@@ -56,10 +56,20 @@ async function pantallaInicio(app) {
     <header class="inst-brand">
       <img src="/mascota.png" alt="" width="56" height="56">
       <div>
-        <p class="eyebrow">Instalación · Diario de dibujo</p>
-        <h1>Hoy dibujamos juntos</h1>
+        <p class="eyebrow">Instalación · por Kathonejo</p>
+        <h1>Diario de dibujo</h1>
       </div>
     </header>
+    <div class="inst-intro">
+      <p class="inst-intro-lead">Este diario nace como una intersección entre aprendizaje, arte, archivo y reflexión. Busca generar, recuperar y conservar la educación tradicional, y enseñar y difundir los valores de creación antiguos mezclados con las nuevas tecnologías. Es una aplicación creada a partir de PDFs, archivos y recopilaciones de Kathonejo, artista tradicional que busca, a través de la tecnología, mantener vivo el legado de las técnicas tradicionales.</p>
+      <p class="inst-intro-extra">Cada día se genera un nuevo ejercicio para practicar con un timer pomodoro.</p>
+      <ol class="inst-steps">
+        <li><span aria-hidden="true">1</span> Mirá el tema y el moodboard</li>
+        <li><span aria-hidden="true">2</span> Dibujá durante 3 minutos</li>
+        <li><span aria-hidden="true">3</span> Entregá: el conejo te comenta y tu dibujo se suma al mural</li>
+      </ol>
+      <p class="inst-mantra">Cada día, una nueva página. Cada página es una nueva invitación a crear. El arte tradicional permanece en la tecnología. Siempre.</p>
+    </div>
     <p class="inst-fecha">${largo(u.fecha)}</p>
     <h2 class="inst-tema">${esc(d.tema)}</h2>
     <div class="inst-refs">
@@ -103,7 +113,10 @@ function pantallaDibujo(app, ctx) {
       <div class="inst-clock" id="inst-clock" aria-live="polite">${fmt(left)}</div>
     </div>
     <div class="inst-stage">
-      ${ctx.ref ? `<aside class="inst-ref-side"><img src="${img(ctx.fecha, ctx.ref.imagen)}" alt="Referencia"></aside>` : ''}
+      <aside class="inst-ref-side" id="inst-side" ${ctx.ref ? 'role="button" tabindex="0"' : ''}>
+        <img id="inst-side-img" src="${img(ctx.fecha, ctx.mood)}" alt="Moodboard">
+        <span class="inst-side-lab" id="inst-side-lab">${ctx.ref ? 'Moodboard · tocá para ver la referencia' : 'Moodboard'}</span>
+      </aside>
       <div class="inst-canvas-wrap">
         <canvas id="inst-canvas" width="1200" height="900"></canvas>
       </div>
@@ -125,16 +138,57 @@ function pantallaDibujo(app, ctx) {
 
   const canvas = document.getElementById('inst-canvas');
   const c2 = canvas.getContext('2d', { willReadFrequently: true });
+
+  const moodSrc = img(ctx.fecha, ctx.mood);
+  const refSrc = ctx.ref ? img(ctx.fecha, ctx.ref.imagen) : null;
+  let sideMode = 'mood';
+  const side = document.getElementById('inst-side');
+  const sideImg = document.getElementById('inst-side-img');
+  const sideLab = document.getElementById('inst-side-lab');
+  function setSide(mode) {
+    if (!refSrc) return;
+    sideMode = mode;
+    if (mode === 'ref') {
+      sideImg.src = refSrc;
+      sideImg.alt = 'Referencia';
+      sideLab.textContent = 'Referencia · tocá para ver el moodboard';
+    } else {
+      sideImg.src = moodSrc;
+      sideImg.alt = 'Moodboard';
+      sideLab.textContent = 'Moodboard · tocá para ver la referencia';
+    }
+  }
+  if (refSrc) {
+    side.onclick = () => setSide(sideMode === 'mood' ? 'ref' : 'mood');
+    side.onkeydown = e => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); side.click(); }
+    };
+  }
+
+  function redrawAll() {
+    fillPaper(c2, canvas.width, canvas.height);
+    for (const s of strokes) paintStroke(c2, s);
+    if (current) paintStroke(c2, current);
+  }
+
   fitCanvas(canvas, c2);
   fillPaper(c2, canvas.width, canvas.height);
 
   const ro = new ResizeObserver(() => {
-    const tmp = document.createElement('canvas');
-    tmp.width = canvas.width; tmp.height = canvas.height;
-    tmp.getContext('2d').drawImage(canvas, 0, 0);
+    const ow = canvas.width, oh = canvas.height;
     fitCanvas(canvas, c2);
+    if (canvas.width === ow && canvas.height === oh) return;
+    const sx = canvas.width / ow, sy = canvas.height / oh;
+    for (const s of strokes) for (const pt of s.points) { pt.x *= sx; pt.y *= sy; }
+    if (current) for (const pt of current.points) { pt.x *= sx; pt.y *= sy; }
+    // ImageData undo buffers are size-bound; rebuild base from strokes
+    undoStack = [];
     fillPaper(c2, canvas.width, canvas.height);
-    c2.drawImage(tmp, 0, 0, canvas.width, canvas.height);
+    for (const s of strokes) paintStroke(c2, s);
+    if (current) {
+      undoStack.push(snapshot(canvas));
+      paintStroke(c2, current);
+    }
   });
   ro.observe(canvas.parentElement);
 
@@ -304,12 +358,8 @@ function pantallaDibujo(app, ctx) {
 
 function fitCanvas(canvas, c2) {
   const wrap = canvas.parentElement;
-  const maxW = Math.min(1200, wrap.clientWidth || 800);
-  const maxH = Math.min(900, Math.floor((window.innerHeight - 220) * 0.9));
-  const ratio = 4 / 3;
-  let w = maxW, h = Math.round(w / ratio);
-  if (h > maxH) { h = maxH; w = Math.round(h * ratio); }
-  // Keep internal resolution reasonably sharp
+  const w = Math.max(120, Math.floor(wrap.clientWidth || 800));
+  const h = Math.max(120, Math.floor(wrap.clientHeight || 500));
   const scale = Math.min(2, window.devicePixelRatio || 1);
   canvas.style.width = w + 'px';
   canvas.style.height = h + 'px';

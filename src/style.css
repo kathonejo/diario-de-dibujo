@@ -251,6 +251,13 @@ body.modo-instalacion main{max-width:none;padding:0;min-height:100dvh}
 .inst-brand img{border-radius:0;box-shadow:none;border:1px solid var(--ink);background:rgba(0,0,0,.12)}
 .inst-brand h1{margin:0;font-size:clamp(1.7rem,4.5vw,2.6rem)}
 .inst-start,.inst-result,.inst-wait,.inst-vacio{max-width:1100px;margin:0 auto;padding:1.6rem 1.25rem 3rem;text-align:center}
+.inst-intro{border:1.5px solid #fff;padding:1.25rem 1.4rem 1.35rem;margin:1.1rem auto 1.5rem;max-width:820px;text-align:left}
+.inst-intro-lead{margin:0;font-family:var(--serif);font-size:clamp(1.05rem,2.2vw,1.28rem);line-height:1.4;color:#fff}
+.inst-intro-extra{margin:.85rem 0 0;font-family:var(--mono);font-size:.92rem;line-height:1.45;color:#fff;letter-spacing:.02em}
+.inst-steps{list-style:none;margin:1.1rem 0 0;padding:0;display:grid;gap:.55rem}
+.inst-steps li{display:flex;gap:.75rem;align-items:flex-start;font-family:var(--mono);font-size:clamp(.9rem,2vw,1.05rem);line-height:1.35;color:#fff;letter-spacing:.02em}
+.inst-steps li span{flex:none;width:1.7rem;height:1.7rem;border:1.5px solid #fff;display:grid;place-items:center;font-weight:600;font-size:.85rem}
+.inst-mantra{margin:1.15rem 0 0;padding-top:1rem;border-top:1px solid rgba(255,255,255,.45);font-family:var(--serif);font-style:italic;font-size:clamp(1.05rem,2.3vw,1.35rem);line-height:1.35;color:#fff}
 .inst-fecha{color:var(--ink);text-transform:uppercase;letter-spacing:.14em;font-size:.72rem;margin:.5rem 0 0}
 .inst-tema{font-size:clamp(1.4rem,3.4vw,2.2rem);margin:.35rem 0 1.3rem;line-height:1.15}
 .inst-refs{display:grid;gap:1rem;grid-template-columns:1fr;margin:0 auto 1.2rem;max-width:920px}
@@ -259,12 +266,12 @@ body.modo-instalacion main{max-width:none;padding:0;min-height:100dvh}
 .inst-refs img{width:100%;max-height:42vh;object-fit:contain;border-radius:0;display:block;background:var(--paper)}
 .inst-refs figcaption{font-family:var(--mono);font-style:normal;color:var(--ink-dim);padding:.45rem .6rem;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase}
 .inst-mision{max-width:640px;margin:0 auto 1.4rem;color:var(--ink);font-size:1rem}
-.inst-cta{display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap;margin-top:1rem}
-.inst-big{font-size:.85rem!important;padding:1rem 2rem!important;margin:0}
+.inst-cta{display:flex;gap:.8rem;justify-content:center;align-items:center;flex-wrap:wrap;margin-top:1.2rem}
+.inst-big{font-size:clamp(1rem,2.6vw,1.35rem)!important;padding:1.2rem 2.6rem!important;margin:0;min-height:64px;min-width:min(100%,240px);letter-spacing:.14em}
 .inst-hint{color:var(--ink-dim);margin-top:1.2rem;font-size:.85rem;letter-spacing:.06em}
-.inst-draw{display:flex;flex-direction:column;min-height:100dvh;padding:0.7rem 0.9rem 0.9rem;gap:.65rem}
-.inst-draw-top{display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap}
-.inst-tema-mini{display:flex;gap:.7rem;align-items:center;text-align:left}
+.inst-draw{display:flex;flex-direction:column;height:100dvh;max-height:100dvh;overflow:hidden;padding:0.55rem 0.75rem 0.7rem;gap:.5rem;box-sizing:border-box}
+.inst-draw-top{display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap;flex:none}
+.inst-tema-mini{display:flex;gap:.7rem;align-items:center;text-align:left;min-width:0}
 .inst-tema-mini img{border-radius:0;border:1px solid var(--line);background:rgba(0,0,0,.12)}
 .inst-tema-mini small{display:block;color:var(--ink);text-transform:uppercase;letter-spacing:.12em;font-size:.68rem}
 .inst-tema-mini strong{font-family:var(--serif);font-size:1.05rem;line-height:1.2}
@@ -273,12 +280,13 @@ body.modo-instalacion main{max-width:none;padding:0;min-height:100dvh}
   color:var(--ink);background:transparent;border:2px solid #fff;border-radius:0;padding:.25rem 1rem;min-width:8ch;text-align:center;box-shadow:none;letter-spacing:.04em
 }
 .inst-clock.urgente{color:var(--ink);animation:pulse 1s infinite}
-.inst-stage{display:grid;gap:.8rem;flex:1;align-items:stretch}
-@media(min-width:900px){.inst-stage{grid-template-columns:200px 1fr}}
-.inst-ref-side{background:transparent;border-radius:0;padding:0;box-shadow:none;display:flex;align-items:center;border:1px solid var(--ink)}
-.inst-ref-side img{width:100%;border-radius:0;max-height:50vh;object-fit:contain;background:var(--paper)}
-.inst-canvas-wrap{display:flex;justify-content:center;align-items:center;min-height:50vh;touch-action:none}
-#inst-canvas{background:var(--paper);border-radius:0;box-shadow:none;border:1px solid var(--ink);touch-action:none;cursor:crosshair;max-width:100%}
+.inst-stage{display:grid;gap:.7rem;flex:1;min-height:0;align-items:stretch;grid-template-columns:minmax(160px,32%) minmax(0,1fr)}
+@media(max-width:720px){.inst-stage{grid-template-columns:1fr;grid-template-rows:minmax(110px,28%) minmax(0,1fr)}}
+.inst-ref-side{background:transparent;border-radius:0;padding:0;box-shadow:none;display:flex;flex-direction:column;min-height:0;height:100%;border:1.5px solid #fff;cursor:pointer;overflow:hidden}
+.inst-ref-side img{flex:1;width:100%;min-height:0;height:auto;border-radius:0;object-fit:contain;object-position:center;background:var(--paper);display:block}
+.inst-side-lab{flex:none;font-family:var(--mono);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:#fff;padding:.35rem .5rem;border-top:1px solid rgba(255,255,255,.45);text-align:center}
+.inst-canvas-wrap{display:flex;justify-content:stretch;align-items:stretch;min-height:0;height:100%;width:100%;touch-action:none}
+#inst-canvas{background:var(--paper);border-radius:0;box-shadow:none;border:1.5px solid #fff;touch-action:none;cursor:crosshair;width:100%;height:100%;max-width:none;display:block}
 .inst-tools{display:flex;flex-wrap:wrap;gap:.7rem;align-items:center;justify-content:space-between;background:transparent;border:1.5px solid #fff;border-radius:0;padding:.7rem .9rem;box-shadow:none}
 .inst-colors,.inst-sizes,.inst-acts{display:flex;gap:.45rem;align-items:center;flex-wrap:wrap}
 .inst-sw{width:40px;height:40px;border-radius:0;border:2px solid #fff;box-shadow:none;background:var(--c);cursor:pointer;padding:0}
@@ -322,7 +330,6 @@ body.modo-instalacion main{max-width:none;padding:0;min-height:100dvh}
   .inst-tools{position:sticky;bottom:0;z-index:5;background:var(--blue)}
   .inst-sw{width:36px;height:36px}
   .inst-acts .btn{padding:.6rem .85rem;font-size:.7rem}
-  .inst-ref-side{display:none}
 }
 
 
