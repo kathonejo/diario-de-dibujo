@@ -252,6 +252,7 @@ async function pantallaDibujo(app, ctx) {
         ${colores.map((c,i) => `<button type="button" class="inst-sw${i===0?' on':''}" data-hex="${c.hex}" title="${esc(c.nom)}" style="--c:${c.hex}"></button>`).join('')}
       </div>
       <div class="inst-acts">
+        <button type="button" class="btn sec" id="inst-fondo">Pintar fondo</button>
         <button type="button" class="btn sec" id="inst-undo">Deshacer</button>
         <button type="button" class="btn sec" id="inst-clear">Borrar todo</button>
         <button type="button" class="btn" id="inst-entregar">Entregar</button>
@@ -302,8 +303,11 @@ async function pantallaDibujo(app, ctx) {
     fitCanvas(canvas, c2);
     if (canvas.width === ow && canvas.height === oh) return;
     const sx = canvas.width / ow, sy = canvas.height / oh;
-    for (const s of strokes) for (const pt of s.points) { pt.x *= sx; pt.y *= sy; }
-    if (current) for (const pt of current.points) { pt.x *= sx; pt.y *= sy; }
+    for (const s of strokes) {
+      if (s.fill || !s.points) continue;
+      for (const pt of s.points) { pt.x *= sx; pt.y *= sy; }
+    }
+    if (current?.points) for (const pt of current.points) { pt.x *= sx; pt.y *= sy; }
     // ImageData undo buffers are size-bound; rebuild base from strokes
     undoStack = [];
     fillPaper(c2, canvas.width, canvas.height);
@@ -401,6 +405,12 @@ async function pantallaDibujo(app, ctx) {
     strokes = [];
     fillPaper(c2, canvas.width, canvas.height);
   };
+  document.getElementById('inst-fondo').onclick = () => {
+    undoStack.push(snapshot(canvas));
+    const fillStroke = { tool, color, size, fill: true, points: [] };
+    strokes.push(fillStroke);
+    paintStroke(c2, fillStroke);
+  };
 
   const clock = document.getElementById('inst-clock');
   const tick = setInterval(() => {
@@ -442,12 +452,18 @@ async function pantallaDibujo(app, ctx) {
         }
       } catch { /* keep png */ }
 
-      const slim = strokes.map(s => ({
-        t: s.tool,
-        c: s.color,
-        sz: Math.round((s.size ?? 1) * 100) / 100,
-        p: s.points.map(pt => [Math.round(pt.x), Math.round(pt.y), Math.round((pt.pr ?? 0.55) * 100) / 100]),
-      }));
+      const slim = strokes.map(s => {
+        const base = {
+          t: s.tool,
+          c: s.color,
+          sz: Math.round((s.size ?? 1) * 100) / 100,
+        };
+        if (s.fill) return { ...base, f: 1 };
+        return {
+          ...base,
+          p: (s.points || []).map(pt => [Math.round(pt.x), Math.round(pt.y), Math.round((pt.pr ?? 0.55) * 100) / 100]),
+        };
+      });
 
       const res = await fetch('/api/instalacion', {
         method: 'POST',

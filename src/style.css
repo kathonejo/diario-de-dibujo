@@ -289,7 +289,14 @@ body.modo-instalacion main{max-width:none;padding:0;min-height:100dvh}
 }
 .inst-clock.urgente{color:var(--ink);animation:pulse 1s infinite}
 .inst-stage{display:grid;gap:.7rem;flex:1;min-height:0;align-items:stretch;grid-template-columns:minmax(160px,32%) minmax(0,1fr)}
-@media(max-width:720px){.inst-stage{grid-template-columns:1fr;grid-template-rows:minmax(110px,28%) minmax(0,1fr)}}
+@media(max-width:720px){
+  .inst-stage{grid-template-columns:1fr;grid-template-rows:auto minmax(0,1fr);gap:.55rem}
+  .inst-ref-side{height:clamp(150px,18dvh,170px);max-height:170px}
+  .inst-ref-side img{height:100%}
+  .inst-side-lab{padding:.28rem .45rem;font-size:.58rem}
+  .inst-draw-top{gap:.55rem}
+  .inst-tema-mini strong{font-size:.95rem}
+}
 .inst-ref-side{background:transparent;border-radius:0;padding:0;box-shadow:none;display:flex;flex-direction:column;min-height:0;height:100%;border:1.5px solid #fff;cursor:pointer;overflow:hidden}
 .inst-ref-side img{flex:1;width:100%;min-height:0;height:auto;border-radius:0;object-fit:contain;object-position:center;background:var(--paper);display:block}
 .inst-side-lab{flex:none;font-family:var(--mono);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:#fff;padding:.35rem .5rem;border-top:1px solid rgba(255,255,255,.45);text-align:center}
@@ -360,4 +367,7 @@ body.modo-instalacion main{max-width:none;padding:0;min-height:100dvh}
 @media(max-width:640px){
   .inst-tool{min-width:56px;padding:.35rem .3rem}
   .inst-tool-nom{font-size:.55rem}
+  .inst-acts{width:100%;justify-content:stretch;gap:.35rem}
+  .inst-acts .btn{flex:1 1 auto;min-width:0;padding:.55rem .5rem;font-size:.62rem;letter-spacing:.06em}
+  #inst-fondo{order:-1}
 }

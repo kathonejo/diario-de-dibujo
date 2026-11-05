@@ -146,6 +146,9 @@ export function paintStroke(c2, stroke) {
   const tool = stroke.tool || stroke.t || 'grafito';
   const color = stroke.color || stroke.c || '#0A0A0A';
   const size = Math.max(0.35, Math.min(3, +(stroke.size ?? stroke.sz ?? 1) || 1));
+  if (stroke.fill || stroke.f || stroke.kind === 'fill') {
+    return paintFondo(c2, tool, color, size);
+  }
   const pts = normPts(stroke);
   if (!pts.length) return;
   if (tool === 'goma') return paintEraser(c2, pts, size);
@@ -153,6 +156,113 @@ export function paintStroke(c2, stroke) {
   if (tool === 'acuarela') return paintAcuarela(c2, pts, color, size);
   if (tool === 'carbonilla') return paintCarbonilla(c2, pts, color, size);
   return paintGrafito(c2, pts, color, size);
+}
+
+/** Full-canvas textured fill matching the selected medium. Deterministic for replay. */
+export function paintFondo(c2, tool, color, size = 1) {
+  const w = c2.canvas.width, h = c2.canvas.height;
+  if (!w || !h) return;
+  if (tool === 'goma') {
+    fillPaper(c2, w, h);
+    return;
+  }
+  const dens = Math.max(0.55, Math.min(2.4, size));
+  c2.save();
+  if (tool === 'tinta') {
+    c2.globalCompositeOperation = 'source-over';
+    // base ink wash
+    c2.globalAlpha = Math.min(0.92, 0.55 + dens * 0.14);
+    c2.fillStyle = color;
+    c2.fillRect(0, 0, w, h);
+    // irregular pools / dry patches
+    for (let y = 0; y < h; y += 3) {
+      for (let x = 0; x < w; x += 3) {
+        const n = hash(x * 0.7, y * 0.9);
+        if (n > 0.78) {
+          c2.globalAlpha = 0.18 + n * 0.22;
+          c2.fillStyle = PAPER;
+          c2.fillRect(x, y, 2 + n * 3, 2 + hash(y, x) * 3);
+        } else if (n < 0.12) {
+          c2.globalAlpha = 0.2;
+          c2.fillStyle = color;
+          c2.fillRect(x + 1, y + 1, 2, 2);
+        }
+      }
+    }
+  } else if (tool === 'acuarela') {
+    c2.globalCompositeOperation = 'multiply';
+    const aBody = Math.min(0.28, 0.1 + dens * 0.06);
+    c2.globalAlpha = 1;
+    c2.fillStyle = rgba(color, aBody);
+    c2.fillRect(0, 0, w, h);
+    // soft blotches
+    const step = Math.max(10, Math.round(18 / dens));
+    for (let y = 0; y < h; y += step) {
+      for (let x = 0; x < w; x += step) {
+        const n = hash(x + 2, y + 5);
+        if (n < 0.45) continue;
+        const r = (8 + n * 22) * dens;
+        const g = c2.createRadialGradient(x, y, 0, x, y, r);
+        g.addColorStop(0, rgba(color, 0.16 + n * 0.1));
+        g.addColorStop(1, rgba(color, 0));
+        c2.fillStyle = g;
+        c2.beginPath();
+        c2.arc(x + (hash(y, x) - 0.5) * step, y + (hash(x, y) - 0.5) * step, r, 0, Math.PI * 2);
+        c2.fill();
+      }
+    }
+    // faint wet edge along borders of denser zones
+    c2.globalCompositeOperation = 'multiply';
+    for (let y = 4; y < h; y += step * 2) {
+      for (let x = 4; x < w; x += step * 2) {
+        const n = hash(x * 1.3, y * 1.1);
+        if (n < 0.62) continue;
+        c2.strokeStyle = rgba(color, 0.12);
+        c2.lineWidth = 1.2;
+        c2.beginPath();
+        c2.arc(x, y, 10 + n * 18 * dens, 0, Math.PI * 2);
+        c2.stroke();
+      }
+    }
+  } else if (tool === 'carbonilla') {
+    c2.globalCompositeOperation = 'source-over';
+    c2.fillStyle = rgba(color, Math.min(0.42, 0.18 + dens * 0.08));
+    c2.fillRect(0, 0, w, h);
+    const step = dens > 1.4 ? 2 : 3;
+    for (let y = 0; y < h; y += step) {
+      for (let x = 0; x < w; x += step) {
+        const n = hash(x, y);
+        if (n > 0.55) continue;
+        c2.fillStyle = rgba(color, 0.1 + n * 0.28);
+        const ox = (hash(x + 3, y) - 0.5) * 3;
+        const oy = (hash(y + 7, x) - 0.5) * 3;
+        c2.fillRect(x + ox, y + oy, 1 + n * 2.2, 1 + hash(y, x) * 1.8);
+      }
+    }
+  } else {
+    // grafito: soft graphite veil + grain
+    c2.globalCompositeOperation = 'source-over';
+    c2.fillStyle = rgba(color, Math.min(0.34, 0.14 + dens * 0.07));
+    c2.fillRect(0, 0, w, h);
+    // fine graphite grain + subtle hatch
+    for (let y = 0; y < h; y += 2) {
+      for (let x = 0; x < w; x += 2) {
+        const n = hash(x, y);
+        if (n > 0.58) continue;
+        c2.fillStyle = rgba(color, 0.06 + n * 0.18);
+        c2.fillRect(x, y, 1, 1);
+      }
+    }
+    c2.strokeStyle = rgba(color, 0.05 + dens * 0.02);
+    c2.lineWidth = 1;
+    for (let i = -h; i < w + h; i += Math.max(5, Math.round(7 / dens))) {
+      c2.beginPath();
+      c2.moveTo(i, 0);
+      c2.lineTo(i + h * 0.35, h);
+      c2.stroke();
+    }
+  }
+  c2.restore();
 }
 
 export function paintLive(c2, tool, color, pts, size = 1) {
