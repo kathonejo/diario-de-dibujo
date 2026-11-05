@@ -208,13 +208,12 @@ function strokeRibbonEdge(c2, samples, widthAt, strokeStyle, lineWidth) {
   c2.lineWidth = lineWidth;
   c2.lineJoin = 'round';
   c2.lineCap = 'butt';
+  // one closed outline — avoids double-darkening where left/right meet at tips
   c2.beginPath();
   c2.moveTo(left[0].x, left[0].y);
   for (let i = 1; i < left.length; i++) c2.lineTo(left[i].x, left[i].y);
-  c2.stroke();
-  c2.beginPath();
-  c2.moveTo(right[0].x, right[0].y);
-  for (let i = 1; i < right.length; i++) c2.lineTo(right[i].x, right[i].y);
+  for (let i = right.length - 1; i >= 0; i--) c2.lineTo(right[i].x, right[i].y);
+  c2.closePath();
   c2.stroke();
 }
 
