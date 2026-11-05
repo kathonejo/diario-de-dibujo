@@ -145,18 +145,19 @@ function resampleByDistance(pts, spacing) {
 export function paintStroke(c2, stroke) {
   const tool = stroke.tool || stroke.t || 'grafito';
   const color = stroke.color || stroke.c || '#0A0A0A';
+  const size = Math.max(0.35, Math.min(3, +(stroke.size ?? stroke.sz ?? 1) || 1));
   const pts = normPts(stroke);
   if (!pts.length) return;
-  if (tool === 'goma') return paintEraser(c2, pts);
-  if (tool === 'tinta') return paintTinta(c2, pts, color);
-  if (tool === 'acuarela') return paintAcuarela(c2, pts, color);
-  if (tool === 'carbonilla') return paintCarbonilla(c2, pts, color);
-  return paintGrafito(c2, pts, color);
+  if (tool === 'goma') return paintEraser(c2, pts, size);
+  if (tool === 'tinta') return paintTinta(c2, pts, color, size);
+  if (tool === 'acuarela') return paintAcuarela(c2, pts, color, size);
+  if (tool === 'carbonilla') return paintCarbonilla(c2, pts, color, size);
+  return paintGrafito(c2, pts, color, size);
 }
 
-export function paintLive(c2, tool, color, pts) {
+export function paintLive(c2, tool, color, pts, size = 1) {
   if (!pts.length) return;
-  paintStroke(c2, { tool, color, points: pts });
+  paintStroke(c2, { tool, color, size, points: pts });
 }
 
 /** Continuous ribbon. No end-cap stamps (taper handles tips). Normals smoothed. */
@@ -217,13 +218,13 @@ function strokeRibbonEdge(c2, samples, widthAt, strokeStyle, lineWidth) {
   c2.stroke();
 }
 
-function paintGrafito(c2, pts, color) {
+function paintGrafito(c2, pts, color, size = 1) {
   const samples = resampleByDistance(pts, 1.8);
   if (samples.length < 2) return;
   c2.save();
   c2.globalCompositeOperation = 'source-over';
-  fillRibbonSimple(c2, samples, p => (1.1 + p.pr * 2.4) * p.taper, rgba(color, 0.38));
-  fillRibbonSimple(c2, samples, p => (0.5 + p.pr * 1.1) * p.taper, rgba(color, 0.28));
+  fillRibbonSimple(c2, samples, p => (1.1 + p.pr * 2.4) * p.taper * size, rgba(color, 0.38));
+  fillRibbonSimple(c2, samples, p => (0.5 + p.pr * 1.1) * p.taper * size, rgba(color, 0.28));
   for (let i = 1; i < samples.length - 1; i += 2) {
     const p = samples[i];
     c2.fillStyle = rgba(color, 0.12 + p.pr * 0.15);
@@ -232,21 +233,21 @@ function paintGrafito(c2, pts, color) {
   c2.restore();
 }
 
-function paintTinta(c2, pts, color) {
+function paintTinta(c2, pts, color, size = 1) {
   const samples = resampleByDistance(pts, 2.0);
   if (samples.length < 2) return;
   c2.save();
   c2.globalCompositeOperation = 'source-over';
-  fillRibbonSimple(c2, samples, p => (0.7 + p.pr * 5.0) * p.taper, color);
+  fillRibbonSimple(c2, samples, p => (0.7 + p.pr * 5.0) * p.taper * size, color);
   c2.restore();
 }
 
 /** Soft continuous wash + slightly darker wet edge. No dabs. */
-function paintAcuarela(c2, pts, color) {
+function paintAcuarela(c2, pts, color, size = 1) {
   const samples = resampleByDistance(pts, 2.8);
   if (samples.length < 2) return;
-  const wide = p => (16 + p.pr * 8) * p.taper;
-  const body = p => (10 + p.pr * 6) * p.taper;
+  const wide = p => (16 + p.pr * 8) * p.taper * size;
+  const body = p => (10 + p.pr * 6) * p.taper * size;
   c2.save();
   c2.globalCompositeOperation = 'multiply';
   fillRibbonSimple(c2, samples, wide, rgba(color, 0.09));
@@ -257,18 +258,18 @@ function paintAcuarela(c2, pts, color) {
 }
 
 /** Continuous grainy charcoal band. */
-function paintCarbonilla(c2, pts, color) {
+function paintCarbonilla(c2, pts, color, size = 1) {
   const samples = resampleByDistance(pts, 2.0);
   if (samples.length < 2) return;
   c2.save();
   c2.globalCompositeOperation = 'source-over';
 
-  fillRibbonSimple(c2, samples, p => (11 + p.pr * 9) * p.taper, rgba(color, 0.28));
+  fillRibbonSimple(c2, samples, p => (11 + p.pr * 9) * p.taper * size, rgba(color, 0.28));
 
   // grain flecks along the band only (distance-spaced, skip ends)
   for (let i = 2; i < samples.length - 2; i++) {
     const p = samples[i];
-    const w = (11 + p.pr * 9) * p.taper;
+    const w = (11 + p.pr * 9) * p.taper * size;
     for (let k = 0; k < 3; k++) {
       const ox = (hash(p.x + k * 3, p.y) - 0.5) * w * 0.8;
       const oy = (hash(p.y + k * 5, p.x) - 0.5) * w * 0.8;
@@ -279,12 +280,12 @@ function paintCarbonilla(c2, pts, color) {
   c2.restore();
 }
 
-function paintEraser(c2, pts) {
+function paintEraser(c2, pts, size = 1) {
   const samples = resampleByDistance(pts, 2.5);
   if (samples.length < 2) return;
   c2.save();
   c2.globalCompositeOperation = 'destination-out';
-  fillRibbonSimple(c2, samples, p => 26 * p.taper + 10, 'rgba(0,0,0,1)');
+  fillRibbonSimple(c2, samples, p => (26 * p.taper + 10) * size, 'rgba(0,0,0,1)');
   c2.restore();
   c2.save();
   c2.globalCompositeOperation = 'destination-over';

@@ -291,9 +291,11 @@ body.modo-instalacion main{max-width:none;padding:0;min-height:100dvh}
 .inst-colors,.inst-sizes,.inst-acts{display:flex;gap:.45rem;align-items:center;flex-wrap:wrap}
 .inst-sw{width:40px;height:40px;border-radius:0;border:2px solid #fff;box-shadow:none;background:var(--c);cursor:pointer;padding:0}
 .inst-sw.on{outline:3px solid #fff;outline-offset:3px}
-.inst-sz{width:46px;height:46px;border-radius:0;border:1.5px solid #fff;background:transparent;display:grid;place-items:center;cursor:pointer}
-.inst-sz i{display:block;border-radius:50%;background:var(--ink)}
-.inst-sz.on{border-color:var(--ink);background:rgba(255,255,255,.14)}
+.inst-sz{width:52px;height:52px;border-radius:0;border:1.5px solid #fff;background:transparent;display:grid;place-items:center;cursor:pointer;padding:0}
+.inst-sz i{display:block;border-radius:50%;background:#fff}
+.inst-sz.on{border-color:#fff;background:#fff}
+.inst-sz.on i{background:var(--blue)}
+.inst-sizes{gap:.35rem}
 .inst-acts .btn{margin:0;padding:.65rem 1.1rem}
 .inst-wait{padding-top:18vh}
 .spin-bunny{width:96px;height:96px;border-radius:0;border:1px solid var(--ink);animation:bunny 1.4s ease-in-out infinite;background:rgba(0,0,0,.12)}

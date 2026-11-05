@@ -7,7 +7,7 @@ const parse = f => { const [y,m,d] = f.split('-').map(Number); return new Date(y
 const largo = f => { const d = parse(f); return `${DIAS[d.getDay()]} ${d.getDate()} de ${MESES[d.getMonth()]}`; };
 const img = (f, n) => `/content/${f}/${n}`;
 
-const COLORES = [
+const COLORES_FALLBACK = [
   { hex: '#1A1A1A', nom: 'Negro' },
   { hex: '#3D2B1F', nom: 'Siena' },
   { hex: '#1159CC', nom: 'Azul' },
@@ -15,6 +15,130 @@ const COLORES = [
   { hex: '#2F6B4F', nom: 'Verde' },
   { hex: '#6B4C9A', nom: 'Violeta' },
 ];
+
+const TAMANOS = [
+  { id: 'xs', sz: 0.55, px: 8, nom: 'Fino' },
+  { id: 's', sz: 0.8, px: 12, nom: 'Chico' },
+  { id: 'm', sz: 1, px: 18, nom: 'Medio' },
+  { id: 'l', sz: 1.55, px: 26, nom: 'Grande' },
+  { id: 'xl', sz: 2.2, px: 34, nom: 'Grueso' },
+];
+
+function hexOk(h) {
+  const m = String(h || '').trim().match(/^#?([0-9a-fA-F]{6})$/);
+  return m ? '#' + m[1].toUpperCase() : null;
+}
+function lum(hex) {
+  const n = parseInt(hex.slice(1), 16);
+  const r = (n >> 16) & 255, g = (n >> 8) & 255, b = n & 255;
+  return 0.2126 * r + 0.7152 * g + 0.0722 * b;
+}
+function normalizePaleta(arr) {
+  const out = [];
+  const seen = new Set();
+  for (const c of arr || []) {
+    const hex = hexOk(c.hex || c.color || c);
+    if (!hex || seen.has(hex)) continue;
+    seen.add(hex);
+    out.push({ hex, nom: c.nombre || c.nom || hex });
+    if (out.length >= 6) break;
+  }
+  if (!out.some(c => lum(c.hex) < 55)) {
+    out.unshift({ hex: '#1A1A1A', nom: 'Negro' });
+  }
+  while (out.length > 6) out.pop();
+  return out.length ? out : COLORES_FALLBACK.slice();
+}
+
+function seedFrom(fecha) {
+  let h = 2166136261;
+  for (let i = 0; i < String(fecha).length; i++) {
+    h ^= String(fecha).charCodeAt(i);
+    h = Math.imul(h, 16777619);
+  }
+  return h >>> 0;
+}
+function mulberry32(a) {
+  return () => {
+    a |= 0; a = (a + 0x6D2B79F5) | 0;
+    let t = Math.imul(a ^ (a >>> 15), 1 | a);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
+
+async function extractPaletaFromMood(src, fecha) {
+  const imgEl = await new Promise((res, rej) => {
+    const im = new Image();
+    im.crossOrigin = 'anonymous';
+    im.onload = () => res(im);
+    im.onerror = rej;
+    im.src = src;
+  });
+  const tw = 64, th = 64;
+  const cv = document.createElement('canvas');
+  cv.width = tw; cv.height = th;
+  const g = cv.getContext('2d', { willReadFrequently: true });
+  g.drawImage(imgEl, 0, 0, tw, th);
+  const data = g.getImageData(0, 0, tw, th).data;
+  const buckets = new Map();
+  for (let i = 0; i < data.length; i += 4) {
+    const a = data[i + 3];
+    if (a < 200) continue;
+    // quantize
+    const r = data[i] >> 4, gg = data[i + 1] >> 4, b = data[i + 2] >> 4;
+    const key = (r << 8) | (gg << 4) | b;
+    const L = 0.2126 * data[i] + 0.7152 * data[i + 1] + 0.0722 * data[i + 2];
+    // skip near-paper / near-white
+    if (L > 230) continue;
+    const prev = buckets.get(key) || { n: 0, r: 0, g: 0, b: 0 };
+    prev.n += 1; prev.r += data[i]; prev.g += data[i + 1]; prev.b += data[i + 2];
+    buckets.set(key, prev);
+  }
+  const ranked = [...buckets.values()]
+    .filter(x => x.n >= 3)
+    .sort((a, b) => b.n - a.n)
+    .map(x => {
+      const r = Math.round(x.r / x.n), g2 = Math.round(x.g / x.n), b = Math.round(x.b / x.n);
+      const hex = '#' + [r, g2, b].map(v => v.toString(16).padStart(2, '0')).join('').toUpperCase();
+      return { hex, nom: hex, n: x.n, L: 0.2126 * r + 0.7152 * g2 + 0.0722 * b };
+    });
+  // deterministic shuffle-ish pick spread by seed
+  const rnd = mulberry32(seedFrom(fecha));
+  const picked = [];
+  const used = new Set();
+  const take = (pred) => {
+    const pool = ranked.filter(c => pred(c) && ![...used].some(u => {
+      const A = parseInt(u.slice(1), 16), B = parseInt(c.hex.slice(1), 16);
+      const dr = ((A >> 16) & 255) - ((B >> 16) & 255);
+      const dg = ((A >> 8) & 255) - ((B >> 8) & 255);
+      const db = (A & 255) - (B & 255);
+      return (dr * dr + dg * dg + db * db) < 2800;
+    }));
+    if (!pool.length) return;
+    const i = Math.floor(rnd() * Math.min(6, pool.length));
+    const c = pool[i];
+    used.add(c.hex);
+    picked.push({ hex: c.hex, nom: c.hex });
+  };
+  take(c => c.L < 50); // dark line
+  take(c => c.L >= 50 && c.L < 110);
+  take(c => c.L >= 110 && c.L < 170);
+  take(c => c.L >= 170 && c.L < 230);
+  while (picked.length < 5 && ranked.length) take(() => true);
+  return normalizePaleta(picked);
+}
+
+async function resolvePaleta(ctx) {
+  if (Array.isArray(ctx.paleta) && ctx.paleta.length) {
+    return normalizePaleta(ctx.paleta);
+  }
+  try {
+    return await extractPaletaFromMood(img(ctx.fecha, ctx.mood), ctx.fecha);
+  } catch {
+    return COLORES_FALLBACK.slice();
+  }
+}
 
 function minParam() {
   const m = Number(new URLSearchParams(location.search).get('min'));
@@ -62,7 +186,7 @@ async function pantallaInicio(app) {
     </header>
     <div class="inst-intro">
       <p class="inst-intro-lead">Este diario nace en la intersección entre aprendizaje, arte, archivo y reflexión. Busca generar, recuperar y conservar la educación tradicional, y enseñar y difundir valores de creación antiguos mezclados con las nuevas tecnologías. La aplicación se arma a partir de PDFs, archivos y recopilaciones de Kathonejo, artista tradicional que, a través de la tecnología, mantiene vivo el legado de las técnicas tradicionales.</p>
-      <p class="inst-intro-extra">Cada día se genera un nuevo ejercicio para practicar con un timer pomodoro. Hay, además, una instalación para pantalla grande —individual o en grupo— donde se construye una obra en común y el programa la exhibe.</p>
+      <p class="inst-intro-extra">Cada día se genera un nuevo ejercicio para practicar con un timer pomodoro. La paleta cambia cada día y es limitada a propósito. Hay, además, una instalación para pantalla grande —individual o en grupo— donde se construye una obra en común y el programa la exhibe.</p>
       <ol class="inst-steps">
         <li><span aria-hidden="true">1</span> Mirá el tema y el moodboard</li>
         <li><span aria-hidden="true">2</span> Dibujá durante 3 minutos</li>
@@ -89,15 +213,17 @@ async function pantallaInicio(app) {
     </div>
     <p class="inst-hint">Tenés ${minParam()} minutos. Cuando termines, tu dibujo entra al mural.</p>
   </section>`;
-  document.getElementById('inst-dibujar').onclick = () => pantallaDibujo(app, { fecha: u.fecha, tema: d.tema, mood: d.moodboard, ref });
+  document.getElementById('inst-dibujar').onclick = () => pantallaDibujo(app, { fecha: u.fecha, tema: d.tema, mood: d.moodboard, ref, paleta: d.paleta });
 }
 
 /* ───────── CANVAS ───────── */
-function pantallaDibujo(app, ctx) {
+async function pantallaDibujo(app, ctx) {
   const mins = minParam();
   let left = Math.round(mins * 60);
-  let color = COLORES[0].hex;
+  const colores = await resolvePaleta(ctx);
+  let color = colores[0].hex;
   let tool = 'grafito';
+  let size = TAMANOS[2].sz;
   let strokes = [];
   let current = null;
   let undoStack = [];
@@ -125,8 +251,11 @@ function pantallaDibujo(app, ctx) {
       <div class="inst-brushes" id="inst-brushes" role="toolbar" aria-label="Herramientas">
         ${HERRAMIENTAS.map((h,i) => `<button type="button" class="inst-tool${i===0?' on':''}" data-tool="${h.id}" title="${h.nom}"><span class="inst-tool-ic">${h.icon}</span><span class="inst-tool-nom">${h.nom}</span></button>`).join('')}
       </div>
-      <div class="inst-colors" id="inst-colors">
-        ${COLORES.map((c,i) => `<button type="button" class="inst-sw${i===0?' on':''}" data-hex="${c.hex}" title="${c.nom}" style="--c:${c.hex}"></button>`).join('')}
+      <div class="inst-sizes" id="inst-sizes" role="toolbar" aria-label="Grosor">
+        ${TAMANOS.map((s,i) => `<button type="button" class="inst-sz${i===2?' on':''}" data-sz="${s.sz}" title="${s.nom}" aria-label="${s.nom}"><i style="width:${s.px}px;height:${s.px}px"></i></button>`).join('')}
+      </div>
+      <div class="inst-colors" id="inst-colors" role="toolbar" aria-label="Paleta del día">
+        ${colores.map((c,i) => `<button type="button" class="inst-sw${i===0?' on':''}" data-hex="${c.hex}" title="${esc(c.nom)}" style="--c:${c.hex}"></button>`).join('')}
       </div>
       <div class="inst-acts">
         <button type="button" class="btn sec" id="inst-undo">Deshacer</button>
@@ -208,8 +337,8 @@ function pantallaDibujo(app, ctx) {
     if (undoStack.length > 25) undoStack.shift();
     const p = pos(e);
     const pr = pressureFrom(e, null);
-    current = { tool, color, points: [{ x: p.x, y: p.y, pr, _cx: p._cx, _cy: p._cy, _t: p._t }] };
-    paintLive(c2, tool, color, current.points);
+    current = { tool, color, size, points: [{ x: p.x, y: p.y, pr, _cx: p._cx, _cy: p._cy, _t: p._t }] };
+    paintLive(c2, tool, color, current.points, size);
   }
   function move(e) {
     if (!current) return;
@@ -232,6 +361,7 @@ function pantallaDibujo(app, ctx) {
       strokes.push({
         tool: current.tool,
         color: current.color,
+        size: current.size ?? 1,
         points: current.points.map(pt => ({ x: pt.x, y: pt.y, pr: pt.pr })),
       });
     } else {
@@ -250,6 +380,11 @@ function pantallaDibujo(app, ctx) {
     const b = e.target.closest('[data-tool]'); if (!b) return;
     tool = b.dataset.tool;
     document.querySelectorAll('.inst-tool').forEach(x => x.classList.toggle('on', x === b));
+  };
+  document.getElementById('inst-sizes').onclick = e => {
+    const b = e.target.closest('[data-sz]'); if (!b) return;
+    size = Number(b.dataset.sz) || 1;
+    document.querySelectorAll('.inst-sz').forEach(x => x.classList.toggle('on', x === b));
   };
   document.getElementById('inst-colors').onclick = e => {
     const b = e.target.closest('[data-hex]'); if (!b) return;
@@ -316,6 +451,7 @@ function pantallaDibujo(app, ctx) {
       const slim = strokes.map(s => ({
         t: s.tool,
         c: s.color,
+        sz: Math.round((s.size ?? 1) * 100) / 100,
         p: s.points.map(pt => [Math.round(pt.x), Math.round(pt.y), Math.round((pt.pr ?? 0.55) * 100) / 100]),
       }));
 
