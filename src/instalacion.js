@@ -163,10 +163,13 @@ function pantallaDibujo(app, ctx) {
     const p = pos(e);
     const last = current.points[current.points.length - 1];
     // skip micro moves
-    if (Math.hypot(p.x - last.x, p.y - last.y) < 0.8) return;
+    if (Math.hypot(p.x - last.x, p.y - last.y) < 1.2) return;
     const pr = pressureFrom(e, last);
     current.points.push({ x: p.x, y: p.y, pr, _cx: p._cx, _cy: p._cy, _t: p._t });
-    paintLive(c2, current.tool, current.color, current.points);
+    // redraw full stroke from pre-stroke snapshot for smooth curves
+    const base = undoStack[undoStack.length - 1];
+    if (base) c2.putImageData(base, 0, 0);
+    paintStroke(c2, current);
   }
   function end(e) {
     if (!current) return;
