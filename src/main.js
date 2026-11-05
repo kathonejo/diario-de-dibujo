@@ -89,7 +89,7 @@ async function obra() {
   app.innerHTML = `<section class="obra-head">
     <p class="eyebrow">Pieza generativa</p>
     <h1>La obra</h1>
-    <p>Todos los moodboards del diario, juntos. Cada celda es un día generado: una sesión de estudio que se suma a la pieza.</p>
+    <p>Cada día, una nueva página.<br>Cada página es una nueva invitación a crear.<br>El arte tradicional permanece en la tecnología.<br><strong>Siempre.</strong></p>
     <span class="cuenta"><i></i>${orden.length} días · desde ${orden[0] ? largo(orden[0].fecha) : '—'}</span>
   </section>
   <div class="mosaico">${orden.map(d => `<a href="/dia/${d.fecha}" title="${esc(d.tema)}">
