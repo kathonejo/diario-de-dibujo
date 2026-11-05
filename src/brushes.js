@@ -160,8 +160,7 @@ export function paintLive(c2, tool, color, pts) {
 }
 
 /** Continuous ribbon. No end-cap stamps (taper handles tips). Normals smoothed. */
-function fillRibbonSimple(c2, samples, widthAt, fillStyle) {
-  if (samples.length < 2) return;
+function ribbonEdges(samples, widthAt) {
   const norms = [];
   for (let i = 0; i < samples.length; i++) {
     const p0 = samples[Math.max(0, i - 1)];
@@ -170,7 +169,6 @@ function fillRibbonSimple(c2, samples, widthAt, fillStyle) {
     const len = Math.hypot(dx, dy) || 1;
     norms.push({ nx: -dy / len, ny: dx / len });
   }
-  // average neighboring normals so sharp corners don't flare into blobs
   const smoothN = norms.map((n, i) => {
     const a = norms[Math.max(0, i - 1)];
     const b = norms[Math.min(norms.length - 1, i + 1)];
@@ -188,6 +186,12 @@ function fillRibbonSimple(c2, samples, widthAt, fillStyle) {
     left.push({ x: p.x + nx * w, y: p.y + ny * w });
     right.push({ x: p.x - nx * w, y: p.y - ny * w });
   }
+  return { left, right };
+}
+
+function fillRibbonSimple(c2, samples, widthAt, fillStyle) {
+  if (samples.length < 2) return;
+  const { left, right } = ribbonEdges(samples, widthAt);
   c2.beginPath();
   c2.moveTo(left[0].x, left[0].y);
   for (let i = 1; i < left.length; i++) c2.lineTo(left[i].x, left[i].y);
@@ -195,6 +199,23 @@ function fillRibbonSimple(c2, samples, widthAt, fillStyle) {
   c2.closePath();
   c2.fillStyle = fillStyle;
   c2.fill();
+}
+
+function strokeRibbonEdge(c2, samples, widthAt, strokeStyle, lineWidth) {
+  if (samples.length < 2) return;
+  const { left, right } = ribbonEdges(samples, widthAt);
+  c2.strokeStyle = strokeStyle;
+  c2.lineWidth = lineWidth;
+  c2.lineJoin = 'round';
+  c2.lineCap = 'butt';
+  c2.beginPath();
+  c2.moveTo(left[0].x, left[0].y);
+  for (let i = 1; i < left.length; i++) c2.lineTo(left[i].x, left[i].y);
+  c2.stroke();
+  c2.beginPath();
+  c2.moveTo(right[0].x, right[0].y);
+  for (let i = 1; i < right.length; i++) c2.lineTo(right[i].x, right[i].y);
+  c2.stroke();
 }
 
 function paintGrafito(c2, pts, color) {
@@ -221,28 +242,18 @@ function paintTinta(c2, pts, color) {
   c2.restore();
 }
 
-/** Soft continuous wash + slightly darker edge. No dabs. */
+/** Soft continuous wash + slightly darker wet edge. No dabs. */
 function paintAcuarela(c2, pts, color) {
   const samples = resampleByDistance(pts, 2.8);
   if (samples.length < 2) return;
+  const wide = p => (16 + p.pr * 8) * p.taper;
+  const body = p => (10 + p.pr * 6) * p.taper;
   c2.save();
-
-  // one soft bloom + body (multiply so overlaps don't stack as opaque dots)
   c2.globalCompositeOperation = 'multiply';
-  fillRibbonSimple(c2, samples, p => (15 + p.pr * 9) * p.taper, rgba(color, 0.1));
-  fillRibbonSimple(c2, samples, p => (9 + p.pr * 6) * p.taper, rgba(color, 0.14));
-
-  // darker wet edge as a thin stroke of the centerline (single path, no segment caps)
-  c2.globalCompositeOperation = 'source-over';
-  c2.lineJoin = 'round';
-  c2.lineCap = 'butt';
-  c2.beginPath();
-  c2.moveTo(samples[0].x, samples[0].y);
-  for (let i = 1; i < samples.length; i++) c2.lineTo(samples[i].x, samples[i].y);
-  c2.strokeStyle = rgba(color, 0.18);
-  c2.lineWidth = 1.6;
-  c2.stroke();
-
+  fillRibbonSimple(c2, samples, wide, rgba(color, 0.09));
+  fillRibbonSimple(c2, samples, body, rgba(color, 0.13));
+  // wet edge: stroke the outer ribbon outline only (even alpha, no join stamps)
+  strokeRibbonEdge(c2, samples, wide, rgba(color, 0.16), 1.25);
   c2.restore();
 }
 
