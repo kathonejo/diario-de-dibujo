@@ -1,0 +1,53 @@
+{
+  "fecha": "2026-11-05",
+  "tema": "Anatomía humana: la pierna y la cadera (fémur, glúteos, cuádriceps, rodilla y contrapposto)",
+  "frase": {
+    "texto": "Los objetos están para mí tan vivos como los actores; sin ellos los comediantes no existirían.",
+    "autor": "Tadeusz Kantor, vía Claudia Rodríguez-Ponga Linares · Pequeño tratado sobre arte y magia (Cap. 2)"
+  },
+  "mision": "Dibujar la pierna como el pilar vivo de la figura: cadera, rodilla y tobillo cargan el peso y deciden el contrapposto.",
+  "paleta": [
+    {
+      "nombre": "Carbón profundo",
+      "hex": "#1E2126"
+    },
+    {
+      "nombre": "Bronce tostado",
+      "hex": "#A88108"
+    },
+    {
+      "nombre": "Ocre tierra",
+      "hex": "#C49A3A"
+    },
+    {
+      "nombre": "Menta estudio",
+      "hex": "#98D7CF"
+    },
+    {
+      "nombre": "Gris perla",
+      "hex": "#A9A9A9"
+    }
+  ],
+  "datos": [
+    {
+      "texto": "Glúteo medio y menor, tensor de la fascia lata: abducción y sostén de la cadera.",
+      "libro": "Moreaux · Anatomía artística",
+      "pagina": 264,
+      "imagen": "moreaux-pag264.webp"
+    },
+    {
+      "texto": "Pierna flexionada: recto anterior, vastos, sartorio y pata de ganso en la rodilla.",
+      "libro": "Moreaux · Anatomía artística",
+      "pagina": 284,
+      "imagen": "moreaux-pag284.webp"
+    },
+    {
+      "texto": "Bocetos de gesto con figuras de pie y en desplazamiento; la pierna decide el ritmo.",
+      "libro": "Dynamic Characters",
+      "pagina": 29,
+      "imagen": "dynamic-pag29.webp"
+    }
+  ],
+  "formato": "vertical (2:3)",
+  "moodboard": "moodboard.webp"
+}
