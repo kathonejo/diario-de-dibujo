@@ -1,0 +1,53 @@
+{
+  "tema": "Anatomía humana: la mano en profundidad (tendones, palma y gesto)",
+  "frase": {
+    "texto": "Articular el pasado históricamente no significa reconocerlo tal como fue, sino apoderarse de una memoria que relampaguea en un instante de peligro.",
+    "autor": "Walter Benjamin, vía Claudia Rodríguez-Ponga Linares · Pequeño tratado sobre arte y magia (Cap. 2)"
+  },
+  "mision": "Dibujar la mano como máquina de gesto: palma, nudillos y tendones antes que las uñas.",
+  "paleta": [
+    {
+      "nombre": "Rosa coral",
+      "hex": "#FF6666"
+    },
+    {
+      "nombre": "Durazno",
+      "hex": "#FF9999"
+    },
+    {
+      "nombre": "Carbón",
+      "hex": "#1E2126"
+    },
+    {
+      "nombre": "Menta",
+      "hex": "#98D7CF"
+    },
+    {
+      "nombre": "Gris perla",
+      "hex": "#A9A9A9"
+    }
+  ],
+  "datos": [
+    {
+      "texto": "Músculos y tendones de la palma; eminencias ténar e hipoténar.",
+      "libro": "Moreaux · Anatomía artística",
+      "pagina": 248,
+      "imagen": "moreaux-pag248.webp"
+    },
+    {
+      "texto": "Flexor corto del pulgar y lumbricales.",
+      "libro": "Moreaux · Anatomía artística",
+      "pagina": 254,
+      "imagen": "moreaux-pag254.webp"
+    },
+    {
+      "texto": "Foto de práctica: mano en gesto real para copiar del natural.",
+      "libro": "Fotos práctica anatomía de manos (archivo Katho)",
+      "imagen": "mano-ref.webp"
+    }
+  ],
+  "formato": "vertical (2:3)",
+  "fecha": "2026-11-03",
+  "generado": "2026-11-05",
+  "moodboard": "moodboard.webp"
+}
