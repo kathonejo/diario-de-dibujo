@@ -2,6 +2,7 @@ import './style.css';
 import { initTimer } from './timer.js';
 import { openFocus } from './focus.js';
 import { getTrabajos, dialogoSubir, borrar } from './trabajos.js';
+import { instalacion, leaveInstalacion } from './instalacion.js';
 const app = document.getElementById('app');
 const MESES = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
 const DIAS = ['domingo','lunes','martes','miércoles','jueves','viernes','sábado'];
@@ -125,8 +126,10 @@ async function dia(f) {
 }
 async function route() {
   const p = location.pathname, m = p.match(/^\/dia\/(\d{4}-\d{2}-\d{2})\/?$/);
+  if (!p.startsWith('/instalacion')) leaveInstalacion();
   if (!localStorage.getItem('timer') || !JSON.parse(localStorage.getItem('timer')).running) document.title = 'Diario de dibujo';
-  if (m) await dia(m[1]);
+  if (p.startsWith('/instalacion')) await instalacion(app);
+  else if (m) await dia(m[1]);
   else if (p.startsWith('/obra')) await obra();
   else if (p.startsWith('/dias')) await archivo();
   else await home();
