@@ -1,0 +1,54 @@
+{
+  "tema": "Anatomía humana: el pie y el tobillo (arco, talón y apoyo)",
+  "frase": {
+    "texto": "No son accesorios, sino bio-objetos, que actúan con los organismos vivos que son los actores.",
+    "autor": "Tadeusz Kantor, vía Claudia Rodríguez-Ponga Linares · Pequeño tratado sobre arte y magia (Cap. 2)"
+  },
+  "mision": "Dibujar el pie como una arquitectura de apoyo: talón, arco y dedos cargan el peso del cuerpo.",
+  "paleta": [
+    {
+      "nombre": "Petróleo",
+      "hex": "#2C7A7E"
+    },
+    {
+      "nombre": "Bronce",
+      "hex": "#A88108"
+    },
+    {
+      "nombre": "Arena",
+      "hex": "#E8D4A8"
+    },
+    {
+      "nombre": "Gris grafito",
+      "hex": "#4B4F52"
+    },
+    {
+      "nombre": "Blanco papel",
+      "hex": "#F4F1E8"
+    }
+  ],
+  "datos": [
+    {
+      "texto": "El pie y los dedos: huesos y arco.",
+      "libro": "Moreaux · Anatomía artística",
+      "pagina": 85,
+      "imagen": "moreaux-pag85.webp"
+    },
+    {
+      "texto": "La pelvis como base del equilibrio sobre los pies.",
+      "libro": "Moreaux · Anatomía artística",
+      "pagina": 64,
+      "imagen": "moreaux-pag64.webp"
+    },
+    {
+      "texto": "Poses donde el apoyo del pie cambia el gesto entero.",
+      "libro": "Dynamic Characters",
+      "pagina": 34,
+      "imagen": "dynamic-pag34.webp"
+    }
+  ],
+  "formato": "cuadrado (1:1)",
+  "fecha": "2026-11-01",
+  "generado": "2026-11-05",
+  "moodboard": "moodboard.webp"
+}
