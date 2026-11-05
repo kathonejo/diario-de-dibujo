@@ -9,7 +9,7 @@ const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;
 const parse = f => { const [y,m,d] = f.split('-').map(Number); return new Date(y, m-1, d); };
 const largo = f => { const d = parse(f); return `${DIAS[d.getDay()]} ${d.getDate()} de ${MESES[d.getMonth()]} de ${d.getFullYear()}`; };
 const img = (f, n) => `/content/${f}/${n}`;
-const genBadge = d => d?.generado ? `<span class="badge-gen">generado el ${fmtGen(d.generado)}</span>` : '';
+const genBadge = d => '';
 const fmtGen = g => {
   const [y,m,d] = String(g).split('-');
   if (!d) return g;
@@ -59,7 +59,7 @@ function calendario(dias) {
   return `<div class="cal card"><div class="cal-h"><button data-mes="-1" aria-label="Mes anterior">‹</button><strong>${MESES[m]} ${y}</strong><button data-mes="1" aria-label="Mes siguiente">›</button></div>
   <div class="cal-g">${['L','M','M','J','V','S','D'].map(d=>`<b>${d}</b>`).join('')}${cells}</div></div>`;
 }
-const lista = dias => `<ul class="lista">${dias.map(d => `<li><a href="/dia/${d.fecha}"><img loading="lazy" src="${img(d.fecha, d.moodboard)}" alt=""><span><small>${largo(d.fecha)}</small><strong>${esc(d.tema)}</strong>${d.generado ? `<em class="badge-gen">generado el ${fmtGen(d.generado)}</em>` : ''}</span>${TR[d.fecha]?.length ? `<img class="mini-trabajo" loading="lazy" src="${TR[d.fecha][0].url}" alt="Mi trabajo" title="Mi trabajo">` : ''}</a></li>`).join('')}</ul>`;
+const lista = dias => `<ul class="lista">${dias.map(d => `<li><a href="/dia/${d.fecha}"><img loading="lazy" src="${img(d.fecha, d.moodboard)}" alt=""><span><small>${largo(d.fecha)}</small><strong>${esc(d.tema)}</strong></span>${TR[d.fecha]?.length ? `<img class="mini-trabajo" loading="lazy" src="${TR[d.fecha][0].url}" alt="Mi trabajo" title="Mi trabajo">` : ''}</a></li>`).join('')}</ul>`;
 
 const manifiesto = n => `<div class="manifiesto"><img src="/mascota.png" alt=""><p><strong>Obra generativa diaria.</strong> Cada día se genera un ejercicio nuevo de dibujo: frase, misión, moodboard y referencias de estudio. Hoy hay <strong>${n}</strong> días publicados; la pieza crece con el tiempo.</p></div>`;
 
@@ -94,7 +94,7 @@ async function obra() {
   </section>
   <div class="mosaico">${orden.map(d => `<a href="/dia/${d.fecha}" title="${esc(d.tema)}">
     <img loading="lazy" src="${img(d.fecha, d.moodboard)}" alt="${esc(d.tema)}">
-    <span class="cap"><small>${largo(d.fecha)}${d.generado ? ` · generado el ${fmtGen(d.generado)}` : ''}</small><strong>${esc(d.tema)}</strong></span>
+    <span class="cap"><small>${largo(d.fecha)}</small><strong>${esc(d.tema)}</strong></span>
   </a>`).join('')}</div>`;
 }
 async function dia(f) {
