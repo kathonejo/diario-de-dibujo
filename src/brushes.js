@@ -35,7 +35,6 @@ function paperPattern(c2) {
   return _paperPat;
 }
 
-/** Paper fill + subtle grain (pattern tiled). */
 export function fillPaper(c2, w, h) {
   c2.save();
   c2.globalCompositeOperation = 'source-over';
@@ -63,25 +62,28 @@ function rgba(hex, a) {
 function normPts(stroke) {
   const raw = stroke.points || stroke.p || [];
   return raw.map(pt => {
-    if (Array.isArray(pt)) return { x: pt[0], y: pt[1], pr: pt[2] ?? 0.55 };
-    return { x: pt.x, y: pt.y, pr: pt.pr ?? pt.p ?? 0.55 };
+    if (Array.isArray(pt)) return { x: +pt[0], y: +pt[1], pr: +(pt[2] ?? 0.55) };
+    return { x: +pt.x, y: +pt.y, pr: +(pt.pr ?? pt.p ?? 0.55) };
   });
 }
 
 function dist(a, b) {
-  const dx = b.x - a.x, dy = b.y - a.y;
-  return Math.hypot(dx, dy);
+  return Math.hypot(b.x - a.x, b.y - a.y);
 }
 
-/** Mid-point quadratic smooth polyline → sample points */
-function sampleCurve(pts, spacing = 2.2) {
-  if (pts.length < 2) return pts.slice();
-  const out = [pts[0]];
+function hash(x, y) {
+  return Math.abs(Math.sin(x * 12.9898 + y * 78.233) * 43758.5453) % 1;
+}
+
+/** Smooth polyline with mid-point quadratics (no extra endpoint dabs). */
+function smoothPoly(pts) {
+  if (pts.length < 3) return pts.slice();
+  const out = [{ ...pts[0] }];
   for (let i = 1; i < pts.length - 1; i++) {
     const p0 = pts[i - 1], p1 = pts[i], p2 = pts[i + 1];
     const m1 = { x: (p0.x + p1.x) / 2, y: (p0.y + p1.y) / 2, pr: (p0.pr + p1.pr) / 2 };
     const m2 = { x: (p1.x + p2.x) / 2, y: (p1.y + p2.y) / 2, pr: (p1.pr + p2.pr) / 2 };
-    const steps = Math.max(1, Math.ceil(dist(m1, m2) / spacing));
+    const steps = Math.max(2, Math.ceil(dist(m1, m2) / 3));
     for (let s = 1; s <= steps; s++) {
       const t = s / steps, u = 1 - t;
       out.push({
@@ -91,15 +93,55 @@ function sampleCurve(pts, spacing = 2.2) {
       });
     }
   }
-  out.push(pts[pts.length - 1]);
+  out.push({ ...pts[pts.length - 1] });
   return out;
 }
 
-function hash(x, y) {
-  return Math.abs(Math.sin(x * 12.9898 + y * 78.233) * 43758.5453) % 1;
+/** Evenly space samples by arc length. Caps pressure spikes from slow corners. */
+function resampleByDistance(pts, spacing) {
+  if (!pts.length) return [];
+  const smooth = smoothPoly(pts);
+  for (let i = 1; i < smooth.length; i++) {
+    smooth[i].pr = smooth[i - 1].pr * 0.55 + Math.min(0.85, smooth[i].pr) * 0.45;
+  }
+  if (smooth.length === 1) {
+    return [{ ...smooth[0], s: 0, taper: 0.2, total: 0 }];
+  }
+  const lens = [0];
+  let length = 0;
+  for (let i = 1; i < smooth.length; i++) {
+    length += dist(smooth[i - 1], smooth[i]);
+    lens.push(length);
+  }
+  if (length < 0.5) {
+    return [{ ...smooth[0], s: 0, taper: 0.2, total: 0 }];
+  }
+  const n = Math.max(1, Math.floor(length / spacing));
+  const samples = [];
+  for (let i = 0; i <= n; i++) {
+    const target = (i / n) * length;
+    let j = 1;
+    while (j < lens.length && lens[j] < target) j++;
+    const a = smooth[j - 1], b = smooth[Math.min(j, smooth.length - 1)];
+    const segStart = lens[j - 1];
+    const segLen = Math.max(1e-6, lens[Math.min(j, lens.length - 1)] - segStart);
+    const tt = Math.min(1, Math.max(0, (target - segStart) / segLen));
+    const u = i / n;
+    let taper = 1;
+    if (u < 0.12) taper = Math.max(0.15, u / 0.12);
+    else if (u > 0.88) taper = Math.max(0.15, (1 - u) / 0.12);
+    samples.push({
+      x: a.x + (b.x - a.x) * tt,
+      y: a.y + (b.y - a.y) * tt,
+      pr: Math.min(0.85, a.pr + (b.pr - a.pr) * tt),
+      s: target,
+      taper,
+      total: length,
+    });
+  }
+  return samples;
 }
 
-/** Paint a full stroke (replay or undo rebuild). */
 export function paintStroke(c2, stroke) {
   const tool = stroke.tool || stroke.t || 'grafito';
   const color = stroke.color || stroke.c || '#0A0A0A';
@@ -112,178 +154,207 @@ export function paintStroke(c2, stroke) {
   return paintGrafito(c2, pts, color);
 }
 
-/** Incremental live segment using only the newest points (avoids overdraw). */
 export function paintLive(c2, tool, color, pts) {
   if (!pts.length) return;
-  if (pts.length === 1) {
-    paintStroke(c2, { tool, color, points: [pts[0], { ...pts[0], x: pts[0].x + 0.01, y: pts[0].y + 0.01 }] });
-    return;
-  }
-  const a = pts[pts.length - 2], b = pts[pts.length - 1];
-  paintStroke(c2, { tool, color, points: [a, b] });
+  paintStroke(c2, { tool, color, points: pts });
+}
+
+function strokePath(c2, samples) {
+  if (!samples.length) return;
+  c2.beginPath();
+  c2.moveTo(samples[0].x, samples[0].y);
+  for (let i = 1; i < samples.length; i++) c2.lineTo(samples[i].x, samples[i].y);
 }
 
 function paintGrafito(c2, pts, color) {
-  const samples = sampleCurve(pts, 1.8);
+  const samples = resampleByDistance(pts, 1.6);
+  if (samples.length < 2) return;
   c2.save();
   c2.globalCompositeOperation = 'source-over';
   c2.lineCap = 'round';
   c2.lineJoin = 'round';
+  // continuous soft core
   for (let i = 1; i < samples.length; i++) {
     const a = samples[i - 1], b = samples[i];
-    const pr = Math.max(0.15, Math.min(1, b.pr));
-    const w = 1.1 + pr * 2.4;
-    c2.strokeStyle = rgba(color, 0.18 + pr * 0.45);
-    c2.lineWidth = w;
+    const pr = b.pr;
+    const w = (1.0 + pr * 2.2) * b.taper;
+    c2.strokeStyle = rgba(color, 0.22 + pr * 0.4);
+    c2.lineWidth = Math.max(0.6, w);
     c2.beginPath();
     c2.moveTo(a.x, a.y);
     c2.lineTo(b.x, b.y);
     c2.stroke();
-    // grain flecks
-    const n = Math.ceil(dist(a, b) / 2.5);
-    for (let k = 0; k < n; k++) {
-      const t = k / n;
-      const x = a.x + (b.x - a.x) * t + (hash(a.x + k, a.y) - 0.5) * 2.2;
-      const y = a.y + (b.y - a.y) * t + (hash(a.y + k, a.x) - 0.5) * 2.2;
-      c2.fillStyle = rgba(color, 0.08 + pr * 0.22);
-      c2.fillRect(x, y, 1.1, 1.1);
-    }
+  }
+  // grain flecks spaced by distance (skip first/last to avoid endpoint blobs)
+  for (let i = 1; i < samples.length - 1; i++) {
+    const p = samples[i];
+    if (i % 2) continue;
+    const x = p.x + (hash(p.x, p.y) - 0.5) * 2;
+    const y = p.y + (hash(p.y, p.x) - 0.5) * 2;
+    c2.fillStyle = rgba(color, 0.1 + p.pr * 0.18);
+    c2.fillRect(x, y, 1, 1);
   }
   c2.restore();
 }
 
 function paintTinta(c2, pts, color) {
-  const samples = sampleCurve(pts, 2.4);
+  const samples = resampleByDistance(pts, 2.0);
+  if (samples.length < 2) return;
   c2.save();
   c2.globalCompositeOperation = 'source-over';
   c2.strokeStyle = color;
-  c2.fillStyle = color;
   c2.lineCap = 'round';
   c2.lineJoin = 'round';
   c2.globalAlpha = 1;
   for (let i = 1; i < samples.length; i++) {
     const a = samples[i - 1], b = samples[i];
-    const pr = Math.max(0.12, Math.min(1, b.pr));
-    // slow/heavy pressure → thicker nib; fast → hairline
-    const w = 0.7 + pr * 5.5;
-    c2.lineWidth = w;
+    const w = (0.6 + b.pr * 5.2) * b.taper;
+    c2.lineWidth = Math.max(0.5, w);
     c2.beginPath();
     c2.moveTo(a.x, a.y);
     c2.lineTo(b.x, b.y);
     c2.stroke();
   }
-  // crisp tip dab
-  const last = samples[samples.length - 1];
-  c2.beginPath();
-  c2.arc(last.x, last.y, 0.6 + last.pr * 1.4, 0, Math.PI * 2);
-  c2.fill();
   c2.restore();
 }
 
+/** Continuous wet wash — no radial dabs. Soft body + slightly darker edge. */
 function paintAcuarela(c2, pts, color) {
-  const samples = sampleCurve(pts, 3.2);
+  const samples = resampleByDistance(pts, 3.5);
+  if (samples.length < 2) return;
   c2.save();
-  c2.globalCompositeOperation = 'multiply';
   c2.lineCap = 'round';
   c2.lineJoin = 'round';
-  for (let i = 0; i < samples.length; i++) {
-    const p = samples[i];
-    const pr = Math.max(0.2, Math.min(1, p.pr));
-    const r = 6 + pr * 16;
-    const g = c2.createRadialGradient(p.x, p.y, 0, p.x, p.y, r);
-    g.addColorStop(0, rgba(color, 0.22 * pr));
-    g.addColorStop(0.55, rgba(color, 0.1 * pr));
-    g.addColorStop(1, rgba(color, 0));
-    c2.fillStyle = g;
-    c2.beginPath();
-    c2.arc(p.x, p.y, r, 0, Math.PI * 2);
-    c2.fill();
-  }
-  // soft wet edge trail
-  c2.globalCompositeOperation = 'source-over';
-  c2.strokeStyle = rgba(color, 0.08);
-  c2.lineWidth = 10;
-  c2.beginPath();
-  samples.forEach((p, i) => (i ? c2.lineTo(p.x, p.y) : c2.moveTo(p.x, p.y)));
-  c2.stroke();
-  c2.restore();
-}
 
-function paintCarbonilla(c2, pts, color) {
-  const samples = sampleCurve(pts, 2.6);
-  c2.save();
-  c2.globalCompositeOperation = 'source-over';
-  c2.lineCap = 'round';
-  c2.lineJoin = 'round';
+  // outer soft bloom (very light)
+  c2.globalCompositeOperation = 'multiply';
   for (let i = 1; i < samples.length; i++) {
     const a = samples[i - 1], b = samples[i];
-    const pr = Math.max(0.2, Math.min(1, b.pr));
-    const w = 8 + pr * 14;
-    // soft body
-    c2.strokeStyle = rgba(color, 0.12 + pr * 0.18);
-    c2.lineWidth = w;
+    const w = (14 + b.pr * 10) * b.taper;
+    c2.strokeStyle = rgba(color, 0.06);
+    c2.lineWidth = Math.max(4, w);
     c2.beginPath();
     c2.moveTo(a.x, a.y);
     c2.lineTo(b.x, b.y);
     c2.stroke();
-    // rough dust
-    const n = Math.ceil(dist(a, b) / 1.8);
-    for (let k = 0; k < n; k++) {
-      const t = k / n;
-      const ox = (hash(a.x + k * 3, b.y) - 0.5) * w * 0.9;
-      const oy = (hash(b.x, a.y + k * 5) - 0.5) * w * 0.9;
-      const x = a.x + (b.x - a.x) * t + ox;
-      const y = a.y + (b.y - a.y) * t + oy;
-      const s = 1.2 + hash(x, y) * 3.5;
-      c2.fillStyle = rgba(color, 0.08 + pr * 0.2);
-      c2.beginPath();
-      c2.arc(x, y, s, 0, Math.PI * 2);
-      c2.fill();
+  }
+
+  // main wash body
+  for (let i = 1; i < samples.length; i++) {
+    const a = samples[i - 1], b = samples[i];
+    const w = (8 + b.pr * 8) * b.taper;
+    c2.strokeStyle = rgba(color, 0.14);
+    c2.lineWidth = Math.max(3, w);
+    c2.beginPath();
+    c2.moveTo(a.x, a.y);
+    c2.lineTo(b.x, b.y);
+    c2.stroke();
+  }
+
+  // slightly darker wet edge (narrower, low alpha — continuous)
+  c2.globalCompositeOperation = 'source-over';
+  for (let i = 1; i < samples.length; i++) {
+    const a = samples[i - 1], b = samples[i];
+    const w = (9 + b.pr * 7) * b.taper;
+    c2.strokeStyle = rgba(color, 0.1);
+    c2.lineWidth = Math.max(2.5, w);
+    c2.beginPath();
+    c2.moveTo(a.x, a.y);
+    c2.lineTo(b.x, b.y);
+    c2.stroke();
+    // inner pool a bit darker
+    c2.strokeStyle = rgba(color, 0.08);
+    c2.lineWidth = Math.max(1.5, w * 0.45);
+    c2.beginPath();
+    c2.moveTo(a.x, a.y);
+    c2.lineTo(b.x, b.y);
+    c2.stroke();
+  }
+  c2.restore();
+}
+
+/** Continuous grainy band — body stroke + sparse grain along path, no round blobs. */
+function paintCarbonilla(c2, pts, color) {
+  const samples = resampleByDistance(pts, 2.2);
+  if (samples.length < 2) return;
+  c2.save();
+  c2.globalCompositeOperation = 'source-over';
+  c2.lineCap = 'round';
+  c2.lineJoin = 'round';
+
+  // soft wide body (one continuous feel via short segments, even alpha)
+  for (let i = 1; i < samples.length; i++) {
+    const a = samples[i - 1], b = samples[i];
+    const w = (10 + b.pr * 10) * b.taper;
+    c2.strokeStyle = rgba(color, 0.16);
+    c2.lineWidth = Math.max(4, w);
+    c2.beginPath();
+    c2.moveTo(a.x, a.y);
+    c2.lineTo(b.x, b.y);
+    c2.stroke();
+    c2.strokeStyle = rgba(color, 0.2);
+    c2.lineWidth = Math.max(2, w * 0.55);
+    c2.beginPath();
+    c2.moveTo(a.x, a.y);
+    c2.lineTo(b.x, b.y);
+    c2.stroke();
+  }
+
+  // grain as tiny squares along band (distance-spaced, skip ends)
+  for (let i = 2; i < samples.length - 2; i++) {
+    const p = samples[i];
+    const w = (10 + p.pr * 10) * p.taper;
+    const flecks = 3;
+    for (let k = 0; k < flecks; k++) {
+      const ox = (hash(p.x + k, p.y) - 0.5) * w * 0.7;
+      const oy = (hash(p.y + k * 2, p.x) - 0.5) * w * 0.7;
+      c2.fillStyle = rgba(color, 0.1 + p.pr * 0.12);
+      c2.fillRect(p.x + ox, p.y + oy, 1.2 + hash(p.x, k) * 1.8, 1.2);
     }
   }
   c2.restore();
 }
 
 function paintEraser(c2, pts) {
-  const samples = sampleCurve(pts, 2.5);
+  const samples = resampleByDistance(pts, 2.5);
+  if (samples.length < 2) return;
   c2.save();
   c2.globalCompositeOperation = 'destination-out';
   c2.strokeStyle = 'rgba(0,0,0,1)';
   c2.lineCap = 'round';
   c2.lineJoin = 'round';
-  c2.lineWidth = 28;
-  c2.beginPath();
-  samples.forEach((p, i) => (i ? c2.lineTo(p.x, p.y) : c2.moveTo(p.x, p.y)));
-  c2.stroke();
-  // soft fringe
-  c2.globalAlpha = 0.35;
-  c2.lineWidth = 36;
-  c2.stroke();
+  for (let i = 1; i < samples.length; i++) {
+    const a = samples[i - 1], b = samples[i];
+    c2.lineWidth = 26 * b.taper + 8;
+    c2.beginPath();
+    c2.moveTo(a.x, a.y);
+    c2.lineTo(b.x, b.y);
+    c2.stroke();
+  }
   c2.restore();
-  // restore paper grain lightly in erased area by redrawing paper only where erased is hard;
-  // destination-out leaves transparent — refill paper underneath
   c2.save();
   c2.globalCompositeOperation = 'destination-over';
-  c2.fillStyle = PAPER;
-  // only need local — fill whole is ok for small canvases
+  c2.fillStyle = paperPattern(c2) || PAPER;
   c2.fillRect(0, 0, c2.canvas.width, c2.canvas.height);
   c2.restore();
 }
 
-/** Derive pressure 0..1 from pointer event + speed. */
+/** Derive pressure 0..1 from pointer event + speed. Cap so slow corners don't blob. */
 export function pressureFrom(e, last) {
-  let pr = 0.55;
+  let pr = 0.5;
   if (e && typeof e.pressure === 'number' && e.pointerType === 'pen' && e.pressure > 0) {
-    pr = Math.max(0.08, Math.min(1, e.pressure));
+    pr = Math.max(0.12, Math.min(0.85, e.pressure));
   } else if (last && e) {
-    const r = e.target?.getBoundingClientRect?.();
-    // speed from last point in canvas space approx via client
     const dx = (e.clientX ?? 0) - (last._cx ?? e.clientX ?? 0);
     const dy = (e.clientY ?? 0) - (last._cy ?? e.clientY ?? 0);
-    const dt = Math.max(8, (e.timeStamp || Date.now()) - (last._t || 0));
-    const speed = Math.hypot(dx, dy) / dt; // px/ms
-    // slow → high pressure, fast → light
-    pr = Math.max(0.15, Math.min(1, 1 - Math.min(1, speed * 1.8)));
+    const dt = Math.max(12, (e.timeStamp || Date.now()) - (last._t || 0));
+    const speed = Math.hypot(dx, dy) / dt;
+    // slow → heavier, but capped; near-stationary barely increases
+    const moved = Math.hypot(dx, dy);
+    if (moved < 1.5) pr = last.pr ?? 0.45;
+    else pr = Math.max(0.2, Math.min(0.8, 0.85 - Math.min(0.65, speed * 1.6)));
+    // ease toward previous
+    pr = (last.pr ?? pr) * 0.35 + pr * 0.65;
   }
   return pr;
 }
