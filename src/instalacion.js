@@ -163,7 +163,7 @@ function pantallaDibujo(app, ctx) {
     const p = pos(e);
     const last = current.points[current.points.length - 1];
     // skip micro moves
-    if (Math.hypot(p.x - last.x, p.y - last.y) < 1.2) return;
+    if (Math.hypot(p.x - last.x, p.y - last.y) < 2.5) return;
     const pr = pressureFrom(e, last);
     current.points.push({ x: p.x, y: p.y, pr, _cx: p._cx, _cy: p._cy, _t: p._t });
     // redraw full stroke from pre-stroke snapshot for smooth curves

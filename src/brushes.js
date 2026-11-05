@@ -159,40 +159,48 @@ export function paintLive(c2, tool, color, pts) {
   paintStroke(c2, { tool, color, points: pts });
 }
 
-function strokePath(c2, samples) {
-  if (!samples.length) return;
+/** Simpler ribbon without arc math — soft continuous band. */
+function fillRibbonSimple(c2, samples, widthAt, fillStyle) {
+  if (samples.length < 2) return;
+  const left = [];
+  const right = [];
+  for (let i = 0; i < samples.length; i++) {
+    const p = samples[i];
+    const p0 = samples[Math.max(0, i - 1)];
+    const p1 = samples[Math.min(samples.length - 1, i + 1)];
+    let dx = p1.x - p0.x, dy = p1.y - p0.y;
+    const len = Math.hypot(dx, dy) || 1;
+    const nx = -dy / len, ny = dx / len;
+    const w = Math.max(0.35, widthAt(p)) / 2;
+    left.push({ x: p.x + nx * w, y: p.y + ny * w });
+    right.push({ x: p.x - nx * w, y: p.y - ny * w });
+  }
   c2.beginPath();
-  c2.moveTo(samples[0].x, samples[0].y);
-  for (let i = 1; i < samples.length; i++) c2.lineTo(samples[i].x, samples[i].y);
+  c2.moveTo(left[0].x, left[0].y);
+  for (let i = 1; i < left.length; i++) c2.lineTo(left[i].x, left[i].y);
+  for (let i = right.length - 1; i >= 0; i--) c2.lineTo(right[i].x, right[i].y);
+  c2.closePath();
+  c2.fillStyle = fillStyle;
+  c2.fill();
+  // soft end caps (single circle each — not stacked along path)
+  const a = samples[0], b = samples[samples.length - 1];
+  c2.beginPath();
+  c2.arc(a.x, a.y, Math.max(0.35, widthAt(a)) / 2, 0, Math.PI * 2);
+  c2.arc(b.x, b.y, Math.max(0.35, widthAt(b)) / 2, 0, Math.PI * 2);
+  c2.fill();
 }
 
 function paintGrafito(c2, pts, color) {
-  const samples = resampleByDistance(pts, 1.6);
+  const samples = resampleByDistance(pts, 1.8);
   if (samples.length < 2) return;
   c2.save();
   c2.globalCompositeOperation = 'source-over';
-  c2.lineCap = 'round';
-  c2.lineJoin = 'round';
-  // continuous soft core
-  for (let i = 1; i < samples.length; i++) {
-    const a = samples[i - 1], b = samples[i];
-    const pr = b.pr;
-    const w = (1.0 + pr * 2.2) * b.taper;
-    c2.strokeStyle = rgba(color, 0.22 + pr * 0.4);
-    c2.lineWidth = Math.max(0.6, w);
-    c2.beginPath();
-    c2.moveTo(a.x, a.y);
-    c2.lineTo(b.x, b.y);
-    c2.stroke();
-  }
-  // grain flecks spaced by distance (skip first/last to avoid endpoint blobs)
-  for (let i = 1; i < samples.length - 1; i++) {
+  fillRibbonSimple(c2, samples, p => (1.1 + p.pr * 2.4) * p.taper, rgba(color, 0.38));
+  fillRibbonSimple(c2, samples, p => (0.5 + p.pr * 1.1) * p.taper, rgba(color, 0.28));
+  for (let i = 1; i < samples.length - 1; i += 2) {
     const p = samples[i];
-    if (i % 2) continue;
-    const x = p.x + (hash(p.x, p.y) - 0.5) * 2;
-    const y = p.y + (hash(p.y, p.x) - 0.5) * 2;
-    c2.fillStyle = rgba(color, 0.1 + p.pr * 0.18);
-    c2.fillRect(x, y, 1, 1);
+    c2.fillStyle = rgba(color, 0.12 + p.pr * 0.15);
+    c2.fillRect(p.x + (hash(p.x, p.y) - 0.5) * 2, p.y + (hash(p.y, p.x) - 0.5) * 2, 1, 1);
   }
   c2.restore();
 }
@@ -202,114 +210,47 @@ function paintTinta(c2, pts, color) {
   if (samples.length < 2) return;
   c2.save();
   c2.globalCompositeOperation = 'source-over';
-  c2.strokeStyle = color;
-  c2.lineCap = 'round';
-  c2.lineJoin = 'round';
-  c2.globalAlpha = 1;
-  for (let i = 1; i < samples.length; i++) {
-    const a = samples[i - 1], b = samples[i];
-    const w = (0.6 + b.pr * 5.2) * b.taper;
-    c2.lineWidth = Math.max(0.5, w);
-    c2.beginPath();
-    c2.moveTo(a.x, a.y);
-    c2.lineTo(b.x, b.y);
-    c2.stroke();
-  }
+  fillRibbonSimple(c2, samples, p => (0.7 + p.pr * 5.0) * p.taper, color);
   c2.restore();
 }
 
-/** Continuous wet wash — no radial dabs. Soft body + slightly darker edge. */
+/** Soft continuous wash + slightly darker edge. No dabs. */
 function paintAcuarela(c2, pts, color) {
-  const samples = resampleByDistance(pts, 3.5);
+  const samples = resampleByDistance(pts, 2.8);
   if (samples.length < 2) return;
   c2.save();
-  c2.lineCap = 'round';
-  c2.lineJoin = 'round';
 
-  // outer soft bloom (very light)
   c2.globalCompositeOperation = 'multiply';
-  for (let i = 1; i < samples.length; i++) {
-    const a = samples[i - 1], b = samples[i];
-    const w = (14 + b.pr * 10) * b.taper;
-    c2.strokeStyle = rgba(color, 0.06);
-    c2.lineWidth = Math.max(4, w);
-    c2.beginPath();
-    c2.moveTo(a.x, a.y);
-    c2.lineTo(b.x, b.y);
-    c2.stroke();
-  }
+  fillRibbonSimple(c2, samples, p => (16 + p.pr * 10) * p.taper, rgba(color, 0.07));
+  fillRibbonSimple(c2, samples, p => (10 + p.pr * 8) * p.taper, rgba(color, 0.12));
 
-  // main wash body
-  for (let i = 1; i < samples.length; i++) {
-    const a = samples[i - 1], b = samples[i];
-    const w = (8 + b.pr * 8) * b.taper;
-    c2.strokeStyle = rgba(color, 0.14);
-    c2.lineWidth = Math.max(3, w);
-    c2.beginPath();
-    c2.moveTo(a.x, a.y);
-    c2.lineTo(b.x, b.y);
-    c2.stroke();
-  }
-
-  // slightly darker wet edge (narrower, low alpha — continuous)
+  // slightly darker wet edge: thin outline along the band
   c2.globalCompositeOperation = 'source-over';
-  for (let i = 1; i < samples.length; i++) {
-    const a = samples[i - 1], b = samples[i];
-    const w = (9 + b.pr * 7) * b.taper;
-    c2.strokeStyle = rgba(color, 0.1);
-    c2.lineWidth = Math.max(2.5, w);
-    c2.beginPath();
-    c2.moveTo(a.x, a.y);
-    c2.lineTo(b.x, b.y);
-    c2.stroke();
-    // inner pool a bit darker
-    c2.strokeStyle = rgba(color, 0.08);
-    c2.lineWidth = Math.max(1.5, w * 0.45);
-    c2.beginPath();
-    c2.moveTo(a.x, a.y);
-    c2.lineTo(b.x, b.y);
-    c2.stroke();
-  }
+  fillRibbonSimple(c2, samples, p => (11 + p.pr * 7) * p.taper, rgba(color, 0.1));
+  fillRibbonSimple(c2, samples, p => (5 + p.pr * 3.5) * p.taper, rgba(color, 0.14));
+
   c2.restore();
 }
 
-/** Continuous grainy band — body stroke + sparse grain along path, no round blobs. */
+/** Continuous grainy charcoal band. */
 function paintCarbonilla(c2, pts, color) {
-  const samples = resampleByDistance(pts, 2.2);
+  const samples = resampleByDistance(pts, 2.0);
   if (samples.length < 2) return;
   c2.save();
   c2.globalCompositeOperation = 'source-over';
-  c2.lineCap = 'round';
-  c2.lineJoin = 'round';
 
-  // soft wide body (one continuous feel via short segments, even alpha)
-  for (let i = 1; i < samples.length; i++) {
-    const a = samples[i - 1], b = samples[i];
-    const w = (10 + b.pr * 10) * b.taper;
-    c2.strokeStyle = rgba(color, 0.16);
-    c2.lineWidth = Math.max(4, w);
-    c2.beginPath();
-    c2.moveTo(a.x, a.y);
-    c2.lineTo(b.x, b.y);
-    c2.stroke();
-    c2.strokeStyle = rgba(color, 0.2);
-    c2.lineWidth = Math.max(2, w * 0.55);
-    c2.beginPath();
-    c2.moveTo(a.x, a.y);
-    c2.lineTo(b.x, b.y);
-    c2.stroke();
-  }
+  fillRibbonSimple(c2, samples, p => (12 + p.pr * 10) * p.taper, rgba(color, 0.22));
+  fillRibbonSimple(c2, samples, p => (7 + p.pr * 6) * p.taper, rgba(color, 0.2));
 
-  // grain as tiny squares along band (distance-spaced, skip ends)
+  // grain flecks along the band only (distance-spaced, skip ends)
   for (let i = 2; i < samples.length - 2; i++) {
     const p = samples[i];
-    const w = (10 + p.pr * 10) * p.taper;
-    const flecks = 3;
-    for (let k = 0; k < flecks; k++) {
-      const ox = (hash(p.x + k, p.y) - 0.5) * w * 0.7;
-      const oy = (hash(p.y + k * 2, p.x) - 0.5) * w * 0.7;
-      c2.fillStyle = rgba(color, 0.1 + p.pr * 0.12);
-      c2.fillRect(p.x + ox, p.y + oy, 1.2 + hash(p.x, k) * 1.8, 1.2);
+    const w = (12 + p.pr * 10) * p.taper;
+    for (let k = 0; k < 4; k++) {
+      const ox = (hash(p.x + k * 3, p.y) - 0.5) * w * 0.85;
+      const oy = (hash(p.y + k * 5, p.x) - 0.5) * w * 0.85;
+      c2.fillStyle = rgba(color, 0.12 + p.pr * 0.14);
+      c2.fillRect(p.x + ox, p.y + oy, 1 + hash(p.x, k) * 2, 1 + hash(k, p.y) * 1.5);
     }
   }
   c2.restore();
@@ -320,17 +261,7 @@ function paintEraser(c2, pts) {
   if (samples.length < 2) return;
   c2.save();
   c2.globalCompositeOperation = 'destination-out';
-  c2.strokeStyle = 'rgba(0,0,0,1)';
-  c2.lineCap = 'round';
-  c2.lineJoin = 'round';
-  for (let i = 1; i < samples.length; i++) {
-    const a = samples[i - 1], b = samples[i];
-    c2.lineWidth = 26 * b.taper + 8;
-    c2.beginPath();
-    c2.moveTo(a.x, a.y);
-    c2.lineTo(b.x, b.y);
-    c2.stroke();
-  }
+  fillRibbonSimple(c2, samples, p => 26 * p.taper + 10, 'rgba(0,0,0,1)');
   c2.restore();
   c2.save();
   c2.globalCompositeOperation = 'destination-over';
