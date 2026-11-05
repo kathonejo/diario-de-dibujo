@@ -68,7 +68,15 @@ async function home() {
   const [dias, tr] = await Promise.all([getIndex(), getTrabajos()]); TR = tr;
   if (!dias.length) { app.innerHTML = `<section class="vacio"><h1>Sin días publicados</h1><p>Cuando haya un estudio, aparece acá.</p></section>`; return; }
   const u = dias[0], d = await getDia(u.fecha);
-  app.innerHTML = `<section class="hero">
+  app.innerHTML = `<section class="home-banner">
+    <p class="home-banner-lead">Este diario nace como una intersección entre aprendizaje, arte, archivo y reflexión. Busca recuperar y conservar la educación tradicional, mezclando los valores de creación antiguos con las nuevas tecnologías. Armado por Kathonejo a partir de libros, PDFs y recopilaciones propias.</p>
+    <p class="home-banner-extra">Cada día se genera un nuevo ejercicio, con su paleta limitada, para practicar bajo un timer pomodoro. Además cuenta con una instalación para disfrutar en gran pantalla, de forma individual o grupal, donde se construye una obra en conjunto y el programa la exhibe.</p>
+    <p class="home-banner-mantra">Cada día, una nueva página. El arte tradicional permanece en la tecnología. Siempre.</p>
+    <div class="home-banner-cta">
+      <a class="btn" href="/instalacion">Instalación</a>
+    </div>
+  </section>
+  <section class="hero">
     <a href="/dia/${u.fecha}" class="mood"><img src="${img(u.fecha, d.moodboard)}" alt="Moodboard: ${esc(d.tema)}"></a>
     <div class="hero-t"><p class="eyebrow">Último día · ${largo(u.fecha)}</p><h1>${esc(d.tema)}</h1>${genBadge(d)}${frase(d)}
     <div class="mision card"><h3>Misión del día</h3><p>${esc(d.mision)}</p></div>

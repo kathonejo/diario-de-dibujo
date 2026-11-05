@@ -184,18 +184,13 @@ async function pantallaInicio(app) {
         <h1>Diario de dibujo</h1>
       </div>
     </header>
-    <div class="inst-intro">
-      <p class="inst-intro-lead">Este diario nace en la intersección entre aprendizaje, arte, archivo y reflexión. Busca generar, recuperar y conservar la educación tradicional, y enseñar y difundir valores de creación antiguos mezclados con las nuevas tecnologías. La aplicación se arma a partir de PDFs, archivos y recopilaciones de Kathonejo, artista tradicional que, a través de la tecnología, mantiene vivo el legado de las técnicas tradicionales.</p>
-      <p class="inst-intro-extra">Cada día se genera un nuevo ejercicio para practicar con un timer pomodoro. La paleta cambia cada día y es limitada a propósito. Hay, además, una instalación para pantalla grande —individual o en grupo— donde se construye una obra en común y el programa la exhibe.</p>
-      <ol class="inst-steps">
-        <li><span aria-hidden="true">1</span> Mirá el tema y el moodboard</li>
-        <li><span aria-hidden="true">2</span> Dibujá durante 3 minutos</li>
-        <li><span aria-hidden="true">3</span> Entregá: el conejo te comenta y tu dibujo se suma al mural</li>
-      </ol>
-      <p class="inst-mantra">Cada día, una nueva página. Cada página es una nueva invitación a crear. El arte tradicional permanece en la tecnología. Siempre.</p>
-    </div>
     <p class="inst-fecha">${largo(u.fecha)}</p>
     <h2 class="inst-tema">${esc(d.tema)}</h2>
+    <ol class="inst-steps inst-steps-solo">
+      <li><span aria-hidden="true">1</span> Mirá el tema y el moodboard</li>
+      <li><span aria-hidden="true">2</span> Dibujá durante 3 minutos</li>
+      <li><span aria-hidden="true">3</span> Entregá: el conejo te comenta y tu dibujo se suma al mural</li>
+    </ol>
     <div class="inst-refs">
       <figure>
         <img src="${img(u.fecha, d.moodboard)}" alt="Moodboard">
@@ -206,7 +201,6 @@ async function pantallaInicio(app) {
         <figcaption>Referencia</figcaption>
       </figure>` : ''}
     </div>
-    ${d.mision ? `<p class="inst-mision">${esc(d.mision)}</p>` : ''}
     <div class="inst-cta">
       <button class="btn inst-big" id="inst-dibujar">Dibujar</button>
       <a class="btn sec" href="/instalacion/mural">Ver el mural</a>
