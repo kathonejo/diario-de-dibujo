@@ -61,8 +61,8 @@ async function pantallaInicio(app) {
       </div>
     </header>
     <div class="inst-intro">
-      <p class="inst-intro-lead">Este diario nace como una intersección entre aprendizaje, arte, archivo y reflexión. Busca generar, recuperar y conservar la educación tradicional, y enseñar y difundir los valores de creación antiguos mezclados con las nuevas tecnologías. Es una aplicación creada a partir de PDFs, archivos y recopilaciones de Kathonejo, artista tradicional que busca, a través de la tecnología, mantener vivo el legado de las técnicas tradicionales.</p>
-      <p class="inst-intro-extra">Cada día se genera un nuevo ejercicio para practicar con un timer pomodoro.</p>
+      <p class="inst-intro-lead">Este diario nace en la intersección entre aprendizaje, arte, archivo y reflexión. Busca generar, recuperar y conservar la educación tradicional, y enseñar y difundir valores de creación antiguos mezclados con las nuevas tecnologías. La aplicación se arma a partir de PDFs, archivos y recopilaciones de Kathonejo, artista tradicional que, a través de la tecnología, mantiene vivo el legado de las técnicas tradicionales.</p>
+      <p class="inst-intro-extra">Cada día se genera un nuevo ejercicio para practicar con un timer pomodoro. Hay, además, una instalación para pantalla grande —individual o en grupo— donde se construye una obra en común y el programa la exhibe.</p>
       <ol class="inst-steps">
         <li><span aria-hidden="true">1</span> Mirá el tema y el moodboard</li>
         <li><span aria-hidden="true">2</span> Dibujá durante 3 minutos</li>
