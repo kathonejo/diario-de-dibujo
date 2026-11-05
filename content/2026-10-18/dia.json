@@ -1,0 +1,54 @@
+{
+  "tema": "Perspectiva y espacio: líneas de fuga y profundidad en la escena",
+  "frase": {
+    "texto": "Podemos viajar por el mundo sin salir del lugar.",
+    "autor": "Peter Kingsley, vía Claudia Rodríguez-Ponga Linares · Pequeño tratado sobre arte y magia (Cap. 2)"
+  },
+  "mision": "Construir un espacio creíble con pocas líneas: horizonte, fugas y escalas que hagan caminar la mirada.",
+  "paleta": [
+    {
+      "nombre": "Azul noche",
+      "hex": "#1E378B"
+    },
+    {
+      "nombre": "Azul medio",
+      "hex": "#4A6FC7"
+    },
+    {
+      "nombre": "Arena",
+      "hex": "#E8D4A8"
+    },
+    {
+      "nombre": "Coral suave",
+      "hex": "#FF9999"
+    },
+    {
+      "nombre": "Carbón",
+      "hex": "#1E2126"
+    }
+  ],
+  "datos": [
+    {
+      "texto": "Esquemas de composición y profundidad en la página.",
+      "libro": "El gran libro del dibujo · Parramón",
+      "pagina": 96,
+      "imagen": "parramon-pag96.webp"
+    },
+    {
+      "texto": "Construcciones de espacio y encaje de formas en profundidad.",
+      "libro": "Esbozar y dibujar",
+      "pagina": 45,
+      "imagen": "esbozar-pag45.webp"
+    },
+    {
+      "texto": "Bocetos de personajes en un espacio sugerido; la pose ocupa el aire.",
+      "libro": "Dynamic Characters",
+      "pagina": 15,
+      "imagen": "dynamic-pag15.webp"
+    }
+  ],
+  "formato": "horizontal (16:9)",
+  "fecha": "2026-10-18",
+  "generado": "2026-11-05",
+  "moodboard": "moodboard.webp"
+}
