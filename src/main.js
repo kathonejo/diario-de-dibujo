@@ -69,6 +69,9 @@ async function home() {
   if (!dias.length) { app.innerHTML = `<section class="vacio"><h1>Sin días publicados</h1><p>Cuando haya un estudio, aparece acá.</p></section>`; return; }
   const u = dias[0], d = await getDia(u.fecha);
   app.innerHTML = `<section class="home-banner">
+    <p class="home-banner-lead">Este diario nace como una intersección entre aprendizaje, arte, archivo y reflexión. Busca recuperar y conservar la educación tradicional, mezclando los valores de creación antiguos con las nuevas tecnologías. Armado por Kathonejo a partir de libros, PDFs y recopilaciones propias.</p>
+    <p class="home-banner-extra">Cada día se genera un nuevo ejercicio, con su paleta limitada, para practicar bajo un timer pomodoro. Además cuenta con una instalación para disfrutar en gran pantalla, de forma individual o grupal, donde se construye una obra en conjunto y el programa la exhibe.</p>
+    <p class="home-banner-extra">Las frases que acompañan cada día vienen de Operadores Mágicos, una investigación de Kathonejo sobre figuras de la antropología, la filosofía y la magia que estudiaron el quehacer artístico, a partir del <em>Pequeño tratado sobre arte y magia</em> de Claudia Rodríguez-Ponga Linares.</p>
     <p class="home-banner-mantra">Cada día, una nueva página del diario de dibujo.</p>
     <div class="home-banner-cta">
       <a class="btn" href="/instalacion">Instalación</a>
