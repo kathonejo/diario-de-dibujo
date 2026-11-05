@@ -1,1 +1,11 @@
-{"rewrites":[{"source":"/((?!content/|assets/|api/).*)","destination":"/index.html"}]}
+{
+  "redirects": [
+    { "source": "/obra", "destination": "/diario", "permanent": true },
+    { "source": "/obra/", "destination": "/diario", "permanent": true },
+    { "source": "/dias", "destination": "/diario", "permanent": true },
+    { "source": "/dias/", "destination": "/diario", "permanent": true }
+  ],
+  "rewrites": [
+    { "source": "/((?!content/|assets/|api/).*)", "destination": "/index.html" }
+  ]
+}

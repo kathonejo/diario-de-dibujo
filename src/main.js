@@ -84,28 +84,27 @@ async function home() {
     ${manifiesto(dias.length)}
     <div class="acciones" style="margin-top:1.2rem">
       <a class="btn" href="/dia/${u.fecha}">Ir al día →</a>
-      <a class="btn sec" href="/obra">Ver la obra completa</a>
-    </div></div></section>
-    <section class="archivo"><div><h2>Calendario</h2><div id="cal">${calendario(dias)}</div></div><div><h2>Días anteriores</h2>${lista(dias)}</div></section>`;
+      <a class="btn sec" href="/diario">Ver el diario</a>
+    </div></div></section>`;
 }
-async function archivo() {
+async function diario() {
   const [dias, tr] = await Promise.all([getIndex(), getTrabajos()]); TR = tr;
-  app.innerHTML = `<section class="archivo solo"><div><h1>Calendario</h1>${manifiesto(dias.length)}<div id="cal">${calendario(dias)}</div></div><div><h2>Todos los días</h2>${lista(dias)}</div></section>`;
-}
-async function obra() {
-  const dias = await getIndex();
-  document.title = 'La obra · Diario de dibujo';
+  document.title = 'Diario · Diario de dibujo';
   const orden = [...dias].sort((a,b) => a.fecha.localeCompare(b.fecha));
   app.innerHTML = `<section class="obra-head">
     <p class="eyebrow">Diario de dibujo</p>
-    <h1>La obra</h1>
+    <h1>Diario</h1>
     <p>Cada día, una nueva página.<br>Cada página es una nueva invitación a crear.<br>El arte tradicional permanece en la tecnología.<br><strong>Siempre.</strong></p>
     <span class="cuenta"><i></i>${orden.length} días · desde ${orden[0] ? largo(orden[0].fecha) : '—'}</span>
   </section>
   <div class="mosaico">${orden.map(d => `<a href="/dia/${d.fecha}" title="${esc(d.tema)}">
     <img loading="lazy" src="${img(d.fecha, d.moodboard)}" alt="${esc(d.tema)}">
     <span class="cap"><small>${largo(d.fecha)}</small><strong>${esc(d.tema)}</strong></span>
-  </a>`).join('')}</div>`;
+  </a>`).join('')}</div>
+  <section class="archivo">
+    <div><h2>Calendario</h2>${manifiesto(dias.length)}<div id="cal">${calendario(dias)}</div></div>
+    <div><h2>Todos los días</h2>${lista(dias)}</div>
+  </section>`;
 }
 async function dia(f) {
   const [d, dias, tr] = await Promise.all([getDia(f), getIndex(), getTrabajos()]); TR = tr;
@@ -139,8 +138,10 @@ async function route() {
   if (!localStorage.getItem('timer') || !JSON.parse(localStorage.getItem('timer')).running) document.title = 'Diario de dibujo';
   if (p.startsWith('/instalacion')) await instalacion(app);
   else if (m) await dia(m[1]);
-  else if (p.startsWith('/obra')) await obra();
-  else if (p.startsWith('/dias')) await archivo();
+  else if (p.startsWith('/diario') || p.startsWith('/obra') || p.startsWith('/dias')) {
+    if (p.startsWith('/obra') || p.startsWith('/dias')) history.replaceState(null, '', '/diario');
+    await diario();
+  }
   else await home();
   window.scrollTo(0, 0);
 }

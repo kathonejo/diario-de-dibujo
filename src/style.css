@@ -54,7 +54,6 @@ h3{
 .top,main,#timer,#lightbox,.focus{position:relative;z-index:1}
 .top{display:flex;justify-content:space-between;align-items:center;gap:1rem;max-width:1100px;margin:0 auto;padding:1.25rem 1.4rem;flex-wrap:wrap}
 .logo{display:flex;align-items:baseline;gap:.55rem;color:var(--ink);text-decoration:none}
-.logo-bunny{width:34px;height:34px;object-fit:cover;border:1px solid #fff;align-self:center;background:rgba(0,0,0,.15)}
 .wordmark{font-size:1.55rem;letter-spacing:.02em;line-height:1}
 .wordmark .swash{font-family:var(--script);font-size:1.55em;font-weight:400;padding:0 .02em;line-height:0}
 .logo-sub{font-family:var(--mono);font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-dim);align-self:center}
