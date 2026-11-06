@@ -132,6 +132,66 @@ describe('director compartido', () => {
     assert.equal(p.resets.length, 0);
   });
 
+  it('el trazo viejo sigue cuando se agrega el siguiente visitante', () => {
+    const director = createTimelapseDirector({ budget: 20, frameMs: 1e9 });
+    const first = player({ strokeCount: 8, offset: 0, duration: 1000, pause: 5000 });
+    director.add(first);
+    director.step(500);
+    assert.equal(first.drawn, 4);
+    assert.deepEqual(first.paints, [0, 1, 2, 3]);
+    const second = player({ strokeCount: 8, offset: 0, duration: 1600, pause: 5000 });
+    director.add(second);
+    const next = director.step(750);
+    assert.equal(first.resets.length, 0);
+    assert.equal(first.drawn, 6);
+    assert.deepEqual(first.paints.slice(4), [4, 5]);
+    assert.equal(second.resets.length, 0);
+    assert.equal(second.drawn, strokesRevealed(8, 750 / 1600));
+    assert.deepEqual(second.paints, [0, 1, 2, 3]);
+    assert.equal(next.resets, 0);
+  });
+
+  it('completa, sostiene en la pausa y el cierre de un ciclo no arrastra al otro', () => {
+    const director = createTimelapseDirector({ budget: 20, frameMs: 1e9 });
+    const holding = player({ strokeCount: 4, offset: 0, duration: 1000, pause: 1000 });
+    const wrapping = player({ strokeCount: 4, offset: 0, duration: 1000, pause: 100 });
+    director.add(holding);
+    director.add(wrapping);
+
+    const done = director.step(1000);
+    assert.equal(holding.drawn, 4);
+    assert.equal(wrapping.drawn, 4);
+    assert.equal(holding.ready, true);
+    assert.equal(wrapping.ready, true);
+    assert.equal(done.resets, 0);
+    assert.equal(phaseAt(1000, holding).mode, 'pause');
+
+    const hold = director.step(1090);
+    assert.equal(hold.painted, 0);
+    assert.equal(hold.resets, 0);
+    assert.equal(holding.drawn, 4);
+    assert.equal(wrapping.drawn, 4);
+    assert.equal(holding.resets.length, 0);
+    assert.equal(wrapping.resets.length, 0);
+
+    const wrapped = director.step(1100);
+    assert.equal(phaseAt(1100, holding).mode, 'pause');
+    assert.equal(phaseAt(1100, wrapping).progress, 0);
+    assert.equal(holding.resets.length, 0);
+    assert.equal(holding.drawn, 4);
+    assert.equal(holding.paints.length, 4);
+    assert.equal(wrapping.resets.length, 1);
+    assert.equal(wrapped.resets, 1);
+    assert.equal(wrapping.drawn, 0);
+
+    director.step(1200);
+    assert.equal(holding.drawn, 4);
+    assert.equal(holding.resets.length, 0);
+    assert.equal(wrapping.resets.length, 1);
+    assert.deepEqual(wrapping.paints.slice(-1), [0]);
+    assert.equal(wrapping.drawn, 1);
+  });
+
   it('al cerrar el ciclo limpia y vuelve a trazar', () => {
     const director = createTimelapseDirector({ budget: 20, frameMs: 1e9 });
     const p = player();

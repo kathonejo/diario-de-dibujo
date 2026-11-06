@@ -169,9 +169,12 @@ export function createMuralTimelapse() {
         el._tlPlayer = player;
         wake();
       } else {
-        player.drawn = 0;
-        player.ready = false;
-        el.classList.remove('tl-live');
+        // El bitmap se pierde al cambiar el tamaño (otro visitante reacomoda el mosaico).
+        // Eso no es el cierre del ciclo: se redibujan los trazos ya revelados y el índice sigue.
+        const revealed = Math.min(player.drawn | 0, mapped.length);
+        for (let i = 0; i < revealed; i++) {
+          try { player.onPaint?.(i); } catch { /* trazo dañado: se salta */ }
+        }
       }
     }
 
