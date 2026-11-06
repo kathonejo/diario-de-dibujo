@@ -1,5 +1,7 @@
 /** Modo instalación · kiosco táctil */
 import { HERRAMIENTAS, PAPER, fillPaper, paintStroke, paintLive, pressureFrom } from './brushes.js';
+import { loadDrawingStrokes, prefersReducedMotion } from './timelapse.js';
+import { createMuralTimelapse } from './muralTimelapse.js';
 const MESES = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
 const DIAS = ['domingo','lunes','martes','miércoles','jueves','viernes','sábado'];
 const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
@@ -565,12 +567,15 @@ function pantallaResultado(app, { saved, mirar, preview }) {
 }
 
 /* ───────── MURAL ───────── */
+let stopMural = null;
+
 export async function mural(app) {
   hideChrome(true);
   document.title = 'Mural · Instalación';
   let soloHoy = true;
   let known = new Set();
   let fechaHoy = null;
+  let replayGen = 0;
 
   const dias = await getIndex();
   fechaHoy = dias[0]?.fecha || new Date().toLocaleDateString('sv', { timeZone: 'America/Buenos_Aires' });
@@ -616,21 +621,40 @@ export async function mural(app) {
     known = new Set();
     refresh(true);
   };
+  const tl = createMuralTimelapse();
+  let iv = 0;
+  let stopped = false;
+  let loadGen = 0;
+  function stop() {
+    if (stopped) return;
+    stopped = true;
+    clearInterval(iv);
+    tl.dispose();
+    if (stopMural === stop) stopMural = null;
+  }
+
   document.getElementById('m-replay-x').onclick = () => {
+    replayGen += 1;
     document.getElementById('m-replay').hidden = true;
+    tl.resume();
   };
 
   async function refresh(reset) {
+    const gen = ++loadGen;
     try {
       const q = soloHoy ? `?fecha=${fechaHoy}` : '?all=1';
       const r = await fetch('/api/instalacion' + q, { cache: 'no-store' });
+      if (stopped || gen !== loadGen) return;
       const data = await r.json();
       const items = data.items || [];
       meta.textContent = soloHoy
         ? `${items.length} dibujo${items.length === 1 ? '' : 's'} · ${largo(fechaHoy)}`
         : `${items.length} dibujos en total`;
 
-      if (reset) mosaic.innerHTML = '';
+      if (reset) {
+        tl.clear();
+        mosaic.innerHTML = '';
+      }
       const order = [...items].reverse(); // oldest first for mosaic growth
       for (const it of order) {
         if (known.has(it.id)) continue;
@@ -643,8 +667,10 @@ export async function mural(app) {
         a.onclick = () => replay(it);
         if (isNew) mosaic.prepend(a);
         else mosaic.append(a);
+        tl.attach(a, it);
       }
       if (!items.length) {
+        tl.clear();
         mosaic.innerHTML = `<p class="inst-vacio-m">Todavía no hay dibujos. Sé la primera persona en dejar uno.</p>`;
       }
     } catch (e) {
@@ -653,24 +679,15 @@ export async function mural(app) {
   }
 
   async function replay(it) {
+    const gen = ++replayGen;
+    tl.suspend();
     const overlay = document.getElementById('m-replay');
     const c = document.getElementById('m-replay-c');
     const c2 = c.getContext('2d');
     overlay.hidden = false;
-    let strokes = it.strokes;
-    if (!strokes && it.metaUrl) {
-      try {
-        const metaJ = await fetch(it.metaUrl, { cache: 'no-store' }).then(r => r.ok ? r.json() : null);
-        strokes = metaJ?.strokes;
-      } catch { /* show static */ }
-    }
-    if (!strokes) {
-      try {
-        const jsonUrl = it.url.replace(/\.(png|webp|jpg|jpeg)(\?.*)?$/i, '.json');
-        const metaJ = await fetch(jsonUrl).then(r => r.ok ? r.json() : null).catch(() => null);
-        strokes = metaJ?.strokes;
-      } catch { /* show static */ }
-    }
+    let strokes = null;
+    try { strokes = await loadDrawingStrokes(it); } catch { strokes = null; }
+    if (gen !== replayGen) return;
 
     const w = it.w || 1200, h = it.h || 900;
     c.width = w; c.height = h;
@@ -679,14 +696,19 @@ export async function mural(app) {
     if (!strokes?.length) {
       const im = new Image();
       im.crossOrigin = 'anonymous';
-      im.onload = () => c2.drawImage(im, 0, 0, w, h);
+      im.onload = () => { if (gen === replayGen) c2.drawImage(im, 0, 0, w, h); };
       im.src = it.url;
+      return;
+    }
+
+    if (prefersReducedMotion()) {
+      for (const s of strokes) paintStroke(c2, s);
       return;
     }
 
     let si = 0;
     function step() {
-      if (overlay.hidden) return;
+      if (gen !== replayGen || overlay.hidden) return;
       if (si >= strokes.length) return;
       const s = strokes[si];
       // progressive reveal: paint whole stroke, then next
@@ -698,19 +720,25 @@ export async function mural(app) {
   }
 
   await refresh(true);
-  const iv = setInterval(() => {
-    if (!location.pathname.startsWith('/instalacion/mural')) { clearInterval(iv); return; }
+  iv = setInterval(() => {
+    if (!location.pathname.startsWith('/instalacion/mural')) { stop(); return; }
     refresh(false);
   }, 10000);
+  return stop;
 }
 
 export async function instalacion(app) {
   hideChrome(true);
+  if (stopMural) { stopMural(); stopMural = null; }
   document.title = 'Instalación · Diario de dibujo';
-  if (location.pathname.includes('/mural')) return mural(app);
+  if (location.pathname.includes('/mural')) {
+    stopMural = await mural(app);
+    return;
+  }
   await pantallaInicio(app);
 }
 
 export function leaveInstalacion() {
   hideChrome(false);
+  if (stopMural) { stopMural(); stopMural = null; }
 }

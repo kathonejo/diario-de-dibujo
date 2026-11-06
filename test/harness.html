@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Harness mural</title>
+</head>
+<body>
+<div id="app" style="width:1280px"></div>
+<script type="module">
+if (new URLSearchParams(location.search).has('reduce')) {
+  const orig = window.matchMedia.bind(window);
+  window.matchMedia = (q) => {
+    if (String(q).includes('prefers-reduced-motion')) {
+      return {
+        matches: true,
+        media: String(q),
+        addEventListener() {},
+        removeEventListener() {},
+        addListener() {},
+        removeListener() {},
+      };
+    }
+    return orig(q);
+  };
+}
+document.documentElement.dataset.page = location.search;
+document.documentElement.dataset.done = '';
+document.documentElement.dataset.result = '';
+try {
+  const { run } = await import('/test/mural-harness.mjs');
+  await run();
+} catch (err) {
+  document.documentElement.dataset.result = JSON.stringify({ error: String(err && err.stack || err) });
+  document.documentElement.dataset.done = 'fail';
+}
+</script>
+</body>
+</html>

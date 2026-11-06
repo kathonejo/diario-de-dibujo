@@ -333,11 +333,19 @@ body.modo-instalacion main{max-width:none;padding:0;min-height:100dvh}
 .inst-mural-meta{color:var(--ink);margin:0 0 1rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;font-size:.72rem}
 .inst-mosaic{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px}
 @media(min-width:900px){.inst-mosaic{grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}}
-.inst-tile{position:relative;aspect-ratio:4/3;border:1px solid var(--ink);padding:0;border-radius:0;overflow:hidden;cursor:pointer;background:rgba(0,0,0,.15);box-shadow:none}
+.inst-tile{position:relative;aspect-ratio:4/3;border:1px solid var(--ink);padding:0;border-radius:0;overflow:hidden;cursor:pointer;background:rgba(0,0,0,.15);box-shadow:none;contain:layout paint}
 .inst-tile img{width:100%;height:100%;object-fit:cover;display:block;background:var(--paper)}
-.inst-tile span{position:absolute;left:0;right:0;bottom:0;padding:.45rem .6rem;background:rgba(20,50,140,.8);color:#fff;font-size:.68rem;text-align:left;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;letter-spacing:.06em;text-transform:uppercase}
+.inst-tile .inst-tl{position:absolute;inset:0;width:100%;height:100%;display:none;pointer-events:none;z-index:0}
+.inst-tile.tl-live .inst-tl{display:block}
+.inst-tile.tl-live > img{opacity:0}
+.inst-tile span{position:absolute;left:0;right:0;bottom:0;z-index:1;padding:.45rem .6rem;background:rgba(20,50,140,.8);color:#fff;font-size:.68rem;text-align:left;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;letter-spacing:.06em;text-transform:uppercase}
 .inst-tile.nuevo{animation:popIn .45s ease-out}
 @keyframes popIn{0%{opacity:0}100%{opacity:1}}
+@media (prefers-reduced-motion: reduce){
+  .inst-tile.nuevo{animation:none}
+  .inst-tile.tl-live .inst-tl{display:none !important}
+  .inst-tile.tl-live > img{opacity:1 !important}
+}
 .inst-vacio-m{grid-column:1/-1;text-align:center;color:var(--ink-mute);font-style:normal;padding:3rem;letter-spacing:.08em}
 .inst-replay{position:fixed;inset:0;z-index:80;background:rgba(20,50,140,.92);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;padding:1rem}
 .inst-replay[hidden]{display:none}
