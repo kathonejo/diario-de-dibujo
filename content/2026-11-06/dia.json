@@ -1,0 +1,54 @@
+{
+  "fecha": "2026-11-06",
+  "tema": "Integración: figura humana completa de pie / en pose (gesto y ejes, masas y cilindros, anatomía de hombro-brazo-mano y cadera-pierna-pie, cierre con valor)",
+  "frase": {
+    "texto": "La magia es un intento de casar cosas para producir alteraciones en el ámbito de lo super-real.",
+    "autor": "Claudia Rodríguez-Ponga Linares · Pequeño tratado sobre arte y magia, Cap. 1 · Operador #9 Taisha Abelar · La Atención (Banco de Citas por Operador, «Cita de conexión»)"
+  },
+  "mision": "Casar las piezas de la semana en un solo cuerpo: una figura de pie donde hombro-brazo-mano y cadera-pierna-pie respondan al mismo gesto y al mismo eje.",
+  "paleta": [
+    {
+      "nombre": "Índigo noche",
+      "hex": "#2F308D"
+    },
+    {
+      "nombre": "Índigo vivo",
+      "hex": "#4244BF"
+    },
+    {
+      "nombre": "Azul cobalto claro",
+      "hex": "#487CE1"
+    },
+    {
+      "nombre": "Turquesa",
+      "hex": "#4FC1C2"
+    },
+    {
+      "nombre": "Lavanda niebla",
+      "hex": "#9C95DB"
+    }
+  ],
+  "datos": [
+    {
+      "texto": "Bocetos a línea suelta de figuras en poses de movimiento: línea de acción y gesto.",
+      "libro": "Dynamic Characters",
+      "pagina": 33,
+      "imagen": "dynamic-pag33.webp"
+    },
+    {
+      "texto": "Canon de Policleto: figura de pie entera con líneas de proporción y eje de gravedad.",
+      "libro": "Moreaux · Anatomía artística",
+      "pagina": 369,
+      "imagen": "moreaux-pag369.webp"
+    },
+    {
+      "texto": "Desnudo con lápiz plomo: figura completa en grafito, valores lentos y una sola masa de sombra.",
+      "libro": "Parramón · El gran libro del dibujo",
+      "pagina": 108,
+      "imagen": "parramon-pag108.webp"
+    }
+  ],
+  "formato": "cuadrado (1:1)",
+  "moodboard": "moodboard.webp",
+  "nota_moodboard": "ChatGPT bloqueado por límite de adjuntos hasta 2026-11-07 04:05; moodboard generado con el generador de imágenes de Grok Bot usando las 3 referencias (palabra 'nude' cambiada por 'academic figure study')."
+}
