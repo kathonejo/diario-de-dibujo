@@ -3,7 +3,9 @@ import { describe, it, beforeEach } from 'node:test';
 import {
   FRAME_BUDGET,
   clearStrokeCache,
+  containMap,
   coverMap,
+  muralGrid,
   createQueue,
   createTimelapseDirector,
   createTimingLedger,
@@ -238,11 +240,36 @@ describe('director compartido', () => {
   });
 });
 
+describe('mural en una sola vista', () => {
+  it('con 8 dibujos los deja grandes y completos en el recuadro', () => {
+    const frame = muralGrid(8, 1200, 640, 12);
+    assert.equal(frame.cols, 4);
+    assert.equal(frame.rows, 2);
+    assert.ok(frame.dw >= 250, `ancho ${frame.dw}`);
+    assert.ok(frame.dh >= 180, `alto ${frame.dh}`);
+    assert.ok(frame.cols * frame.dw + 12 * (frame.cols - 1) <= 1200 + 1);
+    assert.ok(frame.rows * frame.dh + 12 * (frame.rows - 1) <= 640 + 1);
+    assert.ok(Math.abs(frame.dw / frame.dh - 4 / 3) < 0.02);
+  });
+
+  it('con 33 dibujos entran todos sin salirse', () => {
+    const frame = muralGrid(33, 1280, 720, 12);
+    assert.ok(frame.cols * frame.rows >= 33);
+    assert.ok(frame.cols * frame.dw + 12 * (frame.cols - 1) <= 1280 + 1);
+    assert.ok(frame.rows * frame.dh + 12 * (frame.rows - 1) <= 720 + 1);
+    assert.ok(frame.dw >= 70 && frame.dh >= 50);
+  });
+});
+
 describe('proyección y peso', () => {
   it('encuadra el centro y no muta el trazo original', () => {
     const map = coverMap(100, 100, 200, 100);
     assert.equal(map.x(100), 50);
     assert.equal(map.y(50), 50);
+    const contained = containMap(100, 100, 200, 100);
+    assert.equal(contained.x(100), 50);
+    assert.equal(contained.y(50), 50);
+    assert.ok(contained.s < map.s);
     const raw = { t: 'tinta', c: '#112233', sz: 2, p: [[0, 0, 0.4], [200, 100, 0.8]] };
     const before = JSON.stringify(raw);
     const out = projectStroke(raw, map);

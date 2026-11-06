@@ -131,6 +131,9 @@ test('mural: timelapse de 33 dibujos, textos y reduced motion', async () => {
     assert.match(live.texts.meta, /33 dibujos/);
     assert.match(live.texts.meta, /noviembre/);
     assert.equal(live.tiles, 33);
+    assert.equal(live.frame.tiles, 33);
+    assert.equal(live.frame.outside, 0, 'algún dibujo queda fuera del plano');
+    assert.ok(live.frame.scroll <= 2, `el mural scrollea ${live.frame.scroll}px`);
     assert.ok(live.live >= 20, `en vivo ${live.live}`);
     assert.ok(live.hashed >= 20);
     assert.ok(live.unique >= 6, `firmas únicas ${live.unique} de ${live.hashed}`);

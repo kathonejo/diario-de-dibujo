@@ -158,6 +158,11 @@ export async function run() {
     const avg = samples.reduce((a, b) => a + b, 0) / samples.length;
     const sigs = [...document.querySelectorAll('.inst-tile.tl-live canvas')].map(signature);
     const liveCount = sigs.length;
+    const muralEl = document.querySelector('.inst-mural');
+    const mbox = muralEl.getBoundingClientRect();
+    const tileRects = [...document.querySelectorAll('.inst-tile')].map(el => el.getBoundingClientRect());
+    const outside = tileRects.filter(r => r.width < 8 || r.height < 8 || r.top < mbox.top - 2 || r.bottom > mbox.bottom + 2 || r.left < mbox.left - 2 || r.right > mbox.right + 2).length;
+    const frame = { outside, scroll: muralEl.scrollHeight - muralEl.clientHeight, tiles: tileRects.length };
     document.getElementById('m-todo').click();
     await waitFor(() => document.getElementById('m-meta').textContent.includes('en total'), 4000, 'todos los días');
     const todos = document.getElementById('m-meta').textContent;
@@ -171,6 +176,7 @@ export async function run() {
       ...base,
       reduce: false,
       live: liveCount,
+      frame,
       median,
       avg,
       slow,

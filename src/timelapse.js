@@ -84,12 +84,12 @@ export function workUnits(stroke) {
   return 1;
 }
 
-export function coverMap(destW, destH, srcW, srcH) {
+function frameMap(destW, destH, srcW, srcH, contain) {
   const dw = Math.max(1, destW);
   const dh = Math.max(1, destH);
   const sw = Math.max(1, srcW);
   const sh = Math.max(1, srcH);
-  const s = Math.max(dw / sw, dh / sh);
+  const s = contain ? Math.min(dw / sw, dh / sh) : Math.max(dw / sw, dh / sh);
   const ox = (dw - sw * s) / 2;
   const oy = (dh - sh * s) / 2;
   return {
@@ -97,6 +97,37 @@ export function coverMap(destW, destH, srcW, srcH) {
     x: (x) => x * s + ox,
     y: (y) => y * s + oy,
   };
+}
+
+export function coverMap(destW, destH, srcW, srcH) {
+  return frameMap(destW, destH, srcW, srcH, false);
+}
+
+export function containMap(destW, destH, srcW, srcH) {
+  return frameMap(destW, destH, srcW, srcH, true);
+}
+
+/** Reparte el mural en una sola pantalla: todas las obras, lo más grandes posible, sin recortar el 4/3. */
+export function muralGrid(count, width, height, gap = 12) {
+  const n = count | 0;
+  if (n <= 0 || !(width > 1) || !(height > 1)) return null;
+  const ratio = 4 / 3;
+  let best = null;
+  for (let cols = 1; cols <= n; cols++) {
+    const rows = Math.ceil(n / cols);
+    const maxW = (width - gap * (cols - 1)) / cols;
+    const maxH = (height - gap * (rows - 1)) / rows;
+    if (maxW <= 8 || maxH <= 8) continue;
+    let dw = maxW;
+    let dh = dw / ratio;
+    if (dh > maxH) {
+      dh = maxH;
+      dw = dh * ratio;
+    }
+    const area = dw * dh;
+    if (!best || area > best.area) best = { cols, rows, dw, dh, area };
+  }
+  return best;
 }
 
 export function sourceSize(strokes, w, h) {

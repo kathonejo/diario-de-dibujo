@@ -3,7 +3,7 @@ import { PAPER, paintStroke } from './brushes.js';
 import {
   FRAME_BUDGET,
   FRAME_MS,
-  coverMap,
+  containMap,
   createQueue,
   createTimelapseDirector,
   createTimingLedger,
@@ -16,7 +16,7 @@ import {
   workUnits,
 } from './timelapse.js';
 
-const MAX_EDGE = 340;
+const MAX_EDGE = 480;
 
 function clearPaper(ctx) {
   const canvas = ctx.canvas;
@@ -147,7 +147,7 @@ export function createMuralTimelapse() {
       if (player && canvas.width === box.bw && canvas.height === box.bh && mapped.length === strokes.length) return;
       canvas.width = box.bw;
       canvas.height = box.bh;
-      const map = coverMap(box.bw, box.bh, src.w, src.h);
+      const map = containMap(box.bw, box.bh, src.w, src.h);
       mapped = strokes.map(s => projectStroke(s, map));
       clearPaper(ctx);
       if (!player) {

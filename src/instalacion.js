@@ -1,6 +1,6 @@
 /** Modo instalación · kiosco táctil */
 import { HERRAMIENTAS, PAPER, fillPaper, paintStroke, paintLive, pressureFrom } from './brushes.js';
-import { loadDrawingStrokes, prefersReducedMotion } from './timelapse.js';
+import { loadDrawingStrokes, muralGrid, prefersReducedMotion } from './timelapse.js';
 import { createMuralTimelapse } from './muralTimelapse.js';
 const MESES = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
 const DIAS = ['domingo','lunes','martes','miércoles','jueves','viernes','sábado'];
@@ -537,8 +537,46 @@ function blobToDataUrl(blob) {
 }
 
 /* ───────── RESULT ───────── */
+let stopResultado = null;
+
+export function createResultCountdown({ seconds = 20, onTick, onDone, isStillThere, schedule } = {}) {
+  let left = seconds;
+  let stopped = false;
+  const set = schedule?.setInterval || setInterval;
+  const clear = schedule?.clearInterval || clearInterval;
+  const timer = set(() => {
+    if (stopped) return;
+    left -= 1;
+    if (isStillThere && !isStillThere()) {
+      stop();
+      return;
+    }
+    onTick?.(left);
+    if (left <= 0) {
+      stop();
+      onDone?.();
+    }
+  }, 1000);
+  function stop() {
+    if (stopped) return;
+    stopped = true;
+    clear(timer);
+  }
+  return { stop };
+}
+
+function cancelResultado() {
+  if (!stopResultado) return;
+  stopResultado();
+  stopResultado = null;
+}
+
+function sigueEnResultado() {
+  return !!document.getElementById('inst-cd') && !location.pathname.includes('/mural');
+}
+
 function pantallaResultado(app, { saved, mirar, preview }) {
-  let left = 20;
+  cancelResultado();
   app.innerHTML = `
   <section class="inst-result">
     <div class="inst-result-grid">
@@ -555,15 +593,32 @@ function pantallaResultado(app, { saved, mirar, preview }) {
       <a class="btn inst-big" href="/instalacion/mural">Ver el mural</a>
       <button class="btn sec" id="inst-otra">Otro dibujo</button>
     </div>
-    <p class="inst-hint">Volvemos al inicio en <strong id="inst-cd">${left}</strong> s</p>
+    <p class="inst-hint">Volvemos al inicio en <strong id="inst-cd">20</strong> s</p>
   </section>`;
-  document.getElementById('inst-otra').onclick = () => { clearInterval(t); pantallaInicio(app); };
-  const t = setInterval(() => {
-    left -= 1;
-    const el = document.getElementById('inst-cd');
-    if (el) el.textContent = left;
-    if (left <= 0) { clearInterval(t); pantallaInicio(app); }
-  }, 1000);
+  const countdown = createResultCountdown({
+    seconds: 20,
+    isStillThere: sigueEnResultado,
+    onTick: (n) => {
+      const el = document.getElementById('inst-cd');
+      if (el) el.textContent = n;
+    },
+    onDone: () => {
+      stopResultado = null;
+      if (sigueEnResultado()) pantallaInicio(app);
+    },
+  });
+  stopResultado = countdown.stop;
+  document.getElementById('inst-otra').onclick = () => {
+    cancelResultado();
+    pantallaInicio(app);
+  };
+  const alMural = document.querySelector('.inst-result a[href="/instalacion/mural"]');
+  if (alMural) {
+    alMural.addEventListener('click', (e) => {
+      if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
+      cancelResultado();
+    });
+  }
 }
 
 /* ───────── MURAL ───────── */
@@ -625,10 +680,29 @@ export async function mural(app) {
   let iv = 0;
   let stopped = false;
   let loadGen = 0;
+  let gridRo = null;
+  const MURAL_GAP = 12;
+  function fitMosaic() {
+    if (stopped) return;
+    const n = mosaic.querySelectorAll('.inst-tile').length;
+    const frame = muralGrid(n, mosaic.clientWidth, mosaic.clientHeight, MURAL_GAP);
+    if (!n || !frame) {
+      mosaic.style.gridTemplateColumns = '';
+      mosaic.style.gridTemplateRows = '';
+      return;
+    }
+    mosaic.style.gridTemplateColumns = `repeat(${frame.cols}, ${Math.floor(frame.dw)}px)`;
+    mosaic.style.gridTemplateRows = `repeat(${frame.rows}, ${Math.floor(frame.dh)}px)`;
+  }
+  if (typeof ResizeObserver === 'function') {
+    gridRo = new ResizeObserver(() => fitMosaic());
+    gridRo.observe(mosaic);
+  }
   function stop() {
     if (stopped) return;
     stopped = true;
     clearInterval(iv);
+    gridRo?.disconnect();
     tl.dispose();
     if (stopMural === stop) stopMural = null;
   }
@@ -673,6 +747,7 @@ export async function mural(app) {
         tl.clear();
         mosaic.innerHTML = `<p class="inst-vacio-m">Todavía no hay dibujos. Sé la primera persona en dejar uno.</p>`;
       }
+      fitMosaic();
     } catch (e) {
       meta.textContent = 'No se pudo cargar el mural';
     }
@@ -729,6 +804,7 @@ export async function mural(app) {
 
 export async function instalacion(app) {
   hideChrome(true);
+  cancelResultado();
   if (stopMural) { stopMural(); stopMural = null; }
   document.title = 'Instalación · Diario de dibujo';
   if (location.pathname.includes('/mural')) {
@@ -740,5 +816,6 @@ export async function instalacion(app) {
 
 export function leaveInstalacion() {
   hideChrome(false);
+  cancelResultado();
   if (stopMural) { stopMural(); stopMural = null; }
 }

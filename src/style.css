@@ -325,16 +325,15 @@ body.modo-instalacion main{max-width:none;padding:0;min-height:100dvh}
 .inst-bubble p{margin:0;font-family:var(--serif);font-size:1.25rem;line-height:1.35}
 .inst-score{margin-top:.7rem;color:var(--ink);font-weight:500;letter-spacing:.08em;font-family:var(--mono);font-size:.78rem;text-transform:uppercase}
 .inst-score span{color:var(--ink-mute);font-weight:500;margin-left:.4rem;font-size:.78rem}
-.inst-mural{padding:1rem 1rem 2rem;min-height:100dvh}
-.inst-mural-h{display:flex;justify-content:space-between;align-items:flex-end;gap:1rem;flex-wrap:wrap;margin-bottom:.6rem}
+.inst-mural{box-sizing:border-box;height:100dvh;max-height:100dvh;min-height:0;padding:.85rem 1rem 1rem;display:flex;flex-direction:column;overflow:hidden}
+.inst-mural-h{display:flex;justify-content:space-between;align-items:flex-end;gap:1rem;flex-wrap:wrap;margin-bottom:.6rem;flex:none}
 .inst-mural-ctl{display:flex;gap:.5rem;flex-wrap:wrap}
 .inst-mural-ctl .btn{margin:0}
 .inst-mural-ctl .btn.on{background:#fff;color:var(--blue);border-color:#fff!important}
-.inst-mural-meta{color:var(--ink);margin:0 0 1rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;font-size:.72rem}
-.inst-mosaic{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px}
-@media(min-width:900px){.inst-mosaic{grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}}
-.inst-tile{position:relative;aspect-ratio:4/3;border:1px solid var(--ink);padding:0;border-radius:0;overflow:hidden;cursor:pointer;background:rgba(0,0,0,.15);box-shadow:none;contain:layout paint}
-.inst-tile img{width:100%;height:100%;object-fit:cover;display:block;background:var(--paper)}
+.inst-mural-meta{color:var(--ink);margin:0 0 .7rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;font-size:.72rem;flex:none}
+.inst-mosaic{flex:1;min-height:0;display:grid;gap:12px;align-content:center;justify-content:center}
+.inst-tile{position:relative;width:100%;height:100%;min-width:0;min-height:0;border:1px solid var(--ink);padding:0;border-radius:0;overflow:hidden;cursor:pointer;background:var(--paper);box-shadow:none;contain:layout paint}
+.inst-tile img{width:100%;height:100%;object-fit:contain;display:block;background:var(--paper)}
 .inst-tile .inst-tl{position:absolute;inset:0;width:100%;height:100%;display:none;pointer-events:none;z-index:0}
 .inst-tile.tl-live .inst-tl{display:block}
 .inst-tile.tl-live > img{opacity:0}
