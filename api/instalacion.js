@@ -39,6 +39,18 @@ async function listar(prefix) {
   return blobs;
 }
 
+export function itemPublico(it, metaUrl) {
+  if (!it || typeof it !== 'object') return null;
+  const { strokes, ipHash, ...rest } = it;
+  const list = Array.isArray(strokes) ? strokes : [];
+  return {
+    ...rest,
+    strokes: list,
+    metaUrl: metaUrl || null,
+    hasStrokes: list.length > 0,
+  };
+}
+
 export default async function handler(req, res) {
   try {
     if (req.method === 'GET') {
@@ -50,12 +62,7 @@ export default async function handler(req, res) {
       const raw = await Promise.all(metas.map(async b => {
         const it = await fetch(b.url).then(r => r.json()).catch(() => null);
         if (!it) return null;
-        const { strokes, ipHash, ...rest } = it;
-        return {
-          ...rest,
-          metaUrl: b.url,
-          hasStrokes: Array.isArray(strokes) && strokes.length > 0,
-        };
+        return itemPublico(it, b.url);
       }));
       const items = raw.filter(Boolean).sort((a, b) => String(b.creado).localeCompare(String(a.creado)));
       res.setHeader('Cache-Control', 'no-store');
