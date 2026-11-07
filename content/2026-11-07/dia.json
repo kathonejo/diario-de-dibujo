@@ -33,22 +33,47 @@
       "texto": "Figuras en movimiento: trazos lineales de carboncillo, líneas de movimiento y líneas direccionales.",
       "libro": "Esbozar y dibujar",
       "pagina": 63,
-      "imagen": "esbozar-pag63.webp"
+      "imagen": "esbozar-pag63.webp",
+      "pagina_pdf": 63,
+      "paginas_impresas": [
+        122,
+        123
+      ],
+      "imagen_moodboard": "esbozar-verificado.png",
+      "como_leer": "**Esbozar y dibujar · PDF 63, impresas 122–123:** mirá el trazo largo de la figura estirada y las direcciones del levantador de pesas. Demuestran cómo la línea continua y su dirección sostienen el gesto; la primera figura combina carbón y toques de acuarela."
     },
     {
       "texto": "El apunte rápido: síntesis, trazo expresivo y ritmo del movimiento en figuras de pie y en movimiento.",
       "libro": "Chris Armand · Taller de las Artes – Dibujo I",
       "pagina": 27,
-      "imagen": "taller-pag27.webp"
+      "imagen": "taller-pag27.webp",
+      "pagina_pdf": 27,
+      "paginas_impresas": [
+        48,
+        49
+      ],
+      "imagen_moodboard": "taller-verificado.png",
+      "como_leer": "**Taller de las Artes · PDF 27, impresas 48–49:** compará la figura de pie y la figura en movimiento con los estudios a mancha. Demuestran la síntesis del apunte rápido: ritmo y actitud antes que detalle, usando línea o masas tonales."
     },
     {
       "texto": "Figura con lápices acuarelables en monocolor y a todo color: mancha tipo aguada, dibujo y pintura juntos.",
       "libro": "Parramón · Así se pinta con lápices de colores",
       "pagina": 24,
-      "imagen": "lapices-pag24.webp"
+      "imagen": "lapices-pag24.webp",
+      "pagina_pdf": 24,
+      "paginas_impresas": [
+        25
+      ],
+      "imagen_moodboard": "lapices-verificado.png",
+      "como_leer": "**Así se pinta con lápices de colores · PDF 24, impresa 25 (Figs. 36–37):** compará las luces y sombras de la misma figura en monocolor y a todo color. La versión monocolor muestra volumen mediante valores y blancos del papel con lápiz acuarelable; no es una demostración de movimiento ni de mancha sin línea pura."
     }
   ],
-  "formato": "horizontal (16:9)",
+  "formato": "horizontal (4473 × 1328 px)",
   "moodboard": "moodboard.webp",
-  "nota_moodboard": "ChatGPT bloqueado por límite de adjuntos hasta 2026-11-08 04:15; moodboard generado con el generador de imágenes de Grok Bot usando 2 de las 3 referencias (Esbozar y dibujar pág. 63 y Taller de las Artes pág. 27); con la tercera (Parramón Lápices pág. 24) el generador rechazó el pedido por política de contenido."
+  "nota_moodboard": "Tres referencias completas, misma altura, fondo neutro claro, separación uniforme; paleta sin cambios. Índices PDF verificados contra los archivos locales y numeración impresa visible.",
+  "moodboard_version": 2,
+  "moodboard_metodo": "Composición determinista Python/Pillow de tres páginas reales, sin generación de imágenes.",
+  "moodboard_anterior": "moodboard-v1.png",
+  "moodboard_exportacion": "moodboard-v2.png",
+  "drive_upload_estado": "Pendiente: requiere aprobación directa de Katherine; pedido recibido mediante otro agente."
 }
