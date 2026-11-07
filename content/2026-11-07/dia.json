@@ -70,10 +70,10 @@
   ],
   "formato": "horizontal (4473 × 1328 px)",
   "moodboard": "moodboard.webp",
-  "nota_moodboard": "Tres referencias completas, misma altura, fondo neutro claro, separación uniforme; paleta sin cambios. Índices PDF verificados contra los archivos locales y numeración impresa visible.",
-  "moodboard_version": 2,
-  "moodboard_metodo": "Composición determinista Python/Pillow de tres páginas reales, sin generación de imágenes.",
-  "moodboard_anterior": "moodboard-v1.png",
-  "moodboard_exportacion": "moodboard-v2.png",
+  "nota_moodboard": "Lámina de estudio de 1280×720 con 4 figuras en movimiento: bailarina (línea de movimiento), corredor (direccionales), salto (mancha sin línea) y estiramiento (mancha + línea). Fondo claro, luz pareja, sin texto. v2 = collage de páginas, rechazado por Katherine.",
+  "moodboard_version": 3,
+  "moodboard_metodo": "Imagen nueva generada con el generador de imágenes de Grok Bot, usando Esbozar y dibujar (PDF 63) y Taller de las Artes (PDF 27) como inspiración; Parramón no se adjuntó porque el generador la rechazó antes.",
+  "moodboard_anterior": "moodboard-v2.png",
+  "moodboard_exportacion": "moodboard-v3.png",
   "drive_upload_estado": "Pendiente: requiere aprobación directa de Katherine; pedido recibido mediante otro agente."
 }
