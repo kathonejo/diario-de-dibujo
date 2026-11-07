@@ -1,0 +1,54 @@
+{
+  "fecha": "2026-11-07",
+  "tema": "Día experimental: figura humana en movimiento con carbón y aguada monocolor (apunte rápido, líneas de movimiento y direccionales, mancha sin línea, mezcla de línea y mancha)",
+  "frase": {
+    "texto": "La creatividad forma parte del orden natural de la vida. La vida es energía: pura energía creativa.",
+    "autor": "Julia Cameron · El camino del artista · Operador #1 Bruno Latour · El Sabio (Banco de Citas por Operador, «Resonancia Cameron»)"
+  },
+  "mision": "Soltar la figura de la semana y dejar que se mueva: dibujar el cuerpo como energía, con trazos largos de carbón y manchas de aguada de un solo color, sin buscar el detalle.",
+  "paleta": [
+    {
+      "nombre": "Sepia tostado",
+      "hex": "#955305"
+    },
+    {
+      "nombre": "Ocre miel",
+      "hex": "#C47B0C"
+    },
+    {
+      "nombre": "Naranja ámbar",
+      "hex": "#F69312"
+    },
+    {
+      "nombre": "Durazno",
+      "hex": "#F7B265"
+    },
+    {
+      "nombre": "Crema papel",
+      "hex": "#FDEDC9"
+    }
+  ],
+  "datos": [
+    {
+      "texto": "Figuras en movimiento: trazos lineales de carboncillo, líneas de movimiento y líneas direccionales.",
+      "libro": "Esbozar y dibujar",
+      "pagina": 63,
+      "imagen": "esbozar-pag63.webp"
+    },
+    {
+      "texto": "El apunte rápido: síntesis, trazo expresivo y ritmo del movimiento en figuras de pie y en movimiento.",
+      "libro": "Chris Armand · Taller de las Artes – Dibujo I",
+      "pagina": 27,
+      "imagen": "taller-pag27.webp"
+    },
+    {
+      "texto": "Figura con lápices acuarelables en monocolor y a todo color: mancha tipo aguada, dibujo y pintura juntos.",
+      "libro": "Parramón · Así se pinta con lápices de colores",
+      "pagina": 24,
+      "imagen": "lapices-pag24.webp"
+    }
+  ],
+  "formato": "horizontal (16:9)",
+  "moodboard": "moodboard.webp",
+  "nota_moodboard": "ChatGPT bloqueado por límite de adjuntos hasta 2026-11-08 04:15; moodboard generado con el generador de imágenes de Grok Bot usando 2 de las 3 referencias (Esbozar y dibujar pág. 63 y Taller de las Artes pág. 27); con la tercera (Parramón Lápices pág. 24) el generador rechazó el pedido por política de contenido."
+}
