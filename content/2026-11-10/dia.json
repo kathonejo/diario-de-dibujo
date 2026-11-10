@@ -1,0 +1,70 @@
+{
+  "fecha": "2026-11-10",
+  "tema": "Anatomía animal: el cuello del caballo y del perro (braquiocefálico, esternocefálico, esplenio y surco yugular)",
+  "frase": {
+    "texto": "La imagen de un ser da un asidero sobre ese ser; el poseedor de una imagen puede influir sobre lo que ella representa.",
+    "autor": "Salomon Reinach · L'Art et la Magie, 1903 · Operador #6 Susan Hiller · La Bricoleur (Banco de Citas por Operador, Resonancia Reinach)"
+  },
+  "mision": "Agarrar al animal por el cuello: encontrar las 3 tiras musculares que sostienen y mueven la cabeza, y dibujarlas tan claras que la imagen te dé un asidero sobre el animal vivo.",
+  "paleta": [
+    {
+      "nombre": "Púrpura",
+      "hex": "#8A1E95"
+    },
+    {
+      "nombre": "Azul cobalto",
+      "hex": "#3145B6"
+    },
+    {
+      "nombre": "Oliva",
+      "hex": "#A2A300"
+    },
+    {
+      "nombre": "Amarillo limón claro",
+      "hex": "#FDFD62"
+    },
+    {
+      "nombre": "Gris perla",
+      "hex": "#D4CDD4"
+    }
+  ],
+  "paleta_nombre": "Movilizantes: púrpura, cobalto, oliva, limón y gris perla",
+  "paleta_fuente": "La armonía en el color – Nuevas tendencias, pág. 63 del PDF (pág. 61 impresa, «Movilizantes»: filas C. dividido y Neutral)",
+  "datos": [
+    {
+      "texto": "Esplenio del caballo: músculo plano y triangular entre la nuca, la cruz y las vértebras del cuello; levanta la cabeza.",
+      "libro": "Goldfinger · Animal Anatomy for Artists",
+      "pagina": 59,
+      "paginas_impresas": [
+        44
+      ],
+      "imagen": "goldfinger-pag59.webp"
+    },
+    {
+      "texto": "Braquiocefálico en caballo, buey y perro: correa larga de la cabeza al brazo, pasa por delante del hombro.",
+      "libro": "Goldfinger · Animal Anatomy for Artists",
+      "pagina": 62,
+      "paginas_impresas": [
+        47
+      ],
+      "imagen": "goldfinger-pag62.webp"
+    },
+    {
+      "texto": "Esternocefálico: tira angosta del esternón a la mandíbula o al cráneo; los dos lados se juntan abajo y se separan arriba.",
+      "libro": "Goldfinger · Animal Anatomy for Artists",
+      "pagina": 65,
+      "paginas_impresas": [
+        50
+      ],
+      "imagen": "goldfinger-pag65.webp"
+    }
+  ],
+  "registro": "limpio tipo v3",
+  "registro_motivo": "Día de anatomía y estructura: figuras separadas y línea legible para leer cada músculo como una forma clara.",
+  "formato": "vertical (3:4)",
+  "moodboard": "moodboard.webp",
+  "moodboard_metodo": "Imagen nueva generada con el generador de imágenes de Grok Bot, con las 3 páginas adjuntas (ChatGPT no se usó por tiempo). v1 elegida; v2 casi idéntica. Error conocido: el azul del caballo del medio está en la parte de arriba del cuello; el esternocefálico real va por abajo.",
+  "moodboard_version": 1,
+  "drive_folder": "https://drive.google.com/drive/folders/1Yr7tmBMAEDD8Lv5cuWVkyCKdstL0PnZP",
+  "drive_folder_id": "1Yr7tmBMAEDD8Lv5cuWVkyCKdstL0PnZP"
+}
