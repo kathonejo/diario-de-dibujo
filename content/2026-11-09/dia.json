@@ -1,0 +1,76 @@
+{
+  "fecha": "2026-11-09",
+  "tema": "Anatomía humana: el cuello (esternocleidomastoideo, músculos de la nuca y escalenos)",
+  "frase": {
+    "texto": "El artista es el vínculo de vínculos.",
+    "autor": "Claudia Rodríguez-Ponga Linares · Pequeño tratado sobre arte y magia, Cap. 1 · Operador #5 Tunga · El Bricoleur (Banco de Citas por Operador, Cita principal / Cita 6)"
+  },
+  "mision": "Dibujar el cuello como el vínculo vivo entre la cabeza y el torso: el esternocleidomastoideo gira y flexiona, la nuca extiende, los escalenos anclan el cuello a las primeras costillas.",
+  "paleta": [
+    {
+      "nombre": "Verde oliva",
+      "hex": "#75A328"
+    },
+    {
+      "nombre": "Verde limón",
+      "hex": "#A1DB39"
+    },
+    {
+      "nombre": "Crema clara",
+      "hex": "#F3FEE0"
+    },
+    {
+      "nombre": "Gris piedra",
+      "hex": "#9DA09F"
+    },
+    {
+      "nombre": "Gris grafito",
+      "hex": "#54535A"
+    }
+  ],
+  "paleta_nombre": "Orientadores en neutro: oliva, limón y grises",
+  "paleta_fuente": "La armonía en el color – Nuevas tendencias, pág. 71 del PDF (pág. 69 impresa, «Orientadores», fila Neutral)",
+  "datos": [
+    {
+      "texto": "Estudio de perfil según Leonardo: esternocleidomastoideo, complejo, esplenio, trapecio y escalenos nombrados.",
+      "libro": "Moreaux · Anatomía artística",
+      "pagina": 312,
+      "imagen": "moreaux-pag312.webp",
+      "pagina_pdf": 312,
+      "paginas_impresas": [
+        316
+      ],
+      "como_leer": "**Moreaux · PDF 312, impresa 316, Fig. 422:** elijo esta página porque muestra el cuello de perfil con el esternocleidomastoideo, el trapecio y los escalenos nombrados sobre un estudio de Leonardo. Es el mapa de lo que vas a reconocer bajo la piel."
+    },
+    {
+      "texto": "Músculos de la nuca: espleni, complejo mayor, trapecio y angular del omóplato; un solo esplenio inclina la cabeza y gira la cara.",
+      "libro": "Moreaux · Anatomía artística",
+      "pagina": 316,
+      "imagen": "moreaux-pag316.webp",
+      "pagina_pdf": 316,
+      "paginas_impresas": [
+        320
+      ],
+      "como_leer": "**Moreaux · PDF 316, impresa 320, Figs. 427–428:** elijo esta página porque demuestra los músculos de la nuca y el texto explica la acción: un solo esplenio inclina la cabeza y le gira la cara."
+    },
+    {
+      "texto": "Región profunda lateral: escalenos anterior, medio y posterior, de frente y de perfil, desde las vértebras cervicales hasta la primera costilla.",
+      "libro": "Moreaux · Anatomía artística",
+      "pagina": 318,
+      "imagen": "moreaux-pag318.webp",
+      "pagina_pdf": 318,
+      "paginas_impresas": [
+        322
+      ],
+      "como_leer": "**Moreaux · PDF 318, impresa 322, Fig. 432:** elijo esta página porque muestra los escalenos uniendo las vértebras cervicales con la primera costilla. Demuestra que el cuello queda anclado al tórax."
+    }
+  ],
+  "registro": "limpio tipo v3",
+  "registro_motivo": "Hoy se estudian anatomía, estructura y línea del cuello; el registro limpio (figuras separadas y línea legible) permite leer cada músculo como una forma clara.",
+  "formato": "horizontal (16:9)",
+  "moodboard": "moodboard.webp",
+  "moodboard_metodo": "Imagen nueva generada con GenerateImage (v3 aceptada). v1 tenía lavado verde en el cráneo; v2 usaba calaveras y repetía el perfil. Las 3 páginas de Moreaux se adjuntaron y fueron aceptadas.",
+  "drive_folder": "https://drive.google.com/drive/folders/1FelyNwT1xqg5wq_ak0N61iiODeBrCXfs",
+  "drive_folder_id": "1FelyNwT1xqg5wq_ak0N61iiODeBrCXfs",
+  "moodboard_version": 3
+}
