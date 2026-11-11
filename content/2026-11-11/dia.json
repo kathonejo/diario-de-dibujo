@@ -1,0 +1,63 @@
+{
+  "fecha": "2026-11-11",
+  "tema": "Tema técnico del mes (noviembre: la mancha y la aguada): aguada plana, aguada degradada, tres valores con agua y sólidos por capas; dibujar con la mancha sin línea",
+  "frase": {
+    "texto": "La posición del artista es humilde. En esencia no es más que un canal.",
+    "autor": "Julia Cameron · El camino del artista (Resonancia Cameron, Operador #3 Suely Rolnik · La Bruja, Banco de Citas por Operador)"
+  },
+  "mision": "Ser canal del agua: preparar la mancha, apoyar el pincel y dejar que el agua haga el borde, sin perseguirla ni corregirla.",
+  "paleta": [
+    {
+      "nombre": "Sepia profundo",
+      "hex": "#60422A"
+    },
+    {
+      "nombre": "Ocre tostado",
+      "hex": "#B36D0F"
+    },
+    {
+      "nombre": "Gris piedra cálido",
+      "hex": "#ADA9A3"
+    },
+    {
+      "nombre": "Lino crema",
+      "hex": "#E8E3DA"
+    },
+    {
+      "nombre": "Durazno claro",
+      "hex": "#FAB25A"
+    }
+  ],
+  "paleta_nombre": "Neutros cálidos de sepia",
+  "paleta_fuente": "La armonía en el color – Nuevas tendencias, pág. 55 del PDF (filas Neutral)",
+  "datos": [
+    {
+      "texto": "Dibujo a la aguada: caballos y paisaje hechos solo con mancha monocroma, sin contorno.",
+      "libro": "El gran libro del dibujo — José M. Parramón",
+      "pagina": 43,
+      "imagen": "parramon-pag43.webp"
+    },
+    {
+      "texto": "Técnicas de la aguada: aguada plana y degradada paso a paso, con el papel inclinado.",
+      "libro": "El gran libro del dibujo — José M. Parramón",
+      "pagina": 44,
+      "imagen": "parramon-pag44.webp"
+    },
+    {
+      "texto": "Naturaleza muerta de formas básicas (cubo, cilindro, prisma, pirámide) construida por capas de aguada.",
+      "libro": "El gran libro del dibujo — José M. Parramón",
+      "pagina": 48,
+      "paginas_impresas": [
+        101
+      ],
+      "imagen": "parramon-pag48.webp"
+    }
+  ],
+  "registro": "pictórico tipo v4",
+  "registro_motivo": "Día de mancha y aguada: valor suave, bordes que se disuelven y capas de agua; el registro limpio no mostraría eso.",
+  "formato": "cuadrado (1:1)",
+  "moodboard": "moodboard.webp",
+  "moodboard_metodo": "Imagen nueva generada con el generador de imágenes de Grok Bot con las 3 páginas adjuntas (ChatGPT no se usó por tiempo). Nota: los 3 rectángulos planos salieron en 3 colores de la paleta en vez de 3 valores de un color.",
+  "drive_folder": "https://drive.google.com/drive/folders/1jtjknCrzW2qpXvuMm7-PAf6rYtuW-uB8",
+  "drive_folder_id": "1jtjknCrzW2qpXvuMm7-PAf6rYtuW-uB8"
+}
