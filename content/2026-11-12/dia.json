@@ -1,0 +1,70 @@
+{
+  "fecha": "2026-11-12",
+  "tema": "Tema técnico del mes + creatividad (noviembre: la mancha y la aguada): texturas con agua (abrir blancos, reserva con cera, pincel seco, sal, agua limpia) y el árbol inventado como masa en 3 valores",
+  "frase": {
+    "texto": "Negarse a ser creativo es obstinarse en contra de nuestra propia naturaleza.",
+    "autor": "Julia Cameron · El camino del artista (Resonancia Cameron, Operador #9 Taisha Abelar · La Atención, Banco de Citas por Operador)"
+  },
+  "mision": "No pelear con el agua: dejar que la textura aparezca (sal, pincel seco, cera, gotas) y convertir ese accidente en un árbol inventado.",
+  "paleta": [
+    {
+      "nombre": "Verde hoja oscuro",
+      "hex": "#509238"
+    },
+    {
+      "nombre": "Verde savia",
+      "hex": "#68C338"
+    },
+    {
+      "nombre": "Verde brote pálido",
+      "hex": "#E7FCD5"
+    },
+    {
+      "nombre": "Gris neblina",
+      "hex": "#B2B1B6"
+    },
+    {
+      "nombre": "Gris carbón",
+      "hex": "#53565B"
+    }
+  ],
+  "paleta_nombre": "Verdes en neutro",
+  "paleta_fuente": "La armonía en el color – Nuevas tendencias, pág. 75 del PDF (pág. 73 impresa), filas Neutral",
+  "datos": [
+    {
+      "texto": "Técnicas de la aguada: abrir blancos con papel absorbente y pincel sobre la aguada húmeda; nubes y reservas.",
+      "libro": "El gran libro del dibujo — José M. Parramón",
+      "pagina": 45,
+      "paginas_impresas": [
+        98
+      ],
+      "imagen": "parramon-pag45.webp"
+    },
+    {
+      "texto": "La técnica de la aguada en la práctica: reserva con cera, trementina, pincel seco (frottis), textura con agua y efectos con sal de cocina.",
+      "libro": "El gran libro del dibujo — José M. Parramón",
+      "pagina": 46,
+      "paginas_impresas": [
+        99
+      ],
+      "imagen": "parramon-pag46.webp"
+    },
+    {
+      "texto": "Paisajes: Árboles — el volumen de un árbol como masa e interacción de formas (masas de hojas sin detalle).",
+      "libro": "Esbozar y dibujar",
+      "pagina": 70,
+      "paginas_impresas": [
+        136,
+        137
+      ],
+      "imagen": "esbozar-pag70.webp"
+    }
+  ],
+  "registro": "pictórico tipo v4",
+  "registro_motivo": "Día de textura, mancha y bordes que se disuelven; el registro limpio no mostraría la textura del agua.",
+  "formato": "horizontal (4:3)",
+  "moodboard": "moodboard.webp",
+  "moodboard_metodo": "Imagen nueva generada con el generador de imágenes de Grok Bot con las 3 páginas adjuntas (no se usó ChatGPT para terminar antes de las 6:30). Primera versión descartada porque salió con texto y gotas literales.",
+  "drive_folder": "https://drive.google.com/drive/folders/1B3wcR-b8ZZgqv_X0Z-58qNJUdVmFAvtS",
+  "drive_folder_id": "1B3wcR-b8ZZgqv_X0Z-58qNJUdVmFAvtS"
+}
