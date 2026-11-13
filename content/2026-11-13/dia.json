@@ -1,0 +1,70 @@
+{
+  "fecha": "2026-11-13",
+  "tema": "Integración + frase (noviembre: la mancha y la aguada): la figura en mancha sin línea — de los sólidos al animal y al cuerpo humano, por pasadas y en 3 valores",
+  "frase": {
+    "texto": "El cartógrafo absorbe material de cualquier procedencia siempre y cuando sirva a su regla de oro: defender la vida.",
+    "autor": "Suely Rolnik, citada por Claudia Rodríguez-Ponga Linares · Pequeño tratado sobre arte y magia, Cap. 1 (Operador #9 Taisha Abelar · La Atención, Banco de Citas por Operador)"
+  },
+  "mision": "Tomar todo lo de la semana (capas de aguada, tres valores, bordes, texturas, anatomía) y usar solo lo que sirva para que una figura hecha de mancha se sienta viva.",
+  "paleta": [
+    {
+      "nombre": "Caramelo oscuro",
+      "hex": "#A16205"
+    },
+    {
+      "nombre": "Bermellón tostado",
+      "hex": "#C04927"
+    },
+    {
+      "nombre": "Lavanda azul",
+      "hex": "#99A2F1"
+    },
+    {
+      "nombre": "Durazno crema",
+      "hex": "#FEE4CF"
+    },
+    {
+      "nombre": "Gris paloma",
+      "hex": "#ABAAAF"
+    }
+  ],
+  "paleta_nombre": "Tranquilos en neutro",
+  "paleta_fuente": "La armonía en el color – Nuevas tendencias, pág. 99 del PDF (pág. 97 impresa, «Tranquilos»), filas Complementario dividido, De choque y Neutral",
+  "datos": [
+    {
+      "texto": "La técnica de la aguada en la práctica: cubo, cilindro, pirámide y prisma resueltos solo con aguada (fig. 353-357).",
+      "libro": "El gran libro del dibujo — José M. Parramón",
+      "pagina": 47,
+      "paginas_impresas": [
+        100
+      ],
+      "imagen": "parramon-pag47.webp"
+    },
+    {
+      "texto": "Fig. 507: figuras humanas y ciervos hechos solo con mancha, sin contorno, con bordes que se pierden (alumnos de Bellas Artes de Barcelona).",
+      "libro": "El gran libro del dibujo — José M. Parramón",
+      "pagina": 82,
+      "paginas_impresas": [
+        152
+      ],
+      "imagen": "parramon-pag82.webp"
+    },
+    {
+      "texto": "Luminosidad de la sanguina: un caballo construido en 3 pasos (mancha general, masas, acentos).",
+      "libro": "Taller de las Artes – Dibujo I: Iniciación — Chris Armand",
+      "pagina": 51,
+      "paginas_impresas": [
+        96,
+        97
+      ],
+      "imagen": "taller-pag51.webp"
+    }
+  ],
+  "registro": "pictórico tipo v4",
+  "registro_motivo": "La figura se construye solo con mancha, valor y bordes; el registro limpio de línea enseñaría lo contrario.",
+  "formato": "vertical (3:4)",
+  "moodboard": "moodboard.webp",
+  "moodboard_metodo": "Imagen nueva generada con el generador de imágenes de Grok Bot con las 3 páginas adjuntas (no se usó ChatGPT, para terminar antes de las 6:30).",
+  "drive_folder": "https://drive.google.com/drive/folders/1bG1pNO4DIrgUdQti8rIvZIde5pB6jGGM",
+  "drive_folder_id": "1bG1pNO4DIrgUdQti8rIvZIde5pB6jGGM"
+}
