@@ -1,0 +1,70 @@
+{
+  "fecha": "2026-11-14",
+  "tema": "Experimental (noviembre: la mancha y la aguada): de la mancha suelta al carácter — mancha accidental que evoca, garabato libre con unidad y apunte rápido",
+  "frase": {
+    "texto": "El escultor prehistórico no estaba preocupado por agradar, sino por evocar.",
+    "autor": "Salomon Reinach · L'Art et la Magie, 1903 (Resonancia Reinach, Operador #2 Alan Moore · El Druida, Banco de Citas por Operador)"
+  },
+  "mision": "Dibujar para evocar, no para agradar: dejar que la mancha y el garabato libre encuentren el carácter antes que el acabado.",
+  "paleta": [
+    {
+      "nombre": "Verde bosque",
+      "hex": "#338227"
+    },
+    {
+      "nombre": "Oliva ácido",
+      "hex": "#ABB00E"
+    },
+    {
+      "nombre": "Magenta uva",
+      "hex": "#AB19A2"
+    },
+    {
+      "nombre": "Lila glicina",
+      "hex": "#D6AEE3"
+    },
+    {
+      "nombre": "Gris tiza",
+      "hex": "#E2E3DE"
+    }
+  ],
+  "paleta_nombre": "Energéticos",
+  "paleta_fuente": "La armonía en el color – Nuevas tendencias, pág. 115 del PDF (pág. 113 impresa, «Energéticos»), filas Complementario dividido, De choque y Neutral",
+  "datos": [
+    {
+      "texto": "Louis Soutter: cabeza hecha con garabatos libres que conserva la unidad del dibujo.",
+      "libro": "Modos de dibujar 4: Retratos — Hans Daucher",
+      "pagina": 66,
+      "paginas_impresas": [
+        102
+      ],
+      "imagen": "daucher-pag66.webp"
+    },
+    {
+      "texto": "«Carácter»: gorila a carbonilla con líneas gestuales y claros sacados con goma; la atención va a la cara y la mirada.",
+      "libro": "Esbozar y dibujar",
+      "pagina": 84,
+      "paginas_impresas": [
+        168,
+        169
+      ],
+      "imagen": "esbozar-pag84.webp"
+    },
+    {
+      "texto": "«el apunte»: dibujo rápido y espontáneo, sin miedo al acabado (figs. 511-512).",
+      "libro": "El gran libro del dibujo — José M. Parramón",
+      "pagina": 86,
+      "paginas_impresas": [
+        156
+      ],
+      "imagen": "parramon-pag86.webp"
+    }
+  ],
+  "registro": "pictórico tipo v4",
+  "registro_motivo": "Se trabaja con mancha, masa y bordes sueltos; el registro limpio pediría control y acabado, lo contrario de la misión.",
+  "formato": "horizontal (16:9)",
+  "moodboard": "moodboard.webp",
+  "moodboard_metodo": "Imagen nueva generada con el generador de imágenes de Grok Bot con las 3 páginas adjuntas (no se usó ChatGPT, para terminar antes de las 6:30).",
+  "drive_folder": "https://drive.google.com/drive/folders/1A91hWXcHP-duts7MhmjL3pSm6I21tIyJ",
+  "drive_folder_id": "1A91hWXcHP-duts7MhmjL3pSm6I21tIyJ"
+}
