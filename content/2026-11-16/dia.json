@@ -1,0 +1,58 @@
+{
+  "fecha": "2026-11-16",
+  "tema": "Anatomía humana: la espalda (columna, omóplatos, trapecio y dorsal ancho)",
+  "frase": {
+    "texto": "La crítica moderna se convirtió en una droga poderosa que resta realidad en lugar de sumarla.",
+    "autor": "Claudia Rodríguez-Ponga Linares citando a Bruno Latour · Pequeño tratado sobre arte y magia, Cap. 1 (Operador #1 Bruno Latour · El Sabio, Cita secundaria, Banco de Citas por Operador)"
+  },
+  "mision": "Sumar realidad, no restarla: construir la espalda capa por capa (ejes, omóplatos, trapecio, dorsal) sin borrar ni criticar a mitad de camino.",
+  "paleta": [
+    {
+      "nombre": "Amarillo limón",
+      "hex": "#EBE900"
+    },
+    {
+      "nombre": "Verde hoja",
+      "hex": "#36992F"
+    },
+    {
+      "nombre": "Orquídea",
+      "hex": "#C984C3"
+    },
+    {
+      "nombre": "Ciruela magenta",
+      "hex": "#991584"
+    },
+    {
+      "nombre": "Gris lavanda",
+      "hex": "#D9D8DD"
+    }
+  ],
+  "paleta_fuente": "La armonía en el color – Nuevas tendencias, pág. 119 del PDF (pág. 117 impresa, «Amortiguados»): fila C. dividido (amarillo, verde, orquídea), De choque (ciruela) y Neutral (gris). Hex muestreados del escaneo.",
+  "datos": [
+    {
+      "texto": "El trapecio: una lámina en forma de rombo que va de la nuca a mitad de la espalda y a los dos hombros (figs. 242-243, vista posterior y lateral).",
+      "libro": "Anatomía artística del hombre — Arnould Moreaux",
+      "pagina": "174 del PDF (pág. 178 impresa, figs. 242-243, «El trapecio»)",
+      "imagen": "moreaux-pag174.webp"
+    },
+    {
+      "texto": "El dorsal ancho: abanico que nace en la zona lumbar y sube a la axila; abajo, el omóplato y sus inserciones vistos desde varios ángulos (figs. 250-254).",
+      "libro": "Anatomía artística del hombre — Arnould Moreaux",
+      "pagina": "180 del PDF (pág. 184 impresa, «Dorsal ancho»)",
+      "imagen": "moreaux-pag180.webp"
+    },
+    {
+      "texto": "Acción de la espalda: los omóplatos se acercan a la columna o se separan; espalda dibujada con el relieve del omóplato, el surco de la columna y el borde del dorsal (figs. 257-259).",
+      "libro": "Anatomía artística del hombre — Arnould Moreaux",
+      "pagina": "184 del PDF (pág. 188 impresa, «Acción»)",
+      "imagen": "moreaux-pag184.webp"
+    }
+  ],
+  "registro": "limpio tipo v3",
+  "formato": "cuadrado 1:1",
+  "moodboard": "moodboard.webp",
+  "moodboard_generador": "generador de imágenes de Grok Bot (no ChatGPT)",
+  "drive_folder": "https://drive.google.com/drive/folders/1bUYsPuBmk0nLWOkF16V3OxekFtO026na",
+  "nota": "El moodboard se generó usando como inspiración Moreaux 174, 180 y Parramón 107; Parramón 107 se reemplazó después en las referencias porque ya estaba usada."
+}
