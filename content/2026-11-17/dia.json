@@ -1,0 +1,54 @@
+{
+  "fecha": "2026-11-17",
+  "tema": "Anatomía animal: el hombro del caballo y del perro (escápula, articulación del hombro y deltoides)",
+  "frase": {
+    "texto": "El arte humano se diferencia del arte vampyroteuthico porque mantiene el vínculo con los objetos, con la tradición material, con el cuerpo, con el mundo tangible.",
+    "autor": "Claudia Rodríguez-Ponga Linares · Pequeño tratado sobre arte y magia, Cap. 1 · Operador #8 Vampyroteuthis Infernalis · La Ficción (Banco de Citas por Operador, Cita secundaria)"
+  },
+  "mision": "Que el hombro del animal se sienta como un cuerpo tangible: una paleta de hueso (la escápula) que gira, con músculos que la mueven.",
+  "paleta": [
+    {
+      "nombre": "Lino gris",
+      "hex": "#EAEBE5"
+    },
+    {
+      "nombre": "Gris plata",
+      "hex": "#B5B9BC"
+    },
+    {
+      "nombre": "Gris pizarra",
+      "hex": "#4F575A"
+    },
+    {
+      "nombre": "Verde bosque",
+      "hex": "#4F9137"
+    },
+    {
+      "nombre": "Verde hoja",
+      "hex": "#68C236"
+    }
+  ],
+  "registro": "limpio tipo v3",
+  "moodboard": "moodboard.webp",
+  "generador": "Grok Bot (ChatGPT llegó al límite de archivos)",
+  "datos": [
+    {
+      "texto": "La escápula gira como una paleta sobre las costillas; el ángulo del hombro se abre y se cierra",
+      "libro": "Animal Anatomy for Artists — Eliot Goldfinger",
+      "pagina": 35,
+      "imagen": "goldfinger-pag35.webp"
+    },
+    {
+      "texto": "El deltoides es una cuña sobre la articulación del hombro, en caballo, buey y perro",
+      "libro": "Animal Anatomy for Artists — Eliot Goldfinger",
+      "pagina": 84,
+      "imagen": "goldfinger-pag84.webp"
+    },
+    {
+      "texto": "El apunte rápido de Leonardo lee la masa del hombro en movimiento",
+      "libro": "Taller de las Artes – Dibujo I: Iniciación — Chris Armand",
+      "pagina": 64,
+      "imagen": "taller-pag64.webp"
+    }
+  ]
+}
