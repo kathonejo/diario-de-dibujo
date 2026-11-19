@@ -1,0 +1,56 @@
+{
+  "fecha": "2026-11-19",
+  "tema": "Tema técnico + creatividad (noviembre: la mancha y la aguada): mancha aleatoria (método de Cozens), pincel seco y pincelada irregular, abrir blancos, línea de pincel + aguada",
+  "frase": {
+    "texto": "Negarse a ser creativo es obstinarse en contra de nuestra propia naturaleza.",
+    "autor": "Julia Cameron · El camino del artista (Resonancia Cameron, Operador #9 Taisha Abelar · La Atención, Banco de Citas por Operador)"
+  },
+  "mision": "No pelear con la mancha: dejar que el agua y el azar propongan una forma, y vos solo terminarla con pocos toques.",
+  "paleta": [
+    {
+      "nombre": "Blanco hueso",
+      "hex": "#F6F7F2"
+    },
+    {
+      "nombre": "Gris niebla",
+      "hex": "#D8D9D4"
+    },
+    {
+      "nombre": "Pervinca claro",
+      "hex": "#A5B1EB"
+    },
+    {
+      "nombre": "Azul tinta",
+      "hex": "#4E72B6"
+    },
+    {
+      "nombre": "Siena tostada",
+      "hex": "#A16205"
+    }
+  ],
+  "datos": [
+    {
+      "texto": "Dibujos con manchas: método de Cozens, impresiones y manchas aleatorias completadas hasta volverse un acantilado.",
+      "libro": "Esbozar y dibujar",
+      "pagina": "33 del PDF (62-63 impresas)",
+      "imagen": "esbozar-pag33.webp"
+    },
+    {
+      "texto": "Dibujos a pincel: pincel seco, pinceladas irregulares y combinación de líneas y aguadas en una figura.",
+      "libro": "Esbozar y dibujar",
+      "pagina": "36 del PDF (68-69 impresas)",
+      "imagen": "esbozar-pag36.webp"
+    },
+    {
+      "texto": "Técnicas a la aguada: abrir blancos con papel absorbente en húmedo y en seco, y reservas con goma líquida.",
+      "libro": "El gran libro del dibujo — José M. Parramón",
+      "pagina": "45 del PDF (98 impresa)",
+      "imagen": "parramon-pag45.webp"
+    }
+  ],
+  "registro": "pictórico tipo v4",
+  "formato": "vertical",
+  "moodboard": "moodboard.webp",
+  "drive_folder": "https://drive.google.com/drive/folders/1E3IG8M5quFJas2Ty_lNkIVys216ow-bI",
+  "generador": "ChatGPT"
+}
