@@ -154,12 +154,13 @@ async function getDia(f) {
   return fetch(`/content/${f}/dia.json`).then(r => r.ok ? r.json() : null).catch(() => null).then(d => localizarDia(d));
 }
 
-function hideChrome(on) {
+function hideChrome(on, { top = false } = {}) {
   document.body.classList.toggle('modo-instalacion', on);
-  const t = document.getElementById('timer');
-  if (t) t.hidden = on;
-  const top = document.querySelector('.top');
-  if (top) top.hidden = on;
+  document.body.classList.toggle('inst-lienzo', on && top);
+  const timer = document.getElementById('timer');
+  if (timer) timer.hidden = on;
+  const nav = document.querySelector('.top');
+  if (nav) nav.hidden = on && top;
 }
 
 function estrellas(n) {
@@ -186,7 +187,6 @@ async function pantallaInicio(app) {
         <h1>${t('site')}</h1>
       </div>
     </header>
-    ${selectorHTML('inst-lang')}
     <p class="inst-fecha">${largo(u.fecha)}</p>
     <h2 class="inst-tema">${esc(d.tema)}</h2>
     <ol class="inst-steps inst-steps-solo">
@@ -209,6 +209,7 @@ async function pantallaInicio(app) {
       <a class="btn sec" href="/instalacion/mural">${t('i.ver.mural')}</a>
     </div>
     <p class="inst-hint">${t('i.hint', { n: minParam() })}</p>
+    <footer class="site-foot">${t('foot')}</footer>
   </section>`;
   document.getElementById('inst-dibujar').onclick = () => pantallaDibujo(app, { fecha: u.fecha, tema: d.tema, temaEs: d._es?.tema ?? d.tema, mood: d.moodboard, ref, paleta: d.paleta });
 }
@@ -226,9 +227,14 @@ async function pantallaDibujo(app, ctx) {
   let undoStack = [];
   let alive = true;
 
+  hideChrome(true, { top: true });
   app.innerHTML = `
   <section class="inst-draw">
     <div class="inst-draw-top">
+      <nav class="inst-back">
+        <a href="/">${t('nav.hoy')}</a>
+        <a href="/instalacion">${t('i.volver')}</a>
+      </nav>
       <div class="inst-tema-mini">
         <img src="/mascota.png" alt="" width="36" height="36">
         <div><small>${largo(ctx.fecha)}</small><strong>${esc(ctx.tema)}</strong></div>
@@ -652,7 +658,6 @@ export async function mural(app) {
         <button class="btn sec on" id="m-hoy">${t('m.hoy')}</button>
         <button class="btn sec" id="m-todo">${t('todos')}</button>
         <a class="btn" href="/instalacion">${t('i.dibujar')}</a>
-        ${selectorHTML('inst-lang')}
       </div>
     </header>
     <p class="inst-mural-meta" id="m-meta">${t('m.cargando')}</p>

@@ -5,6 +5,7 @@ import { abrirEstudio } from './estudio.js';
 import { getTrabajos, dialogoSubir, borrar, puedeModerar } from './trabajos.js';
 import { principal } from '../api/_trabajo.js';
 import { instalacion, leaveInstalacion } from './instalacion.js';
+import { montarConejito } from './conejito.js';
 import { autoriaHTML, autoriaTexto } from '../api/_autoria.js';
 import { t, initLang, fechaLarga, nombreMes, iniciales, localizarDia, temaIndice } from './i18n.js';
 initLang();
@@ -70,6 +71,7 @@ const miniTrabajo = (l = []) => {
 const lista = dias => `<ul class="lista">${dias.map(d => `<li><a href="/dia/${d.fecha}"><img loading="lazy" src="${img(d.fecha, d.moodboard)}" alt=""><span><small>${largo(d.fecha)}</small><strong>${esc(temaIndice(d))}</strong></span>${miniTrabajo(TR[d.fecha])}</a></li>`).join('')}</ul>`;
 
 const manifiesto = n => `<div class="manifiesto"><img src="/mascota.png" alt=""><p>${t('manifiesto', { n })}</p></div>`;
+const pie = () => `<footer class="site-foot">${t('foot')}</footer>`;
 
 async function home() {
   const [dias, tr] = await Promise.all([getIndex(), getTrabajos()]); TR = tr;
@@ -83,6 +85,16 @@ async function home() {
     <div class="home-banner-cta">
       <a class="btn" href="/instalacion">${t('nav.instalacion')}</a>
     </div>
+    <aside class="home-bunny" aria-live="polite">
+      <p class="home-bunny-bubble"><span class="home-bunny-txt"></span></p>
+      <div class="home-bunny-vid">
+        <video autoplay muted loop playsinline preload="metadata" poster="/conejito-poster.png" width="480" height="316">
+          <source src="/conejito.webm" type="video/webm">
+          <source src="/conejito-chroma.mp4" type="video/mp4">
+        </video>
+        <canvas hidden aria-hidden="true"></canvas>
+      </div>
+    </aside>
   </section>
   <section class="hero">
     <a href="/dia/${u.fecha}" class="mood"><img src="${img(u.fecha, d.moodboard)}" alt="${t('moodboard.alt', { tema: esc(d.tema) })}"></a>
@@ -92,7 +104,9 @@ async function home() {
     <div class="acciones" style="margin-top:1.2rem">
       <a class="btn" href="/dia/${u.fecha}">${t('ir.dia')}</a>
       <a class="btn sec" href="/diario">${t('ver.diario')}</a>
-    </div></div></section>`;
+    </div></div></section>
+  ${pie()}`;
+  montarConejito(app);
 }
 async function diario() {
   const [dias, tr] = await Promise.all([getIndex(), getTrabajos()]); TR = tr;
@@ -113,7 +127,8 @@ async function diario() {
   <section class="archivo">
     <div><h2>${t('calendario')}</h2>${manifiesto(dias.length)}<div id="cal">${calendario(dias)}</div></div>
     <div><h2>${t('todos')}</h2>${lista(dias)}</div>
-  </section>`;
+  </section>
+  ${pie()}`;
 }
 const figTrabajo = (tr, alt, mod) => `<figure class="card trabajo"><img loading="lazy" src="${esc(tr.url)}" alt="${alt}" data-zoom>${tr.nota ? `<figcaption>${esc(tr.nota)}</figcaption>` : ''}${autoriaHTML(tr, t('por'))}${mod ? `<button class="borrar" data-borrar="${esc(tr.id)}" title="${t('borrar')}">✕</button>` : ''}</figure>`;
 async function dia(f) {
@@ -144,7 +159,8 @@ async function dia(f) {
     <section class="mi-trabajo album" id="album"><h2>${t('album')}</h2>${album.length ? `<div class="trabajos">${album.map(tr => figTrabajo(tr, t('album.alt', { a: esc(tr.autor || (tr.publica ? '' : 'Kathonejo')), f }), mod)).join('')}</div>` : `<p class="vacio-t">${t('album.vacio')}</p>`}
       <button class="btn sec" id="album-btn">${t('album.subir')}</button></section>
     <nav class="pn">${prev ? `<a href="/dia/${prev.fecha}">← ${esc(temaIndice(prev))}</a>` : '<span></span>'}${next ? `<a href="/dia/${next.fecha}">${esc(temaIndice(next))} →</a>` : '<span></span>'}</nav>
-  </article>`;
+  </article>
+  ${pie()}`;
 }
 async function route({ scroll = true } = {}) {
   const p = location.pathname, m = p.match(/^\/dia\/(\d{4}-\d{2}-\d{2})\/?$/);
