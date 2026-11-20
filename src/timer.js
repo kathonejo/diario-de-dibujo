@@ -13,7 +13,7 @@ function chime() {
   } catch {}
 }
 export function initTimer(el) {
-  let st = Object.assign({ total: 30*60e3, left: 30*60e3, end: 0, running: false, min: false }, JSON.parse(localStorage.getItem(KEY) || '{}'));
+  let st = Object.assign({ total: 30*60e3, left: 30*60e3, end: 0, running: false, min: true }, JSON.parse(localStorage.getItem(KEY) || '{}'));
   const save = () => localStorage.setItem(KEY, JSON.stringify(st));
   el.innerHTML = `<div class="t-drag" title="${t('t.drag')}" aria-label="${t('t.drag.aria')}">⠿</div><button class="t-min" aria-label="${t('t.min')}">–</button>
     <div class="t-lbl">${t('t.lbl')}</div><div class="t-time" aria-live="polite">30:00</div>

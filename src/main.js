@@ -97,11 +97,13 @@ async function home() {
     </aside>
   </section>
   <section class="hero">
+    <div class="hero-t"><p class="eyebrow">${t('ultimo', { fecha: largo(u.fecha) })}</p><h1>${esc(d.tema)}</h1>${genBadge(d)}</div>
     <a href="/dia/${u.fecha}" class="mood"><img src="${img(u.fecha, d.moodboard)}" alt="${t('moodboard.alt', { tema: esc(d.tema) })}"></a>
-    <div class="hero-t"><p class="eyebrow">${t('ultimo', { fecha: largo(u.fecha) })}</p><h1>${esc(d.tema)}</h1>${genBadge(d)}${frase(d)}
+    <div class="hero-side">
+    ${frase(d)}
     <div class="mision card"><h3>${t('mision')}</h3><p>${esc(d.mision)}</p></div>
     ${manifiesto(dias.length)}
-    <div class="acciones" style="margin-top:1.2rem">
+    <div class="acciones">
       <a class="btn" href="/dia/${u.fecha}">${t('ir.dia')}</a>
       <a class="btn sec" href="/diario">${t('ver.diario')}</a>
     </div></div></section>
