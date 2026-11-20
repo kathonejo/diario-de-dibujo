@@ -93,7 +93,8 @@ main{max-width:1100px;margin:0 auto;padding:0 1.4rem}
 .manifiesto p{margin:0;font-size:.92rem;color:var(--ink);line-height:1.55}
 .manifiesto strong{color:var(--ink);font-weight:500}
 
-.home-banner{border:1.5px solid #fff;padding:1.25rem 1.4rem 1.35rem;margin:1.1rem 0 1.6rem;max-width:920px;text-align:left}
+.home-intro{position:relative;margin:1.1rem 0 1.6rem;max-width:920px}
+.home-banner{border:1.5px solid #fff;padding:1.25rem 1.4rem 1.35rem;margin:0;text-align:left}
 .home-banner-lead{margin:0;font-family:var(--serif);font-size:clamp(1.05rem,2.2vw,1.28rem);line-height:1.4;color:#fff}
 .home-banner-extra{margin:.85rem 0 0;font-family:var(--mono);font-size:.92rem;line-height:1.45;color:#fff;letter-spacing:.02em}
 .home-banner-mantra{margin:1.05rem 0 0;padding-top:.95rem;border-top:1px solid rgba(255,255,255,.45);font-family:var(--serif);font-style:italic;font-size:clamp(1.05rem,2.3vw,1.3rem);line-height:1.35;color:#fff}
@@ -461,3 +462,28 @@ body.en-estudio #timer{z-index:110}
   .es-estado{text-align:left}
   .focus .f-dibujar{top:110px;right:12px}
 }
+
+/* Conejo del Diario (sin fondo) con globo de frases — src/mascota.js */
+.mascota{display:flex;align-items:flex-end;justify-content:flex-end;gap:.55rem;margin:.7rem .2rem 0 0;position:relative;z-index:2;pointer-events:none;min-height:7.2rem}
+.mascota-btn{pointer-events:auto;position:relative;flex:none;width:130px;height:86px;padding:0;border:0;background:none;cursor:pointer;-webkit-tap-highlight-color:transparent;border-radius:0}
+.mascota-btn:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+.mascota-img,.mascota-video{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;display:block;background:none;border:0;border-radius:0;box-shadow:none}
+.mascota-video{opacity:0;pointer-events:none}
+.mascota.con-video .mascota-video{opacity:1}
+.mascota.con-video .mascota-img{opacity:0}
+.mascota-globo{position:relative;align-self:center;background:var(--paper);color:var(--blue);border:1px solid var(--ink);padding:.6rem .8rem;max-width:min(280px,calc(100% - 150px));margin-bottom:.6rem;pointer-events:auto;transition:opacity .35s ease,transform .35s ease}
+.mascota-globo::after{content:"";position:absolute;right:-9px;top:55%;width:0;height:0;border:8px solid transparent;border-left:9px solid var(--paper);border-right:0}
+.mascota-globo.sale{opacity:0;transform:translateY(3px)}
+.mascota-txt{margin:0;font-family:var(--mono);font-size:.8rem;line-height:1.4;letter-spacing:.01em}
+.es-cita .mascota-txt{font-family:var(--serif);font-style:italic;font-size:1rem;line-height:1.25;letter-spacing:0}
+.mascota-aut{margin:.3rem 0 0;font-family:var(--mono);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;font-weight:500}
+.mascota-aut:empty{display:none}
+@media(min-width:1100px){
+  .mascota{position:absolute;right:1.1rem;bottom:-14px;margin:0;min-height:0}
+  .mascota-btn{width:225px;height:150px}
+  .mascota-globo{max-width:290px;align-self:flex-end;margin-bottom:1.5rem}
+  .home-banner-cta{min-height:9.2rem;align-items:flex-start}
+  .mascota-txt{font-size:.85rem}
+  .es-cita .mascota-txt{font-size:1.05rem} /* hueco en la esquina de abajo a la derecha para el conejo y su globo */
+}
+@media(prefers-reduced-motion:reduce){.mascota-globo{transition:none}}

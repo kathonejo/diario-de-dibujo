@@ -6,6 +6,7 @@ import { getTrabajos, dialogoSubir, borrar, puedeModerar } from './trabajos.js';
 import { principal } from '../api/_trabajo.js';
 import { instalacion, leaveInstalacion } from './instalacion.js';
 import { autoriaHTML, autoriaTexto } from '../api/_autoria.js';
+import { mascotaHTML, activarMascota } from './mascota.js';
 import { tituloHTML } from './titulo.js';
 import { t, initLang, fechaLarga, nombreMes, iniciales, localizarDia, temaIndice } from './i18n.js';
 initLang();
@@ -76,7 +77,7 @@ async function home() {
   const [dias, tr] = await Promise.all([getIndex(), getTrabajos()]); TR = tr;
   if (!dias.length) { app.innerHTML = `<section class="vacio"><h1>${t('home.vacio.h')}</h1><p>${t('home.vacio.p')}</p></section>`; return; }
   const u = dias[0], d = await getDia(u.fecha);
-  app.innerHTML = `<section class="home-banner">
+  app.innerHTML = `<div class="home-intro"><section class="home-banner">
     <p class="home-banner-lead">${t('home.lead')}</p>
     <p class="home-banner-extra">${t('home.extra1')}</p>
     <p class="home-banner-extra">${t('home.extra2')}</p>
@@ -84,7 +85,7 @@ async function home() {
     <div class="home-banner-cta">
       <a class="btn" href="/instalacion">${t('nav.instalacion')}</a>
     </div>
-  </section>
+  </section>${mascotaHTML()}</div>
   <section class="hero">
     <a href="/dia/${u.fecha}" class="mood"><img src="${img(u.fecha, d.moodboard)}" alt="${t('moodboard.alt', { tema: esc(d.tema) })}"></a>
     <div class="hero-t"><p class="eyebrow">${t('ultimo', { fecha: largo(u.fecha) })}</p>${tituloHTML(d.tema)}${genBadge(d)}${frase(d)}
@@ -94,6 +95,7 @@ async function home() {
       <a class="btn" href="/dia/${u.fecha}">${t('ir.dia')}</a>
       <a class="btn sec" href="/diario">${t('ver.diario')}</a>
     </div></div></section>`;
+  activarMascota(app);
 }
 async function diario() {
   const [dias, tr] = await Promise.all([getIndex(), getTrabajos()]); TR = tr;
