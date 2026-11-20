@@ -1,0 +1,24 @@
+{
+  "en": {
+    "tema": "Technical theme of the month (November: blots and washes): wet-on-wet and wet-on-dry — soft and hard edges, glazing in layers and planes of depth with washes",
+    "frase": {"texto": "Each material provokes different things; I go through the material and the material goes through me, it responds.", "autor": "Yoann Saura, via Claudia Rodríguez-Ponga Linares · Pequeño tratado sobre arte y magia (Ch. 2)"},
+    "mision": "Listen to how the water responds: the same shape on wet paper and on dry paper, and transparent layers that wait for the previous one to dry.",
+    "paleta": {"Blanco perla": "Pearl white", "Gris neblina claro": "Light haze gray", "Oliva dorado": "Golden olive", "Violeta profundo": "Deep violet", "Violeta encantado": "Enchanted violet"},
+    "datos": [
+      {"texto": "Ink and watercolor: the first wash strokes go wet-on-wet to blend the tones; once dry, diluted ink is added on top in darker tones.", "pagina": "37 of the PDF (printed 70-71)"},
+      {"texto": "Watercolor pencils: you paint with water and a brush (the sky) and, once the washed areas have dried, you work on top again with firm strokes (figs. 301-303).", "pagina": "40 of the PDF (printed 93)"},
+      {"texto": "Ways of solving depth: overlapping planes and graded tones; a sepia wash landscape where what is far is pale and what is near is dark.", "pagina": "34 of the PDF (printed 62-63)"}
+    ]
+  },
+  "pt": {
+    "tema": "Tema técnico do mês (novembro: a mancha e a aguada): úmido sobre úmido e úmido sobre seco — bordas suaves e duras, veladuras em camadas e planos de profundidade com a mancha",
+    "frase": {"texto": "Cada material provoca coisas diferentes, eu atravesso o material e o material me atravessa, ele responde.", "autor": "Yoann Saura, via Claudia Rodríguez-Ponga Linares · Pequeño tratado sobre arte y magia (Cap. 2)"},
+    "mision": "Escutar como a água responde: a mesma forma em papel úmido e em papel seco, e camadas transparentes que esperam a anterior secar.",
+    "paleta": {"Blanco perla": "Branco pérola", "Gris neblina claro": "Cinza neblina claro", "Oliva dorado": "Oliva dourado", "Violeta profundo": "Violeta profundo", "Violeta encantado": "Violeta encantado"},
+    "datos": [
+      {"texto": "Tinta e aquarela: as primeiras pinceladas de aguada vão úmido sobre úmido para misturar os tons; depois de seco, tinta diluída por cima em tons mais escuros.", "pagina": "37 do PDF (70-71 impressas)"},
+      {"texto": "Lápis de cor aquareláveis: pinta-se com água e pincel (o céu) e, quando as zonas aguadas secaram, volta-se a trabalhar por cima com traços firmes (figs. 301-303).", "pagina": "40 do PDF (93 impressa)"},
+      {"texto": "Formas de resolver a profundidade: superposição de planos e degradê de tons; uma paisagem à aguada sépia onde o distante é pálido e o próximo, escuro.", "pagina": "34 do PDF (62-63 impressas)"}
+    ]
+  }
+}

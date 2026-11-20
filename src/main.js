@@ -90,12 +90,14 @@ async function home() {
 async function diario() {
   const [dias, tr] = await Promise.all([getIndex(), getTrabajos()]); TR = tr;
   document.title = `${t('nav.diario')} · ${t('site')}`;
-  const orden = [...dias].sort((a,b) => a.fecha.localeCompare(b.fecha));
+  // Más reciente primero.
+  const orden = [...dias].sort((a,b) => b.fecha.localeCompare(a.fecha));
+  const primero = orden[orden.length - 1];
   app.innerHTML = `<section class="obra-head">
     <p class="eyebrow">${t('site')}</p>
     <h1>${t('diario.h')}</h1>
     <p>${t('diario.p')}</p>
-    <span class="cuenta"><i></i>${t('diario.cuenta', { n: orden.length, fecha: orden[0] ? largo(orden[0].fecha) : '—' })}</span>
+    <span class="cuenta"><i></i>${t('diario.cuenta', { n: orden.length, fecha: primero ? largo(primero.fecha) : '—' })}</span>
   </section>
   <div class="mosaico">${orden.map(d => `<a href="/dia/${d.fecha}" title="${esc(temaIndice(d))}">
     <img loading="lazy" src="${img(d.fecha, d.moodboard)}" alt="${esc(temaIndice(d))}">
