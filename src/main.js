@@ -1,8 +1,10 @@
 import './style.css';
 import { initTimer } from './timer.js';
 import { openFocus } from './focus.js';
-import { getTrabajos, dialogoSubir, borrar } from './trabajos.js';
+import { getTrabajos, dialogoSubir, borrar, puedeModerar } from './trabajos.js';
+import { separar, principal } from '../api/_trabajo.js';
 import { instalacion, leaveInstalacion } from './instalacion.js';
+import { autoriaHTML, autoriaTexto } from '../api/_autoria.js';
 import { t, initLang, fechaLarga, nombreMes, iniciales, localizarDia, temaIndice } from './i18n.js';
 initLang();
 const app = document.getElementById('app');
@@ -54,13 +56,18 @@ function calendario(dias) {
   for (let i = 1; i <= n; i++) {
     const f = `${y}-${String(m+1).padStart(2,'0')}-${String(i).padStart(2,'0')}`;
     const cls = f === hoy ? ' hoy' : '';
-    const t = TR[f]?.[0];
-    cells += set.has(f) ? `<a href="/dia/${f}" class="c tiene${cls}${t ? ' con-trabajo' : ''}"${t ? ` style="background-image:url('${t.url}')" title="${t('cal.trabajo')}"` : ''}><span>${i}</span></a>` : `<span class="c${cls}">${i}</span>`;
+    const tr = principal(TR[f]);
+    cells += set.has(f) ? `<a href="/dia/${f}" class="c tiene${cls}${tr ? ' con-trabajo' : ''}"${tr ? ` style="background-image:url('${tr.url}')" title="${esc([t('cal.trabajo'), autoriaTexto(tr, t('por'))].filter(Boolean).join(' · '))}"` : ''}><span>${i}</span></a>` : `<span class="c${cls}">${i}</span>`;
   }
   return `<div class="cal card"><div class="cal-h"><button data-mes="-1" aria-label="${t('cal.prev')}">‹</button><strong>${nombreMes(m)} ${y}</strong><button data-mes="1" aria-label="${t('cal.next')}">›</button></div>
   <div class="cal-g">${iniciales().map(d=>`<b>${d}</b>`).join('')}${cells}</div></div>`;
 }
-const lista = dias => `<ul class="lista">${dias.map(d => `<li><a href="/dia/${d.fecha}"><img loading="lazy" src="${img(d.fecha, d.moodboard)}" alt=""><span><small>${largo(d.fecha)}</small><strong>${esc(temaIndice(d))}</strong></span>${TR[d.fecha]?.length ? `<img class="mini-trabajo" loading="lazy" src="${TR[d.fecha][0].url}" alt="${t('mi.trabajo')}" title="${t('mi.trabajo')}">` : ''}</a></li>`).join('')}</ul>`;
+const miniTrabajo = (l = []) => {
+  const p = principal(l); if (!p) return '';
+  const n = separar(l).album.length;
+  return `<img class="mini-trabajo" loading="lazy" src="${p.url}" alt="${t('mi.trabajo')}" title="${esc([t('mi.trabajo'), autoriaTexto(p, t('por')), n ? t('album.n', { n }) : ''].filter(Boolean).join(' · '))}">`;
+};
+const lista = dias => `<ul class="lista">${dias.map(d => `<li><a href="/dia/${d.fecha}"><img loading="lazy" src="${img(d.fecha, d.moodboard)}" alt=""><span><small>${largo(d.fecha)}</small><strong>${esc(temaIndice(d))}</strong></span>${miniTrabajo(TR[d.fecha])}</a></li>`).join('')}</ul>`;
 
 const manifiesto = n => `<div class="manifiesto"><img src="/mascota.png" alt=""><p>${t('manifiesto', { n })}</p></div>`;
 
@@ -108,6 +115,7 @@ async function diario() {
     <div><h2>${t('todos')}</h2>${lista(dias)}</div>
   </section>`;
 }
+const figTrabajo = (tr, alt, mod) => `<figure class="card trabajo"><img loading="lazy" src="${esc(tr.url)}" alt="${alt}" data-zoom>${tr.nota ? `<figcaption>${esc(tr.nota)}</figcaption>` : ''}${autoriaHTML(tr, t('por'))}${mod ? `<button class="borrar" data-borrar="${esc(tr.id)}" title="${t('borrar')}">✕</button>` : ''}</figure>`;
 async function dia(f) {
   const [d, dias, tr] = await Promise.all([getDia(f), getIndex(), getTrabajos()]); TR = tr;
   if (!d) { app.innerHTML = `<section class="vacio"><h1>${t('dia.no.h')}</h1><p>${t('dia.no.p', { f: esc(f) })}</p><a class="btn" href="/">${t('volver.inicio')}</a></section>`; return; }
@@ -116,9 +124,11 @@ async function dia(f) {
   queueMicrotask(() => {
     document.getElementById('focus-btn').onclick = () => openFocus(imgs, 0, paletaHTML(d.paleta, 'mini'));
     const sub = () => dialogoSubir(f, () => dia(f));
+    document.getElementById('album-btn').onclick = () => dialogoSubir(f, () => dia(f), { album: true });
     document.getElementById('subir-btn').onclick = sub; document.getElementById('subir-btn2').onclick = sub;
     app.querySelectorAll('[data-borrar]').forEach(b => b.onclick = async () => { if (confirm(t('borrar.confirm')) && await borrar(f, b.dataset.borrar)) dia(f); });
   });
+  const { propios, album } = separar(TR[f]), mod = puedeModerar();
   document.title = `${d.tema} · ${t('site')}`;
   app.innerHTML = `<article class="dia">
     <p class="eyebrow">${largo(f)}</p><h1>${esc(d.tema)}</h1>${genBadge(d)}
@@ -129,8 +139,10 @@ async function dia(f) {
     ${d.datos?.length ? `<h2>${t('datos')}</h2><div class="datos">${d.datos.map(x => `<div class="dato card">
       ${x.imagen ? `<img loading="lazy" src="${img(f, x.imagen)}" alt="${t('ref.alt', { libro: esc(x.libro), p: esc(x.pagina) })}" data-zoom>` : ''}
       <div><p>${esc(x.texto)}</p><p class="credito">${esc(x.libro)}${x.pagina ? t('credito.pag', { p: esc(x.pagina) }) : ''}</p></div></div>`).join('')}</div>` : ''}
-    <section class="mi-trabajo"><h2>${t('mi.trabajo')}</h2>${(TR[f] || []).length ? `<div class="trabajos">${TR[f].map(t => `<figure class="card trabajo"><img loading="lazy" src="${t.url}" alt="${t('mi.trabajo.alt', { f })}" data-zoom>${t.nota ? `<figcaption>${esc(t.nota)}</figcaption>` : ''}<button class="borrar" data-borrar="${t.id}" title="${t('borrar')}">✕</button></figure>`).join('')}</div>` : `<p class="vacio-t">${t('sin.trabajo')}</p>`}
+    <section class="mi-trabajo"><h2>${t('mi.trabajo')}</h2>${propios.length ? `<div class="trabajos">${propios.map(tr => figTrabajo(tr, t('mi.trabajo.alt', { f }), mod)).join('')}</div>` : `<p class="vacio-t">${t('sin.trabajo')}</p>`}
       <button class="btn sec" id="subir-btn2">${t('subir')}</button></section>
+    <section class="mi-trabajo album" id="album"><h2>${t('album')}</h2>${album.length ? `<div class="trabajos">${album.map(tr => figTrabajo(tr, t('album.alt', { a: esc(tr.autor || ''), f }), mod)).join('')}</div>` : `<p class="vacio-t">${t('album.vacio')}</p>`}
+      <button class="btn sec" id="album-btn">${t('album.subir')}</button></section>
     <nav class="pn">${prev ? `<a href="/dia/${prev.fecha}">← ${esc(temaIndice(prev))}</a>` : '<span></span>'}${next ? `<a href="/dia/${next.fecha}">${esc(temaIndice(next))} →</a>` : '<span></span>'}</nav>
   </article>`;
 }

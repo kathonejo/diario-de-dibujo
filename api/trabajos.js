@@ -1,9 +1,13 @@
-import { list, put, del } from '@vercel/blob';
+import { list, put, del, head } from '@vercel/blob';
 import { okPass, okFecha, readJson } from './_lib.js';
-// GET  /api/trabajos[?fecha=]  -> { "AAAA-MM-DD": [{id,url,nota,creado}] }
-// POST {passcode,fecha,url,nota} -> registra la foto (guarda trabajos/<fecha>/<id>.json)
+import { armarItem, TIPOS, MAX_BYTES } from './_trabajo.js';
+import { ipDe, crearLimite } from './_rate.js';
+// GET  /api/trabajos[?fecha=]  -> { "AAAA-MM-DD": [{id,url,nota,creado,autor?,red?,publica?}] }
+// POST {fecha,id,url,autor,red?,nota?,web?,passcode?} -> registra la foto en el álbum del día
+//      (abierto a todos: autor obligatorio; con la clave de Katherine queda como suya)
 // POST {passcode,check:true} -> valida el código
-// DELETE {passcode,fecha,id} -> borra foto + registro
+// DELETE {passcode,fecha,id} -> borra foto + registro (solo con la clave)
+const limite = crearLimite(6, 10 * 60_000);
 export default async function handler(req, res) {
   try {
     if (req.method === 'GET') {
@@ -19,18 +23,35 @@ export default async function handler(req, res) {
       return res.status(200).json(out);
     }
     const b = await readJson(req);
-    if (!okPass(b.passcode)) return res.status(401).json({ error: 'Código incorrecto' });
-    if (req.method === 'POST' && b.check) return res.status(200).json({ ok: true });
-    if (!okFecha(b.fecha)) return res.status(400).json({ error: 'Fecha no válida' });
+    const conClave = b.passcode != null && b.passcode !== '';
+    if (conClave && !okPass(b.passcode)) return res.status(401).json({ error: 'Código incorrecto' });
+    if (req.method === 'POST' && b.check) return conClave ? res.status(200).json({ ok: true }) : res.status(401).json({ error: 'Código incorrecto' });
     if (req.method === 'POST') {
-      const id = String(b.id || '').replace(/[^\w-]/g, '');
-      if (!id || !String(b.url).includes(`/trabajos/${b.fecha}/${id}.`)) return res.status(400).json({ error: 'Datos no válidos' });
-      const it = { id, fecha: b.fecha, url: b.url, nota: String(b.nota || '').slice(0, 500), creado: new Date().toISOString() };
-      await put(`trabajos/${b.fecha}/${id}.json`, JSON.stringify(it), { access: 'public', contentType: 'application/json', addRandomSuffix: false, allowOverwrite: true });
-      return res.status(200).json(it);
+      if (!conClave && !limite(ipDe(req))) return res.status(429).json({ error: 'Un toque más despacio: esperá un minutito.' });
+      const { item, error, status } = armarItem(b, { esKatherine: conClave });
+      if (error) return res.status(status).json({ error });
+      // La imagen tiene que existir en nuestro Blob, ser imagen y no pasar el límite.
+      let h = null;
+      try { h = await head(item.url); } catch {}
+      if (!h || !h.url || new URL(h.url).pathname !== new URL(item.url).pathname) return res.status(400).json({ error: 'Datos no válidos' });
+      if (!TIPOS.includes(String(h.contentType).split(';')[0]) || h.size > MAX_BYTES) {
+        await del(h.url).catch(() => {});
+        return res.status(400).json({ error: 'Archivo no válido' });
+      }
+      item.url = h.url; // la URL real del Blob, no la que mandó el navegador
+      const ruta = `trabajos/${item.fecha}/${item.id}.json`;
+      if (!conClave) { // un visitante nunca pisa un registro existente
+        const ya = await head(ruta).catch(() => null);
+        if (ya) return res.status(409).json({ error: 'Datos no válidos' });
+      }
+      await put(ruta, JSON.stringify(item), { access: 'public', contentType: 'application/json', addRandomSuffix: false, allowOverwrite: conClave });
+      return res.status(200).json(item);
     }
     if (req.method === 'DELETE') {
+      if (!conClave) return res.status(401).json({ error: 'Código incorrecto' });
+      if (!okFecha(b.fecha)) return res.status(400).json({ error: 'Fecha no válida' });
       const id = String(b.id || '').replace(/[^\w-]/g, '');
+      if (!id) return res.status(400).json({ error: 'Datos no válidos' });
       const { blobs } = await list({ prefix: `trabajos/${b.fecha}/${id}.` });
       if (blobs.length) await del(blobs.map(x => x.url));
       return res.status(200).json({ ok: true, borrados: blobs.length });

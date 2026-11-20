@@ -57,6 +57,9 @@ const S = {
     // subir trabajo
     'up.codigo': 'Código para subir trabajos:', 'up.incorrecto': 'Código incorrecto.',
     'up.foto': 'Elegí una foto (jpg, png o webp)', 'up.nota': 'Nota (opcional)', 'up.placeholder': '¿Qué aprendiste hoy?',
+    'up.autor': 'Autor/a', 'up.autor.ph': 'Tu nombre', 'up.red': 'Red (opcional)', 'up.red.ph': '@usuario o https://…', 'por': 'por',
+    'up.mia': 'Soy Kathonejo (pide la clave)', 'up.publico': 'Tu dibujo queda público en el álbum del día, con tu nombre y tu red.',
+    'album': 'Álbum del día', 'album.subir': 'Subir tu dibujo al álbum', 'album.vacio': 'Todavía nadie subió su dibujo a este álbum. ¡Subí el tuyo!', 'album.alt': 'Dibujo de {a} del {f}', 'album.n': '{n} en el álbum',
     'up.cancelar': 'Cancelar', 'up.subir': 'Subir', 'up.preparando': 'Preparando imagen…', 'up.subiendo': 'Subiendo…', 'up.listo': '¡Listo!', 'up.error': 'No se pudo subir: ',
     // instalación
     'i.title': 'Instalación · Diario de dibujo', 'i.vacio': 'Todavía no hay un día publicado',
@@ -120,6 +123,9 @@ const S = {
     'f.salir': 'Exit (Esc)', 'f.fs': '⛶ Full screen', 'f.fs.salir': '⛶ Exit full screen', 'f.prev': 'Previous', 'f.next': 'Next',
     'up.codigo': 'Code to upload work:', 'up.incorrecto': 'Wrong code.',
     'up.foto': 'Choose a photo (jpg, png or webp)', 'up.nota': 'Note (optional)', 'up.placeholder': 'What did you learn today?',
+    'up.autor': 'Author', 'up.autor.ph': 'Your name', 'up.red': 'Social link (optional)', 'up.red.ph': '@username or https://…', 'por': 'by',
+    'up.mia': 'I’m Kathonejo (asks for the code)', 'up.publico': 'Your drawing will be public in the album of the day, with your name and social link.',
+    'album': 'Album of the day', 'album.subir': 'Add your drawing to the album', 'album.vacio': 'No one has added a drawing to this album yet. Add yours!', 'album.alt': 'Drawing by {a} from {f}', 'album.n': '{n} in the album',
     'up.cancelar': 'Cancel', 'up.subir': 'Upload', 'up.preparando': 'Preparing image…', 'up.subiendo': 'Uploading…', 'up.listo': 'Done!', 'up.error': 'Could not upload: ',
     'i.title': 'Installation · Drawing Diary', 'i.vacio': 'No day has been published yet',
     'i.por': 'Installation · by Kathonejo',
@@ -181,6 +187,9 @@ const S = {
     'f.salir': 'Sair (Esc)', 'f.fs': '⛶ Tela cheia', 'f.fs.salir': '⛶ Sair da tela cheia', 'f.prev': 'Anterior', 'f.next': 'Próximo',
     'up.codigo': 'Código para enviar trabalhos:', 'up.incorrecto': 'Código incorreto.',
     'up.foto': 'Escolha uma foto (jpg, png ou webp)', 'up.nota': 'Nota (opcional)', 'up.placeholder': 'O que você aprendeu hoje?',
+    'up.autor': 'Autor/a', 'up.autor.ph': 'Seu nome', 'up.red': 'Rede (opcional)', 'up.red.ph': '@usuário ou https://…', 'por': 'por',
+    'up.mia': 'Sou Kathonejo (pede o código)', 'up.publico': 'Seu desenho fica público no álbum do dia, com seu nome e sua rede.',
+    'album': 'Álbum do dia', 'album.subir': 'Enviar seu desenho ao álbum', 'album.vacio': 'Ninguém enviou um desenho para este álbum ainda. Envie o seu!', 'album.alt': 'Desenho de {a} de {f}', 'album.n': '{n} no álbum',
     'up.cancelar': 'Cancelar', 'up.subir': 'Enviar', 'up.preparando': 'Preparando imagem…', 'up.subiendo': 'Enviando…', 'up.listo': 'Pronto!', 'up.error': 'Não foi possível enviar: ',
     'i.title': 'Instalação · Diário de desenho', 'i.vacio': 'Ainda não há um dia publicado',
     'i.por': 'Instalação · por Kathonejo',
@@ -215,6 +224,11 @@ const ERRORES = {
   'La imagen es demasiado grande o está vacía': { en: 'The image is too large or empty', pt: 'A imagem é grande demais ou está vazia' },
   'Demasiados trazos': { en: 'Too many strokes', pt: 'Traços demais' },
   'No se pudo guardar': { en: 'Could not save', pt: 'Não foi possível salvar' },
+  'Falta el nombre': { en: 'Please add your name', pt: 'Falta o nome' },
+  'Archivo no válido': { en: 'Invalid file', pt: 'Arquivo inválido' },
+  'Ruta no válida': { en: 'Invalid path', pt: 'Caminho inválido' },
+  'Datos no válidos': { en: 'Invalid data', pt: 'Dados inválidos' },
+  'Fecha no válida': { en: 'Invalid date', pt: 'Data inválida' },
 };
 const COLORES = {
   'Negro': { en: 'Black', pt: 'Preto' }, 'Siena': { en: 'Sienna', pt: 'Siena' }, 'Azul': { en: 'Blue', pt: 'Azul' },

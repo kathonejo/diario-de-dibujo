@@ -387,3 +387,12 @@ body.modo-instalacion main{max-width:none;padding:0;min-height:100dvh}
 .inst-lang{margin:1rem auto 0}
 .inst-mural-ctl .inst-lang{margin:0 0 0 .2rem;align-self:center}
 @media(max-width:640px){.lang-sw{margin-left:.65rem}.lang-sw button{font-size:.62rem;padding:.3rem .36rem}}
+
+/* ── Autoría de los trabajos subidos ── */
+.subir input[type=text]{display:block;width:100%;margin-top:.3rem;font:inherit;border:1px solid var(--line);border-radius:0;padding:.55rem .6rem;background:transparent;color:var(--ink)}
+.subir input[type=text]::placeholder,.subir textarea::placeholder{color:var(--ink-mute);opacity:.6}
+.trabajo .autoria{margin:.35rem .1rem 0;font-size:.74rem;letter-spacing:.04em;color:var(--ink-mute)}
+.trabajo .autoria a{color:var(--ink)}
+.subir .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.subir label.mia{display:flex;align-items:center;gap:.45rem;font-weight:400;font-size:.85rem;color:var(--ink-mute)}
+.subir .aviso{margin:0 0 .8rem;font-size:.78rem;color:var(--ink-mute)}
