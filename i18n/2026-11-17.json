@@ -1,0 +1,24 @@
+{
+  "en": {
+    "tema": "Animal anatomy: the shoulder of the horse and the dog (scapula, shoulder joint and deltoid)",
+    "frase": {"texto": "Human art differs from vampyroteuthic art because it keeps the bond with objects, with material tradition, with the body, with the tangible world.", "autor": "Claudia Rodríguez-Ponga Linares · Pequeño tratado sobre arte y magia, Ch. 1 · Operator #8 Vampyroteuthis Infernalis · Fiction (Quote Bank by Operator, secondary quote)"},
+    "mision": "Make the animal’s shoulder feel like a tangible body: a bony paddle (the scapula) that rotates, with muscles that move it.",
+    "paleta": {"Lino gris": "Gray linen", "Gris plata": "Silver gray", "Gris pizarra": "Slate gray", "Verde bosque": "Forest green", "Verde hoja": "Leaf green"},
+    "datos": [
+      {"texto": "The scapula rotates like a paddle over the ribs; the shoulder angle opens and closes"},
+      {"texto": "The deltoid is a wedge over the shoulder joint, in the horse, the ox and the dog"},
+      {"texto": "Leonardo’s quick sketch reads the mass of the shoulder in motion"}
+    ]
+  },
+  "pt": {
+    "tema": "Anatomia animal: o ombro do cavalo e do cachorro (escápula, articulação do ombro e deltoide)",
+    "frase": {"texto": "A arte humana se diferencia da arte vampyroteuthica porque mantém o vínculo com os objetos, com a tradição material, com o corpo, com o mundo tangível.", "autor": "Claudia Rodríguez-Ponga Linares · Pequeño tratado sobre arte y magia, Cap. 1 · Operador #8 Vampyroteuthis Infernalis · A Ficção (Banco de Citações por Operador, Citação secundária)"},
+    "mision": "Que o ombro do animal pareça um corpo tangível: uma pá de osso (a escápula) que gira, com músculos que a movem.",
+    "paleta": {"Lino gris": "Linho cinza", "Gris plata": "Cinza prata", "Gris pizarra": "Cinza ardósia", "Verde bosque": "Verde floresta", "Verde hoja": "Verde folha"},
+    "datos": [
+      {"texto": "A escápula gira como uma pá sobre as costelas; o ângulo do ombro abre e fecha"},
+      {"texto": "O deltoide é uma cunha sobre a articulação do ombro, no cavalo, no boi e no cachorro"},
+      {"texto": "O esboço rápido de Leonardo lê a massa do ombro em movimento"}
+    ]
+  }
+}

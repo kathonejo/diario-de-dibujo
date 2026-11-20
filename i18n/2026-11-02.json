@@ -1,0 +1,54 @@
+{
+  "en": {
+    "tema": "Human anatomy: the arm and the shoulder (deltoid, humerus, biceps, brachialis, triceps, elbow and forearm)",
+    "frase": {
+      "texto": "Bonds are beings in themselves and not mere tools.",
+      "autor": "Claudia Rodríguez-Ponga Linares · Pequeño tratado sobre arte y magia (Quote Bank by Operator, Quote 2)"
+    },
+    "mision": "Draw the arm as a chain of living joints: shoulder, elbow and wrist decide the gesture, not the outline.",
+    "paleta": {
+      "Gris carbón": "Charcoal gray",
+      "Bronce": "Bronze",
+      "Ocre tostado": "Burnt ochre",
+      "Verde agua": "Aqua green",
+      "Gris perla": "Pearl gray"
+    },
+    "datos": [
+      {
+        "texto": "The arm: biceps, brachialis, coracobrachialis and the attachments of the arm muscles."
+      },
+      {
+        "texto": "The deltoid covers the shoulder and attaches in a V on the humerus; shoulder studies by Leonardo."
+      },
+      {
+        "texto": "Gesture sketches with the arms raised and extended."
+      }
+    ]
+  },
+  "pt": {
+    "tema": "Anatomia humana: o braço e o ombro (deltoide, úmero, bíceps, braquial, tríceps, cotovelo e antebraço)",
+    "frase": {
+      "texto": "Os vínculos são seres em si mesmos e não simples ferramentas.",
+      "autor": "Claudia Rodríguez-Ponga Linares · Pequeño tratado sobre arte y magia (Banco de Citações por Operador, Citação 2)"
+    },
+    "mision": "Desenhar o braço como uma corrente de uniões vivas: ombro, cotovelo e pulso decidem o gesto, não o contorno.",
+    "paleta": {
+      "Gris carbón": "Cinza carvão",
+      "Bronce": "Bronze",
+      "Ocre tostado": "Ocre queimado",
+      "Verde agua": "Verde água",
+      "Gris perla": "Cinza pérola"
+    },
+    "datos": [
+      {
+        "texto": "O braço: bíceps, braquial, coracobraquial e inserções dos músculos do braço."
+      },
+      {
+        "texto": "O deltoide cobre o ombro e se insere em V no úmero; estudos de ombro de Leonardo."
+      },
+      {
+        "texto": "Esboços de gesto com os braços para cima e estendidos."
+      }
+    ]
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "en": {
+    "tema": "Form and volume: block-in and solids",
+    "frase": {
+      "texto": "Every act performed with total attention is a magical act.",
+      "autor": "Taisha Abelar (lineage of don Juan, Castaneda) · Operator #9 · Attention"
+    },
+    "mision": "Look at each object with total attention until you find the simple solid inside it, and let the light turn it into volume.",
+    "paleta": {
+      "Gris pizarra": "Slate gray",
+      "Gris humo": "Smoke gray",
+      "Gris piedra": "Stone gray",
+      "Gris perla": "Pearl gray",
+      "Rojo óxido": "Oxide red"
+    },
+    "datos": [
+      {
+        "texto": "Block-in: using the pencil as a measuring stick, you measure height and width, mark the limits and divide into halves and quarters before drawing the form, as with the telephone and the plaster torso."
+      },
+      {
+        "texto": "Basic solids: cube, sphere, cone and pyramid under one light; the cube shows faces of flat value, while the sphere and the cone show a value that turns, with a shadow cast on the table."
+      },
+      {
+        "texto": "Real objects as volumes: in the pencil drawing of «Surrealist effects» the glass, the bowl and the table read as cylinders and ellipses thanks to shading that follows the form."
+      }
+    ]
+  },
+  "pt": {
+    "tema": "Forma e volume: encaixe e sólidos",
+    "frase": {
+      "texto": "Cada ato realizado com atenção total é um ato mágico.",
+      "autor": "Taisha Abelar (linhagem de dom Juan, Castaneda) · Operador #9 · A Atenção"
+    },
+    "mision": "Olhar cada objeto com atenção total até encontrar o sólido simples que ele tem dentro e fazer a luz transformá-lo em volume.",
+    "paleta": {
+      "Gris pizarra": "Cinza ardósia",
+      "Gris humo": "Cinza fumaça",
+      "Gris piedra": "Cinza pedra",
+      "Gris perla": "Cinza pérola",
+      "Rojo óxido": "Vermelho óxido"
+    },
+    "datos": [
+      {
+        "texto": "Encaixe: com o lápis como vareta medem-se altura e largura, marcam-se os limites e divide-se em metades e quartos antes de desenhar a forma, como com o telefone e o torso de gesso."
+      },
+      {
+        "texto": "Sólidos básicos: cubo, esfera, cone e pirâmide sob uma luz; o cubo mostra faces de valor chapado e a esfera e o cone um valor que gira, com sombra projetada na mesa."
+      },
+      {
+        "texto": "Objetos reais como volumes: no desenho a lápis de «Efeitos surrealistas» o copo, a tigela e a mesa são lidos como cilindros e elipses graças ao sombreado que segue a forma."
+      }
+    ]
+  }
+}

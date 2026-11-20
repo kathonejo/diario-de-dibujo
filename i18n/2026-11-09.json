@@ -1,0 +1,54 @@
+{
+  "en": {
+    "tema": "Human anatomy: the neck (sternocleidomastoid, muscles of the nape and scalenes)",
+    "frase": {
+      "texto": "The artist is the bond of bonds.",
+      "autor": "Claudia Rodríguez-Ponga Linares · Pequeño tratado sobre arte y magia, Ch. 1 · Operator #5 Tunga · The Bricoleur (Quote Bank by Operator, main quote / Quote 6)"
+    },
+    "mision": "Draw the neck as the living bond between head and torso: the sternocleidomastoid turns and flexes, the nape extends, the scalenes anchor the neck to the first ribs.",
+    "paleta": {
+      "Verde oliva": "Olive green",
+      "Verde limón": "Lime green",
+      "Crema clara": "Light cream",
+      "Gris piedra": "Stone gray",
+      "Gris grafito": "Graphite gray"
+    },
+    "datos": [
+      {
+        "texto": "Profile study after Leonardo: sternocleidomastoid, semispinalis, splenius, trapezius and scalenes labeled."
+      },
+      {
+        "texto": "Muscles of the nape: splenius, semispinalis, trapezius and levator scapulae; a single splenius tilts the head and turns the face."
+      },
+      {
+        "texto": "Deep lateral region: anterior, middle and posterior scalenes, front and profile, from the cervical vertebrae to the first rib."
+      }
+    ]
+  },
+  "pt": {
+    "tema": "Anatomia humana: o pescoço (esternocleidomastoideo, músculos da nuca e escalenos)",
+    "frase": {
+      "texto": "O artista é o vínculo dos vínculos.",
+      "autor": "Claudia Rodríguez-Ponga Linares · Pequeño tratado sobre arte y magia, Cap. 1 · Operador #5 Tunga · O Bricoleur (Banco de Citações por Operador, Citação principal / Citação 6)"
+    },
+    "mision": "Desenhar o pescoço como o vínculo vivo entre a cabeça e o tronco: o esternocleidomastoideo gira e flexiona, a nuca estende, os escalenos ancoram o pescoço nas primeiras costelas.",
+    "paleta": {
+      "Verde oliva": "Verde oliva",
+      "Verde limón": "Verde limão",
+      "Crema clara": "Creme claro",
+      "Gris piedra": "Cinza pedra",
+      "Gris grafito": "Cinza grafite"
+    },
+    "datos": [
+      {
+        "texto": "Estudo de perfil segundo Leonardo: esternocleidomastoideo, semiespinal, esplênio, trapézio e escalenos nomeados."
+      },
+      {
+        "texto": "Músculos da nuca: esplênio, semiespinal, trapézio e levantador da escápula; um só esplênio inclina a cabeça e gira o rosto."
+      },
+      {
+        "texto": "Região profunda lateral: escalenos anterior, médio e posterior, de frente e de perfil, das vértebras cervicais até a primeira costela."
+      }
+    ]
+  }
+}

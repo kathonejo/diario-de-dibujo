@@ -1,0 +1,54 @@
+{
+  "en": {
+    "tema": "The head: proportions, axes and construction",
+    "frase": {
+      "texto": "Magic, the witches say, is an art.",
+      "autor": "Isabelle Stengers, via Claudia Rodríguez-Ponga Linares · Pequeño tratado sobre arte y magia (Ch. 2)"
+    },
+    "mision": "Build the head as a solid with clear axes before drawing the face.",
+    "paleta": {
+      "Sombra tostada": "Burnt umber",
+      "Siena": "Sienna",
+      "Ocre": "Ochre",
+      "Crema": "Cream",
+      "Gris piedra": "Stone gray"
+    },
+    "datos": [
+      {
+        "texto": "Building the portrait: axes and proportions of the head."
+      },
+      {
+        "texto": "Frontal scheme of the head to start the study."
+      },
+      {
+        "texto": "Skull studies: the bone structure beneath the face."
+      }
+    ]
+  },
+  "pt": {
+    "tema": "A cabeça: proporções, eixos e construção",
+    "frase": {
+      "texto": "A magia, dizem as bruxas, é uma arte.",
+      "autor": "Isabelle Stengers, via Claudia Rodríguez-Ponga Linares · Pequeño tratado sobre arte y magia (Cap. 2)"
+    },
+    "mision": "Montar a cabeça como um sólido com eixos claros antes de desenhar o rosto.",
+    "paleta": {
+      "Sombra tostada": "Terra de sombra queimada",
+      "Siena": "Siena",
+      "Ocre": "Ocre",
+      "Crema": "Creme",
+      "Gris piedra": "Cinza pedra"
+    },
+    "datos": [
+      {
+        "texto": "Construção do retrato: eixos e proporções da cabeça."
+      },
+      {
+        "texto": "Esquema frontal da cabeça para iniciar o estudo."
+      },
+      {
+        "texto": "Estudos de crânio: estrutura óssea sob o rosto."
+      }
+    ]
+  }
+}

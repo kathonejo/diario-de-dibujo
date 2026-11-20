@@ -1,0 +1,54 @@
+{
+  "en": {
+    "tema": "Integration: giving the figure a body through value (shadow mass, hatching that follows the form and a chosen key)",
+    "frase": {
+      "texto": "To research is to give body to desire.",
+      "autor": "Suely Rolnik, quoted by Rodríguez-Ponga Linares · Pequeño tratado sobre arte y magia, Ch. 1 · Operator #3 Suely Rolnik · The Witch (Quote Bank by Operator)"
+    },
+    "mision": "Give a figure a body with value alone: one clear shadow mass, strokes that follow the form and a key chosen on purpose.",
+    "paleta": {
+      "Negro jaguar": "Jaguar black",
+      "Azul índigo": "Indigo blue",
+      "Gris plata humo": "Smoky silver gray",
+      "Bronce dorado": "Golden bronze",
+      "Oro miel": "Honey gold"
+    },
+    "datos": [
+      {
+        "texto": "Laughing head in relief («Lust, transverse muscle of the nose»): strong light on the planes of the cheeks, forehead and nose"
+      },
+      {
+        "texto": "Lithograph by Edvard Munch: half the face in shadow resolved with vertical hatching and a stroked background"
+      },
+      {
+        "texto": "Figure seated on a stone throne; the background goes from dark to light with hatching and the figure is separated by value"
+      }
+    ]
+  },
+  "pt": {
+    "tema": "Integração: dar corpo à figura com o valor (massa de sombra, hachura que segue a forma e chave escolhida)",
+    "frase": {
+      "texto": "Pesquisar é dar corpo ao desejo.",
+      "autor": "Suely Rolnik, citada por Rodríguez-Ponga Linares · Pequeño tratado sobre arte y magia, Cap. 1 · Operador #3 Suely Rolnik · A Bruxa (Banco de Citações por Operador)"
+    },
+    "mision": "Dar corpo a uma figura só com valor: uma massa de sombra clara, traços que seguem a forma e uma chave escolhida de propósito.",
+    "paleta": {
+      "Negro jaguar": "Preto jaguar",
+      "Azul índigo": "Azul índigo",
+      "Gris plata humo": "Cinza prata fumaça",
+      "Bronce dorado": "Bronze dourado",
+      "Oro miel": "Ouro mel"
+    },
+    "datos": [
+      {
+        "texto": "Cabeça em relevo rindo («A luxúria, transverso do nariz»): luz forte sobre os planos das bochechas, testa e nariz"
+      },
+      {
+        "texto": "Litografia de Edvard Munch: meio rosto na sombra resolvido com hachura vertical e fundo a traços"
+      },
+      {
+        "texto": "Figura sentada num trono de pedra; o fundo passa do escuro ao claro com hachura e a figura se separa pelo valor"
+      }
+    ]
+  }
+}

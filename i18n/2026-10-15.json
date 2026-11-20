@@ -1,0 +1,46 @@
+{
+  "en": {
+    "tema": "The hand and the forearm: structure before skin",
+    "mision": "Build the hand from the inside: first the box, the wedge and the cylinders, then the bones that show, and the skin only at the end.",
+    "paleta": {
+      "Negro carbón": "Charcoal black",
+      "Azul noche": "Night blue",
+      "Azul cobalto": "Cobalt blue",
+      "Ámbar": "Amber",
+      "Crema pajiza": "Straw cream"
+    },
+    "datos": [
+      {
+        "texto": "The fist in planes: the box of the palm, the wedge of the thumb and the fingers as cylinders; the arc of the knuckles gives the gesture."
+      },
+      {
+        "texto": "The hand (forefoot, manus) is built from carpus, metacarpus and digits; each joint is a hinge. Comparing the leg of the horse and the goat shows where the form bends."
+      },
+      {
+        "texto": "Elementary exercises: the forearm as cylinders that narrow and twist toward the wrist, and the open hand, palm side and back (Fig. 493)."
+      }
+    ]
+  },
+  "pt": {
+    "tema": "A mão e o antebraço: estrutura antes da pele",
+    "mision": "Construir a mão por dentro: primeiro a caixa, a cunha e os cilindros, depois os ossos que aparecem, e a pele só no final.",
+    "paleta": {
+      "Negro carbón": "Preto carvão",
+      "Azul noche": "Azul noite",
+      "Azul cobalto": "Azul cobalto",
+      "Ámbar": "Âmbar",
+      "Crema pajiza": "Creme palha"
+    },
+    "datos": [
+      {
+        "texto": "O punho em planos: a caixa da palma, a cunha do polegar e os dedos como cilindros; o arco dos nós dos dedos dá o gesto."
+      },
+      {
+        "texto": "A mão (forefoot, manus) se monta com carpo, metacarpo e dedos; cada articulação é uma dobradiça. Comparar a pata do cavalo e da cabra mostra onde a forma se dobra."
+      },
+      {
+        "texto": "Exercícios elementares: o antebraço como cilindros que se estreitam e giram até o pulso, e a mão aberta em face anterior e posterior (Fig. 493)."
+      }
+    ]
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "en": {
+    "tema": "Human anatomy: the hand in depth (tendons, palm and gesture)",
+    "frase": {
+      "texto": "To articulate the past historically does not mean to recognize it the way it really was, but to seize hold of a memory as it flashes up at a moment of danger.",
+      "autor": "Walter Benjamin, via Claudia Rodríguez-Ponga Linares · Pequeño tratado sobre arte y magia (Ch. 2)"
+    },
+    "mision": "Draw the hand as a gesture machine: palm, knuckles and tendons before the nails.",
+    "paleta": {
+      "Rosa coral": "Coral pink",
+      "Durazno": "Peach",
+      "Carbón": "Charcoal",
+      "Menta": "Mint",
+      "Gris perla": "Pearl gray"
+    },
+    "datos": [
+      {
+        "texto": "Muscles and tendons of the palm; thenar and hypothenar eminences."
+      },
+      {
+        "texto": "Flexor pollicis brevis and lumbricals."
+      },
+      {
+        "texto": "Practice photo: a hand in a real gesture to copy from life."
+      }
+    ]
+  },
+  "pt": {
+    "tema": "Anatomia humana: a mão em profundidade (tendões, palma e gesto)",
+    "frase": {
+      "texto": "Articular historicamente o passado não significa conhecê-lo tal como ele foi, mas apropriar-se de uma lembrança tal como ela relampeja no momento de um perigo.",
+      "autor": "Walter Benjamin, via Claudia Rodríguez-Ponga Linares · Pequeño tratado sobre arte y magia (Cap. 2)"
+    },
+    "mision": "Desenhar a mão como máquina de gesto: palma, nós dos dedos e tendões antes das unhas.",
+    "paleta": {
+      "Rosa coral": "Rosa coral",
+      "Durazno": "Pêssego",
+      "Carbón": "Carvão",
+      "Menta": "Menta",
+      "Gris perla": "Cinza pérola"
+    },
+    "datos": [
+      {
+        "texto": "Músculos e tendões da palma; eminências tenar e hipotenar."
+      },
+      {
+        "texto": "Flexor curto do polegar e lumbricais."
+      },
+      {
+        "texto": "Foto de prática: mão em gesto real para copiar do natural."
+      }
+    ]
+  }
+}

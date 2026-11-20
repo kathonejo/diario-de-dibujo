@@ -1,0 +1,54 @@
+{
+  "en": {
+    "tema": "Composition: visual weight and framing",
+    "frase": {
+      "texto": "Producing mystery is entirely part of the artistic work.",
+      "autor": "Yoann Saura, via Claudia Rodríguez-Ponga Linares · Pequeño tratado sobre arte y magia (Ch. 2)"
+    },
+    "mision": "Decide what goes into the frame and what gets cut: framing is part of the drawing.",
+    "paleta": {
+      "Verde link": "Link green",
+      "Azul intenso": "Intense blue",
+      "Rosa fuerte": "Hot pink",
+      "Amarillo pastel": "Pastel yellow",
+      "Negro": "Black"
+    },
+    "datos": [
+      {
+        "texto": "Composition schemes and visual balance."
+      },
+      {
+        "texto": "Initial block-in and big masses before detail."
+      },
+      {
+        "texto": "Silhouettes and a clear reading of the figure in the frame."
+      }
+    ]
+  },
+  "pt": {
+    "tema": "Composição: o peso visual e o enquadramento",
+    "frase": {
+      "texto": "Produzir mistério faz totalmente parte do trabalho artístico.",
+      "autor": "Yoann Saura, via Claudia Rodríguez-Ponga Linares · Pequeño tratado sobre arte y magia (Cap. 2)"
+    },
+    "mision": "Decidir o que entra no quadro e o que é cortado: o enquadramento é parte do desenho.",
+    "paleta": {
+      "Verde link": "Verde link",
+      "Azul intenso": "Azul intenso",
+      "Rosa fuerte": "Rosa forte",
+      "Amarillo pastel": "Amarelo pastel",
+      "Negro": "Preto"
+    },
+    "datos": [
+      {
+        "texto": "Esquemas de composição e equilíbrio visual."
+      },
+      {
+        "texto": "Encaixe inicial e massas grandes antes do detalhe."
+      },
+      {
+        "texto": "Silhuetas e leitura clara da figura no enquadramento."
+      }
+    ]
+  }
+}

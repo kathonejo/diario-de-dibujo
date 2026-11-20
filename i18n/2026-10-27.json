@@ -1,0 +1,54 @@
+{
+  "en": {
+    "tema": "Animal anatomy: the structure of the body (spine, rib cage and pelvis as volumes; from the human torso to the horse and the dog)",
+    "frase": {
+      "texto": "The prehistoric artist was not concerned with pleasing, but with evoking.",
+      "autor": "Salomon Reinach («L'Art et la Magie», 1903), quoted by Rodríguez-Ponga Linares · Pequeño tratado sobre arte y magia, Ch. 2.2 (Drive: Capitulo2_Espanol_ArteYMagia)"
+    },
+    "mision": "See the animal from the inside before the outside: spine, rib cage and pelvis as three simple volumes, and only then the legs and the light.",
+    "paleta": {
+      "Azul marino": "Navy blue",
+      "Ocre bronce": "Bronze ochre",
+      "Caramelo tostado": "Toasted caramel",
+      "Gris carbón": "Charcoal gray",
+      "Blanco hueso": "Bone white"
+    },
+    "datos": [
+      {
+        "texto": "«Axes & Volumes»: the horse drawn as simple boxes and cylinders (neck, chest, barrel, hip and legs) and the same model in photos from the side, the front and three-quarter view, printed p. 4."
+      },
+      {
+        "texto": "«Skeleton»: horse, dog and human skeletons seen from above/behind, side by side: spine, ribs, shoulder blades and pelvis compared, printed p. 10."
+      },
+      {
+        "texto": "«Drawing animals»: dog/human anatomical comparison (the spine as the axis of movement), galloping horses in line, and a chimpanzee and an elephant in two steps (scheme and tonal value), printed pp. 126–127."
+      }
+    ]
+  },
+  "pt": {
+    "tema": "Anatomia animal: a estrutura do corpo (coluna, caixa torácica e pelve como volumes; do torso humano ao cavalo e ao cachorro)",
+    "frase": {
+      "texto": "O pré-histórico não estava preocupado em agradar, mas em evocar.",
+      "autor": "Salomon Reinach («L'Art et la Magie», 1903), citado por Rodríguez-Ponga Linares · Pequeño tratado sobre arte y magia, Cap. 2.2 (Drive: Capitulo2_Espanol_ArteYMagia)"
+    },
+    "mision": "Ver o animal por dentro antes que por fora: coluna, caixa torácica e pelve como três volumes simples, e só depois as patas e a luz.",
+    "paleta": {
+      "Azul marino": "Azul-marinho",
+      "Ocre bronce": "Ocre bronze",
+      "Caramelo tostado": "Caramelo tostado",
+      "Gris carbón": "Cinza carvão",
+      "Blanco hueso": "Branco osso"
+    },
+    "datos": [
+      {
+        "texto": "«Axes & Volumes»: o cavalo desenhado como caixas e cilindros simples (pescoço, peito, barril, quadril e patas) e a mesma maquete em fotos de lado, de frente e em três quartos, pág. 4 impressa."
+      },
+      {
+        "texto": "«Skeleton»: esqueletos de cavalo, cachorro e humano vistos de cima/de trás, lado a lado: coluna, costelas, omoplatas e pelve comparadas, pág. 10 impressa."
+      },
+      {
+        "texto": "«O desenho de animais»: comparação anatômica cachorro/humano (a coluna como eixo do movimento), cavalos a galope em linha, e chimpanzé e elefante em dois passos (esquema e valor tonal), págs. 126–127 impressas."
+      }
+    ]
+  }
+}

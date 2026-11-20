@@ -1,0 +1,54 @@
+{
+  "en": {
+    "tema": "Human anatomy: the leg and the hip (femur, glutes, quadriceps, knee and contrapposto)",
+    "frase": {
+      "texto": "Objects are as alive to me as actors; without them the players would not exist.",
+      "autor": "Tadeusz Kantor, via Claudia Rodríguez-Ponga Linares · Pequeño tratado sobre arte y magia (Ch. 2)"
+    },
+    "mision": "Draw the leg as the living pillar of the figure: hip, knee and ankle carry the weight and decide the contrapposto.",
+    "paleta": {
+      "Carbón profundo": "Deep charcoal",
+      "Bronce tostado": "Burnt bronze",
+      "Ocre tierra": "Earth ochre",
+      "Menta estudio": "Studio mint",
+      "Gris perla": "Pearl gray"
+    },
+    "datos": [
+      {
+        "texto": "Gluteus medius and minimus, tensor fasciae latae: abduction and support of the hip."
+      },
+      {
+        "texto": "Bent leg: rectus femoris, vasti, sartorius and pes anserinus at the knee."
+      },
+      {
+        "texto": "Gesture sketches of standing and walking figures; the leg sets the rhythm."
+      }
+    ]
+  },
+  "pt": {
+    "tema": "Anatomia humana: a perna e o quadril (fêmur, glúteos, quadríceps, joelho e contrapposto)",
+    "frase": {
+      "texto": "Os objetos são para mim tão vivos quanto os atores; sem eles os comediantes não existiriam.",
+      "autor": "Tadeusz Kantor, via Claudia Rodríguez-Ponga Linares · Pequeño tratado sobre arte y magia (Cap. 2)"
+    },
+    "mision": "Desenhar a perna como o pilar vivo da figura: quadril, joelho e tornozelo carregam o peso e decidem o contrapposto.",
+    "paleta": {
+      "Carbón profundo": "Carvão profundo",
+      "Bronce tostado": "Bronze queimado",
+      "Ocre tierra": "Ocre terra",
+      "Menta estudio": "Menta estúdio",
+      "Gris perla": "Cinza pérola"
+    },
+    "datos": [
+      {
+        "texto": "Glúteo médio e mínimo, tensor da fáscia lata: abdução e sustentação do quadril."
+      },
+      {
+        "texto": "Perna flexionada: reto femoral, vastos, sartório e pata de ganso no joelho."
+      },
+      {
+        "texto": "Esboços de gesto com figuras de pé e em deslocamento; a perna decide o ritmo."
+      }
+    ]
+  }
+}

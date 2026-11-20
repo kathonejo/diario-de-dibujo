@@ -1,0 +1,54 @@
+{
+  "en": {
+    "tema": "The eye: socket, eyelids and gaze",
+    "frase": {
+      "texto": "The loss of belief serves to establish a regime that depends as much on disbelief as on its return — intermittent and localized.",
+      "autor": "Max Milner, via Claudia Rodríguez-Ponga Linares · Pequeño tratado sobre arte y magia (Ch. 2)"
+    },
+    "mision": "Draw the eye as a volume sunk into the socket, not as a flat symbol.",
+    "paleta": {
+      "Violeta noche": "Night violet",
+      "Malva": "Mauve",
+      "Rosa fuerte": "Hot pink",
+      "Gris perla": "Pearl gray",
+      "Negro": "Black"
+    },
+    "datos": [
+      {
+        "texto": "Studies of eyes and sockets in the portrait."
+      },
+      {
+        "texto": "Details of the gaze and the eyelids."
+      },
+      {
+        "texto": "Building the eye within the scheme of the head."
+      }
+    ]
+  },
+  "pt": {
+    "tema": "O olho: órbita, pálpebras e olhar",
+    "frase": {
+      "texto": "A perda da crença serve para instaurar um regime que depende tanto da incredulidade quanto de seu retorno — intermitente e localizado.",
+      "autor": "Max Milner, via Claudia Rodríguez-Ponga Linares · Pequeño tratado sobre arte y magia (Cap. 2)"
+    },
+    "mision": "Desenhar o olho como um volume afundado na órbita, não como um símbolo plano.",
+    "paleta": {
+      "Violeta noche": "Violeta noite",
+      "Malva": "Malva",
+      "Rosa fuerte": "Rosa forte",
+      "Gris perla": "Cinza pérola",
+      "Negro": "Preto"
+    },
+    "datos": [
+      {
+        "texto": "Estudos de olhos e órbita no retrato."
+      },
+      {
+        "texto": "Detalhes do olhar e das pálpebras."
+      },
+      {
+        "texto": "Construção do olho no esquema da cabeça."
+      }
+    ]
+  }
+}

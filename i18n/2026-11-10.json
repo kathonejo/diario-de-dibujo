@@ -1,0 +1,54 @@
+{
+  "en": {
+    "tema": "Animal anatomy: the neck of the horse and the dog (brachiocephalic, sternocephalic, splenius and jugular groove)",
+    "frase": {
+      "texto": "The image of a being gives a hold over that being; whoever possesses an image can influence what it represents.",
+      "autor": "Salomon Reinach · L'Art et la Magie, 1903 · Operator #6 Susan Hiller · The Bricoleur (Quote Bank by Operator, Reinach resonance)"
+    },
+    "mision": "Take the animal by the neck: find the 3 muscle bands that hold and move the head, and draw them so clearly that the image gives you a hold over the living animal.",
+    "paleta": {
+      "Púrpura": "Purple",
+      "Azul cobalto": "Cobalt blue",
+      "Oliva": "Olive",
+      "Amarillo limón claro": "Light lemon yellow",
+      "Gris perla": "Pearl gray"
+    },
+    "datos": [
+      {
+        "texto": "Splenius of the horse: a flat, triangular muscle between the nape, the withers and the neck vertebrae; it raises the head."
+      },
+      {
+        "texto": "Brachiocephalic in the horse, the ox and the dog: a long strap from the head to the arm, passing in front of the shoulder."
+      },
+      {
+        "texto": "Sternocephalic: a narrow band from the sternum to the jaw or the skull; the two sides meet below and part above."
+      }
+    ]
+  },
+  "pt": {
+    "tema": "Anatomia animal: o pescoço do cavalo e do cachorro (braquiocefálico, esternocefálico, esplênio e sulco jugular)",
+    "frase": {
+      "texto": "A imagem de um ser dá um domínio sobre esse ser; quem possui uma imagem pode influir sobre o que ela representa.",
+      "autor": "Salomon Reinach · L'Art et la Magie, 1903 · Operador #6 Susan Hiller · A Bricoleur (Banco de Citações por Operador, Ressonância Reinach)"
+    },
+    "mision": "Pegar o animal pelo pescoço: encontrar as 3 faixas musculares que sustentam e movem a cabeça, e desenhá-las tão claras que a imagem te dê domínio sobre o animal vivo.",
+    "paleta": {
+      "Púrpura": "Púrpura",
+      "Azul cobalto": "Azul cobalto",
+      "Oliva": "Oliva",
+      "Amarillo limón claro": "Amarelo limão claro",
+      "Gris perla": "Cinza pérola"
+    },
+    "datos": [
+      {
+        "texto": "Esplênio do cavalo: músculo plano e triangular entre a nuca, a cernelha e as vértebras do pescoço; levanta a cabeça."
+      },
+      {
+        "texto": "Braquiocefálico no cavalo, no boi e no cachorro: correia longa da cabeça ao braço, passa na frente do ombro."
+      },
+      {
+        "texto": "Esternocefálico: faixa estreita do esterno à mandíbula ou ao crânio; os dois lados se juntam embaixo e se separam em cima."
+      }
+    ]
+  }
+}

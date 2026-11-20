@@ -1,0 +1,54 @@
+{
+  "en": {
+    "tema": "Integration: the complete standing / posed human figure (gesture and axes, masses and cylinders, anatomy of shoulder-arm-hand and hip-leg-foot, finished with value)",
+    "frase": {
+      "texto": "Magic is an attempt to marry things in order to produce alterations in the realm of the super-real.",
+      "autor": "Claudia Rodríguez-Ponga Linares · Pequeño tratado sobre arte y magia, Ch. 1 · Operator #9 Taisha Abelar · Attention (Quote Bank by Operator, «connecting quote»)"
+    },
+    "mision": "Marry the pieces of the week into a single body: a standing figure where shoulder-arm-hand and hip-leg-foot respond to the same gesture and the same axis.",
+    "paleta": {
+      "Índigo noche": "Night indigo",
+      "Índigo vivo": "Vivid indigo",
+      "Azul cobalto claro": "Light cobalt blue",
+      "Turquesa": "Turquoise",
+      "Lavanda niebla": "Mist lavender"
+    },
+    "datos": [
+      {
+        "texto": "Loose line sketches of figures in moving poses: line of action and gesture."
+      },
+      {
+        "texto": "Canon of Polykleitos: full standing figure with proportion lines and center-of-gravity axis."
+      },
+      {
+        "texto": "Nude in graphite pencil: full figure in graphite, slow values and a single shadow mass."
+      }
+    ]
+  },
+  "pt": {
+    "tema": "Integração: figura humana completa de pé / em pose (gesto e eixos, massas e cilindros, anatomia de ombro-braço-mão e quadril-perna-pé, fechamento com valor)",
+    "frase": {
+      "texto": "A magia é uma tentativa de casar coisas para produzir alterações no âmbito do super-real.",
+      "autor": "Claudia Rodríguez-Ponga Linares · Pequeño tratado sobre arte y magia, Cap. 1 · Operador #9 Taisha Abelar · A Atenção (Banco de Citações por Operador, «Citação de conexão»)"
+    },
+    "mision": "Casar as peças da semana num só corpo: uma figura de pé onde ombro-braço-mão e quadril-perna-pé respondam ao mesmo gesto e ao mesmo eixo.",
+    "paleta": {
+      "Índigo noche": "Índigo noite",
+      "Índigo vivo": "Índigo vivo",
+      "Azul cobalto claro": "Azul cobalto claro",
+      "Turquesa": "Turquesa",
+      "Lavanda niebla": "Lavanda névoa"
+    },
+    "datos": [
+      {
+        "texto": "Esboços de linha solta de figuras em poses de movimento: linha de ação e gesto."
+      },
+      {
+        "texto": "Cânone de Policleto: figura inteira de pé com linhas de proporção e eixo de gravidade."
+      },
+      {
+        "texto": "Nu com lápis grafite: figura completa em grafite, valores lentos e uma só massa de sombra."
+      }
+    ]
+  }
+}

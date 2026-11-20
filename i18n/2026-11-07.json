@@ -1,0 +1,54 @@
+{
+  "en": {
+    "tema": "Experimental day: the human figure in motion with charcoal and single-color wash (quick sketch, motion and directional lines, blot without line, line and blot combined)",
+    "frase": {
+      "texto": "Creativity is part of the natural order of life. Life is energy: pure creative energy.",
+      "autor": "Julia Cameron · The Artist’s Way · Operator #1 Bruno Latour · The Sage (Quote Bank by Operator, «Cameron resonance»)"
+    },
+    "mision": "Let go of the week’s figure and let it move: draw the body as energy, with long charcoal strokes and single-color wash blots, without looking for detail.",
+    "paleta": {
+      "Sepia tostado": "Burnt sepia",
+      "Ocre miel": "Honey ochre",
+      "Naranja ámbar": "Amber orange",
+      "Durazno": "Peach",
+      "Crema papel": "Paper cream"
+    },
+    "datos": [
+      {
+        "texto": "Figures in motion: linear charcoal strokes, motion lines and directional lines."
+      },
+      {
+        "texto": "The quick sketch: synthesis, expressive stroke and rhythm of movement in standing and moving figures."
+      },
+      {
+        "texto": "Figure with watercolor pencils, monochrome and full color: wash-like blot, drawing and painting together."
+      }
+    ]
+  },
+  "pt": {
+    "tema": "Dia experimental: figura humana em movimento com carvão e aguada de uma cor (esboço rápido, linhas de movimento e direcionais, mancha sem linha, mistura de linha e mancha)",
+    "frase": {
+      "texto": "A criatividade faz parte da ordem natural da vida. A vida é energia: pura energia criativa.",
+      "autor": "Julia Cameron · O caminho do artista · Operador #1 Bruno Latour · O Sábio (Banco de Citações por Operador, «Ressonância Cameron»)"
+    },
+    "mision": "Soltar a figura da semana e deixá-la se mover: desenhar o corpo como energia, com traços longos de carvão e manchas de aguada de uma só cor, sem buscar o detalhe.",
+    "paleta": {
+      "Sepia tostado": "Sépia queimado",
+      "Ocre miel": "Ocre mel",
+      "Naranja ámbar": "Laranja âmbar",
+      "Durazno": "Pêssego",
+      "Crema papel": "Creme papel"
+    },
+    "datos": [
+      {
+        "texto": "Figuras em movimento: traços lineares de carvão, linhas de movimento e linhas direcionais."
+      },
+      {
+        "texto": "O esboço rápido: síntese, traço expressivo e ritmo do movimento em figuras de pé e em movimento."
+      },
+      {
+        "texto": "Figura com lápis aquareláveis em monocromia e em cores: mancha tipo aguada, desenho e pintura juntos."
+      }
+    ]
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "en": {
+    "tema": "Value and Mass",
+    "frase": {
+      "texto": "A warrior rejects nothing, but lets nothing trap him.",
+      "autor": "Carlos Castaneda"
+    },
+    "mision": "See the world as two big masses, light and shadow, and accept every value without letting the detail trap you.",
+    "datos": [
+      {
+        "texto": "Value is how light or dark something is, regardless of its color; mass is grouping everything in shadow into a single shape. The box of ferns shows a simple volume with its lit face and its shadow face clearly separated."
+      },
+      {
+        "texto": "Form shadow and cast shadow on a simple object: the cast shadow is darkest right where it touches the ground. The two-families rule: no value inside the shadow can be as light as the darkest value in the light."
+      },
+      {
+        "texto": "The light figures read because the foliage background is a single dark mass. Hard edges where the form cuts, soft where it turns."
+      }
+    ]
+  },
+  "pt": {
+    "tema": "Valor e Massa",
+    "frase": {
+      "texto": "Um guerreiro não rejeita nada, mas não se deixa prender por nada.",
+      "autor": "Carlos Castaneda"
+    },
+    "mision": "Ver o mundo como duas grandes massas, luz e sombra, e aceitar cada valor sem deixar o detalhe te prender.",
+    "datos": [
+      {
+        "texto": "Valor é quão claro ou escuro algo é, sem importar sua cor; massa é agrupar tudo o que está na sombra numa só forma. A caixa de samambaias mostra um volume simples com a face iluminada e a face em sombra bem separadas."
+      },
+      {
+        "texto": "Sombra própria e sombra projetada num objeto simples: a projetada é a mais escura justo onde toca o chão. Regra das duas famílias: nenhum valor dentro da sombra pode ser tão claro quanto o mais escuro da luz."
+      },
+      {
+        "texto": "As figuras claras são lidas porque o fundo de folhagem é uma só massa escura. Bordas duras onde a forma corta, suaves onde gira."
+      }
+    ]
+  }
+}

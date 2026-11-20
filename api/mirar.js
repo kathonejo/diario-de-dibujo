@@ -18,8 +18,34 @@ const FRASES = [
   { texto: 'Quedó con alma. Gracias por dejarlo en el mural.', score: 5 },
 ];
 
-function fraseFallback() {
-  return FRASES[Math.floor(Math.random() * FRASES.length)];
+// Mismas frases en inglés y portugués, para cuando la instalación está en otro idioma.
+const FRASES_EN = [
+  'What a lovely stroke. You can tell you let loose.', 'I like the rhythm of the line. Keep going that way.',
+  'There is something tender in how you solved it. Nice.', 'You can feel the gesture. It doesn’t need to be perfect.',
+  'Good energy. Try a looser pass next time.', 'The contrast came out great. The eye goes where you want it to.',
+  'I love how simple it is. Sometimes less is more.', 'You can see the care in the attempt. That already counts.',
+  'There is movement. Let the line breathe a little more.', 'What presence. It has character.',
+  'Nice balance. Keep looking at the big shape before the details.', 'You can see the hand. Relax your shoulder and it will flow even more.',
+  'There is humor in the drawing. I like it.', 'Good composition. Empty space speaks too.', 'It has soul. Thanks for leaving it on the mural.',
+];
+const FRASES_PT = [
+  'Que traço lindo. Dá para ver que você se soltou.', 'Gosto do ritmo da linha. Siga por aí.',
+  'Tem algo terno em como você resolveu. Muito bem.', 'Dá para sentir o gesto. Não precisa ser perfeito.',
+  'Boa energia. Tente uma passada mais solta da próxima vez.', 'O contraste ficou ótimo. O olho vai para onde você quer.',
+  'Adoro a simplicidade. Às vezes menos é mais.', 'Dá para ver o carinho na tentativa. Isso já vale.',
+  'Tem movimento. Deixe a linha respirar um pouco mais.', 'Que presença. Ficou com personalidade.',
+  'Belo equilíbrio. Continue olhando a forma grande antes do detalhe.', 'Dá para ver a mão. Relaxe o ombro e vai sair ainda mais fluido.',
+  'Tem humor no desenho. Gostei.', 'Boa composição. O espaço vazio também fala.', 'Ficou com alma. Obrigado por deixá-lo no mural.',
+];
+const LANGS = ['es', 'en', 'pt'];
+const normLang = l => (LANGS.includes(String(l || '').toLowerCase().slice(0, 2)) ? String(l).toLowerCase().slice(0, 2) : 'es');
+
+function fraseFallback(lang = 'es') {
+  const i = Math.floor(Math.random() * FRASES.length);
+  const f = FRASES[i];
+  if (lang === 'en') return { ...f, texto: FRASES_EN[i] };
+  if (lang === 'pt') return { ...f, texto: FRASES_PT[i] };
+  return f;
 }
 
 function parseRespuesta(text) {
@@ -37,7 +63,7 @@ function parseRespuesta(text) {
   return null;
 }
 
-async function mirarConGrok(imageUrl, tema) {
+async function mirarConGrok(imageUrl, tema, lang = 'es') {
   const key = process.env.XAI_API_KEY;
   if (!key) return null;
 
@@ -47,6 +73,11 @@ async function mirarConGrok(imageUrl, tema) {
     `. Respondé SOLO un JSON válido, sin markdown: {"texto":"...","score":N}. ` +
     `"texto" = 1 o 2 oraciones cortas en español rioplatense (vos), amables, sin ser cursi, que digan qué ves y una sugerencia suave. ` +
     `"score" = número entero 1 a 5 (ponderación gentil; 1 casi nunca, 3 está bien, 5 brilla). Nunca seas cruel ni pongas nota escolar.`;
+  const promptFinal = lang === 'en'
+    ? prompt + ' IMPORTANTE: escribí "texto" en inglés (English), con el mismo tono cálido y breve.'
+    : lang === 'pt'
+      ? prompt + ' IMPORTANTE: escribí "texto" en portugués de Brasil, con el mismo tono cálido y breve.'
+      : prompt;
 
   // Preferimos chat/completions OpenAI-compatible (rápido). Modelo visión: grok-2-vision-1212; fallback grok-4.
   const models = ['grok-2-vision-1212', 'grok-4-fast-non-reasoning', 'grok-4'];
@@ -67,7 +98,7 @@ async function mirarConGrok(imageUrl, tema) {
               role: 'user',
               content: [
                 { type: 'image_url', image_url: { url: imageUrl, detail: 'low' } },
-                { type: 'text', text: prompt },
+                { type: 'text', text: promptFinal },
               ],
             },
           ],
@@ -104,16 +135,17 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: 'Imagen demasiado grande' });
     }
 
-    const ai = await mirarConGrok(image, String(b.tema || ''));
+    const lang = normLang(b.lang);
+    const ai = await mirarConGrok(image, String(b.tema || ''), lang);
     if (ai) {
       res.setHeader('Cache-Control', 'no-store');
       return res.status(200).json(ai);
     }
-    const fb = fraseFallback();
+    const fb = fraseFallback(lang);
     res.setHeader('Cache-Control', 'no-store');
     return res.status(200).json({ ...fb, fuente: 'frase' });
   } catch (e) {
-    const fb = fraseFallback();
+    const fb = fraseFallback(normLang(req.body?.lang));
     return res.status(200).json({ ...fb, fuente: 'frase', error: e.message });
   }
 }

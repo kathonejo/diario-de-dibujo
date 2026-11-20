@@ -1,0 +1,54 @@
+{
+  "en": {
+    "tema": "The direction of light: one form, five lights (technique + creativity)",
+    "frase": {
+      "texto": "Magic is what art does not see when it looks in the rearview mirror.",
+      "autor": "Claudia Rodríguez-Ponga Linares · Pequeño tratado sobre arte y magia, Ch. 1 · Operator #6 Susan Hiller · The Bricoleur (Quote Bank)"
+    },
+    "mision": "Decide where the light comes from before drawing, and let that decision sort out what gets lit and what sinks into shadow.",
+    "paleta": {
+      "Violeta noche": "Night violet",
+      "Violeta real": "Royal violet",
+      "Verde bosque": "Forest green",
+      "Naranja tostado": "Burnt orange",
+      "Lila niebla": "Mist lilac"
+    },
+    "datos": [
+      {
+        "texto": "The five directions of light: frontal, frontal-lateral at 45°, lateral, backlight or partial backlight, and overhead, shown with the same mime face (figs. 461–465); below, the same cup in direct spotlight and in soft natural light (figs. 466–467) («Light and shadow», printed p. 132)."
+      },
+      {
+        "texto": "Head in profile by Wolf Huber (1522): strong side light, the lit plane of the face stands out against a dark background of dense hatching (printed p. 28)."
+      },
+      {
+        "texto": "Cube, cone, sphere and pyramid with a stroke that follows the form of each volume and marks the sides in shadow; below, the color starting point with the main shadow areas (figs. 113–114)."
+      }
+    ]
+  },
+  "pt": {
+    "tema": "A direção da luz: uma mesma forma, cinco luzes (técnica + criatividade)",
+    "frase": {
+      "texto": "A magia é o que a arte não vê quando olha pelo retrovisor.",
+      "autor": "Claudia Rodríguez-Ponga Linares · Pequeño tratado sobre arte y magia, Cap. 1 · Operador #6 Susan Hiller · A Bricoleur (Banco de Citações)"
+    },
+    "mision": "Decidir de onde vem a luz antes de desenhar, e deixar essa decisão ordenar o que se ilumina e o que afunda na sombra.",
+    "paleta": {
+      "Violeta noche": "Violeta noite",
+      "Violeta real": "Violeta real",
+      "Verde bosque": "Verde floresta",
+      "Naranja tostado": "Laranja queimado",
+      "Lila niebla": "Lilás névoa"
+    },
+    "datos": [
+      {
+        "texto": "As cinco direções da luz: frontal, frontal lateral a 45°, lateral, contraluz ou semicontraluz e zenital, mostradas com o mesmo rosto de mímico (figs. 461–465); embaixo, a mesma xícara com luz direta de refletor e com luz natural difusa (figs. 466–467) («Luz e sombra», pág. 132 impressa)."
+      },
+      {
+        "texto": "Cabeça de perfil de Wolf Huber (1522): luz lateral forte, o plano iluminado do rosto se recorta contra um fundo escuro de trama densa (pág. 28 impressa)."
+      },
+      {
+        "texto": "Cubo, cone, esfera e pirâmide com um traço que segue a forma de cada volume e marca os lados na sombra; embaixo, o ponto de partida em cor com as principais zonas de sombra (figs. 113–114)."
+      }
+    ]
+  }
+}

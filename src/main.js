@@ -3,12 +3,12 @@ import { initTimer } from './timer.js';
 import { openFocus } from './focus.js';
 import { getTrabajos, dialogoSubir, borrar } from './trabajos.js';
 import { instalacion, leaveInstalacion } from './instalacion.js';
+import { t, initLang, fechaLarga, nombreMes, iniciales, localizarDia, temaIndice } from './i18n.js';
+initLang();
 const app = document.getElementById('app');
-const MESES = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
-const DIAS = ['domingo','lunes','martes','miércoles','jueves','viernes','sábado'];
 const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const parse = f => { const [y,m,d] = f.split('-').map(Number); return new Date(y, m-1, d); };
-const largo = f => { const d = parse(f); return `${DIAS[d.getDay()]} ${d.getDate()} de ${MESES[d.getMonth()]} de ${d.getFullYear()}`; };
+const largo = f => fechaLarga(f);
 const img = (f, n) => `/content/${f}/${n}`;
 const genBadge = d => '';
 const fmtGen = g => {
@@ -18,7 +18,7 @@ const fmtGen = g => {
 };
 let indice = null;
 const getIndex = async () => indice ??= await fetch('/content/index.json').then(r => r.ok ? r.json() : []).catch(() => []);
-const getDia = f => fetch(`/content/${f}/dia.json`).then(r => r.ok ? r.json() : null).catch(() => null);
+const getDia = f => fetch(`/content/${f}/dia.json`).then(r => r.ok ? r.json() : null).catch(() => null).then(d => localizarDia(d));
 
 function frase(d) {
   if (!d?.frase?.texto) return '';
@@ -33,12 +33,12 @@ function normPaleta(p) {
 }
 export function paletaHTML(p, cls = '') {
   const cs = normPaleta(p); if (!cs.length) return '';
-  return `<div class="paleta ${cls}">${cs.map(c => `<button class="sw" data-hex="${c.hex}" title="Copiar ${c.hex}"><i style="background:${c.hex}"></i><span>${esc(c.nombre)}</span><code>${c.hex}</code></button>`).join('')}</div>`;
+  return `<div class="paleta ${cls}">${cs.map(c => `<button class="sw" data-hex="${c.hex}" title="${t('copy', { hex: c.hex })}"><i style="background:${c.hex}"></i><span>${esc(c.nombre)}</span><code>${c.hex}</code></button>`).join('')}</div>`;
 }
 document.addEventListener('click', async e => {
   const b = e.target.closest('.sw'); if (!b) return;
   try { await navigator.clipboard.writeText(b.dataset.hex); } catch { const t = Object.assign(document.createElement('textarea'), { value: b.dataset.hex }); document.body.append(t); t.select(); document.execCommand('copy'); t.remove(); }
-  const c = b.querySelector('code'); c.textContent = '¡Copiado!'; b.classList.add('ok'); setTimeout(() => { c.textContent = b.dataset.hex; b.classList.remove('ok'); }, 1200);
+  const c = b.querySelector('code'); c.textContent = t('copied'); b.classList.add('ok'); setTimeout(() => { c.textContent = b.dataset.hex; b.classList.remove('ok'); }, 1200);
 });
 
 let calMes = null;
@@ -55,87 +55,87 @@ function calendario(dias) {
     const f = `${y}-${String(m+1).padStart(2,'0')}-${String(i).padStart(2,'0')}`;
     const cls = f === hoy ? ' hoy' : '';
     const t = TR[f]?.[0];
-    cells += set.has(f) ? `<a href="/dia/${f}" class="c tiene${cls}${t ? ' con-trabajo' : ''}"${t ? ` style="background-image:url('${t.url}')" title="Con trabajo subido"` : ''}><span>${i}</span></a>` : `<span class="c${cls}">${i}</span>`;
+    cells += set.has(f) ? `<a href="/dia/${f}" class="c tiene${cls}${t ? ' con-trabajo' : ''}"${t ? ` style="background-image:url('${t.url}')" title="${t('cal.trabajo')}"` : ''}><span>${i}</span></a>` : `<span class="c${cls}">${i}</span>`;
   }
-  return `<div class="cal card"><div class="cal-h"><button data-mes="-1" aria-label="Mes anterior">‹</button><strong>${MESES[m]} ${y}</strong><button data-mes="1" aria-label="Mes siguiente">›</button></div>
-  <div class="cal-g">${['L','M','M','J','V','S','D'].map(d=>`<b>${d}</b>`).join('')}${cells}</div></div>`;
+  return `<div class="cal card"><div class="cal-h"><button data-mes="-1" aria-label="${t('cal.prev')}">‹</button><strong>${nombreMes(m)} ${y}</strong><button data-mes="1" aria-label="${t('cal.next')}">›</button></div>
+  <div class="cal-g">${iniciales().map(d=>`<b>${d}</b>`).join('')}${cells}</div></div>`;
 }
-const lista = dias => `<ul class="lista">${dias.map(d => `<li><a href="/dia/${d.fecha}"><img loading="lazy" src="${img(d.fecha, d.moodboard)}" alt=""><span><small>${largo(d.fecha)}</small><strong>${esc(d.tema)}</strong></span>${TR[d.fecha]?.length ? `<img class="mini-trabajo" loading="lazy" src="${TR[d.fecha][0].url}" alt="Mi trabajo" title="Mi trabajo">` : ''}</a></li>`).join('')}</ul>`;
+const lista = dias => `<ul class="lista">${dias.map(d => `<li><a href="/dia/${d.fecha}"><img loading="lazy" src="${img(d.fecha, d.moodboard)}" alt=""><span><small>${largo(d.fecha)}</small><strong>${esc(temaIndice(d))}</strong></span>${TR[d.fecha]?.length ? `<img class="mini-trabajo" loading="lazy" src="${TR[d.fecha][0].url}" alt="${t('mi.trabajo')}" title="${t('mi.trabajo')}">` : ''}</a></li>`).join('')}</ul>`;
 
-const manifiesto = n => `<div class="manifiesto"><img src="/mascota.png" alt=""><p>Un ejercicio nuevo cada día: frase, misión, moodboard y referencias. Hoy hay <strong>${n}</strong> días publicados.</p></div>`;
+const manifiesto = n => `<div class="manifiesto"><img src="/mascota.png" alt=""><p>${t('manifiesto', { n })}</p></div>`;
 
 async function home() {
   const [dias, tr] = await Promise.all([getIndex(), getTrabajos()]); TR = tr;
-  if (!dias.length) { app.innerHTML = `<section class="vacio"><h1>Sin días publicados</h1><p>Cuando haya un estudio, aparece acá.</p></section>`; return; }
+  if (!dias.length) { app.innerHTML = `<section class="vacio"><h1>${t('home.vacio.h')}</h1><p>${t('home.vacio.p')}</p></section>`; return; }
   const u = dias[0], d = await getDia(u.fecha);
   app.innerHTML = `<section class="home-banner">
-    <p class="home-banner-lead">Este diario nace como una intersección entre aprendizaje, arte, archivo y reflexión. Busca recuperar y conservar la educación tradicional, mezclando los valores de creación antiguos con las nuevas tecnologías. Armado por Kathonejo a partir de libros, PDFs y recopilaciones propias.</p>
-    <p class="home-banner-extra">Cada día se genera un nuevo ejercicio, con su paleta limitada, para practicar bajo un timer pomodoro. Además cuenta con una instalación para disfrutar en gran pantalla, de forma individual o grupal, donde se construye una obra en conjunto y el programa la exhibe.</p>
-    <p class="home-banner-extra">Las frases que acompañan cada día vienen de Operadores Mágicos, una investigación de Kathonejo sobre figuras de la antropología, la filosofía y la magia que estudiaron el quehacer artístico, a partir del <em>Pequeño tratado sobre arte y magia</em> de Claudia Rodríguez-Ponga Linares.</p>
-    <p class="home-banner-mantra">Cada día, una nueva página del diario de dibujo.</p>
+    <p class="home-banner-lead">${t('home.lead')}</p>
+    <p class="home-banner-extra">${t('home.extra1')}</p>
+    <p class="home-banner-extra">${t('home.extra2')}</p>
+    <p class="home-banner-mantra">${t('home.mantra')}</p>
     <div class="home-banner-cta">
-      <a class="btn" href="/instalacion">Instalación</a>
+      <a class="btn" href="/instalacion">${t('nav.instalacion')}</a>
     </div>
   </section>
   <section class="hero">
-    <a href="/dia/${u.fecha}" class="mood"><img src="${img(u.fecha, d.moodboard)}" alt="Moodboard: ${esc(d.tema)}"></a>
-    <div class="hero-t"><p class="eyebrow">Último día · ${largo(u.fecha)}</p><h1>${esc(d.tema)}</h1>${genBadge(d)}${frase(d)}
-    <div class="mision card"><h3>Misión del día</h3><p>${esc(d.mision)}</p></div>
+    <a href="/dia/${u.fecha}" class="mood"><img src="${img(u.fecha, d.moodboard)}" alt="${t('moodboard.alt', { tema: esc(d.tema) })}"></a>
+    <div class="hero-t"><p class="eyebrow">${t('ultimo', { fecha: largo(u.fecha) })}</p><h1>${esc(d.tema)}</h1>${genBadge(d)}${frase(d)}
+    <div class="mision card"><h3>${t('mision')}</h3><p>${esc(d.mision)}</p></div>
     ${manifiesto(dias.length)}
     <div class="acciones" style="margin-top:1.2rem">
-      <a class="btn" href="/dia/${u.fecha}">Ir al día →</a>
-      <a class="btn sec" href="/diario">Ver el diario</a>
+      <a class="btn" href="/dia/${u.fecha}">${t('ir.dia')}</a>
+      <a class="btn sec" href="/diario">${t('ver.diario')}</a>
     </div></div></section>`;
 }
 async function diario() {
   const [dias, tr] = await Promise.all([getIndex(), getTrabajos()]); TR = tr;
-  document.title = 'Diario · Diario de dibujo';
+  document.title = `${t('nav.diario')} · ${t('site')}`;
   const orden = [...dias].sort((a,b) => a.fecha.localeCompare(b.fecha));
   app.innerHTML = `<section class="obra-head">
-    <p class="eyebrow">Diario de dibujo</p>
-    <h1>Diario</h1>
-    <p>Cada día, una nueva página.<br>Cada página es una nueva invitación a crear, porque el arte tradicional no teme a experimentar con la tecnología</p>
-    <span class="cuenta"><i></i>${orden.length} días · desde ${orden[0] ? largo(orden[0].fecha) : '—'}</span>
+    <p class="eyebrow">${t('site')}</p>
+    <h1>${t('diario.h')}</h1>
+    <p>${t('diario.p')}</p>
+    <span class="cuenta"><i></i>${t('diario.cuenta', { n: orden.length, fecha: orden[0] ? largo(orden[0].fecha) : '—' })}</span>
   </section>
-  <div class="mosaico">${orden.map(d => `<a href="/dia/${d.fecha}" title="${esc(d.tema)}">
-    <img loading="lazy" src="${img(d.fecha, d.moodboard)}" alt="${esc(d.tema)}">
-    <span class="cap"><small>${largo(d.fecha)}</small><strong>${esc(d.tema)}</strong></span>
+  <div class="mosaico">${orden.map(d => `<a href="/dia/${d.fecha}" title="${esc(temaIndice(d))}">
+    <img loading="lazy" src="${img(d.fecha, d.moodboard)}" alt="${esc(temaIndice(d))}">
+    <span class="cap"><small>${largo(d.fecha)}</small><strong>${esc(temaIndice(d))}</strong></span>
   </a>`).join('')}</div>
   <section class="archivo">
-    <div><h2>Calendario</h2>${manifiesto(dias.length)}<div id="cal">${calendario(dias)}</div></div>
-    <div><h2>Todos los días</h2>${lista(dias)}</div>
+    <div><h2>${t('calendario')}</h2>${manifiesto(dias.length)}<div id="cal">${calendario(dias)}</div></div>
+    <div><h2>${t('todos')}</h2>${lista(dias)}</div>
   </section>`;
 }
 async function dia(f) {
   const [d, dias, tr] = await Promise.all([getDia(f), getIndex(), getTrabajos()]); TR = tr;
-  if (!d) { app.innerHTML = `<section class="vacio"><h1>Este día no existe</h1><p>No hay estudio para ${esc(f)}.</p><a class="btn" href="/">Volver al inicio</a></section>`; return; }
+  if (!d) { app.innerHTML = `<section class="vacio"><h1>${t('dia.no.h')}</h1><p>${t('dia.no.p', { f: esc(f) })}</p><a class="btn" href="/">${t('volver.inicio')}</a></section>`; return; }
   const i = dias.findIndex(x => x.fecha === f), prev = dias[i+1], next = dias[i-1];
-  const imgs = [{ src: img(f, d.moodboard), label: 'Moodboard' }, ...(d.datos || []).filter(x => x.imagen).map(x => ({ src: img(f, x.imagen), label: `Pág. ${x.pagina ?? ''}` }))];
+  const imgs = [{ src: img(f, d.moodboard), label: t('moodboard') }, ...(d.datos || []).filter(x => x.imagen).map(x => ({ src: img(f, x.imagen), label: t('pag', { p: x.pagina ?? '' }) }))];
   queueMicrotask(() => {
     document.getElementById('focus-btn').onclick = () => openFocus(imgs, 0, paletaHTML(d.paleta, 'mini'));
     const sub = () => dialogoSubir(f, () => dia(f));
     document.getElementById('subir-btn').onclick = sub; document.getElementById('subir-btn2').onclick = sub;
-    app.querySelectorAll('[data-borrar]').forEach(b => b.onclick = async () => { if (confirm('¿Borrar este trabajo?') && await borrar(f, b.dataset.borrar)) dia(f); });
+    app.querySelectorAll('[data-borrar]').forEach(b => b.onclick = async () => { if (confirm(t('borrar.confirm')) && await borrar(f, b.dataset.borrar)) dia(f); });
   });
-  document.title = `${d.tema} · Diario de dibujo`;
+  document.title = `${d.tema} · ${t('site')}`;
   app.innerHTML = `<article class="dia">
     <p class="eyebrow">${largo(f)}</p><h1>${esc(d.tema)}</h1>${genBadge(d)}
-    <div class="acciones"><button class="btn" id="focus-btn">Modo focus</button><button class="btn sec" id="subir-btn">Subir mi trabajo</button></div>
-    <figure class="mood grande"><img src="${img(f, d.moodboard)}" alt="Moodboard: ${esc(d.tema)}" data-zoom><figcaption>Foto 1 · Moodboard</figcaption></figure>
-    ${normPaleta(d.paleta).length ? `<section class="paleta-sec"><h3>Paleta del día</h3>${paletaHTML(d.paleta)}<p class="hint">Tocá un color para copiar su código.</p></section>` : ''}
-    <div class="dos">${frase(d)}<div class="mision card"><h3>Misión del día</h3><p>${esc(d.mision)}</p></div></div>
-    ${d.datos?.length ? `<h2>Datos</h2><div class="datos">${d.datos.map(x => `<div class="dato card">
-      ${x.imagen ? `<img loading="lazy" src="${img(f, x.imagen)}" alt="Referencia: ${esc(x.libro)}, pág. ${esc(x.pagina)}" data-zoom>` : ''}
-      <div><p>${esc(x.texto)}</p><p class="credito">${esc(x.libro)}${x.pagina ? `, pág. ${esc(x.pagina)}` : ''}</p></div></div>`).join('')}</div>` : ''}
-    <section class="mi-trabajo"><h2>Mi trabajo</h2>${(TR[f] || []).length ? `<div class="trabajos">${TR[f].map(t => `<figure class="card trabajo"><img loading="lazy" src="${t.url}" alt="Mi trabajo del ${f}" data-zoom>${t.nota ? `<figcaption>${esc(t.nota)}</figcaption>` : ''}<button class="borrar" data-borrar="${t.id}" title="Borrar">✕</button></figure>`).join('')}</div>` : `<p class="vacio-t">Todavía no subiste tu dibujo de este día.</p>`}
-      <button class="btn sec" id="subir-btn2">Subir mi trabajo</button></section>
-    <nav class="pn">${prev ? `<a href="/dia/${prev.fecha}">← ${esc(prev.tema)}</a>` : '<span></span>'}${next ? `<a href="/dia/${next.fecha}">${esc(next.tema)} →</a>` : '<span></span>'}</nav>
+    <div class="acciones"><button class="btn" id="focus-btn">${t('focus')}</button><button class="btn sec" id="subir-btn">${t('subir')}</button></div>
+    <figure class="mood grande"><img src="${img(f, d.moodboard)}" alt="${t('moodboard.alt', { tema: esc(d.tema) })}" data-zoom><figcaption>${t('foto1')}</figcaption></figure>
+    ${normPaleta(d.paleta).length ? `<section class="paleta-sec"><h3>${t('paleta')}</h3>${paletaHTML(d.paleta)}<p class="hint">${t('paleta.hint')}</p></section>` : ''}
+    <div class="dos">${frase(d)}<div class="mision card"><h3>${t('mision')}</h3><p>${esc(d.mision)}</p></div></div>
+    ${d.datos?.length ? `<h2>${t('datos')}</h2><div class="datos">${d.datos.map(x => `<div class="dato card">
+      ${x.imagen ? `<img loading="lazy" src="${img(f, x.imagen)}" alt="${t('ref.alt', { libro: esc(x.libro), p: esc(x.pagina) })}" data-zoom>` : ''}
+      <div><p>${esc(x.texto)}</p><p class="credito">${esc(x.libro)}${x.pagina ? t('credito.pag', { p: esc(x.pagina) }) : ''}</p></div></div>`).join('')}</div>` : ''}
+    <section class="mi-trabajo"><h2>${t('mi.trabajo')}</h2>${(TR[f] || []).length ? `<div class="trabajos">${TR[f].map(t => `<figure class="card trabajo"><img loading="lazy" src="${t.url}" alt="${t('mi.trabajo.alt', { f })}" data-zoom>${t.nota ? `<figcaption>${esc(t.nota)}</figcaption>` : ''}<button class="borrar" data-borrar="${t.id}" title="${t('borrar')}">✕</button></figure>`).join('')}</div>` : `<p class="vacio-t">${t('sin.trabajo')}</p>`}
+      <button class="btn sec" id="subir-btn2">${t('subir')}</button></section>
+    <nav class="pn">${prev ? `<a href="/dia/${prev.fecha}">← ${esc(temaIndice(prev))}</a>` : '<span></span>'}${next ? `<a href="/dia/${next.fecha}">${esc(temaIndice(next))} →</a>` : '<span></span>'}</nav>
   </article>`;
 }
-async function route() {
+async function route({ scroll = true } = {}) {
   const p = location.pathname, m = p.match(/^\/dia\/(\d{4}-\d{2}-\d{2})\/?$/);
   if (!p.startsWith('/instalacion')) leaveInstalacion();
-  if (!localStorage.getItem('timer') || !JSON.parse(localStorage.getItem('timer')).running) document.title = 'Diario de dibujo';
+  if (!localStorage.getItem('timer') || !JSON.parse(localStorage.getItem('timer')).running) document.title = t('site');
   if (p.startsWith('/instalacion')) await instalacion(app);
   else if (m) await dia(m[1]);
   else if (p.startsWith('/diario') || p.startsWith('/obra') || p.startsWith('/dias')) {
@@ -143,7 +143,7 @@ async function route() {
     await diario();
   }
   else await home();
-  window.scrollTo(0, 0);
+  if (scroll) window.scrollTo(0, 0);
 }
 document.addEventListener('click', e => {
   const b = e.target.closest('[data-mes]');
@@ -155,6 +155,8 @@ document.addEventListener('click', e => {
   if (a && !e.metaKey && !e.ctrlKey) { e.preventDefault(); history.pushState(null, '', a.getAttribute('href')); route(); }
 });
 document.addEventListener('keydown', e => { if (e.key === 'Escape') document.getElementById('lightbox').hidden = true; });
-addEventListener('popstate', route);
+addEventListener('popstate', () => route());
+// Al cambiar de idioma se vuelve a dibujar la página actual sin saltar arriba.
+document.addEventListener('langchange', () => route({ scroll: false }));
 initTimer(document.getElementById('timer'));
 route();

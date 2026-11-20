@@ -1,0 +1,52 @@
+{
+  "en": {
+    "tema": "Lost and found edges",
+    "frase": {
+      "texto": "The path is discontinuous, and what truly makes it a path is the guiding thread of the creature’s body/knowledge.",
+      "autor": "María Zambrano · Operator #4 · The Sibyl"
+    },
+    "mision": "Draw a head without tracing the complete outline: some edges get lost in the shadow, others cut cleanly against the light, and the form still reads.",
+    "paleta": {
+      "Negro humo": "Smoke black",
+      "Sombra tostada": "Burnt umber",
+      "Siena quemada": "Burnt sienna",
+      "Ocre anaranjado": "Orange ochre"
+    },
+    "datos": [
+      {
+        "texto": "Soft edge: on the charcoal spheres the terminator is a gradual band where the form turns; the cast shadow, on the other hand, has a sharper edge."
+      },
+      {
+        "texto": "Found edge: on the plaster head the lit profile cuts with high contrast against the background, while the nape and hair melt into halftones."
+      },
+      {
+        "texto": "Lost edge: in this portrait the shadow of the face and the background share the same value and the outline disappears; the eye completes the form with a few accents."
+      }
+    ]
+  },
+  "pt": {
+    "tema": "Bordas perdidas e encontradas",
+    "frase": {
+      "texto": "O caminho é descontínuo e o que realmente o torna caminho é o fio condutor do corpo/saber da criatura.",
+      "autor": "María Zambrano · Operador #4 · A Sibila"
+    },
+    "mision": "Desenhar uma cabeça sem traçar o contorno completo: algumas bordas se perdem na sombra, outras cortam limpas contra a luz, e a forma continua sendo lida.",
+    "paleta": {
+      "Negro humo": "Preto fumaça",
+      "Sombra tostada": "Terra de sombra queimada",
+      "Siena quemada": "Siena queimada",
+      "Ocre anaranjado": "Ocre alaranjado"
+    },
+    "datos": [
+      {
+        "texto": "Borda suave: nas esferas a carvão o terminador é uma faixa gradual onde a forma gira; a sombra projetada, por outro lado, tem uma borda mais definida."
+      },
+      {
+        "texto": "Borda encontrada: na cabeça de gesso o perfil iluminado corta com alto contraste contra o fundo, enquanto a nuca e o cabelo se fundem em meios-tons."
+      },
+      {
+        "texto": "Borda perdida: neste retrato a sombra do rosto e o fundo compartilham o mesmo valor e o contorno desaparece; o olho completa a forma com poucos acentos."
+      }
+    ]
+  }
+}

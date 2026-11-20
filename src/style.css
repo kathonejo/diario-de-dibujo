@@ -377,3 +377,13 @@ body.modo-instalacion main{max-width:none;padding:0;min-height:100dvh}
   .inst-acts .btn{flex:1 1 auto;min-width:0;padding:.55rem .5rem;font-size:.62rem;letter-spacing:.06em}
   #inst-fondo{order:-1}
 }
+
+/* ── Selector de idioma ES / EN / PT ── */
+.lang-sw{display:inline-flex;vertical-align:middle;margin-left:1.1rem;border:1px solid var(--line)}
+.lang-sw button{background:transparent;color:var(--ink);border:0;border-radius:0;font:500 .66rem/1 var(--mono);letter-spacing:.1em;padding:.32rem .42rem;cursor:pointer;opacity:.75}
+.lang-sw button:hover{opacity:1}
+.lang-sw button[aria-pressed="true"]{background:var(--ink);color:var(--blue);opacity:1}
+.lang-sw button:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+.inst-lang{margin:1rem auto 0}
+.inst-mural-ctl .inst-lang{margin:0 0 0 .2rem;align-self:center}
+@media(max-width:640px){.lang-sw{margin-left:.65rem}.lang-sw button{font-size:.62rem;padding:.3rem .36rem}}

@@ -1,0 +1,24 @@
+{
+  "en": {
+    "tema": "Human anatomy: the back (spine, shoulder blades, trapezius and latissimus dorsi)",
+    "frase": {"texto": "Modern critique became a powerful drug that subtracts reality instead of adding to it.", "autor": "Claudia Rodríguez-Ponga Linares quoting Bruno Latour · Pequeño tratado sobre arte y magia, Ch. 1 (Operator #1 Bruno Latour · The Sage, secondary quote, Quote Bank by Operator)"},
+    "mision": "Add reality, don’t subtract it: build the back layer by layer (axes, shoulder blades, trapezius, latissimus) without erasing or criticizing halfway through.",
+    "paleta": {"Amarillo limón": "Lemon yellow", "Verde hoja": "Leaf green", "Orquídea": "Orchid", "Ciruela magenta": "Magenta plum", "Gris lavanda": "Lavender gray"},
+    "datos": [
+      {"texto": "The trapezius: a diamond-shaped sheet running from the nape to the middle of the back and to both shoulders (figs. 242-243, back and side views).", "pagina": "174 of the PDF (printed p. 178, figs. 242-243, «El trapecio»)"},
+      {"texto": "The latissimus dorsi: a fan that starts in the lower back and rises to the armpit; below, the shoulder blade and its attachments seen from several angles (figs. 250-254).", "pagina": "180 of the PDF (printed p. 184, «Dorsal ancho»)"},
+      {"texto": "Action of the back: the shoulder blades move toward the spine or away from it; a back drawn with the relief of the shoulder blade, the groove of the spine and the edge of the latissimus (figs. 257-259).", "pagina": "184 of the PDF (printed p. 188, «Acción»)"}
+    ]
+  },
+  "pt": {
+    "tema": "Anatomia humana: as costas (coluna, omoplatas, trapézio e grande dorsal)",
+    "frase": {"texto": "A crítica moderna se tornou uma droga poderosa que subtrai realidade em vez de somá-la.", "autor": "Claudia Rodríguez-Ponga Linares citando Bruno Latour · Pequeño tratado sobre arte y magia, Cap. 1 (Operador #1 Bruno Latour · O Sábio, Citação secundária, Banco de Citações por Operador)"},
+    "mision": "Somar realidade, não subtraí-la: construir as costas camada por camada (eixos, omoplatas, trapézio, grande dorsal) sem apagar nem criticar no meio do caminho.",
+    "paleta": {"Amarillo limón": "Amarelo limão", "Verde hoja": "Verde folha", "Orquídea": "Orquídea", "Ciruela magenta": "Ameixa magenta", "Gris lavanda": "Cinza lavanda"},
+    "datos": [
+      {"texto": "O trapézio: uma lâmina em forma de losango que vai da nuca até o meio das costas e aos dois ombros (figs. 242-243, vista posterior e lateral).", "pagina": "174 do PDF (pág. 178 impressa, figs. 242-243, «El trapecio»)"},
+      {"texto": "O grande dorsal: leque que nasce na região lombar e sobe até a axila; embaixo, a omoplata e suas inserções vistas de vários ângulos (figs. 250-254).", "pagina": "180 do PDF (pág. 184 impressa, «Dorsal ancho»)"},
+      {"texto": "Ação das costas: as omoplatas se aproximam da coluna ou se afastam; costas desenhadas com o relevo da omoplata, o sulco da coluna e a borda do grande dorsal (figs. 257-259).", "pagina": "184 do PDF (pág. 188 impressa, «Acción»)"}
+    ]
+  }
+}

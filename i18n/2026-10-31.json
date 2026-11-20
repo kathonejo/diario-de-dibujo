@@ -1,0 +1,54 @@
+{
+  "en": {
+    "tema": "Experimental: value in three tones (charcoal, sanguine and white on toned paper)",
+    "frase": {
+      "texto": "When we stop creating, we fall ill. And art is a way of creating again.",
+      "autor": "Suely Rolnik, quoted by Rodríguez-Ponga Linares · Pequeño tratado sobre arte y magia, Ch. 2 · Operator #3 Suely Rolnik · The Witch (Quote Bank by Operator)"
+    },
+    "mision": "Play with three tones on colored paper: black for the shadow, sanguine for the warm halftone and white only for the light.",
+    "paleta": {
+      "Negro carbón": "Charcoal black",
+      "Gris humo": "Smoke gray",
+      "Gris tiza": "Chalk gray",
+      "Sanguina": "Sanguine",
+      "Crema pastel": "Pastel cream"
+    },
+    "datos": [
+      {
+        "texto": "«Charcoal and sanguine with white pastel»: Francesc Crespo draws a reclining nude in 4 steps on colored paper; charcoal for the shadow, sanguine for the warm tone and white pastel in the lights"
+      },
+      {
+        "texto": "«Figures: lighting portraits»: side lighting and monochrome studies; portraits lit from one side with warm shadow on toned paper"
+      },
+      {
+        "texto": "Two hands with interlaced fingers, a line drawing without shading"
+      }
+    ]
+  },
+  "pt": {
+    "tema": "Experimental: o valor em três tons (carvão, sanguínea e branco sobre papel tonalizado)",
+    "frase": {
+      "texto": "Quando deixamos de criar, adoecemos. E a arte é uma forma de voltar a criar.",
+      "autor": "Suely Rolnik, citada por Rodríguez-Ponga Linares · Pequeño tratado sobre arte y magia, Cap. 2 · Operador #3 Suely Rolnik · A Bruxa (Banco de Citações por Operador)"
+    },
+    "mision": "Brincar com três tons sobre papel colorido: o preto para a sombra, a sanguínea para o meio-tom quente e o branco só para a luz.",
+    "paleta": {
+      "Negro carbón": "Preto carvão",
+      "Gris humo": "Cinza fumaça",
+      "Gris tiza": "Cinza giz",
+      "Sanguina": "Sanguínea",
+      "Crema pastel": "Creme pastel"
+    },
+    "datos": [
+      {
+        "texto": "«Carvão e sanguínea com pastel branco»: Francesc Crespo desenha um nu reclinado em 4 passos sobre papel colorido; carvão para a sombra, sanguínea para o tom quente e pastel branco nas luzes"
+      },
+      {
+        "texto": "«Figuras: iluminação dos retratos»: iluminação lateral e estudos monocromáticos; retratos com luz de um lado e sombra quente sobre papel tonalizado"
+      },
+      {
+        "texto": "Duas mãos com os dedos entrelaçados, desenho de linha sem sombra"
+      }
+    ]
+  }
+}

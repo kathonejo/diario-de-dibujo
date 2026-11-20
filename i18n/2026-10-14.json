@@ -1,0 +1,54 @@
+{
+  "en": {
+    "tema": "Gesture and movement: the line of action",
+    "frase": {
+      "texto": "What matters is not whether the gesture is true or false, but whether it works. Whether it touches. Whether it transforms.",
+      "autor": "Rodríguez-Ponga Linares · Ch. 2 · Cross-cutting quotes (Operadores Mágicos)"
+    },
+    "mision": "Draw movement as a single stroke that runs through the body: let the gesture read as a whole before the detail, and let it touch even if it isn’t correct.",
+    "paleta": {
+      "Crema cálida": "Warm cream",
+      "Melocotón claro": "Light peach",
+      "Naranja vivo": "Bright orange",
+      "Ocre tostado": "Burnt ochre",
+      "Azul contraste": "Contrast blue"
+    },
+    "datos": [
+      {
+        "texto": "Dynamic and exaggerated poses: the line of action pushes the physics of the body; the gesture tells a story before the muscle detail."
+      },
+      {
+        "texto": "Figures in motion: quick pen and brush studies that freeze an instant and suggest the step before and after with a few strokes."
+      },
+      {
+        "texto": "The shoulder blade in action: when the arm is raised, the spine of the scapula and its vertebral borders shift; the anatomy of the back explains the gesture."
+      }
+    ]
+  },
+  "pt": {
+    "tema": "Gesto e movimento: a linha de ação",
+    "frase": {
+      "texto": "O que importa não é se o gesto é verdadeiro ou falso, mas se funciona. Se toca. Se transforma.",
+      "autor": "Rodríguez-Ponga Linares · Cap. 2 · Citações transversais (Operadores Mágicos)"
+    },
+    "mision": "Desenhar o movimento como um só traço que atravessa o corpo: que o gesto seja lido inteiro antes do detalhe, e que toque mesmo que não seja correto.",
+    "paleta": {
+      "Crema cálida": "Creme quente",
+      "Melocotón claro": "Pêssego claro",
+      "Naranja vivo": "Laranja vivo",
+      "Ocre tostado": "Ocre queimado",
+      "Azul contraste": "Azul contraste"
+    },
+    "datos": [
+      {
+        "texto": "Poses dinâmicas e exageradas: a linha de ação empurra a física do corpo; o gesto conta uma história antes do detalhe muscular."
+      },
+      {
+        "texto": "Figuras em movimento: estudos rápidos a pena e pincel que congelam um instante e sugerem o passo anterior e o seguinte com poucos traços."
+      },
+      {
+        "texto": "Omoplata em ação: ao levantar o braço, a espinha da omoplata e as bordas vertebrais se deslocam; a anatomia das costas explica o gesto."
+      }
+    ]
+  }
+}

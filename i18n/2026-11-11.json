@@ -1,0 +1,54 @@
+{
+  "en": {
+    "tema": "Technical theme of the month (November: blots and washes): flat wash, graded wash, three values with water and solids in layers; drawing with the blot, without line",
+    "frase": {
+      "texto": "The artist’s position is a humble one. In essence, the artist is nothing more than a channel.",
+      "autor": "Julia Cameron · The Artist’s Way (Cameron resonance, Operator #3 Suely Rolnik · The Witch, Quote Bank by Operator)"
+    },
+    "mision": "Be a channel for the water: prepare the blot, rest the brush and let the water make the edge, without chasing it or correcting it.",
+    "paleta": {
+      "Sepia profundo": "Deep sepia",
+      "Ocre tostado": "Burnt ochre",
+      "Gris piedra cálido": "Warm stone gray",
+      "Lino crema": "Cream linen",
+      "Durazno claro": "Light peach"
+    },
+    "datos": [
+      {
+        "texto": "Wash drawing: horses and landscape made only with a monochrome blot, with no outline."
+      },
+      {
+        "texto": "Wash techniques: flat and graded wash step by step, with the paper tilted."
+      },
+      {
+        "texto": "Still life of basic shapes (cube, cylinder, prism, pyramid) built up in layers of wash."
+      }
+    ]
+  },
+  "pt": {
+    "tema": "Tema técnico do mês (novembro: a mancha e a aguada): aguada lisa, aguada degradê, três valores com água e sólidos em camadas; desenhar com a mancha, sem linha",
+    "frase": {
+      "texto": "A posição do artista é humilde. Em essência, ele não é mais do que um canal.",
+      "autor": "Julia Cameron · O caminho do artista (Ressonância Cameron, Operador #3 Suely Rolnik · A Bruxa, Banco de Citações por Operador)"
+    },
+    "mision": "Ser canal da água: preparar a mancha, apoiar o pincel e deixar a água fazer a borda, sem persegui-la nem corrigi-la.",
+    "paleta": {
+      "Sepia profundo": "Sépia profundo",
+      "Ocre tostado": "Ocre queimado",
+      "Gris piedra cálido": "Cinza pedra quente",
+      "Lino crema": "Linho creme",
+      "Durazno claro": "Pêssego claro"
+    },
+    "datos": [
+      {
+        "texto": "Desenho à aguada: cavalos e paisagem feitos só com mancha monocromática, sem contorno."
+      },
+      {
+        "texto": "Técnicas de aguada: aguada lisa e degradê passo a passo, com o papel inclinado."
+      },
+      {
+        "texto": "Natureza-morta de formas básicas (cubo, cilindro, prisma, pirâmide) construída em camadas de aguada."
+      }
+    ]
+  }
+}

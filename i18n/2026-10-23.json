@@ -1,0 +1,54 @@
+{
+  "en": {
+    "tema": "Integration: light on the whole figure (block-in, direction of light and shadow mass)",
+    "frase": {
+      "texto": "Art is knowledge and, at the same time, a vehicle for knowing.",
+      "autor": "Belinche · Arte, poética y educación (Quote Bank by Operator, «Belinche resonance»)"
+    },
+    "mision": "Bring everything from these weeks into a single drawing: block in the figure, choose where the light comes from and let the shadow read as a single mass.",
+    "paleta": {
+      "Gris grafito": "Graphite gray",
+      "Gris piedra fría": "Cool stone gray",
+      "Oro viejo": "Old gold",
+      "Naranja brasa": "Ember orange",
+      "Ámbar claro": "Light amber"
+    },
+    "datos": [
+      {
+        "texto": "Standing male figure lit from the front left, with its shadow cast on the wall and the floor (fig. 377)."
+      },
+      {
+        "texto": "«Two stages for a drawing»: a mannequin head in a photo and steps 1 to 3, from the line block-in to the toning."
+      },
+      {
+        "texto": "«Stylized drawings – Dramatic effect»: charcoal heads with large shadow masses and line details added at the end."
+      }
+    ]
+  },
+  "pt": {
+    "tema": "Integração: a luz sobre a figura completa (encaixe, direção da luz e massa de sombra)",
+    "frase": {
+      "texto": "A arte é conhecimento e, ao mesmo tempo, veículo para conhecer.",
+      "autor": "Belinche · Arte, poética y educación (Banco de Citações por Operador, «Ressonância Belinche»)"
+    },
+    "mision": "Juntar tudo destas semanas num só desenho: encaixar a figura, escolher de onde vem a luz e deixar a sombra ser lida como uma só massa.",
+    "paleta": {
+      "Gris grafito": "Cinza grafite",
+      "Gris piedra fría": "Cinza pedra fria",
+      "Oro viejo": "Ouro velho",
+      "Naranja brasa": "Laranja brasa",
+      "Ámbar claro": "Âmbar claro"
+    },
+    "datos": [
+      {
+        "texto": "Figura masculina de pé iluminada pela frente à esquerda, com sua sombra projetada na parede e no chão (fig. 377)."
+      },
+      {
+        "texto": "«Duas etapas para um desenho»: cabeça de manequim em foto e os passos 1 a 3, do encaixe com linha ao tonalizado."
+      },
+      {
+        "texto": "«Desenhos estilizados – Efeito dramático»: cabeças a carvão com grandes massas de sombra e detalhes de linha acrescentados no final."
+      }
+    ]
+  }
+}

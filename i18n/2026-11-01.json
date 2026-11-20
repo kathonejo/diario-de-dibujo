@@ -1,0 +1,54 @@
+{
+  "en": {
+    "tema": "Human anatomy: the foot and the ankle (arch, heel and support)",
+    "frase": {
+      "texto": "They are not props, but bio-objects, which act together with the living organisms that are the actors.",
+      "autor": "Tadeusz Kantor, via Claudia Rodríguez-Ponga Linares · Pequeño tratado sobre arte y magia (Ch. 2)"
+    },
+    "mision": "Draw the foot as an architecture of support: heel, arch and toes carry the weight of the body.",
+    "paleta": {
+      "Petróleo": "Petrol",
+      "Bronce": "Bronze",
+      "Arena": "Sand",
+      "Gris grafito": "Graphite gray",
+      "Blanco papel": "Paper white"
+    },
+    "datos": [
+      {
+        "texto": "The foot and the toes: bones and arch."
+      },
+      {
+        "texto": "The pelvis as the base of balance over the feet."
+      },
+      {
+        "texto": "Poses where the support of the foot changes the whole gesture."
+      }
+    ]
+  },
+  "pt": {
+    "tema": "Anatomia humana: o pé e o tornozelo (arco, calcanhar e apoio)",
+    "frase": {
+      "texto": "Não são acessórios, mas bio-objetos, que atuam com os organismos vivos que são os atores.",
+      "autor": "Tadeusz Kantor, via Claudia Rodríguez-Ponga Linares · Pequeño tratado sobre arte y magia (Cap. 2)"
+    },
+    "mision": "Desenhar o pé como uma arquitetura de apoio: calcanhar, arco e dedos carregam o peso do corpo.",
+    "paleta": {
+      "Petróleo": "Petróleo",
+      "Bronce": "Bronze",
+      "Arena": "Areia",
+      "Gris grafito": "Cinza grafite",
+      "Blanco papel": "Branco papel"
+    },
+    "datos": [
+      {
+        "texto": "O pé e os dedos: ossos e arco."
+      },
+      {
+        "texto": "A pelve como base do equilíbrio sobre os pés."
+      },
+      {
+        "texto": "Poses em que o apoio do pé muda o gesto inteiro."
+      }
+    ]
+  }
+}

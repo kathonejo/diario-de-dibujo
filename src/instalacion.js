@@ -2,11 +2,11 @@
 import { HERRAMIENTAS, PAPER, fillPaper, paintStroke, paintLive, pressureFrom } from './brushes.js';
 import { loadDrawingStrokes, muralGrid, prefersReducedMotion } from './timelapse.js';
 import { createMuralTimelapse } from './muralTimelapse.js';
-const MESES = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
-const DIAS = ['domingo','lunes','martes','miércoles','jueves','viernes','sábado'];
+import { t, tError, tColor, fechaLarga, localizarDia, temaIndice, selectorHTML, getLang } from './i18n.js';
+const getLangSafe = () => getLang();
 const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const parse = f => { const [y,m,d] = f.split('-').map(Number); return new Date(y, m-1, d); };
-const largo = f => { const d = parse(f); return `${DIAS[d.getDay()]} ${d.getDate()} de ${MESES[d.getMonth()]}`; };
+const largo = f => fechaLarga(f, { anio: false });
 const img = (f, n) => `/content/${f}/${n}`;
 
 const COLORES_FALLBACK = [
@@ -151,7 +151,7 @@ async function getIndex() {
   return fetch('/content/index.json').then(r => r.ok ? r.json() : []).catch(() => []);
 }
 async function getDia(f) {
-  return fetch(`/content/${f}/dia.json`).then(r => r.ok ? r.json() : null).catch(() => null);
+  return fetch(`/content/${f}/dia.json`).then(r => r.ok ? r.json() : null).catch(() => null).then(d => localizarDia(d));
 }
 
 function hideChrome(on) {
@@ -172,7 +172,7 @@ async function pantallaInicio(app) {
   const dias = await getIndex();
   const u = dias[0];
   if (!u) {
-    app.innerHTML = `<section class="inst-vacio"><h1>Todavía no hay un día publicado</h1></section>`;
+    app.innerHTML = `<section class="inst-vacio"><h1>${t('i.vacio')}</h1></section>`;
     return;
   }
   const d = await getDia(u.fecha);
@@ -182,34 +182,35 @@ async function pantallaInicio(app) {
     <header class="inst-brand">
       <img src="/mascota.png" alt="" width="56" height="56">
       <div>
-        <p class="eyebrow">Instalación · por Kathonejo</p>
-        <h1>Diario de dibujo</h1>
+        <p class="eyebrow">${t('i.por')}</p>
+        <h1>${t('site')}</h1>
       </div>
     </header>
+    ${selectorHTML('inst-lang')}
     <p class="inst-fecha">${largo(u.fecha)}</p>
     <h2 class="inst-tema">${esc(d.tema)}</h2>
     <ol class="inst-steps inst-steps-solo">
-      <li><span aria-hidden="true">1</span> Mirá el tema y el moodboard</li>
-      <li><span aria-hidden="true">2</span> Dibujá durante 3 minutos</li>
-      <li><span aria-hidden="true">3</span> Entregá: el conejo te comenta y tu dibujo se suma al mural</li>
+      <li><span aria-hidden="true">1</span> ${t('i.paso1')}</li>
+      <li><span aria-hidden="true">2</span> ${t('i.paso2')}</li>
+      <li><span aria-hidden="true">3</span> ${t('i.paso3')}</li>
     </ol>
     <div class="inst-refs">
       <figure>
-        <img src="${img(u.fecha, d.moodboard)}" alt="Moodboard">
-        <figcaption>Moodboard</figcaption>
+        <img src="${img(u.fecha, d.moodboard)}" alt="${t('moodboard')}">
+        <figcaption>${t('moodboard')}</figcaption>
       </figure>
       ${ref ? `<figure>
-        <img src="${img(u.fecha, ref.imagen)}" alt="Referencia">
-        <figcaption>Referencia</figcaption>
+        <img src="${img(u.fecha, ref.imagen)}" alt="${t('i.referencia')}">
+        <figcaption>${t('i.referencia')}</figcaption>
       </figure>` : ''}
     </div>
     <div class="inst-cta">
-      <button class="btn inst-big" id="inst-dibujar">Dibujar</button>
-      <a class="btn sec" href="/instalacion/mural">Ver el mural</a>
+      <button class="btn inst-big" id="inst-dibujar">${t('i.dibujar')}</button>
+      <a class="btn sec" href="/instalacion/mural">${t('i.ver.mural')}</a>
     </div>
-    <p class="inst-hint">Tenés ${minParam()} minutos. Cuando termines, tu dibujo entra al mural.</p>
+    <p class="inst-hint">${t('i.hint', { n: minParam() })}</p>
   </section>`;
-  document.getElementById('inst-dibujar').onclick = () => pantallaDibujo(app, { fecha: u.fecha, tema: d.tema, mood: d.moodboard, ref, paleta: d.paleta });
+  document.getElementById('inst-dibujar').onclick = () => pantallaDibujo(app, { fecha: u.fecha, tema: d.tema, temaEs: d._es?.tema ?? d.tema, mood: d.moodboard, ref, paleta: d.paleta });
 }
 
 /* ───────── CANVAS ───────── */
@@ -236,28 +237,28 @@ async function pantallaDibujo(app, ctx) {
     </div>
     <div class="inst-stage">
       <aside class="inst-ref-side" id="inst-side" ${ctx.ref ? 'role="button" tabindex="0"' : ''}>
-        <img id="inst-side-img" src="${img(ctx.fecha, ctx.mood)}" alt="Moodboard">
-        <span class="inst-side-lab" id="inst-side-lab">${ctx.ref ? 'Moodboard · tocá para ver la referencia' : 'Moodboard'}</span>
+        <img id="inst-side-img" src="${img(ctx.fecha, ctx.mood)}" alt="${t('moodboard')}">
+        <span class="inst-side-lab" id="inst-side-lab">${ctx.ref ? t('i.side.mood') : t('moodboard')}</span>
       </aside>
       <div class="inst-canvas-wrap">
         <canvas id="inst-canvas" width="1200" height="900"></canvas>
       </div>
     </div>
     <div class="inst-tools">
-      <div class="inst-brushes" id="inst-brushes" role="toolbar" aria-label="Herramientas">
-        ${HERRAMIENTAS.map((h,i) => `<button type="button" class="inst-tool${i===0?' on':''}" data-tool="${h.id}" title="${h.nom}"><span class="inst-tool-ic">${h.icon}</span><span class="inst-tool-nom">${h.nom}</span></button>`).join('')}
+      <div class="inst-brushes" id="inst-brushes" role="toolbar" aria-label="${t('i.herramientas')}">
+        ${HERRAMIENTAS.map((h,i) => `<button type="button" class="inst-tool${i===0?' on':''}" data-tool="${h.id}" title="${t(`tool.${h.id}`)}"><span class="inst-tool-ic">${h.icon}</span><span class="inst-tool-nom">${t(`tool.${h.id}`)}</span></button>`).join('')}
       </div>
-      <div class="inst-sizes" id="inst-sizes" role="toolbar" aria-label="Grosor">
-        ${TAMANOS.map((s,i) => `<button type="button" class="inst-sz${i===2?' on':''}" data-sz="${s.sz}" title="${s.nom}" aria-label="${s.nom}"><i style="width:${s.px}px;height:${s.px}px"></i></button>`).join('')}
+      <div class="inst-sizes" id="inst-sizes" role="toolbar" aria-label="${t('i.grosor')}">
+        ${TAMANOS.map((s,i) => `<button type="button" class="inst-sz${i===2?' on':''}" data-sz="${s.sz}" title="${t(`sz.${s.id}`)}" aria-label="${t(`sz.${s.id}`)}"><i style="width:${s.px}px;height:${s.px}px"></i></button>`).join('')}
       </div>
-      <div class="inst-colors" id="inst-colors" role="toolbar" aria-label="Paleta del día">
-        ${colores.map((c,i) => `<button type="button" class="inst-sw${i===0?' on':''}" data-hex="${c.hex}" title="${esc(c.nom)}" style="--c:${c.hex}"></button>`).join('')}
+      <div class="inst-colors" id="inst-colors" role="toolbar" aria-label="${t('paleta')}">
+        ${colores.map((c,i) => `<button type="button" class="inst-sw${i===0?' on':''}" data-hex="${c.hex}" title="${esc(tColor(c.nom))}" style="--c:${c.hex}"></button>`).join('')}
       </div>
       <div class="inst-acts">
-        <button type="button" class="btn sec" id="inst-fondo">Pintar fondo</button>
-        <button type="button" class="btn sec" id="inst-undo">Deshacer</button>
-        <button type="button" class="btn sec" id="inst-clear">Borrar todo</button>
-        <button type="button" class="btn" id="inst-entregar">Entregar</button>
+        <button type="button" class="btn sec" id="inst-fondo">${t('i.fondo')}</button>
+        <button type="button" class="btn sec" id="inst-undo">${t('i.deshacer')}</button>
+        <button type="button" class="btn sec" id="inst-clear">${t('i.borrar.todo')}</button>
+        <button type="button" class="btn" id="inst-entregar">${t('i.entregar')}</button>
       </div>
     </div>
   </section>`;
@@ -276,12 +277,12 @@ async function pantallaDibujo(app, ctx) {
     sideMode = mode;
     if (mode === 'ref') {
       sideImg.src = refSrc;
-      sideImg.alt = 'Referencia';
-      sideLab.textContent = 'Referencia · tocá para ver el moodboard';
+      sideImg.alt = t('i.referencia');
+      sideLab.textContent = t('i.side.ref');
     } else {
       sideImg.src = moodSrc;
-      sideImg.alt = 'Moodboard';
-      sideLab.textContent = 'Moodboard · tocá para ver la referencia';
+      sideImg.alt = t('moodboard');
+      sideLab.textContent = t('i.side.mood');
     }
   }
   if (refSrc) {
@@ -434,14 +435,14 @@ async function pantallaDibujo(app, ctx) {
     clearInterval(tick);
     ro.disconnect();
     if (!strokes.length) {
-      app.innerHTML = `<section class="inst-vacio"><h1>No hay dibujo todavía</h1><button class="btn" id="back">Volver</button></section>`;
+      app.innerHTML = `<section class="inst-vacio"><h1>${t('i.nada')}</h1><button class="btn" id="back">${t('i.volver')}</button></section>`;
       document.getElementById('back').onclick = () => pantallaInicio(app);
       return;
     }
     app.innerHTML = `<section class="inst-wait">
       <img src="/mascota.png" alt="" class="spin-bunny">
-      <h1>Guardando tu dibujo…</h1>
-      <p>Un segundo, el conejo lo mira con cariño.</p>
+      <h1>${t('i.guardando')}</h1>
+      <p>${t('i.guardando.p')}</p>
     </section>`;
 
     try {
@@ -472,7 +473,7 @@ async function pantallaDibujo(app, ctx) {
         headers: { 'content-type': 'application/json' },
         body: JSON.stringify({
           fecha: ctx.fecha,
-          tema: ctx.tema,
+          tema: ctx.temaEs ?? ctx.tema, // el mural guarda siempre el tema original en español
           image,
           strokes: slim,
           w: canvas.width,
@@ -480,14 +481,14 @@ async function pantallaDibujo(app, ctx) {
         }),
       });
       const saved = await res.json();
-      if (!res.ok) throw new Error(saved.error || 'No se pudo guardar');
+      if (!res.ok) throw new Error(saved.error || t('i.no.guardar'));
 
-      let mirar = { texto: 'Qué lindo. Gracias por dibujar.', score: 4, fuente: 'frase' };
+      let mirar = { texto: t('i.mirar.fb'), score: 4, fuente: 'frase' };
       try {
         const mr = await fetch('/api/mirar', {
           method: 'POST',
           headers: { 'content-type': 'application/json' },
-          body: JSON.stringify({ image: saved.url || image, tema: ctx.tema }),
+          body: JSON.stringify({ image: saved.url || image, tema: ctx.tema, lang: getLangSafe() }),
         });
         if (mr.ok) mirar = await mr.json();
       } catch { /* fallback already set */ }
@@ -495,9 +496,9 @@ async function pantallaDibujo(app, ctx) {
       pantallaResultado(app, { saved, mirar, preview: image });
     } catch (err) {
       app.innerHTML = `<section class="inst-vacio">
-        <h1>Uy, no se pudo guardar</h1>
-        <p>${esc(err.message)}</p>
-        <button class="btn" id="back">Probar de nuevo</button>
+        <h1>${t('i.uy')}</h1>
+        <p>${esc(tError(err.message))}</p>
+        <button class="btn" id="back">${t('i.reintentar')}</button>
       </section>`;
       document.getElementById('back').onclick = () => pantallaInicio(app);
     }
@@ -580,20 +581,20 @@ function pantallaResultado(app, { saved, mirar, preview }) {
   app.innerHTML = `
   <section class="inst-result">
     <div class="inst-result-grid">
-      <figure class="inst-preview"><img src="${preview}" alt="Tu dibujo"></figure>
+      <figure class="inst-preview"><img src="${preview}" alt="${t('i.tu.dibujo')}"></figure>
       <div class="inst-bubble-wrap">
         <img src="/mascota.png" alt="" class="inst-bunny">
         <div class="inst-bubble">
           <p>${esc(mirar.texto)}</p>
-          <div class="inst-score" title="Ponderación">${estrellas(mirar.score)}</div>
+          <div class="inst-score" title="${t('i.ponderacion')}">${estrellas(mirar.score)}</div>
         </div>
       </div>
     </div>
     <div class="inst-cta">
-      <a class="btn inst-big" href="/instalacion/mural">Ver el mural</a>
-      <button class="btn sec" id="inst-otra">Otro dibujo</button>
+      <a class="btn inst-big" href="/instalacion/mural">${t('i.ver.mural')}</a>
+      <button class="btn sec" id="inst-otra">${t('i.otro')}</button>
     </div>
-    <p class="inst-hint">Volvemos al inicio en <strong id="inst-cd">20</strong> s</p>
+    <p class="inst-hint">${t('i.volvemos', { n: 20 })}</p>
   </section>`;
   const countdown = createResultCountdown({
     seconds: 20,
@@ -626,13 +627,15 @@ let stopMural = null;
 
 export async function mural(app) {
   hideChrome(true);
-  document.title = 'Mural · Instalación';
+  document.title = t('m.title');
   let soloHoy = true;
   let known = new Set();
   let fechaHoy = null;
   let replayGen = 0;
 
   const dias = await getIndex();
+  // Tema de cada dibujo en el idioma elegido (si el día está traducido).
+  const temaMural = it => { const x = dias.find(d => d.fecha === it.fecha); return x && x.tema === it.tema ? temaIndice(x) : it.tema; };
   fechaHoy = dias[0]?.fecha || new Date().toLocaleDateString('sv', { timeZone: 'America/Buenos_Aires' });
 
   app.innerHTML = `
@@ -641,22 +644,23 @@ export async function mural(app) {
       <div class="inst-brand">
         <img src="/mascota.png" alt="" width="48" height="48">
         <div>
-          <p class="eyebrow">Composición colectiva</p>
-          <h1>El mural</h1>
+          <p class="eyebrow">${t('m.eyebrow')}</p>
+          <h1>${t('m.h')}</h1>
         </div>
       </div>
       <div class="inst-mural-ctl">
-        <button class="btn sec on" id="m-hoy">Hoy</button>
-        <button class="btn sec" id="m-todo">Todos los días</button>
-        <a class="btn" href="/instalacion">Dibujar</a>
+        <button class="btn sec on" id="m-hoy">${t('m.hoy')}</button>
+        <button class="btn sec" id="m-todo">${t('todos')}</button>
+        <a class="btn" href="/instalacion">${t('i.dibujar')}</a>
+        ${selectorHTML('inst-lang')}
       </div>
     </header>
-    <p class="inst-mural-meta" id="m-meta">Cargando…</p>
+    <p class="inst-mural-meta" id="m-meta">${t('m.cargando')}</p>
     <div class="inst-mosaic" id="m-mosaic"></div>
   </section>
   <div class="inst-replay" id="m-replay" hidden>
     <canvas id="m-replay-c"></canvas>
-    <button type="button" class="btn" id="m-replay-x">Cerrar</button>
+    <button type="button" class="btn" id="m-replay-x">${t('m.cerrar')}</button>
   </div>`;
 
   const mosaic = document.getElementById('m-mosaic');
@@ -722,8 +726,8 @@ export async function mural(app) {
       const data = await r.json();
       const items = data.items || [];
       meta.textContent = soloHoy
-        ? `${items.length} dibujo${items.length === 1 ? '' : 's'} · ${largo(fechaHoy)}`
-        : `${items.length} dibujos en total`;
+        ? t(items.length === 1 ? 'm.n.uno' : 'm.n.otros', { n: items.length, fecha: largo(fechaHoy) })
+        : t('m.total', { n: items.length });
 
       if (reset) {
         tl.clear();
@@ -737,7 +741,7 @@ export async function mural(app) {
         const a = document.createElement('button');
         a.type = 'button';
         a.className = 'inst-tile' + (isNew ? ' nuevo' : '');
-        a.innerHTML = `<img loading="lazy" src="${esc(it.url)}" alt="Dibujo"><span>${esc((it.tema || '').slice(0, 40))}</span>`;
+        a.innerHTML = `<img loading="lazy" src="${esc(it.url)}" alt="${t('m.dibujo')}"><span>${esc((temaMural(it) || '').slice(0, 40))}</span>`;
         a.onclick = () => replay(it);
         if (isNew) mosaic.prepend(a);
         else mosaic.append(a);
@@ -745,11 +749,11 @@ export async function mural(app) {
       }
       if (!items.length) {
         tl.clear();
-        mosaic.innerHTML = `<p class="inst-vacio-m">Todavía no hay dibujos. Sé la primera persona en dejar uno.</p>`;
+        mosaic.innerHTML = `<p class="inst-vacio-m">${t('m.vacio')}</p>`;
       }
       fitMosaic();
     } catch (e) {
-      meta.textContent = 'No se pudo cargar el mural';
+      meta.textContent = t('m.error');
     }
   }
 
@@ -806,7 +810,7 @@ export async function instalacion(app) {
   hideChrome(true);
   cancelResultado();
   if (stopMural) { stopMural(); stopMural = null; }
-  document.title = 'Instalación · Diario de dibujo';
+  document.title = t('i.title');
   if (location.pathname.includes('/mural')) {
     stopMural = await mural(app);
     return;

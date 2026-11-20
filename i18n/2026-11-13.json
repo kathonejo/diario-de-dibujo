@@ -1,0 +1,24 @@
+{
+  "en": {
+    "tema": "Integration + quote (November: blots and washes): the figure in blots without line — from solids to the animal and the human body, in passes and in 3 values",
+    "frase": {"texto": "The cartographer absorbs material from any source as long as it serves their golden rule: to defend life.", "autor": "Suely Rolnik, quoted by Claudia Rodríguez-Ponga Linares · Pequeño tratado sobre arte y magia, Ch. 1 (Operator #9 Taisha Abelar · Attention, Quote Bank by Operator)"},
+    "mision": "Take everything from the week (wash layers, three values, edges, textures, anatomy) and use only what helps a figure made of blots feel alive.",
+    "paleta": {"Caramelo oscuro": "Dark caramel", "Bermellón tostado": "Burnt vermilion", "Lavanda azul": "Blue lavender", "Durazno crema": "Peach cream", "Gris paloma": "Dove gray"},
+    "datos": [
+      {"texto": "The wash technique in practice: cube, cylinder, pyramid and prism resolved with wash only (figs. 353-357)."},
+      {"texto": "Fig. 507: human figures and deer made only with blots, with no outline, with edges that dissolve (Fine Arts students in Barcelona)."},
+      {"texto": "The luminosity of sanguine: a horse built in 3 steps (overall blot, masses, accents)."}
+    ]
+  },
+  "pt": {
+    "tema": "Integração + frase (novembro: a mancha e a aguada): a figura em mancha sem linha — dos sólidos ao animal e ao corpo humano, por passadas e em 3 valores",
+    "frase": {"texto": "O cartógrafo absorve material de qualquer procedência, desde que sirva à sua regra de ouro: defender a vida.", "autor": "Suely Rolnik, citada por Claudia Rodríguez-Ponga Linares · Pequeño tratado sobre arte y magia, Cap. 1 (Operador #9 Taisha Abelar · A Atenção, Banco de Citações por Operador)"},
+    "mision": "Pegar tudo da semana (camadas de aguada, três valores, bordas, texturas, anatomia) e usar só o que servir para que uma figura feita de mancha pareça viva.",
+    "paleta": {"Caramelo oscuro": "Caramelo escuro", "Bermellón tostado": "Vermelhão queimado", "Lavanda azul": "Lavanda azul", "Durazno crema": "Pêssego creme", "Gris paloma": "Cinza pomba"},
+    "datos": [
+      {"texto": "A técnica da aguada na prática: cubo, cilindro, pirâmide e prisma resolvidos só com aguada (figs. 353-357)."},
+      {"texto": "Fig. 507: figuras humanas e cervos feitos só com mancha, sem contorno, com bordas que se perdem (alunos de Belas Artes de Barcelona)."},
+      {"texto": "Luminosidade da sanguínea: um cavalo construído em 3 passos (mancha geral, massas, acentos)."}
+    ]
+  }
+}

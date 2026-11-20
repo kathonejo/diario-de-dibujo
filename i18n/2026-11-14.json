@@ -1,0 +1,24 @@
+{
+  "en": {
+    "tema": "Experimental (November: blots and washes): from the loose blot to character — an accidental blot that evokes, free scribble with unity, and the quick sketch",
+    "frase": {"texto": "The prehistoric sculptor was not concerned with pleasing, but with evoking.", "autor": "Salomon Reinach · L'Art et la Magie, 1903 (Reinach resonance, Operator #2 Alan Moore · The Druid, Quote Bank by Operator)"},
+    "mision": "Draw to evoke, not to please: let the blot and the free scribble find the character before the finish.",
+    "paleta": {"Verde bosque": "Forest green", "Oliva ácido": "Acid olive", "Magenta uva": "Grape magenta", "Lila glicina": "Wisteria lilac", "Gris tiza": "Chalk gray"},
+    "datos": [
+      {"texto": "Louis Soutter: a head made of free scribbles that keeps the unity of the drawing."},
+      {"texto": "«Character»: a charcoal gorilla with gestural lines and lights lifted out with an eraser; attention goes to the face and the gaze."},
+      {"texto": "«The sketch»: a quick, spontaneous drawing, unafraid of finish (figs. 511-512)."}
+    ]
+  },
+  "pt": {
+    "tema": "Experimental (novembro: a mancha e a aguada): da mancha solta ao caráter — mancha acidental que evoca, rabisco livre com unidade e esboço rápido",
+    "frase": {"texto": "O escultor pré-histórico não estava preocupado em agradar, mas em evocar.", "autor": "Salomon Reinach · L'Art et la Magie, 1903 (Ressonância Reinach, Operador #2 Alan Moore · O Druida, Banco de Citações por Operador)"},
+    "mision": "Desenhar para evocar, não para agradar: deixar que a mancha e o rabisco livre encontrem o caráter antes do acabamento.",
+    "paleta": {"Verde bosque": "Verde floresta", "Oliva ácido": "Oliva ácido", "Magenta uva": "Magenta uva", "Lila glicina": "Lilás glicínia", "Gris tiza": "Cinza giz"},
+    "datos": [
+      {"texto": "Louis Soutter: cabeça feita com rabiscos livres que conserva a unidade do desenho."},
+      {"texto": "«Caráter»: gorila a carvão com linhas gestuais e claros tirados com borracha; a atenção vai para o rosto e o olhar."},
+      {"texto": "«O esboço»: desenho rápido e espontâneo, sem medo do acabamento (figs. 511-512)."}
+    ]
+  }
+}

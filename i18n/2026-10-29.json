@@ -1,0 +1,54 @@
+{
+  "en": {
+    "tema": "High key and low key: the same subject in two atmospheres (technical theme of the month: value + creativity)",
+    "frase": {
+      "texto": "Philosophical fiction works with a mythical model, understanding the mythical as the possibility of becoming other.",
+      "autor": "Vilém Flusser, quoted by Rodríguez-Ponga Linares · Pequeño tratado sobre arte y magia, Ch. 1 · Operator #8 Vampyroteuthis Infernalis · Fiction (Quote Bank by Operator)"
+    },
+    "mision": "Draw the same subject twice: once with almost everything light (high key) and once with almost everything dark (low key), and feel how the atmosphere changes.",
+    "paleta": {
+      "Blanco crema": "Cream white",
+      "Gris paloma": "Dove gray",
+      "Gris pizarra": "Slate gray",
+      "Negro verdoso": "Greenish black",
+      "Rojo lacre": "Sealing-wax red"
+    },
+    "datos": [
+      {
+        "texto": "The same character in the same desert, in two atmospheres: an almost white scene (high key) and dark, closed versions (low key)"
+      },
+      {
+        "texto": "«Shadows and volume» and «A trick for toning»: a lit sphere and a glass bottle resolved in 4 steps, from the overall gray to the final black and white"
+      },
+      {
+        "texto": "«Range of blues»: gradations of a single color from very light to very dark, in sample squares"
+      }
+    ]
+  },
+  "pt": {
+    "tema": "Chave alta e chave baixa: o mesmo motivo em duas atmosferas (tema técnico do mês: o valor + criatividade)",
+    "frase": {
+      "texto": "A ficção filosófica trabalha com um modelo mítico, entendendo o mítico como possibilidade de devir outro.",
+      "autor": "Vilém Flusser, citado por Rodríguez-Ponga Linares · Pequeño tratado sobre arte y magia, Cap. 1 · Operador #8 Vampyroteuthis Infernalis · A Ficção (Banco de Citações por Operador)"
+    },
+    "mision": "Desenhar o mesmo motivo duas vezes: uma com quase tudo claro (chave alta) e outra com quase tudo escuro (chave baixa), e sentir como a atmosfera muda.",
+    "paleta": {
+      "Blanco crema": "Branco creme",
+      "Gris paloma": "Cinza pomba",
+      "Gris pizarra": "Cinza ardósia",
+      "Negro verdoso": "Preto esverdeado",
+      "Rojo lacre": "Vermelho lacre"
+    },
+    "datos": [
+      {
+        "texto": "O mesmo personagem no mesmo deserto, em duas atmosferas: uma cena quase branca (chave alta) e versões escuras e fechadas (chave baixa)"
+      },
+      {
+        "texto": "«As sombras e o volume» e «Um truque para tonalizar»: esfera iluminada e uma garrafa de vidro resolvida em 4 passos, do cinza geral ao preto e branco final"
+      },
+      {
+        "texto": "«Gama de azuis»: degradês de uma mesma cor do muito claro ao muito escuro, em quadros de amostra"
+      }
+    ]
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "en": {
+    "tema": "Technique + creativity (November: blots and washes): random blot (Cozens’s method), dry brush and irregular brushstroke, lifting out whites, brush line + wash",
+    "frase": {"texto": "Refusing to be creative is self-willed and counter to our true nature.", "autor": "Julia Cameron · The Artist’s Way (Cameron resonance, Operator #9 Taisha Abelar · Attention, Quote Bank by Operator)"},
+    "mision": "Don’t fight the blot: let the water and chance suggest a shape, and just finish it yourself with a few touches.",
+    "paleta": {"Blanco hueso": "Bone white", "Gris niebla": "Mist gray", "Pervinca claro": "Light periwinkle", "Azul tinta": "Ink blue", "Siena tostada": "Burnt sienna"},
+    "datos": [
+      {"texto": "Blot drawings: Cozens’s method, prints and random blots completed until they become a cliff.", "pagina": "33 of the PDF (printed 62-63)"},
+      {"texto": "Brush drawings: dry brush, irregular brushstrokes and a combination of lines and washes in one figure.", "pagina": "36 of the PDF (printed 68-69)"},
+      {"texto": "Wash techniques: lifting out whites with absorbent paper, wet and dry, and reserves with masking fluid.", "pagina": "45 of the PDF (printed 98)"}
+    ]
+  },
+  "pt": {
+    "tema": "Técnica + criatividade (novembro: a mancha e a aguada): mancha aleatória (método de Cozens), pincel seco e pincelada irregular, abrir brancos, linha de pincel + aguada",
+    "frase": {"texto": "Negar-se a ser criativo é teimar contra a nossa própria natureza.", "autor": "Julia Cameron · O caminho do artista (Ressonância Cameron, Operador #9 Taisha Abelar · A Atenção, Banco de Citações por Operador)"},
+    "mision": "Não brigar com a mancha: deixar que a água e o acaso proponham uma forma, e você só terminá-la com poucos toques.",
+    "paleta": {"Blanco hueso": "Branco osso", "Gris niebla": "Cinza névoa", "Pervinca claro": "Pervinca claro", "Azul tinta": "Azul tinta", "Siena tostada": "Siena queimada"},
+    "datos": [
+      {"texto": "Desenhos com manchas: método de Cozens, impressões e manchas aleatórias completadas até virar um penhasco.", "pagina": "33 do PDF (62-63 impressas)"},
+      {"texto": "Desenhos a pincel: pincel seco, pinceladas irregulares e combinação de linhas e aguadas numa figura.", "pagina": "36 do PDF (68-69 impressas)"},
+      {"texto": "Técnicas de aguada: abrir brancos com papel absorvente no úmido e no seco, e reservas com goma líquida.", "pagina": "45 do PDF (98 impressa)"}
+    ]
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "en": {
+    "tema": "Technical theme of the month + creativity (November: blots and washes): textures with water (lifting out whites, wax resist, dry brush, salt, clean water) and the invented tree as a mass in 3 values",
+    "frase": {
+      "texto": "Refusing to be creative is self-willed and counter to our true nature.",
+      "autor": "Julia Cameron · The Artist’s Way (Cameron resonance, Operator #9 Taisha Abelar · Attention, Quote Bank by Operator)"
+    },
+    "mision": "Don’t fight the water: let the texture appear (salt, dry brush, wax, drops) and turn that accident into an invented tree.",
+    "paleta": {
+      "Verde hoja oscuro": "Dark leaf green",
+      "Verde savia": "Sap green",
+      "Verde brote pálido": "Pale sprout green",
+      "Gris neblina": "Haze gray",
+      "Gris carbón": "Charcoal gray"
+    },
+    "datos": [
+      {
+        "texto": "Wash techniques: lifting out whites with absorbent paper and a brush on the wet wash; clouds and reserves."
+      },
+      {
+        "texto": "The wash technique in practice: wax resist, turpentine, dry brush (frottis), texture with water and effects with table salt."
+      },
+      {
+        "texto": "Landscapes: Trees — the volume of a tree as a mass and an interplay of shapes (masses of leaves without detail)."
+      }
+    ]
+  },
+  "pt": {
+    "tema": "Tema técnico do mês + criatividade (novembro: a mancha e a aguada): texturas com água (abrir brancos, reserva com cera, pincel seco, sal, água limpa) e a árvore inventada como massa em 3 valores",
+    "frase": {
+      "texto": "Negar-se a ser criativo é teimar contra a nossa própria natureza.",
+      "autor": "Julia Cameron · O caminho do artista (Ressonância Cameron, Operador #9 Taisha Abelar · A Atenção, Banco de Citações por Operador)"
+    },
+    "mision": "Não brigar com a água: deixar a textura aparecer (sal, pincel seco, cera, gotas) e transformar esse acidente numa árvore inventada.",
+    "paleta": {
+      "Verde hoja oscuro": "Verde folha escuro",
+      "Verde savia": "Verde seiva",
+      "Verde brote pálido": "Verde broto pálido",
+      "Gris neblina": "Cinza neblina",
+      "Gris carbón": "Cinza carvão"
+    },
+    "datos": [
+      {
+        "texto": "Técnicas de aguada: abrir brancos com papel absorvente e pincel sobre a aguada úmida; nuvens e reservas."
+      },
+      {
+        "texto": "A técnica da aguada na prática: reserva com cera, terebintina, pincel seco (frottis), textura com água e efeitos com sal de cozinha."
+      },
+      {
+        "texto": "Paisagens: Árvores — o volume de uma árvore como massa e interação de formas (massas de folhas sem detalhe)."
+      }
+    ]
+  }
+}

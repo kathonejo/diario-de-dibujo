@@ -1,0 +1,54 @@
+{
+  "en": {
+    "tema": "Experimental: starting from the middle tone (silhouette, black blot and white light)",
+    "frase": {
+      "texto": "Leap, and the net will appear.",
+      "autor": "Julia Cameron · The Artist’s Way (Operator #4 María Zambrano · The Sibyl, Cameron resonance · Quote Bank)"
+    },
+    "mision": "Start from gray, not from white: let each form come out of a blot, with black for the mass and white only for the light.",
+    "paleta": {
+      "Negro tinta": "Ink black",
+      "Gris plomo": "Lead gray",
+      "Gris acero": "Steel gray",
+      "Bronce antiguo": "Antique bronze",
+      "Blanco tiza": "Chalk white"
+    },
+    "datos": [
+      {
+        "texto": "Pure silhouette: the draft horse, the zebra and the wild horse in flat black, with no inner lines; the form is recognized by its edge alone («Equid ▸ Proportion», printed p. 121)."
+      },
+      {
+        "texto": "Quick animal sketch on a tone: a wash of India ink gives an overall gray, black ink blots are brushed on top for the basic features and touches of white gouache complete the modeling («Drawing animals», printed pp. 124–125)."
+      },
+      {
+        "texto": "Heads by Sigmund Holbein on dark paper: the volume emerges almost entirely from light highlights on the ground, without drawing the outline everywhere (printed p. 66)."
+      }
+    ]
+  },
+  "pt": {
+    "tema": "Experimental: partir do tom médio (silhueta, mancha preta e luz branca)",
+    "frase": {
+      "texto": "Salte, e a rede aparecerá.",
+      "autor": "Julia Cameron · O caminho do artista (Operador #4 María Zambrano · A Sibila, ressonância Cameron · Banco de Citações)"
+    },
+    "mision": "Começar do cinza e não do branco: que cada forma saia de uma mancha, com o preto para a massa e o branco só para a luz.",
+    "paleta": {
+      "Negro tinta": "Preto tinta",
+      "Gris plomo": "Cinza chumbo",
+      "Gris acero": "Cinza aço",
+      "Bronce antiguo": "Bronze antigo",
+      "Blanco tiza": "Branco giz"
+    },
+    "datos": [
+      {
+        "texto": "Silhueta pura: o cavalo de tração, a zebra e o cavalo selvagem em preto chapado, sem linhas internas; a forma é reconhecida só pela borda («Equid ▸ Proportion», pág. 121 impressa)."
+      },
+      {
+        "texto": "Esboço rápido de animais sobre tom: uma aguada de nanquim dá um cinza geral, por cima se colocam manchas de tinta preta com pincel para os traços básicos e toques de guache branco para completar o modelado («O desenho de animais», págs. 124–125 impressas)."
+      },
+      {
+        "texto": "Cabeças de Sigmund Holbein sobre papel escuro: o volume sai quase só com luzes claras sobre o fundo, sem desenhar o contorno em toda parte (pág. 66 impressa)."
+      }
+    ]
+  }
+}

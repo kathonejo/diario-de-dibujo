@@ -1,0 +1,54 @@
+{
+  "en": {
+    "tema": "Human anatomy: the knee and the quadriceps (before the full leg)",
+    "frase": {
+      "texto": "Naming it that way, they say, is in itself an act of magic.",
+      "autor": "Starhawk / Isabelle Stengers, via Claudia Rodríguez-Ponga Linares · Pequeño tratado sobre arte y magia (Ch. 2)"
+    },
+    "mision": "Understand the knee as a hinge: the quadriceps arrives, the kneecap redirects, the tibia continues.",
+    "paleta": {
+      "Gris carbón": "Charcoal gray",
+      "Bronce": "Bronze",
+      "Ocre tostado": "Burnt ochre",
+      "Verde agua": "Aqua green",
+      "Gris perla": "Pearl gray"
+    },
+    "datos": [
+      {
+        "texto": "Rectus femoris and vastus medialis toward the kneecap."
+      },
+      {
+        "texto": "Studies of the thigh and the attachments near the knee."
+      },
+      {
+        "texto": "Gesture sketches where bending the knee changes the silhouette."
+      }
+    ]
+  },
+  "pt": {
+    "tema": "Anatomia humana: o joelho e o quadríceps (antes da perna completa)",
+    "frase": {
+      "texto": "Nomeá-lo dessa forma, dizem elas, é em si um ato de magia.",
+      "autor": "Starhawk / Isabelle Stengers, via Claudia Rodríguez-Ponga Linares · Pequeño tratado sobre arte y magia (Cap. 2)"
+    },
+    "mision": "Entender o joelho como dobradiça: o quadríceps chega, a patela desvia, a tíbia continua.",
+    "paleta": {
+      "Gris carbón": "Cinza carvão",
+      "Bronce": "Bronze",
+      "Ocre tostado": "Ocre queimado",
+      "Verde agua": "Verde água",
+      "Gris perla": "Cinza pérola"
+    },
+    "datos": [
+      {
+        "texto": "Reto femoral e vasto medial em direção à patela."
+      },
+      {
+        "texto": "Estudos de coxa e inserções perto do joelho."
+      },
+      {
+        "texto": "Esboços de gesto em que a flexão do joelho muda a silhueta."
+      }
+    ]
+  }
+}

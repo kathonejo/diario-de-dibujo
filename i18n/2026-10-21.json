@@ -1,0 +1,54 @@
+{
+  "en": {
+    "tema": "Integration: the portrait in three passes (gesture, solids and gaze)",
+    "frase": {
+      "texto": "Each material provokes different things; I go through the material and the material goes through me, it responds.",
+      "autor": "Yoann Saura, via Claudia Rodríguez-Ponga Linares · Pequeño tratado sobre arte y magia (Ch. 2)"
+    },
+    "mision": "Bring head, features and expression together in a single portrait without losing the construction.",
+    "paleta": {
+      "Rosa coral": "Coral pink",
+      "Durazno": "Peach",
+      "Dorado": "Gold",
+      "Azul intenso": "Intense blue",
+      "Negro": "Black"
+    },
+    "datos": [
+      {
+        "texto": "Integrated portrait: proportions and expression."
+      },
+      {
+        "texto": "Portrait in colored pencils: volume and skin."
+      },
+      {
+        "texto": "Pencil portrait demonstration."
+      }
+    ]
+  },
+  "pt": {
+    "tema": "Integração: o retrato em três passadas (gesto, sólidos e olhar)",
+    "frase": {
+      "texto": "Cada material provoca coisas diferentes, eu atravesso o material e o material me atravessa, ele responde.",
+      "autor": "Yoann Saura, via Claudia Rodríguez-Ponga Linares · Pequeño tratado sobre arte y magia (Cap. 2)"
+    },
+    "mision": "Unir cabeça, traços e expressão num só retrato sem perder a construção.",
+    "paleta": {
+      "Rosa coral": "Rosa coral",
+      "Durazno": "Pêssego",
+      "Dorado": "Dourado",
+      "Azul intenso": "Azul intenso",
+      "Negro": "Preto"
+    },
+    "datos": [
+      {
+        "texto": "Retrato integrado: proporções e expressão."
+      },
+      {
+        "texto": "Retrato com lápis de cor: volume e pele."
+      },
+      {
+        "texto": "Demonstração de retrato a lápis."
+      }
+    ]
+  }
+}

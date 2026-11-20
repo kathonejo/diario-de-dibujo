@@ -1,0 +1,54 @@
+{
+  "en": {
+    "tema": "Human anatomy: the torso (rib cage, pelvis and trunk muscles)",
+    "frase": {
+      "texto": "Art is an ecological reserve of the invisible species that inhabit our animal-body in its generous germinative life.",
+      "autor": "Suely Rolnik, quoted by Rodríguez-Ponga Linares · Pequeño tratado sobre arte y magia, Ch. 1 and 2 · Operator #3 Suely Rolnik · The Witch (Quote Bank by Operator)"
+    },
+    "mision": "Look at the torso as a body alive on the inside: first the two big masses (rib cage and pelvis), then the muscles that join them, and only at the end the light.",
+    "paleta": {
+      "Rojo óxido profundo": "Deep oxide red",
+      "Petróleo profundo": "Deep petrol",
+      "Turquesa": "Turquoise",
+      "Gris acero claro": "Light steel gray",
+      "Blanco lila": "Lilac white"
+    },
+    "datos": [
+      {
+        "texto": "The three regions of the trunk in gray (Fig. 221) and the chest muscles labeled: pectoralis major and minor, trapezius, deltoid, serratus anterior, external oblique and latissimus dorsi (Fig. 222), printed p. 166."
+      },
+      {
+        "texto": "«The muscles of the trunk»: a muscular back in pen, a torso bending forward and another turning with the arm raised (Fig. 263), printed p. 191."
+      },
+      {
+        "texto": "Seated nude from behind in graphite pencil, finished with slow blending (figs. 573 and 574), printed p. 179."
+      }
+    ]
+  },
+  "pt": {
+    "tema": "Anatomia humana: o torso (caixa torácica, pelve e músculos do tronco)",
+    "frase": {
+      "texto": "A arte é uma reserva ecológica das espécies invisíveis que povoam nosso corpo-animal em sua generosa vida germinativa.",
+      "autor": "Suely Rolnik, citada por Rodríguez-Ponga Linares · Pequeño tratado sobre arte y magia, Cap. 1 e 2 · Operador #3 Suely Rolnik · A Bruxa (Banco de Citações por Operador)"
+    },
+    "mision": "Olhar o torso como um corpo vivo por dentro: primeiro as duas massas grandes (caixa torácica e pelve), depois os músculos que as unem, e só no final a luz.",
+    "paleta": {
+      "Rojo óxido profundo": "Vermelho óxido profundo",
+      "Petróleo profundo": "Petróleo profundo",
+      "Turquesa": "Turquesa",
+      "Gris acero claro": "Cinza aço claro",
+      "Blanco lila": "Branco lilás"
+    },
+    "datos": [
+      {
+        "texto": "As três regiões do tronco em cinza (Fig. 221) e os músculos do peito com nomes: peitoral maior e menor, trapézio, deltoide, serrátil anterior, oblíquo externo e grande dorsal (Fig. 222), pág. 166 impressa."
+      },
+      {
+        "texto": "«Os músculos do tronco»: costas musculosas a bico de pena, um torso que se dobra para a frente e outro que gira com o braço levantado (Fig. 263), pág. 191 impressa."
+      },
+      {
+        "texto": "Nu sentado de costas a lápis grafite, terminado com esfumado lento (figs. 573 e 574), pág. 179 impressa."
+      }
+    ]
+  }
+}

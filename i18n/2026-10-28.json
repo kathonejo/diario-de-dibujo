@@ -1,0 +1,54 @@
+{
+  "en": {
+    "tema": "The stroke as value: hatching, cross-hatching and strokes that follow the form (technical theme of the month: value)",
+    "frase": {
+      "texto": "The hidden path does not open without a guide, and one does not enter it unless the heart has been moved and the mind obeys it.",
+      "autor": "María Zambrano, quoted by Rodríguez-Ponga Linares · Pequeño tratado sobre arte y magia, Ch. 1 · Operator #4 María Zambrano · The Sibyl (Quote Bank by Operator)"
+    },
+    "mision": "Build the shadow with lines: each stroke is a value, and its direction tells the form.",
+    "paleta": {
+      "Violeta real": "Royal violet",
+      "Malva orquídea": "Orchid mauve",
+      "Oro mostaza": "Mustard gold",
+      "Siena tostada": "Burnt sienna",
+      "Gris plata": "Silver gray"
+    },
+    "datos": [
+      {
+        "texto": "Linear strokes, shading and cross-hatching with charcoal and Conté"
+      },
+      {
+        "texto": "Portrait in engraving style (Lucas Cranach the Elder): the hatching follows the form of the face, beard, beret and skin"
+      },
+      {
+        "texto": "Basic strokes with the graphite pencil: a face resolved with different strokes, gradations and a plaster head"
+      }
+    ]
+  },
+  "pt": {
+    "tema": "O traço como valor: hachura, hachura cruzada e traço que segue a forma (tema técnico do mês: o valor)",
+    "frase": {
+      "texto": "O caminho escondido não se abre sem um guia, e não se entra nele sem que o coração tenha se movido e a mente lhe obedeça.",
+      "autor": "María Zambrano, citada por Rodríguez-Ponga Linares · Pequeño tratado sobre arte y magia, Cap. 1 · Operador #4 María Zambrano · A Sibila (Banco de Citações por Operador)"
+    },
+    "mision": "Que a sombra se construa com linhas: cada traço é um valor, e sua direção conta a forma.",
+    "paleta": {
+      "Violeta real": "Violeta real",
+      "Malva orquídea": "Malva orquídea",
+      "Oro mostaza": "Ouro mostarda",
+      "Siena tostada": "Siena queimada",
+      "Gris plata": "Cinza prata"
+    },
+    "datos": [
+      {
+        "texto": "Traços lineares, sombreado e hachuras cruzadas com carvão e conté"
+      },
+      {
+        "texto": "Retrato em estilo gravura (Lucas Cranach, o Velho): a hachura segue a forma do rosto, barba, boina e pele"
+      },
+      {
+        "texto": "Traços básicos com o lápis grafite: um rosto resolvido com diferentes traços, degradês e cabeça de gesso"
+      }
+    ]
+  }
+}

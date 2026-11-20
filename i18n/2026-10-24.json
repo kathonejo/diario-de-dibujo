@@ -1,0 +1,54 @@
+{
+  "en": {
+    "tema": "Experimental: drawing with the eraser (subtractive drawing, the light comes out of the charcoal)",
+    "frase": {
+      "texto": "For me, materials are words, or words are matter.",
+      "autor": "Tunga, quoted by Rodríguez-Ponga Linares · Pequeño tratado sobre arte y magia, Ch. 1 · Operator #5 Tunga · The Bricoleur (Quote Bank)"
+    },
+    "mision": "Let the material speak: fill the sheet with charcoal and draw the light by taking away, with the eraser, instead of adding.",
+    "paleta": {
+      "Café tabaco": "Tobacco brown",
+      "Oliva antiguo": "Antique olive",
+      "Violeta lavanda": "Lavender violet",
+      "Gris paloma": "Dove gray",
+      "Rosa niebla": "Mist pink"
+    },
+    "datos": [
+      {
+        "texto": "«Erasers»: types of eraser and the same sculpted head with laurels in two versions (figs. 158 A and B), printed p. 61."
+      },
+      {
+        "texto": "«Textures», «Tones» and «Eraser»: charcoal textures, blending with a finger or cloth, and light lines and areas opened with a soft and a hard eraser (printed pp. 20–21)."
+      },
+      {
+        "texto": "The same character as a solid black silhouette (Fig. 06) and already resolved in grays (Fig. 05)."
+      }
+    ]
+  },
+  "pt": {
+    "tema": "Experimental: desenhar com a borracha (desenho subtrativo, a luz sai do carvão)",
+    "frase": {
+      "texto": "Para mim os materiais são palavras, ou as palavras são matérias.",
+      "autor": "Tunga, citado por Rodríguez-Ponga Linares · Pequeño tratado sobre arte y magia, Cap. 1 · Operador #5 Tunga · O Bricoleur (Banco de Citações)"
+    },
+    "mision": "Deixar o material falar: encher a folha de carvão e desenhar a luz tirando, com a borracha, em vez de acrescentar.",
+    "paleta": {
+      "Café tabaco": "Café tabaco",
+      "Oliva antiguo": "Oliva antigo",
+      "Violeta lavanda": "Violeta lavanda",
+      "Gris paloma": "Cinza pomba",
+      "Rosa niebla": "Rosa névoa"
+    },
+    "datos": [
+      {
+        "texto": "«As borrachas»: tipos de borracha e a mesma cabeça esculpida com louros em duas versões (figs. 158 A e B), pág. 61 impressa."
+      },
+      {
+        "texto": "«Texturas», «Tons» e «Borracha»: texturas de carvão, esfumado com o dedo ou pano, e linhas e zonas claras abertas com borracha macia e borracha dura (págs. 20–21 impressas)."
+      },
+      {
+        "texto": "O mesmo personagem como silhueta preta plena (Fig. 06) e já resolvido em cinzas (Fig. 05)."
+      }
+    ]
+  }
+}

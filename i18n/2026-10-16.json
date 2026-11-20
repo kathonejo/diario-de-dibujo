@@ -1,0 +1,54 @@
+{
+  "en": {
+    "tema": "Integration: the whole figure in three passes (gesture, solids and mass)",
+    "frase": {
+      "texto": "Our responsibility as human beings, but also as artists, is to animate.",
+      "autor": "Sara Ramo via Claudia Rodríguez-Ponga Linares · Ch. 2 · Cross-cutting quotes (Quote Bank)"
+    },
+    "mision": "Let the whole figure read first as intention, then as a box and finally as a single mass of light and shadow.",
+    "paleta": {
+      "Verde bosque": "Forest green",
+      "Vino tinto": "Red wine",
+      "Café caramelo": "Caramel brown",
+      "Gris niebla": "Mist gray",
+      "Crema durazno": "Peach cream"
+    },
+    "datos": [
+      {
+        "texto": "Every pose has an idea behind it: think about what the figure feels (sick, worried, shouting) before how the light falls on it (Fig. 04, «Standing Poses»)."
+      },
+      {
+        "texto": "The seated figure inside a triangle-shaped box; the canon lets you measure the body in heads, and reference points and lines place profiles and basic forms (Figs. 564–568, printed p. 177)."
+      },
+      {
+        "texto": "Lines that break: the outline «gets lost» in the background where the light hits and reappears at the knees and thighs; in «Long poses» the shoulder, arm and leg almost dissolve into the background (printed pp. 124–125)."
+      }
+    ]
+  },
+  "pt": {
+    "tema": "Integração: a figura inteira em três passadas (gesto, sólidos e massa)",
+    "frase": {
+      "texto": "Nossa responsabilidade como seres humanos, mas também como artistas, é animar.",
+      "autor": "Sara Ramo via Claudia Rodríguez-Ponga Linares · Cap. 2 · Citações transversais (Banco de Citações)"
+    },
+    "mision": "Que a figura inteira seja lida primeiro como intenção, depois como caixa e no final como uma só massa de luz e sombra.",
+    "paleta": {
+      "Verde bosque": "Verde floresta",
+      "Vino tinto": "Vinho tinto",
+      "Café caramelo": "Café caramelo",
+      "Gris niebla": "Cinza névoa",
+      "Crema durazno": "Creme pêssego"
+    },
+    "datos": [
+      {
+        "texto": "Cada pose tem uma ideia por trás: pensar no que a figura sente (doente, preocupada, gritando) antes de como a luz cai sobre ela (Fig. 04, «Standing Poses»)."
+      },
+      {
+        "texto": "A figura sentada dentro de uma caixa em forma de triângulo; o cânone permite medir o corpo com a cabeça, e pontos e linhas de referência situam perfis e formas básicas (Figs. 564–568, pág. 177 impressa)."
+      },
+      {
+        "texto": "Linhas que se cortam: o contorno se «perde» no fundo onde bate a luz e reaparece nos joelhos e coxas; em «Poses longas» o ombro, o braço e a perna quase se diluem no fundo (págs. 124–125 impressas)."
+      }
+    ]
+  }
+}

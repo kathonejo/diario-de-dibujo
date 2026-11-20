@@ -1,0 +1,54 @@
+{
+  "en": {
+    "tema": "Perspective and space: vanishing lines and depth in the scene",
+    "frase": {
+      "texto": "We can travel the world without leaving our place.",
+      "autor": "Peter Kingsley, via Claudia Rodríguez-Ponga Linares · Pequeño tratado sobre arte y magia (Ch. 2)"
+    },
+    "mision": "Build a believable space with few lines: horizon, vanishing points and scales that make the eye travel.",
+    "paleta": {
+      "Azul noche": "Night blue",
+      "Azul medio": "Medium blue",
+      "Arena": "Sand",
+      "Coral suave": "Soft coral",
+      "Carbón": "Charcoal"
+    },
+    "datos": [
+      {
+        "texto": "Composition and depth schemes on the page."
+      },
+      {
+        "texto": "Constructions of space and blocking in forms in depth."
+      },
+      {
+        "texto": "Character sketches in a suggested space; the pose fills the air."
+      }
+    ]
+  },
+  "pt": {
+    "tema": "Perspectiva e espaço: linhas de fuga e profundidade na cena",
+    "frase": {
+      "texto": "Podemos viajar pelo mundo sem sair do lugar.",
+      "autor": "Peter Kingsley, via Claudia Rodríguez-Ponga Linares · Pequeño tratado sobre arte y magia (Cap. 2)"
+    },
+    "mision": "Construir um espaço crível com poucas linhas: horizonte, fugas e escalas que façam o olhar caminhar.",
+    "paleta": {
+      "Azul noche": "Azul noite",
+      "Azul medio": "Azul médio",
+      "Arena": "Areia",
+      "Coral suave": "Coral suave",
+      "Carbón": "Carvão"
+    },
+    "datos": [
+      {
+        "texto": "Esquemas de composição e profundidade na página."
+      },
+      {
+        "texto": "Construções de espaço e encaixe de formas em profundidade."
+      },
+      {
+        "texto": "Esboços de personagens num espaço sugerido; a pose ocupa o ar."
+      }
+    ]
+  }
+}
