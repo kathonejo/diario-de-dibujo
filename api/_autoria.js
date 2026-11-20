@@ -30,13 +30,15 @@ export function redHTML(red) {
 }
 
 /** Línea de autoría («por Autor · red») o vacío si el trabajo no tiene esos datos (trabajos viejos). */
+// Los trabajos viejos (subidos con la clave, sin campo publica ni autor) son de Kathonejo.
+const autorDe = it => limpiarAutor(it?.autor) || (it && !it.publica ? 'Kathonejo' : '');
 export function autoriaHTML(it, por = 'por') {
-  const autor = limpiarAutor(it?.autor), red = redHTML(it?.red);
+  const autor = autorDe(it), red = redHTML(it?.red);
   if (!autor && !red) return '';
   return `<p class="autoria">${autor ? `${esc(por)} ${esc(autor)}` : ''}${autor && red ? ' · ' : ''}${red}</p>`;
 }
 /** Texto plano para title/alt. */
 export function autoriaTexto(it, por = 'por') {
-  const autor = limpiarAutor(it?.autor), red = limpiarRed(it?.red);
+  const autor = autorDe(it), red = limpiarRed(it?.red);
   return [autor ? `${por} ${autor}` : '', red].filter(Boolean).join(' · ');
 }

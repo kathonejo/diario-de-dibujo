@@ -33,21 +33,19 @@ async function pedirCodigo(msg) {
 export const puedeModerar = () => { try { return !!localStorage.getItem(KEY) || new URLSearchParams(location.search).has('moderar'); } catch { return false; } };
 export function dialogoSubir(fecha, onDone, { album = false } = {}) {
   const d = document.createElement('dialog'); d.className = 'subir';
-  const rec = recordado(), mia = !album && !!localStorage.getItem(KEY);
+  const rec = recordado();
   d.innerHTML = `<form method="dialog"><h3>${album ? t('album.subir') : t('subir')}</h3><p class="sub">${fecha} · ${t('album')}</p>
     <label class="drop"><input type="file" accept="image/jpeg,image/png,image/webp" required><span>${t('up.foto')}</span><img hidden alt=""></label>
-    <label>${t('up.autor')}<input type="text" name="autor" maxlength="${LIMITE_AUTOR}" autocomplete="name" placeholder="${t('up.autor.ph')}" value="${escA(rec.autor)}"${mia ? '' : ' required'}></label>
+    <label>${t('up.autor')}<input type="text" name="autor" maxlength="${LIMITE_AUTOR}" autocomplete="name" placeholder="${t('up.autor.ph')}" value="${escA(rec.autor)}" required></label>
     <label>${t('up.red')}<input type="text" name="red" maxlength="${LIMITE_RED}" autocomplete="url" inputmode="url" placeholder="${t('up.red.ph')}" value="${escA(rec.red)}"></label>
     <label>${t('up.nota')}<textarea maxlength="500" rows="3" placeholder="${t('up.placeholder')}"></textarea></label>
     <label class="hp" aria-hidden="true">Web<input type="text" name="web" tabindex="-1" autocomplete="off"></label>
-    <label class="mia"><input type="checkbox" name="mia"${mia ? ' checked' : ''}> ${t('up.mia')}</label>
     <p class="aviso">${t('up.publico')}</p>
     <p class="estado" aria-live="polite"></p>
     <div class="acc"><button value="cancel" formnovalidate>${t('up.cancelar')}</button><button class="primary" value="ok">${t('up.subir')}</button></div></form>`;
   document.body.append(d); d.showModal();
   const inp = d.querySelector('input[type=file]'), prev = d.querySelector('.drop img'), est = d.querySelector('.estado');
-  const aut = d.querySelector('[name=autor]'), chk = d.querySelector('[name=mia]');
-  chk.onchange = () => { aut.required = !chk.checked; };
+  const aut = d.querySelector('[name=autor]');
   inp.onchange = () => { const f = inp.files[0]; if (f) { prev.src = URL.createObjectURL(f); prev.hidden = false; d.querySelector('.drop span').textContent = f.name; } };
   d.addEventListener('close', () => d.remove());
   d.querySelector('form').addEventListener('submit', async e => {
@@ -55,10 +53,8 @@ export function dialogoSubir(fecha, onDone, { album = false } = {}) {
     e.preventDefault();
     const f = inp.files[0]; if (!f) return;
     const autor = aut.value.trim(), red = d.querySelector('[name=red]').value.trim(), web = d.querySelector('[name=web]').value;
-    if (!chk.checked && !autor) { aut.focus(); return; }
+    if (!autor) { aut.focus(); return; }
     try { localStorage.setItem(AUT, JSON.stringify({ autor, red })); } catch {}
-    let pass = null;
-    if (chk.checked) { pass = await pedirCodigo(); if (!pass) return; }
     const btn = d.querySelector('.primary'); btn.disabled = true;
     try {
       est.textContent = t('up.preparando');
@@ -68,7 +64,7 @@ export function dialogoSubir(fecha, onDone, { album = false } = {}) {
       const ext = { 'image/webp': 'webp', 'image/png': 'png', 'image/jpeg': 'jpg' }[blob.type] || 'jpg';
       const id = Date.now().toString(36) + Math.random().toString(36).slice(2, 7);
       est.textContent = t('up.subiendo');
-      const extra = pass ? { passcode: pass } : { web };
+      const extra = { web }; // todos suben igual al álbum (build in public)
       const r = await upload(`trabajos/${fecha}/${id}.${ext}`, blob, { access: 'public', handleUploadUrl: '/api/upload', clientPayload: JSON.stringify(extra), contentType: blob.type });
       const res = await fetch('/api/trabajos', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ ...extra, fecha, id, url: r.url, nota: d.querySelector('textarea').value, autor, red }) });
       if (!res.ok) throw new Error((await res.json().catch(() => ({}))).error || 'No se pudo guardar');

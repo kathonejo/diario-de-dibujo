@@ -394,5 +394,4 @@ body.modo-instalacion main{max-width:none;padding:0;min-height:100dvh}
 .trabajo .autoria{margin:.35rem .1rem 0;font-size:.74rem;letter-spacing:.04em;color:var(--ink-mute)}
 .trabajo .autoria a{color:var(--ink)}
 .subir .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
-.subir label.mia{display:flex;align-items:center;gap:.45rem;font-weight:400;font-size:.85rem;color:var(--ink-mute)}
 .subir .aviso{margin:0 0 .8rem;font-size:.78rem;color:var(--ink-mute)}

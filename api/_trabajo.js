@@ -53,5 +53,5 @@ export const esDeKatherine = it => !it?.publica;
 export function separar(lista = []) {
   return { propios: lista.filter(esDeKatherine), album: lista.filter(x => !esDeKatherine(x)) };
 }
-/** Trabajo principal del día (para el Diario): el de ella si hay; si no, el primero del álbum. */
-export const principal = (lista = []) => lista.find(esDeKatherine) || lista[0] || null;
+/** Trabajo principal del día (para el Diario): el de ella (viejo con clave, o a nombre de Kathonejo); si no, el primero del álbum. */
+export const principal = (lista = []) => lista.find(esDeKatherine) || lista.find(x => /^kathonejo$/i.test(String(x.autor || '').trim())) || lista[0] || null;

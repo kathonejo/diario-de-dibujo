@@ -31,9 +31,10 @@ test('redHTML: link seguro para URLs, texto plano para @usuario', () => {
   assert.equal(redHTML('javascript:alert(1)'), '');
 });
 
-test('autoría: los trabajos viejos (sin campos) se ven como antes', () => {
-  assert.equal(autoriaHTML({ id: 'viejo', nota: 'hola' }), '');
-  assert.equal(autoriaTexto({ id: 'viejo' }), '');
+test('autoría: los trabajos viejos (subidos con clave, sin campos) quedan a nombre de Kathonejo', () => {
+  assert.equal(autoriaHTML({ id: 'viejo', nota: 'hola' }), '<p class="autoria">por Kathonejo</p>');
+  assert.equal(autoriaTexto({ id: 'viejo' }, 'by'), 'by Kathonejo');
+  assert.equal(autoriaHTML(null), '');
   assert.equal(autoriaHTML({ autor: 'Ana', red: '@ana' }, 'by'), '<p class="autoria">by Ana · <span>@ana</span></p>');
   assert.equal(autoriaTexto({ autor: 'Ana', red: '@ana' }), 'por Ana · @ana');
 });
@@ -71,6 +72,7 @@ test('Diario: el dibujo de Katherine va primero; el álbum aparte', () => {
   assert.deepEqual(separar(l).album.map(x => x.id), ['a', 'b']);
   assert.equal(principal([{ id: 'a', publica: true }]).id, 'a');
   assert.equal(principal([]), null);
+  assert.equal(principal([{ id: 'a', publica: true, autor: 'Ana' }, { id: 'k2', publica: true, autor: 'Kathonejo' }]).id, 'k2');
 });
 
 test('límite por IP', () => {
