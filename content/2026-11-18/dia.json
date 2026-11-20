@@ -1,0 +1,55 @@
+{
+  "fecha": "2026-11-18",
+  "tema": "Tema técnico del mes (noviembre: la mancha y la aguada): húmedo sobre húmedo y húmedo sobre seco — bordes blandos y duros, veladuras por capas y planos de profundidad con la mancha",
+  "frase": {
+    "texto": "Cada material provoca cosas diferentes, yo atravieso el material y el material me atraviesa, él responde.",
+    "autor": "Yoann Saura, vía Claudia Rodríguez-Ponga Linares · Pequeño tratado sobre arte y magia (Cap. 2)"
+  },
+  "mision": "Escuchar cómo responde el agua: la misma forma en papel húmedo y en papel seco, y capas transparentes que esperan a que la anterior se seque.",
+  "paleta": [
+    {
+      "nombre": "Blanco perla",
+      "hex": "#F4F0ED"
+    },
+    {
+      "nombre": "Gris neblina claro",
+      "hex": "#D5D3D3"
+    },
+    {
+      "nombre": "Oliva dorado",
+      "hex": "#BABA04"
+    },
+    {
+      "nombre": "Violeta profundo",
+      "hex": "#45177A"
+    },
+    {
+      "nombre": "Violeta encantado",
+      "hex": "#6829AC"
+    }
+  ],
+  "datos": [
+    {
+      "texto": "Tinta y acuarela: primeras pinceladas de aguada húmedo sobre húmedo para mezclar los tonos; una vez seco, tinta diluida encima en tonos más oscuros.",
+      "libro": "Esbozar y dibujar",
+      "pagina": "37 del PDF (70-71 impresas)",
+      "imagen": "esbozar-pag37.webp"
+    },
+    {
+      "texto": "Lápices de colores acuarelables: se pinta con agua y pincel (el cielo) y, cuando las zonas aguadas se secaron, se vuelve a trabajar encima con trazos firmes (figs. 301-303).",
+      "libro": "El gran libro del dibujo — José M. Parramón",
+      "pagina": "40 del PDF (93 impresa)",
+      "imagen": "parramon-pag40.webp"
+    },
+    {
+      "texto": "Formas de resolver la profundidad: superposición de planos y degradado de tonos; un paisaje a la aguada sepia donde lo lejano es pálido y lo cercano, oscuro.",
+      "libro": "Taller de las Artes – Dibujo I: Iniciación — Chris Armand",
+      "pagina": "34 del PDF (62-63 impresas)",
+      "imagen": "taller-pag34.webp"
+    }
+  ],
+  "registro": "pictórico tipo v4",
+  "formato": "vertical",
+  "moodboard": "moodboard.webp",
+  "generador": "Grok Bot (imagen generada; completado el 20/11 porque el 18/11 no se publicó)"
+}
