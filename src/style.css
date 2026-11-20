@@ -222,6 +222,10 @@ body.modo-instalacion .site-foot{max-width:1100px;margin:2.4rem auto 0}
   .bg-letters{font-size:48vw;bottom:-8vw}
 }
 .acciones{display:flex;gap:.7rem;flex-wrap:wrap;margin:-.2rem 0 1.4rem}
+.manifiesto + .acciones{margin-top:2rem}
+@media(max-width:700px){
+  .manifiesto + .acciones{margin-top:1.4rem}
+}
 .acciones .btn,.mi-trabajo .btn{margin:0;border:1px solid var(--ink);font:500 .72rem var(--mono);cursor:pointer;letter-spacing:.12em;text-transform:uppercase}
 .mi-trabajo{margin-top:2.5rem}.mi-trabajo .btn{margin-top:1rem}
 .trabajos{display:grid;gap:1rem;grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}
