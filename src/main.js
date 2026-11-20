@@ -6,6 +6,7 @@ import { getTrabajos, dialogoSubir, borrar, puedeModerar } from './trabajos.js';
 import { principal } from '../api/_trabajo.js';
 import { instalacion, leaveInstalacion } from './instalacion.js';
 import { autoriaHTML, autoriaTexto } from '../api/_autoria.js';
+import { tituloHTML } from './titulo.js';
 import { t, initLang, fechaLarga, nombreMes, iniciales, localizarDia, temaIndice } from './i18n.js';
 initLang();
 const app = document.getElementById('app');
@@ -86,7 +87,7 @@ async function home() {
   </section>
   <section class="hero">
     <a href="/dia/${u.fecha}" class="mood"><img src="${img(u.fecha, d.moodboard)}" alt="${t('moodboard.alt', { tema: esc(d.tema) })}"></a>
-    <div class="hero-t"><p class="eyebrow">${t('ultimo', { fecha: largo(u.fecha) })}</p><h1>${esc(d.tema)}</h1>${genBadge(d)}${frase(d)}
+    <div class="hero-t"><p class="eyebrow">${t('ultimo', { fecha: largo(u.fecha) })}</p>${tituloHTML(d.tema)}${genBadge(d)}${frase(d)}
     <div class="mision card"><h3>${t('mision')}</h3><p>${esc(d.mision)}</p></div>
     ${manifiesto(dias.length)}
     <div class="acciones" style="margin-top:1.2rem">
@@ -133,7 +134,7 @@ async function dia(f) {
   const album = TR[f] || [], mod = puedeModerar();
   document.title = `${d.tema} · ${t('site')}`;
   app.innerHTML = `<article class="dia">
-    <p class="eyebrow">${largo(f)}</p><h1>${esc(d.tema)}</h1>${genBadge(d)}
+    <p class="eyebrow">${largo(f)}</p>${tituloHTML(d.tema)}${genBadge(d)}
     <div class="acciones"><button class="btn" id="focus-btn">${t('focus')}</button><button class="btn sec" id="dibujar-btn">${t('es.abrir')}</button><button class="btn sec" id="subir-btn">${t('subir')}</button></div>
     <figure class="mood grande"><img src="${img(f, d.moodboard)}" alt="${t('moodboard.alt', { tema: esc(d.tema) })}" data-zoom><figcaption>${t('foto1')}</figcaption></figure>
     ${normPaleta(d.paleta).length ? `<section class="paleta-sec"><h3>${t('paleta')}</h3>${paletaHTML(d.paleta)}<p class="hint">${t('paleta.hint')}</p></section>` : ''}

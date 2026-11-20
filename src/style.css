@@ -104,6 +104,12 @@ main{max-width:1100px;margin:0 auto;padding:0 1.4rem}
 .hero{display:grid;gap:2.2rem;margin-top:1.2rem}
 @media(min-width:900px){.hero{grid-template-columns:1.2fr 1fr;align-items:center}}
 .dia h1{margin-bottom:1rem}
+/* Titular corto + bajada (src/titulo.js): título grande y breve, detalle aparte en letra más chica */
+h1.tit{font-size:clamp(1.75rem,3.6vw + .5rem,2.75rem);line-height:1.1;margin:.12em 0 .3em;text-wrap:balance}
+h1.tit-largo{font-size:clamp(1.5rem,2.6vw + .6rem,2.2rem);line-height:1.15}
+.bajada{font-family:var(--mono);font-size:clamp(.85rem,.5vw + .72rem,1rem);line-height:1.5;color:var(--ink-dim);max-width:60ch;margin:0 0 .9rem;font-weight:400}
+.dia h1.tit{margin-bottom:.3rem}
+.dia .bajada{margin-bottom:1rem}
 .badge-gen{display:inline-block;margin:.2rem 0 0;padding:.15rem 0;border-radius:0;background:transparent;color:var(--ink-dim);font-size:.72rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;border-bottom:1px solid var(--line)}
 .dos{display:grid;gap:1.5rem;margin:2rem 0;align-items:center}
 @media(min-width:860px){.dos{grid-template-columns:1.2fr 1fr}}
@@ -221,7 +227,7 @@ dialog.subir h3{font-size:.78rem;letter-spacing:.14em}.subir .sub{margin:0 0 1re
 .f-chips button.sel{border-color:var(--ink);color:var(--ink)}
 .f-chips img{width:36px;height:28px;object-fit:cover;border:1px solid var(--line)}
 .mood.grande{width:fit-content;max-width:min(960px,100%)}
-.mood.grande img{width:auto;max-width:100%;max-height:78vh;margin:0 auto;object-fit:contain}
+.mood.grande img{width:auto;max-width:100%;max-height:min(78vh,max(340px,calc(100vh - 330px)));margin:0 auto;object-fit:contain}
 .hero .mood{display:flex;justify-content:center;align-items:center}
 .hero .mood img{width:auto;max-width:100%;max-height:72vh;object-fit:contain}
 .dato img{max-height:520px;object-fit:contain;width:auto;max-width:100%;margin:0 auto;display:block}
