@@ -1,0 +1,24 @@
+{
+  "en": {
+    "tema": "Integration (Friday, November: blots and washes): the blot in service of form — volume with washes on basic shapes, an animal in motion from line to mass, and a head in ink and wash",
+    "frase": {"texto": "The cartographer absorbs material from any source, as long as it serves their golden rule: to defend life.", "autor": "Suely Rolnik, via Claudia Rodríguez-Ponga Linares · Small Treatise on Art and Magic, Ch. 1 (Quote Bank by Operator, Operator #9 Taisha Abelar · Attention, bridge with the main book)"},
+    "mision": "Bring the week together on a single sheet: the form you learned (volume, horse, head) made with the blot you learned. First the living mass, then a few lines.",
+    "paleta": {"Gris tiza": "Chalk gray", "Gris acero": "Steel gray", "Verde lima oliva": "Olive lime green", "Magenta ciruela": "Plum magenta", "Púrpura profundo": "Deep purple"},
+    "datos": [
+      {"texto": "Washes in practice: cube, cylinder, pyramid and prism painted in wash with two colors; each face with its own value and the light left as white paper.", "pagina": "47 of the PDF (printed 100)"},
+      {"texto": "An equestrian scene: the jumping horse in 4 steps, from the quick motion line to the finished mass with the shoulder and musculature.", "pagina": "73 of the PDF (printed 140-141)"},
+      {"texto": "Stylized drawings, ink and watercolor: heads with a few ink lines and loose washes on top, leaving white paper.", "pagina": "38 of the PDF (printed 72-73)"}
+    ]
+  },
+  "pt": {
+    "tema": "Integração (sexta-feira, novembro: a mancha e a aguada): a mancha a serviço da forma — volume com aguada em formas básicas, animal em movimento da linha à massa, e cabeça com nanquim e aguada",
+    "frase": {"texto": "O cartógrafo absorve matérias de qualquer procedência, desde que sirvam à sua regra de ouro: defender a vida.", "autor": "Suely Rolnik, via Claudia Rodríguez-Ponga Linares · Pequeno tratado sobre arte e magia, Cap. 1 (Banco de Citações por Operador, Operador #9 Taisha Abelar · A Atenção, ponte com o livro principal)"},
+    "mision": "Juntar o que você aprendeu na semana numa só folha: a forma que aprendeu (volume, cavalo, cabeça) feita com a mancha que aprendeu. Primeiro a massa viva, depois poucas linhas.",
+    "paleta": {"Gris tiza": "Cinza giz", "Gris acero": "Cinza aço", "Verde lima oliva": "Verde lima oliva", "Magenta ciruela": "Magenta ameixa", "Púrpura profundo": "Púrpura profundo"},
+    "datos": [
+      {"texto": "A aguada na prática: cubo, cilindro, pirâmide e prisma pintados com aguada em duas cores; cada face com um valor e a luz como papel branco.", "pagina": "47 do PDF (100 impressa)"},
+      {"texto": "Uma cena equestre: o cavalo saltando em 4 passos, do traço rápido de movimento à massa terminada com o ombro e a musculatura.", "pagina": "73 do PDF (140-141 impressas)"},
+      {"texto": "Desenhos estilizados, nanquim e aquarela: cabeças com poucas linhas de nanquim e aguadas soltas por cima, deixando papel branco.", "pagina": "38 do PDF (72-73 impressas)"}
+    ]
+  }
+}
