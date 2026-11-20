@@ -31,11 +31,11 @@ async function pedirCodigo(msg) {
 }
 /** Solo Katherine ve los botones de borrar: si ya guardó su clave en este navegador o entra con ?moderar. */
 export const puedeModerar = () => { try { return !!localStorage.getItem(KEY) || new URLSearchParams(location.search).has('moderar'); } catch { return false; } };
-export function dialogoSubir(fecha, onDone, { album = false } = {}) {
+export function dialogoSubir(fecha, onDone, { album = false, archivo = null } = {}) {
   const d = document.createElement('dialog'); d.className = 'subir';
   const rec = recordado();
   d.innerHTML = `<form method="dialog"><h3>${album ? t('album.subir') : t('subir')}</h3><p class="sub">${fecha} · ${t('album')}</p>
-    <label class="drop"><input type="file" accept="image/jpeg,image/png,image/webp" required><span>${t('up.foto')}</span><img hidden alt=""></label>
+    ${archivo ? `<div class="drop lienzo"><img alt="${t('es.tu.dibujo')}"></div><input type="file" hidden>` : `<label class="drop"><input type="file" accept="image/jpeg,image/png,image/webp" required><span>${t('up.foto')}</span><img hidden alt=""></label>`}
     <label>${t('up.autor')}<input type="text" name="autor" maxlength="${LIMITE_AUTOR}" autocomplete="name" placeholder="${t('up.autor.ph')}" value="${escA(rec.autor)}" required></label>
     <label>${t('up.red')}<input type="text" name="red" maxlength="${LIMITE_RED}" autocomplete="url" inputmode="url" placeholder="${t('up.red.ph')}" value="${escA(rec.red)}"></label>
     <label>${t('up.nota')}<textarea maxlength="500" rows="3" placeholder="${t('up.placeholder')}"></textarea></label>
@@ -46,12 +46,13 @@ export function dialogoSubir(fecha, onDone, { album = false } = {}) {
   document.body.append(d); d.showModal();
   const inp = d.querySelector('input[type=file]'), prev = d.querySelector('.drop img'), est = d.querySelector('.estado');
   const aut = d.querySelector('[name=autor]');
+  if (archivo) prev.src = URL.createObjectURL(archivo);
   inp.onchange = () => { const f = inp.files[0]; if (f) { prev.src = URL.createObjectURL(f); prev.hidden = false; d.querySelector('.drop span').textContent = f.name; } };
   d.addEventListener('close', () => d.remove());
   d.querySelector('form').addEventListener('submit', async e => {
     if (e.submitter?.value !== 'ok') return;
     e.preventDefault();
-    const f = inp.files[0]; if (!f) return;
+    const f = archivo || inp.files[0]; if (!f) return;
     const autor = aut.value.trim(), red = d.querySelector('[name=red]').value.trim(), web = d.querySelector('[name=web]').value;
     if (!autor) { aut.focus(); return; }
     try { localStorage.setItem(AUT, JSON.stringify({ autor, red })); } catch {}

@@ -395,3 +395,63 @@ body.modo-instalacion main{max-width:none;padding:0;min-height:100dvh}
 .trabajo .autoria a{color:var(--ink)}
 .subir .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
 .subir .aviso{margin:0 0 .8rem;font-size:.78rem;color:var(--ink-mute)}
+
+/* ── Estudio: dibujar en pantalla ── */
+body.en-estudio{overflow:hidden}
+body.en-estudio #timer{z-index:110}
+.estudio{position:fixed;inset:0;z-index:100;background:var(--blue);color:var(--ink);display:flex;flex-direction:column;height:100vh;height:100dvh;font-family:var(--mono)}
+.es-top{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.55rem 1rem;border-bottom:1px solid var(--line)}
+.es-tit{display:flex;align-items:baseline;gap:.9rem;min-width:0}
+.es-tit strong{font-family:var(--serif);font-weight:400;font-size:1.45rem;white-space:nowrap}
+.es-tit span{font-size:.72rem;letter-spacing:.04em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;opacity:.85}
+.es-top-acc,.es-acc{display:flex;gap:.4rem;flex-wrap:wrap}
+.es-b{font:500 .66rem var(--mono);letter-spacing:.1em;text-transform:uppercase;border:1px solid var(--line);background:transparent;color:var(--ink);border-radius:0;padding:.5rem .8rem;cursor:pointer;white-space:nowrap}
+.es-b:hover{background:rgba(255,255,255,.14)}
+.es-b[aria-pressed="true"],.es-b.es-prim{background:#fff;color:var(--blue);border-color:#fff}
+.es-main{flex:1;min-height:0;display:flex;gap:.8rem;padding:.8rem 1rem;position:relative}
+.es-ref{display:none;flex-direction:column;gap:.5rem;width:min(36%,520px);min-height:0}
+.estudio.con-ref .es-ref{display:flex}
+.es-ref-img{flex:1;min-height:0;position:relative;border:1px solid var(--line)}
+.es-ref-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;display:block}
+.es-ref-chips{display:flex;gap:.35rem;overflow-x:auto;padding-bottom:2px}
+.es-ref-chips button{display:flex;align-items:center;gap:.35rem;flex:none;background:transparent;color:var(--ink);border:1px solid var(--line);border-radius:0;padding:.2rem .45rem .2rem .2rem;font:500 .6rem var(--mono);letter-spacing:.08em;text-transform:uppercase;cursor:pointer;opacity:.8}
+.es-ref-chips button.sel{border-color:#fff;opacity:1}
+.es-ref-chips img{width:32px;height:24px;object-fit:cover}
+.es-lienzo{flex:1;min-width:0;min-height:0;display:flex;align-items:center;justify-content:center}
+.es-lienzo canvas{display:block;border:1px solid #fff;touch-action:none;cursor:crosshair;background:#F4EFE3;-webkit-user-select:none;user-select:none}
+.estudio.borrando .es-lienzo canvas{cursor:cell}
+.es-tools{border-top:1px solid var(--line);padding:.6rem 1rem .7rem;display:grid;gap:.55rem}
+.es-mats{display:flex;gap:.35rem;overflow-x:auto;scrollbar-width:thin;padding-bottom:2px}
+.es-mat{flex:none;min-width:76px;display:flex;flex-direction:column;align-items:center;gap:.25rem;border:1px solid var(--line);border-radius:0;background:transparent;color:var(--ink);padding:.4rem .35rem;font:500 .56rem var(--mono);letter-spacing:.06em;text-transform:uppercase;cursor:pointer;line-height:1.15;text-align:center}
+.es-mat:hover{background:rgba(255,255,255,.12)}
+.es-mat.on{background:#fff;color:var(--blue);border-color:#fff}
+.es-ic{width:22px;height:22px;line-height:0}.es-ic svg{width:22px;height:22px}
+.es-fila{display:flex;flex-wrap:wrap;align-items:center;gap:.6rem 1.2rem}
+.es-rango{display:flex;align-items:center;gap:.5rem;font:500 .6rem var(--mono);letter-spacing:.1em;text-transform:uppercase}
+.es-rango input{width:110px;accent-color:#fff}
+.es-colores{display:flex;align-items:center;gap:.4rem;flex-wrap:wrap}
+.es-sw{width:30px;height:30px;border:2px solid #fff;border-radius:0;background:var(--c);padding:0;cursor:pointer}
+.es-sw.on{outline:2px solid #fff;outline-offset:3px}
+.es-pig{border-style:dashed}
+.es-otro{display:flex;align-items:center;gap:.35rem;font:500 .6rem var(--mono);letter-spacing:.1em;text-transform:uppercase;cursor:pointer}
+.es-otro input{width:34px;height:32px;padding:0;border:1px solid #fff;border-radius:0;background:transparent;cursor:pointer}
+.es-papel{display:flex;align-items:center;gap:.35rem;font:500 .6rem var(--mono);letter-spacing:.1em;text-transform:uppercase}
+.es-acc{justify-content:flex-end}
+.es-estado{margin:0;min-height:1em;font-size:.75rem;text-align:right}
+.focus .f-dibujar{position:absolute;top:16px;right:16px;background:#fff;color:var(--blue);border:1px solid #fff;border-radius:0;padding:.55rem 1rem}
+.subir .drop.lienzo{cursor:default}.subir .drop.lienzo img{display:block;margin:0 auto}
+@media(max-width:760px){
+  .es-top{padding:.45rem .6rem}.es-tit span{display:none}.es-tit strong{font-size:1.15rem}
+  .es-main{padding:.45rem}
+  .estudio.con-ref .es-ref{position:absolute;z-index:2;left:.6rem;top:.6rem;width:46%;height:42%;background:var(--blue);border:1px solid #fff;padding:.3rem}
+  .es-ref-chips button{font-size:0;padding:.2rem}
+  .es-tools{padding:.45rem .5rem .55rem;gap:.4rem}
+  .es-mat{min-width:64px;font-size:.5rem;padding:.3rem .25rem}
+  .es-fila{gap:.45rem .8rem}
+  .es-rango input{width:84px}
+  .es-otro span{display:none}
+  .es-sw{width:28px;height:28px}
+  .es-acc{justify-content:stretch}.es-acc .es-b{flex:1 1 30%;padding:.5rem .3rem;font-size:.58rem;letter-spacing:.05em}
+  .es-estado{text-align:left}
+  .focus .f-dibujar{top:110px;right:12px}
+}

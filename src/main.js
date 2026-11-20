@@ -1,6 +1,7 @@
 import './style.css';
 import { initTimer } from './timer.js';
 import { openFocus } from './focus.js';
+import { abrirEstudio } from './estudio.js';
 import { getTrabajos, dialogoSubir, borrar, puedeModerar } from './trabajos.js';
 import { principal } from '../api/_trabajo.js';
 import { instalacion, leaveInstalacion } from './instalacion.js';
@@ -121,7 +122,9 @@ async function dia(f) {
   const i = dias.findIndex(x => x.fecha === f), prev = dias[i+1], next = dias[i-1];
   const imgs = [{ src: img(f, d.moodboard), label: t('moodboard') }, ...(d.datos || []).filter(x => x.imagen).map(x => ({ src: img(f, x.imagen), label: t('pag', { p: x.pagina ?? '' }) }))];
   queueMicrotask(() => {
-    document.getElementById('focus-btn').onclick = () => openFocus(imgs, 0, paletaHTML(d.paleta, 'mini'));
+    const estudio = (k = 0) => abrirEstudio({ fecha: f, tema: d.tema, formato: d._es?.formato || d.formato, imgs, paleta: normPaleta(d.paleta), refInicial: k, onSubido: async () => { await dia(f); document.getElementById('album')?.scrollIntoView({ behavior: 'smooth' }); } });
+    document.getElementById('focus-btn').onclick = () => openFocus(imgs, 0, paletaHTML(d.paleta, 'mini'), estudio);
+    document.getElementById('dibujar-btn').onclick = () => estudio(0);
     const sub = () => dialogoSubir(f, () => dia(f), { album: true });
     document.getElementById('album-btn').onclick = () => dialogoSubir(f, () => dia(f), { album: true });
     document.getElementById('subir-btn').onclick = sub;
@@ -131,7 +134,7 @@ async function dia(f) {
   document.title = `${d.tema} · ${t('site')}`;
   app.innerHTML = `<article class="dia">
     <p class="eyebrow">${largo(f)}</p><h1>${esc(d.tema)}</h1>${genBadge(d)}
-    <div class="acciones"><button class="btn" id="focus-btn">${t('focus')}</button><button class="btn sec" id="subir-btn">${t('subir')}</button></div>
+    <div class="acciones"><button class="btn" id="focus-btn">${t('focus')}</button><button class="btn sec" id="dibujar-btn">${t('es.abrir')}</button><button class="btn sec" id="subir-btn">${t('subir')}</button></div>
     <figure class="mood grande"><img src="${img(f, d.moodboard)}" alt="${t('moodboard.alt', { tema: esc(d.tema) })}" data-zoom><figcaption>${t('foto1')}</figcaption></figure>
     ${normPaleta(d.paleta).length ? `<section class="paleta-sec"><h3>${t('paleta')}</h3>${paletaHTML(d.paleta)}<p class="hint">${t('paleta.hint')}</p></section>` : ''}
     <div class="dos">${frase(d)}<div class="mision card"><h3>${t('mision')}</h3><p>${esc(d.mision)}</p></div></div>

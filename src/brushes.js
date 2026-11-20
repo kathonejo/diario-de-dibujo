@@ -423,3 +423,6 @@ export function pressureFrom(e, last) {
   }
   return pr;
 }
+
+// Piezas del motor que reutiliza el estudio del día (src/pinceles.js).
+export { resampleByDistance, fillRibbonSimple, strokeRibbonEdge, rgba, hash };

@@ -1,9 +1,9 @@
 import { t } from './i18n.js';
 let el = null;
-export function openFocus(images, start = 0, paleta = '') {
+export function openFocus(images, start = 0, paleta = '', onDibujar = null) {
   let i = start;
   el = document.createElement('div'); el.className = 'focus';
-  el.innerHTML = `<button class="f-salir">${t('f.salir')}</button><button class="f-fs" aria-pressed="false">${t('f.fs')}</button>
+  el.innerHTML = `<button class="f-salir">${t('f.salir')}</button><button class="f-fs" aria-pressed="false">${t('f.fs')}</button>${onDibujar ? `<button class="f-dibujar">${t('es.abrir')}</button>` : ''}
     <button class="f-nav f-prev" aria-label="${t('f.prev')}">‹</button><img alt=""><button class="f-nav f-next" aria-label="${t('f.next')}">›</button>
     ${paleta ? `<div class="f-paleta">${paleta}</div>` : ''}<div class="f-chips">${images.map((m, k) => `<button data-k="${k}"><img src="${m.src}" alt="">${m.label}</button>`).join('')}</div>`;
   document.body.append(el); document.body.classList.add('en-focus');
@@ -15,6 +15,7 @@ export function openFocus(images, start = 0, paleta = '') {
   const fs = () => { const b = el?.querySelector('.f-fs'); if (b) { const on = !!document.fullscreenElement; b.setAttribute('aria-pressed', on); b.textContent = on ? t('f.fs.salir') : t('f.fs'); } };
   el.addEventListener('click', e => { const b = e.target.closest('button'); if (!b || b.classList.contains('sw')) return;
     if (b.dataset.k) show(+b.dataset.k); else if (b.classList.contains('f-prev')) show(i - 1); else if (b.classList.contains('f-next')) show(i + 1);
+    else if (b.classList.contains('f-dibujar')) { const k = i; close(); onDibujar(k); }
     else if (b.classList.contains('f-fs')) { if (document.fullscreenElement) document.exitFullscreen().catch(() => {}); else document.documentElement.requestFullscreen?.().catch(() => {}); }
     else close(); });
   document.addEventListener('keydown', key);
