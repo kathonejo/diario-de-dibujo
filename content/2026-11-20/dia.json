@@ -1,0 +1,54 @@
+{
+  "fecha": "2026-11-20",
+  "tema": "Integración (viernes, noviembre: la mancha y la aguada): la mancha al servicio de la forma — volumen con aguada en formas básicas, animal en movimiento de la línea a la masa, y cabeza con tinta y aguada",
+  "frase": {
+    "texto": "El cartógrafo absorbe material de cualquier procedencia siempre y cuando sirva a su regla de oro: defender la vida.",
+    "autor": "Suely Rolnik, vía Claudia Rodríguez-Ponga Linares · Pequeño tratado sobre arte y magia, Cap. 1 (Banco de Citas por Operador, Operador #9 Taisha Abelar · La Atención, puente con el libro principal)"
+  },
+  "mision": "Juntar lo de la semana en una sola hoja: la forma que aprendiste (volumen, caballo, cabeza) hecha con la mancha que aprendiste. Primero la masa viva, después pocas líneas.",
+  "paleta": [
+    {
+      "nombre": "Gris tiza",
+      "hex": "#E2E3DE"
+    },
+    {
+      "nombre": "Gris acero",
+      "hex": "#8B8A8F"
+    },
+    {
+      "nombre": "Verde lima oliva",
+      "hex": "#7EAC15"
+    },
+    {
+      "nombre": "Magenta ciruela",
+      "hex": "#AB19A2"
+    },
+    {
+      "nombre": "Púrpura profundo",
+      "hex": "#761C7C"
+    }
+  ],
+  "datos": [
+    {
+      "texto": "La aguada en la práctica: cubo, cilindro, pirámide y prisma pintados a la aguada con dos colores; cada cara con un valor y la luz como papel blanco.",
+      "libro": "El gran libro del dibujo — José M. Parramón",
+      "pagina": "47 del PDF (100 impresa)",
+      "imagen": "parramon-pag47.webp"
+    },
+    {
+      "texto": "Una escena ecuestre: el caballo saltando en 4 pasos, del trazo rápido de movimiento a la masa terminada con el hombro y la musculatura.",
+      "libro": "Taller de las Artes – Dibujo I: Iniciación",
+      "pagina": "73 del PDF (140-141 impresas)",
+      "imagen": "taller-pag73.webp"
+    },
+    {
+      "texto": "Dibujos estilizados, tinta y acuarela: cabezas con pocas líneas de tinta y aguadas sueltas encima, dejando papel blanco.",
+      "libro": "Esbozar y dibujar",
+      "pagina": "38 del PDF (72-73 impresas)",
+      "imagen": "esbozar-pag38.webp"
+    }
+  ],
+  "registro": "pictórico tipo v4",
+  "formato": "horizontal",
+  "moodboard": "moodboard.webp"
+}
