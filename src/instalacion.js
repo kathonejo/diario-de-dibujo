@@ -189,6 +189,10 @@ async function pantallaInicio(app) {
       </div>
     </header>
     <p class="inst-fecha">${largo(u.fecha)}</p>
+    <div class="inst-cta">
+      <button class="btn inst-big" id="inst-dibujar">${t('i.dibujar')}</button>
+      <a class="btn sec" href="/instalacion/mural">${t('i.ver.mural')}</a>
+    </div>
     <h2 class="inst-tema">${esc(d.tema)}</h2>
     <ol class="inst-steps inst-steps-solo">
       <li><span aria-hidden="true">1</span> ${t('i.paso1')}</li>
@@ -204,10 +208,6 @@ async function pantallaInicio(app) {
         <img src="${img(u.fecha, ref.imagen)}" alt="${t('i.referencia')}">
         <figcaption>${t('i.referencia')}</figcaption>
       </figure>` : ''}
-    </div>
-    <div class="inst-cta">
-      <button class="btn inst-big" id="inst-dibujar">${t('i.dibujar')}</button>
-      <a class="btn sec" href="/instalacion/mural">${t('i.ver.mural')}</a>
     </div>
     <p class="inst-hint">${t('i.hint', { n: minParam() })}</p>
     ${pie()}

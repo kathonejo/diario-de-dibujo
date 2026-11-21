@@ -60,14 +60,22 @@ test('un día se traduce campo por campo y lo no traducido queda en español', (
   assert.equal(temaIndice({ tema: 'Valor' }, 'en'), 'Valor');
 });
 
-test('contacto: título traducido y Cosmovisión igual en los tres idiomas', () => {
+test('contacto: título traducido en los tres idiomas', () => {
   assert.equal(t('contact.h', null, 'es'), 'Contacto');
   assert.equal(t('contact.h', null, 'en'), 'Contact');
   assert.equal(t('contact.h', null, 'pt'), 'Contato');
   assert.equal(t('contact.redes', null, 'es'), 'Redes');
   assert.equal(t('contact.redes', null, 'en'), 'Social');
   assert.equal(t('contact.redes', null, 'pt'), 'Redes');
-  assert.equal(t('contact.cosmovision', null, 'es'), 'Cosmovisión');
-  assert.equal(t('contact.cosmovision', null, 'en'), 'Cosmovisión');
-  assert.equal(t('contact.cosmovision', null, 'pt'), 'Cosmovisión');
+});
+
+test('instalación paso 3 ya no dice que el conejo comenta', () => {
+  assert.equal(t('i.paso3', null, 'es'), 'Entregá: tu dibujo se suma al mural');
+  assert.equal(t('i.paso3', null, 'en'), 'Submit: your drawing joins the mural');
+  assert.equal(t('i.paso3', null, 'pt'), 'Entregue: seu desenho entra no mural');
+  for (const lang of ['es', 'en', 'pt']) {
+    const s = t('i.paso3', null, lang).toLowerCase();
+    assert.equal(s.includes('comenta'), false);
+    assert.equal(s.includes('comment'), false);
+  }
 });
