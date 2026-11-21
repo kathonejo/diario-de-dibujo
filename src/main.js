@@ -8,6 +8,7 @@ import { instalacion, leaveInstalacion } from './instalacion.js';
 import { montarConejito } from './conejito.js';
 import { autoriaHTML, autoriaTexto } from '../api/_autoria.js';
 import { t, initLang, fechaLarga, nombreMes, iniciales, localizarDia, temaIndice } from './i18n.js';
+import { pie } from './pie.js';
 initLang();
 const app = document.getElementById('app');
 const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
@@ -71,7 +72,6 @@ const miniTrabajo = (l = []) => {
 const lista = dias => `<ul class="lista">${dias.map(d => `<li><a href="/dia/${d.fecha}"><img loading="lazy" src="${img(d.fecha, d.moodboard)}" alt=""><span><small>${largo(d.fecha)}</small><strong>${esc(temaIndice(d))}</strong></span>${miniTrabajo(TR[d.fecha])}</a></li>`).join('')}</ul>`;
 
 const manifiesto = n => `<div class="manifiesto"><img src="/mascota.png" alt=""><p>${t('manifiesto', { n })}</p></div>`;
-const pie = () => `<footer class="site-foot">${t('foot')}</footer>`;
 
 async function home() {
   const [dias, tr] = await Promise.all([getIndex(), getTrabajos()]); TR = tr;

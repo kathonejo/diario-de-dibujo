@@ -59,3 +59,15 @@ test('un día se traduce campo por campo y lo no traducido queda en español', (
   assert.equal(temaIndice({ tema: 'Valor', i18n: { pt: { tema: 'Valor PT' } } }, 'pt'), 'Valor PT');
   assert.equal(temaIndice({ tema: 'Valor' }, 'en'), 'Valor');
 });
+
+test('contacto: título traducido y Cosmovisión igual en los tres idiomas', () => {
+  assert.equal(t('contact.h', null, 'es'), 'Contacto');
+  assert.equal(t('contact.h', null, 'en'), 'Contact');
+  assert.equal(t('contact.h', null, 'pt'), 'Contato');
+  assert.equal(t('contact.redes', null, 'es'), 'Redes');
+  assert.equal(t('contact.redes', null, 'en'), 'Social');
+  assert.equal(t('contact.redes', null, 'pt'), 'Redes');
+  assert.equal(t('contact.cosmovision', null, 'es'), 'Cosmovisión');
+  assert.equal(t('contact.cosmovision', null, 'en'), 'Cosmovisión');
+  assert.equal(t('contact.cosmovision', null, 'pt'), 'Cosmovisión');
+});
