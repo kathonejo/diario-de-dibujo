@@ -3,6 +3,7 @@ import { HERRAMIENTAS, PAPER, fillPaper, paintStroke, paintLive, pressureFrom } 
 import { loadDrawingStrokes, muralGrid, prefersReducedMotion } from './timelapse.js';
 import { createMuralTimelapse } from './muralTimelapse.js';
 import { t, tError, tColor, fechaLarga, localizarDia, temaIndice, selectorHTML, getLang } from './i18n.js';
+import { pie } from './pie.js';
 const getLangSafe = () => getLang();
 const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const parse = f => { const [y,m,d] = f.split('-').map(Number); return new Date(y, m-1, d); };
@@ -209,7 +210,7 @@ async function pantallaInicio(app) {
       <a class="btn sec" href="/instalacion/mural">${t('i.ver.mural')}</a>
     </div>
     <p class="inst-hint">${t('i.hint', { n: minParam() })}</p>
-    <footer class="site-foot">${t('foot')}</footer>
+    ${pie()}
   </section>`;
   document.getElementById('inst-dibujar').onclick = () => pantallaDibujo(app, { fecha: u.fecha, tema: d.tema, temaEs: d._es?.tema ?? d.tema, mood: d.moodboard, ref, paleta: d.paleta });
 }
