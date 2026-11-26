@@ -1,0 +1,55 @@
+{
+  "fecha": "2026-11-26",
+  "tema": "Tema técnico + creatividad (noviembre: la mancha y la aguada): la silueta y el espacio negativo — diseñar la forma de afuera hacia adentro con una sola mancha plana, de la silueta al volumen, pintar el hueco (espacio negativo) y masas en vez de detalles",
+  "frase": {
+    "texto": "Existía un conjunto de vínculos invisibles entre las cosas o los seres y sus efigies.",
+    "autor": "Salomon Reinach · L'Art et la Magie, 1903 (Banco de Citas — Magical Operators, Citas 21-28 Moore + Reinach, cita 28)"
+  },
+  "mision": "Que la forma se lea entera solo por su borde: una mancha plana que ya dice qué es, antes de cualquier detalle.",
+  "paleta": [
+    {
+      "nombre": "Crema hueso",
+      "hex": "#F5F1E8"
+    },
+    {
+      "nombre": "Gris piedra",
+      "hex": "#B8B8B8"
+    },
+    {
+      "nombre": "Terracota",
+      "hex": "#C2471B"
+    },
+    {
+      "nombre": "Verde salvia claro",
+      "hex": "#95CC91"
+    },
+    {
+      "nombre": "Verde azulado profundo",
+      "hex": "#228E9F"
+    }
+  ],
+  "paleta_fuente": "La armonía en el color – Nuevas tendencias, pág. 47 del PDF (pág. 45 impresa, «Terrosos»)",
+  "datos": [
+    {
+      "texto": "Silhouettes: 30 siluetas negras (Fig. 04) que se leen sin detalle interior; diseñar con silueta es diseñar el personaje de afuera hacia adentro. Fig. 03: de mancha borrosa a forma definida.",
+      "libro": "Dynamic Characters: Enhancing Your Character Concepts — 3DTotal",
+      "pagina": "8 del PDF (page 8 impresa)",
+      "imagen": "dynamic-pag8.webp"
+    },
+    {
+      "texto": "Una combinación interesante / Escala tonal con sanguina y sepia: árbol resuelto como masas de valor con borde irregular, no como hojas.",
+      "libro": "Taller de las Artes – Dibujo I: Iniciación — Chris Armand",
+      "pagina": "52 del PDF (98-99 impresas)",
+      "imagen": "taller-pag52.webp"
+    },
+    {
+      "texto": "Incisiones en cartulina estucada: la forma aparece al sacar blanco de una masa negra (pensar en negativo).",
+      "libro": "Esbozar y dibujar",
+      "pagina": "43 del PDF (82-83 impresas)",
+      "imagen": "esbozar-pag43.webp"
+    }
+  ],
+  "registro": "pictórico tipo v4",
+  "formato": "vertical",
+  "moodboard": "moodboard.webp"
+}
