@@ -1,0 +1,56 @@
+{
+  "fecha": "2026-11-27",
+  "tema": "Integración (viernes, noviembre: la mancha y la aguada): la figura humana entera, del gesto a la masa — línea de movimiento, dos masas de valor, bordes perdidos y acentos",
+  "frase": {
+    "texto": "Tras siglos de análisis, ha llegado el momento de la síntesis. Los elementos que fueron aislados deben ser reconectados.",
+    "autor": "Alan Moore (Banco de Citas — Magical Operators, Citas 21-28 Moore + Reinach, cita 24)"
+  },
+  "mision": "Unir en una sola figura lo que practicaste por separado: el gesto, la masa y la luz. Primero el movimiento, después la mancha, al final pocas líneas.",
+  "paleta": [
+    {
+      "nombre": "Durazno pálido",
+      "hex": "#FEDEC5"
+    },
+    {
+      "nombre": "Salmón",
+      "hex": "#F29379"
+    },
+    {
+      "nombre": "Rojo coral",
+      "hex": "#E3482A"
+    },
+    {
+      "nombre": "Granate",
+      "hex": "#833B30"
+    },
+    {
+      "nombre": "Verde azulado oscuro",
+      "hex": "#317D83"
+    }
+  ],
+  "paleta_fuente": "La armonía en el color – Nuevas tendencias, pág. 81 del PDF (pág. 79 impresa, «Refrescantes»: filas Complementario)",
+  "datos": [
+    {
+      "texto": "Trazos lineales, líneas de movimiento y líneas direccionales: la figura construida desde el gesto.",
+      "libro": "Esbozar y dibujar",
+      "pagina": "63 del PDF (doble página)",
+      "imagen": "esbozar-pag63.webp"
+    },
+    {
+      "texto": "El desnudo: figura sentada resuelta con masas de sanguina; la sombra como una sola forma y la luz en el papel.",
+      "libro": "El gran libro del dibujo — José M. Parramón",
+      "pagina": "77 del PDF",
+      "imagen": "parramon-pag77.webp"
+    },
+    {
+      "texto": "El apunte: apuntes rápidos de figura donde línea y mancha conviven en pocos trazos.",
+      "libro": "El gran libro del dibujo — José M. Parramón",
+      "pagina": "88 del PDF",
+      "imagen": "parramon-pag88.webp"
+    }
+  ],
+  "registro": "pictórico tipo v4",
+  "formato": "horizontal",
+  "moodboard": "moodboard.webp",
+  "generador": "Generador de imágenes de Grok Bot (no ChatGPT), con las 3 referencias adjuntas"
+}
