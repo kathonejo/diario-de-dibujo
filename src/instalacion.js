@@ -1,5 +1,6 @@
 /** Modo instalación · kiosco táctil */
-import { HERRAMIENTAS, PAPER, fillPaper, paintStroke, paintLive, pressureFrom } from './brushes.js';
+import { fillPaper } from './brushes.js';
+import { MATERIALES, material, presion, pintarTrazo } from './pinceles.js';
 import { loadDrawingStrokes, muralGrid, prefersReducedMotion } from './timelapse.js';
 import { createMuralTimelapse } from './muralTimelapse.js';
 import { t, tError, tColor, fechaLarga, localizarDia, temaIndice, selectorHTML, getLang } from './i18n.js';
@@ -253,7 +254,7 @@ async function pantallaDibujo(app, ctx) {
     </div>
     <div class="inst-tools">
       <div class="inst-brushes" id="inst-brushes" role="toolbar" aria-label="${t('i.herramientas')}">
-        ${HERRAMIENTAS.map((h,i) => `<button type="button" class="inst-tool${i===0?' on':''}" data-tool="${h.id}" title="${t(`tool.${h.id}`)}"><span class="inst-tool-ic">${h.icon}</span><span class="inst-tool-nom">${t(`tool.${h.id}`)}</span></button>`).join('')}
+        ${MATERIALES.map((h,i) => `<button type="button" class="inst-tool${i===0?' on':''}" data-tool="${h.id}" title="${t(`tool.${h.id}`)}"><span class="inst-tool-ic">${h.icon}</span><span class="inst-tool-nom">${t(`tool.${h.id}`)}</span></button>`).join('')}
       </div>
       <div class="inst-sizes" id="inst-sizes" role="toolbar" aria-label="${t('i.grosor')}">
         ${TAMANOS.map((s,i) => `<button type="button" class="inst-sz${i===2?' on':''}" data-sz="${s.sz}" title="${t(`sz.${s.id}`)}" aria-label="${t(`sz.${s.id}`)}"><i style="width:${s.px}px;height:${s.px}px"></i></button>`).join('')}
@@ -301,8 +302,8 @@ async function pantallaDibujo(app, ctx) {
 
   function redrawAll() {
     fillPaper(c2, canvas.width, canvas.height);
-    for (const s of strokes) paintStroke(c2, s);
-    if (current) paintStroke(c2, current);
+    for (const s of strokes) pintarTrazo(c2, s);
+    if (current) pintarTrazo(c2, current);
   }
 
   fitCanvas(canvas, c2);
@@ -321,10 +322,10 @@ async function pantallaDibujo(app, ctx) {
     // ImageData undo buffers are size-bound; rebuild base from strokes
     undoStack = [];
     fillPaper(c2, canvas.width, canvas.height);
-    for (const s of strokes) paintStroke(c2, s);
+    for (const s of strokes) pintarTrazo(c2, s);
     if (current) {
       undoStack.push(snapshot(canvas));
-      paintStroke(c2, current);
+      pintarTrazo(c2, current);
     }
   });
   ro.observe(canvas.parentElement);
@@ -344,9 +345,9 @@ async function pantallaDibujo(app, ctx) {
     undoStack.push(snapshot(canvas));
     if (undoStack.length > 25) undoStack.shift();
     const p = pos(e);
-    const pr = pressureFrom(e, null);
+    const pr = presion(e, null);
     current = { tool, color, size, points: [{ x: p.x, y: p.y, pr, _cx: p._cx, _cy: p._cy, _t: p._t }] };
-    paintLive(c2, tool, color, current.points, size);
+    pintarTrazo(c2, current);
   }
   function move(e) {
     if (!current) return;
@@ -355,12 +356,12 @@ async function pantallaDibujo(app, ctx) {
     const last = current.points[current.points.length - 1];
     // skip micro moves
     if (Math.hypot(p.x - last.x, p.y - last.y) < 2.5) return;
-    const pr = pressureFrom(e, last);
+    const pr = presion(e, last);
     current.points.push({ x: p.x, y: p.y, pr, _cx: p._cx, _cy: p._cy, _t: p._t });
     // redraw full stroke from pre-stroke snapshot for smooth curves
     const base = undoStack[undoStack.length - 1];
     if (base) c2.putImageData(base, 0, 0);
-    paintStroke(c2, current);
+    pintarTrazo(c2, current);
   }
   function end(e) {
     if (!current) return;
@@ -384,10 +385,15 @@ async function pantallaDibujo(app, ctx) {
   canvas.addEventListener('pointercancel', end);
   canvas.style.touchAction = 'none';
 
+  const drawEl = app.querySelector('.inst-draw');
+  function marcarHerramienta() {
+    document.querySelectorAll('.inst-tool').forEach(x => x.classList.toggle('on', x.dataset.tool === tool));
+    drawEl.classList.toggle('borrando', !!material(tool).borra);
+  }
   document.getElementById('inst-brushes').onclick = e => {
     const b = e.target.closest('[data-tool]'); if (!b) return;
     tool = b.dataset.tool;
-    document.querySelectorAll('.inst-tool').forEach(x => x.classList.toggle('on', x === b));
+    marcarHerramienta();
   };
   document.getElementById('inst-sizes').onclick = e => {
     const b = e.target.closest('[data-sz]'); if (!b) return;
@@ -398,9 +404,9 @@ async function pantallaDibujo(app, ctx) {
     const b = e.target.closest('[data-hex]'); if (!b) return;
     color = b.dataset.hex;
     document.querySelectorAll('.inst-sw').forEach(x => x.classList.toggle('on', x === b));
-    if (tool === 'goma') {
+    if (material(tool).borra) {
       tool = 'grafito';
-      document.querySelectorAll('.inst-tool').forEach(x => x.classList.toggle('on', x.dataset.tool === 'grafito'));
+      marcarHerramienta();
     }
   };
   document.getElementById('inst-undo').onclick = () => {
@@ -419,7 +425,7 @@ async function pantallaDibujo(app, ctx) {
     undoStack.push(snapshot(canvas));
     const fillStroke = { tool, color, size, fill: true, points: [] };
     strokes.push(fillStroke);
-    paintStroke(c2, fillStroke);
+    pintarTrazo(c2, fillStroke);
   };
 
   const clock = document.getElementById('inst-clock');
@@ -787,7 +793,7 @@ export async function mural(app) {
     }
 
     if (prefersReducedMotion()) {
-      for (const s of strokes) paintStroke(c2, s);
+      for (const s of strokes) pintarTrazo(c2, s);
       return;
     }
 
@@ -797,7 +803,7 @@ export async function mural(app) {
       if (si >= strokes.length) return;
       const s = strokes[si];
       // progressive reveal: paint whole stroke, then next
-      paintStroke(c2, s);
+      pintarTrazo(c2, s);
       si += 1;
       setTimeout(() => requestAnimationFrame(step), 90);
     }

@@ -240,6 +240,37 @@ export function pintar(c2, st, tono = 'blanco') {
   c2.restore();
 }
 
+/** Herramientas viejas de la Instalación: se siguen pintando con el motor original para no cambiar el mural. */
+const LEGACY_INSTALACION = new Set(['tinta', 'acuarela', 'carbonilla']);
+
+/** «Pintar fondo» de la Instalación usa las texturas clásicas; cada material nuevo se apoya en la más cercana. */
+const FONDO_DE = {
+  tinta: 'tinta', pluma: 'tinta', pincel: 'tinta',
+  acuarela: 'acuarela', aguada: 'acuarela', humedo: 'acuarela', acuarelable: 'acuarela',
+  carbonilla: 'carbonilla', carbon: 'carbonilla', seco: 'carbonilla', sanguina: 'carbonilla', tiza: 'carbonilla',
+  goma: 'goma', moldeable: 'goma', difumino: 'goma',
+};
+
+export function motorFondo(tool) {
+  return FONDO_DE[tool] || 'grafito';
+}
+
+/** Pinta un trazo de la Instalación (formato largo o el compacto t/c/sz/p/f). Materiales del estudio + trazos viejos. */
+export function pintarTrazo(c2, stroke, tono = 'blanco') {
+  const tool = stroke.tool || stroke.t || 'grafito';
+  if (stroke.fill || stroke.f || stroke.kind === 'fill') {
+    const fondo = motorFondo(tool);
+    return paintStroke(c2, { ...stroke, tool: fondo, t: fondo });
+  }
+  if (LEGACY_INSTALACION.has(tool)) return paintStroke(c2, stroke);
+  const color = stroke.color || stroke.c || '#0A0A0A';
+  const size = stroke.size ?? stroke.sz ?? 1;
+  const alpha = stroke.alpha ?? stroke.a ?? 1;
+  const raw = stroke.points || stroke.p || [];
+  const points = raw.map(pt => Array.isArray(pt) ? { x: +pt[0], y: +pt[1], pr: +(pt[2] ?? 0.55) } : pt);
+  return pintar(c2, { tool, color, size, alpha, points }, tono);
+}
+
 /** Historial con deshacer/rehacer. Guarda trazos; las fotos del lienzo son solo un atajo. */
 export function crearHistorial(limiteFotos = 12) {
   const h = { trazos: [], rehacer: [], fotos: new Map() };

@@ -1,5 +1,6 @@
 /** Lienzos vivos del mural. Un rAF compartido, fuera de pantalla no pinta. */
-import { PAPER, paintStroke } from './brushes.js';
+import { PAPER } from './brushes.js';
+import { pintarTrazo } from './pinceles.js';
 import {
   FRAME_BUDGET,
   FRAME_MS,
@@ -159,7 +160,7 @@ export function createMuralTimelapse() {
           cost: (index) => workUnits(mapped[index]),
           onPaint: (index) => {
             const stroke = mapped[index];
-            if (stroke) paintStroke(ctx, stroke);
+            if (stroke) pintarTrazo(ctx, stroke);
           },
           onReset: () => clearPaper(ctx),
           onReady: () => {

@@ -129,6 +129,7 @@ const S = {
     'm.vacio': 'Todavía no hay dibujos. Sé la primera persona en dejar uno.', 'm.error': 'No se pudo cargar el mural',
     // herramientas, grosores y colores de reserva
     'tool.grafito': 'Grafito', 'tool.tinta': 'Tinta', 'tool.acuarela': 'Acuarela', 'tool.carbonilla': 'Carbonilla', 'tool.goma': 'Goma',
+    'tool.carbon': 'Carbón', 'tool.sanguina': 'Sanguina', 'tool.tiza': 'Tiza', 'tool.acuarelable': 'Acuarelable', 'tool.pluma': 'Pluma', 'tool.pincel': 'Pincel', 'tool.seco': 'Seco', 'tool.aguada': 'Aguada', 'tool.humedo': 'Húmedo', 'tool.moldeable': 'Moldeable', 'tool.difumino': 'Difumino',
     'sz.xs': 'Fino', 'sz.s': 'Chico', 'sz.m': 'Medio', 'sz.l': 'Grande', 'sz.xl': 'Grueso',
   },
   en: {
@@ -240,6 +241,7 @@ const S = {
     'm.n.uno': '{n} drawing · {fecha}', 'm.n.otros': '{n} drawings · {fecha}', 'm.total': '{n} drawings in total',
     'm.vacio': 'No drawings yet. Be the first person to leave one.', 'm.error': 'Could not load the mural',
     'tool.grafito': 'Graphite', 'tool.tinta': 'Ink', 'tool.acuarela': 'Watercolor', 'tool.carbonilla': 'Charcoal', 'tool.goma': 'Eraser',
+    'tool.carbon': 'Charcoal', 'tool.sanguina': 'Sanguine', 'tool.tiza': 'Chalk', 'tool.acuarelable': 'Wash pencil', 'tool.pluma': 'Ink pen', 'tool.pincel': 'Ink brush', 'tool.seco': 'Dry brush', 'tool.aguada': 'Wash', 'tool.humedo': 'Wet-on-wet', 'tool.moldeable': 'Kneaded', 'tool.difumino': 'Stump',
     'sz.xs': 'Fine', 'sz.s': 'Small', 'sz.m': 'Medium', 'sz.l': 'Large', 'sz.xl': 'Thick',
   },
   pt: {
@@ -351,6 +353,7 @@ const S = {
     'm.n.uno': '{n} desenho · {fecha}', 'm.n.otros': '{n} desenhos · {fecha}', 'm.total': '{n} desenhos no total',
     'm.vacio': 'Ainda não há desenhos. Seja a primeira pessoa a deixar um.', 'm.error': 'Não foi possível carregar o mural',
     'tool.grafito': 'Grafite', 'tool.tinta': 'Nanquim', 'tool.acuarela': 'Aquarela', 'tool.carbonilla': 'Carvão', 'tool.goma': 'Borracha',
+    'tool.carbon': 'Carvão', 'tool.sanguina': 'Sanguínea', 'tool.tiza': 'Giz', 'tool.acuarelable': 'Aquarelável', 'tool.pluma': 'Pena', 'tool.pincel': 'Pincel', 'tool.seco': 'Seco', 'tool.aguada': 'Aguada', 'tool.humedo': 'Úmido', 'tool.moldeable': 'Limpa-tipos', 'tool.difumino': 'Esfuminho',
     'sz.xs': 'Fino', 'sz.s': 'Pequeno', 'sz.m': 'Médio', 'sz.l': 'Grande', 'sz.xl': 'Grosso',
   },
 };

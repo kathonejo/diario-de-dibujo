@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { MATERIALES, material, presion, crearHistorial, formatoLienzo } from '../src/pinceles.js';
+import { MATERIALES, material, presion, crearHistorial, formatoLienzo, motorFondo, pintarTrazo } from '../src/pinceles.js';
 import { t } from '../src/i18n.js';
 
 test('materiales de las clases, cada uno con nombre en ES/EN/PT', () => {
@@ -46,4 +46,24 @@ test('formato del lienzo según el día', () => {
   assert.deepEqual(formatoLienzo('cuadrado (1:1)'), { w: 1350, h: 1350 });
   assert.deepEqual(formatoLienzo('horizontal (16:9)'), { w: 1500, h: 1125 });
   assert.deepEqual(formatoLienzo(''), { w: 1500, h: 1125 });
+});
+
+test('pintarTrazo: materiales del estudio y fondos de la Instalación, sin romper trazos viejos', () => {
+  const ids = MATERIALES.map(m => m.id);
+  for (const id of ids) assert.notEqual(t(`tool.${id}`, {}, 'es'), `tool.${id}`, id);
+  for (const l of ['es', 'en', 'pt']) {
+    for (const id of ids) assert.notEqual(t(`tool.${id}`, {}, l), `tool.${id}`, `${id} ${l}`);
+  }
+  assert.equal(motorFondo('pluma'), 'tinta');
+  assert.equal(motorFondo('pincel'), 'tinta');
+  assert.equal(motorFondo('aguada'), 'acuarela');
+  assert.equal(motorFondo('humedo'), 'acuarela');
+  assert.equal(motorFondo('acuarelable'), 'acuarela');
+  assert.equal(motorFondo('carbon'), 'carbonilla');
+  assert.equal(motorFondo('sanguina'), 'carbonilla');
+  assert.equal(motorFondo('moldeable'), 'goma');
+  assert.equal(motorFondo('difumino'), 'goma');
+  assert.equal(motorFondo('grafito'), 'grafito');
+  assert.equal(motorFondo('tinta'), 'tinta');
+  assert.equal(typeof pintarTrazo, 'function');
 });
