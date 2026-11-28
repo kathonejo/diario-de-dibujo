@@ -1,0 +1,56 @@
+{
+  "fecha": "2026-11-28",
+  "tema": "Experimental (sábado, noviembre: la mancha y la aguada): gramática de marcas y texturas — un abecedario de 9 texturas hechas con herramientas distintas (carbón plano, dedo, esponja, trama, sal, pincel seco, salpicado, estampado ciego) y su uso para construir una forma simple",
+  "frase": {
+    "texto": "Un grimorio es simplemente una forma elegante de decir gramática. Lanzar un hechizo es simplemente deletrear, manipular palabras, cambiar la conciencia.",
+    "autor": "Alan Moore (Banco de Citas — Magical Operators, Citas 21-28 Moore + Reinach, cita 22)"
+  },
+  "mision": "Armar tu propio abecedario de marcas: cada herramienta es una letra. Después, con esas letras, «escribir» una piedra y una rama.",
+  "paleta": [
+    {
+      "nombre": "Durazno claro",
+      "hex": "#FFB560"
+    },
+    {
+      "nombre": "Naranja ocre",
+      "hex": "#D77D0F"
+    },
+    {
+      "nombre": "Siena tostada",
+      "hex": "#8D4E09"
+    },
+    {
+      "nombre": "Azul lavanda",
+      "hex": "#8990E0"
+    },
+    {
+      "nombre": "Azul cobalto",
+      "hex": "#3550AB"
+    }
+  ],
+  "paleta_fuente": "La armonía en el color – Nuevas tendencias, pág. 89 del PDF (pág. 87 impresa, «Clásicos»: filas Complementario)",
+  "datos": [
+    {
+      "texto": "Escala de marcas: el mismo grafito (2B, 6B, barra) da texturas distintas según la presión y el grado; a la derecha, esas marcas aplicadas en un paisaje de río.",
+      "libro": "Esbozar y dibujar",
+      "pagina": "9 del PDF (doble página, págs. 14-15 impresas: «Lápices de grado intermedio», «Lápices blandos», «Barras de grafito», «Lápices duros y blandos»)",
+      "imagen": "esbozar-pag9.webp"
+    },
+    {
+      "texto": "El carboncillo: un medio inestable — cuatro muestras del mismo carbón: directo (textura del papel), difuminado con difumino, con los dedos y con lana o esponja.",
+      "libro": "Taller de las Artes – Dibujo I: Iniciación — Chris Armand",
+      "pagina": "50 del PDF (doble página, págs. 94-95 impresas)",
+      "imagen": "taller-pag50.webp"
+    },
+    {
+      "texto": "Estampados: estampado ciego — líneas marcadas a presión en el papel que aparecen blancas al sombrear encima, también sobre color.",
+      "libro": "Esbozar y dibujar",
+      "pagina": "47 del PDF (doble página, págs. 90-91 impresas)",
+      "imagen": "esbozar-pag47.webp"
+    }
+  ],
+  "registro": "pictórico tipo v4",
+  "formato": "vertical",
+  "moodboard": "moodboard.webp",
+  "generador": "Generador de imágenes de Grok Bot (no ChatGPT), con las 3 referencias adjuntas"
+}
